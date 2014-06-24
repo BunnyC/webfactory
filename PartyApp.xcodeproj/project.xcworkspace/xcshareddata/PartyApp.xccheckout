@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>13F36ED0-0AA1-45F0-BE6A-6507739EA185</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PartyApp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>977BD097-0768-48CC-A7C5-7D60EE94DD39</key>
+		<string>https://github.com/BunnyC/Party-App.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>PartyApp.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>977BD097-0768-48CC-A7C5-7D60EE94DD39</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/BunnyC/Party-App.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>977BD097-0768-48CC-A7C5-7D60EE94DD39</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>977BD097-0768-48CC-A7C5-7D60EE94DD39</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Party-App</string>
+		</dict>
+	</array>
+</dict>
+</plist>

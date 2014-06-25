@@ -201,6 +201,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84AD392B1957D3AA0004915B /* Quickblox.framework in Frameworks */,
 				84AD392C1957FC3C0004915B /* MobileCoreServices.framework in Frameworks */,
 				84AD392D1957FC3C0004915B /* SystemConfiguration.framework in Frameworks */,
 				CE35F0991956A73C009DA53D /* CFNetwork.framework in Frameworks */,
@@ -219,7 +220,6 @@
 				8425AF61194C3E7800E8CCF3 /* CoreGraphics.framework in Frameworks */,
 				8425AF63194C3E7800E8CCF3 /* UIKit.framework in Frameworks */,
 				8425AF5F194C3E7800E8CCF3 /* Foundation.framework in Frameworks */,
-				84AD392B1957D3AA0004915B /* Quickblox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,6 +790,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Admin/Projects/PartyApp/iOSCode/PartyApp,
+					"/Users/Gagan/Documents/Gagan\\ Important\\ Doc/Home\\ Project/\\ PartyApp\\ Project/webfactory",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PartyApp/PartyApp-Prefix.pch";
@@ -812,6 +813,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Admin/Projects/PartyApp/iOSCode/PartyApp,
+					"/Users/Gagan/Documents/Gagan\\ Important\\ Doc/Home\\ Project/\\ PartyApp\\ Project/webfactory",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PartyApp/PartyApp-Prefix.pch";

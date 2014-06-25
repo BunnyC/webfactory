@@ -9,7 +9,7 @@
 #import "ProfileViewController.h"
 #import "LoginViewController.h"
 #import "LogNightViewController.h"
-
+#import <FacebookSDK/FacebookSDK.h>
 @interface ProfileViewController () <QBActionStatusDelegate>
 
 @end
@@ -35,6 +35,9 @@
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:objLoginView];
         [self presentViewController:navigationController animated:NO completion:nil];
     }
+    
+    imageViewProfile.layer.borderColor= [UIColor blueColor].CGColor;
+    imageViewProfile.layer.borderWidth=1.5;
     
 }
 
@@ -62,6 +65,12 @@
 - (IBAction)editAccountAction:(id)sender {
 }
 - (IBAction)logoutAction:(id)sender {
+
+    FBSession *session=[FBSession activeSession];
+    [session closeAndClearTokenInformation];
+    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+    [userDefs setBool:false forKey:_pudLoggedIn];
+    [userDefs synchronize];
 }
 - (IBAction)notificationsAction:(id)sender {
     int heightForView = 60;

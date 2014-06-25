@@ -211,10 +211,39 @@
 // Show the user the logged-in UI
 - (void)userLoggedIn
 {
+    if (FBSession.activeSession.state == FBSessionStateOpen
+        || FBSession.activeSession.state == FBSessionStateOpenTokenExtended)
+    {
+        [self getUserInformation];
+    }
+    else
+    {
+        [self requestForFBSession];
+    }
     
+}
+
+-(void)getUserInformation
+{
+    [FBRequestConnection startWithGraphPath:@"/me"
+                                 parameters:nil
+                                 HTTPMethod:@"GET"
+                          completionHandler:^(
+                                              FBRequestConnection *connection,
+                                              id result,
+                                              NSError *error
+                                              ) {
+                              
+                              [self makeRequestForUserData];
+                              /* handle the result */
+                          }];
+
+}
+
+-(void)requestForFBSession
+{
     NSArray *permissionsNeeded = @[@"public_profile"];
-    
-    // Request the permissions the user currently has
+
     [FBRequestConnection startWithGraphPath:@"/me/permissions"
                           completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                               if (!error){
@@ -259,11 +288,7 @@
                                   NSLog(@"error %@", error.description);
                               }
                           }];
-    // Welcome message
-   
-    
 }
-
 
 - (void) makeRequestForUserData
 {
@@ -272,6 +297,11 @@
              [self showMessage:@"You're now logged in" withTitle:@"Welcome!"];
             // Success! Include your code to handle the results here
             NSLog(@"user info: %@", result);
+            
+            NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+            [userDefs setBool:TRUE forKey:_pudLoggedIn];
+            [userDefs synchronize];
+            [self.navController dismissViewControllerAnimated:YES completion:nil];
             
         } else {
             // An error occurred, we need to handle the error
@@ -290,6 +320,14 @@
                                delegate:self
                       cancelButtonTitle:@"OK!"
                       otherButtonTitles:nil] show];
+}
+
+
+#pragma mark - LoginView Delegate Method
+
+-(void)pushProfileViewController
+{
+    
 }
 
 @end

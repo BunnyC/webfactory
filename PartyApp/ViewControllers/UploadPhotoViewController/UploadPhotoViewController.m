@@ -10,12 +10,13 @@
 #import "ProfileViewController.h"
 #import "DataManager.h"
 #import "AppDelegate.h"
+
 @interface UploadPhotoViewController ()
 
 @end
 
 @implementation UploadPhotoViewController
-@synthesize imagePicker;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -99,12 +100,12 @@
 - (IBAction)openImageGallery:(id)sender {
     
     
-    imagePicker = [[UIImagePickerController alloc] init];
-    imagePicker.allowsEditing = NO;
-    imagePicker.delegate = self;
-    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    self.imagePicker = [[UIImagePickerController alloc] init];
+    self.imagePicker.allowsEditing = NO;
+    self.imagePicker.delegate = self;
+    self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 
-    [self presentViewController:imagePicker animated:YES completion:nil];
+    [self presentViewController:self.imagePicker animated:YES completion:nil];
 }
 
 
@@ -120,7 +121,7 @@
     [imageViewProfile setImage:[UIImage imageWithData:imageData]];
     imageViewProfile.contentMode = UIViewContentModeScaleAspectFit;
   
-    [imagePicker dismissViewControllerAnimated:NO completion:nil];
+    [self.imagePicker dismissViewControllerAnimated:NO completion:nil];
 
 
     // Upload file to QuickBlox server
@@ -136,7 +137,7 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
 
-    [imagePicker dismissViewControllerAnimated:NO completion:nil];
+    [self.imagePicker dismissViewControllerAnimated:NO completion:nil];
 
 }
 

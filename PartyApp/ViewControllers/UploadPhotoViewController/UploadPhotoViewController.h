@@ -9,8 +9,7 @@
 #import "BaseViewController.h"
 typedef void(^myCompletion)(BOOL);
 
-@interface UploadPhotoViewController : BaseViewController<UIImagePickerControllerDelegate
-,QBActionStatusDelegate> {
+@interface UploadPhotoViewController : BaseViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, QBActionStatusDelegate> {
     
     __weak IBOutlet UIImageView *imageViewProfile;
     __weak IBOutlet UILabel *lblAllYouNeed;

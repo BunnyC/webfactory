@@ -86,6 +86,7 @@
 		CE35F0911956A71A009DA53D /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0901956A71A009DA53D /* libresolv.dylib */; };
 		CE35F0931956A722009DA53D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0921956A722009DA53D /* CoreLocation.framework */; };
 		CE35F0991956A73C009DA53D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0981956A73C009DA53D /* CFNetwork.framework */; };
+		CEB0377B195B548C009837A6 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB0377A195B548C009837A6 /* DataManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -194,6 +195,8 @@
 		CE35F0941956A72D009DA53D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CE35F0961956A734009DA53D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		CE35F0981956A73C009DA53D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		CEB03779195B548C009837A6 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		CEB0377A195B548C009837A6 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -360,6 +363,8 @@
 		8464A82E195A066800583DE0 /* HelperClasses */ = {
 			isa = PBXGroup;
 			children = (
+				CEB03779195B548C009837A6 /* DataManager.h */,
+				CEB0377A195B548C009837A6 /* DataManager.m */,
 				8464A82F195A066800583DE0 /* CommonFunctions */,
 				8464A832195A066800583DE0 /* Constants */,
 			);
@@ -667,6 +672,7 @@
 				8464A8A8195A066800583DE0 /* RegisterViewController.m in Sources */,
 				8464A89F195A066800583DE0 /* main.m in Sources */,
 				8464A8AC195A066800583DE0 /* UploadPhotoViewController.m in Sources */,
+				CEB0377B195B548C009837A6 /* DataManager.m in Sources */,
 				8464A8A6195A066800583DE0 /* ProfileViewController.m in Sources */,
 				8464A879195A066800583DE0 /* LoginModel.m in Sources */,
 			);

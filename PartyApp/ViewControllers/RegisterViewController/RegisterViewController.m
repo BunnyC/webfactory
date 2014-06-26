@@ -96,21 +96,21 @@
 
 - (IBAction)nextButtonAction:(id)sender {
     
-    QBUUser *objCreateUser=[[QBUUser alloc]init];
+//    QBUUser *objCreateUser=[[QBUUser alloc]init];
+//    
+//    [objCreateUser setLogin:txtFieldUsername.text];
+//    [objCreateUser setEmail:txtFieldEmail.text];
+//    [objCreateUser setPassword:txtFieldPassword.text];
+//    [objCreateUser setFullName:txtFieldMotto.text]; // FullName Used for Moto
+////    [objCreateUser set]
+////    [objCreateUser setMotto]
+//
+//    [QBUsers signUp:objCreateUser delegate:self];
     
-    [objCreateUser setLogin:txtFieldUsername.text];
-    [objCreateUser setEmail:txtFieldEmail.text];
-    [objCreateUser setPassword:txtFieldPassword.text];
-    [objCreateUser setFullName:txtFieldMotto.text]; // FullName Used for Moto
-//    [objCreateUser set]
-//    [objCreateUser setMotto]
-
-    [QBUsers signUp:objCreateUser delegate:self];
     
-    /*
     UploadPhotoViewController *objUploadPhotoViewController = [[UploadPhotoViewController alloc] initWithNibName:@"UploadPhotoViewController" bundle:nil];
     [self.navigationController pushViewController:objUploadPhotoViewController animated:YES];
-     */
+     
 }
 
 #pragma mark - TextField Delegate Method

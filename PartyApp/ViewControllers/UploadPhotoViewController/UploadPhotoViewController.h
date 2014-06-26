@@ -7,13 +7,19 @@
 //
 
 #import "BaseViewController.h"
+typedef void(^myCompletion)(BOOL);
 
-@interface UploadPhotoViewController : BaseViewController {
+@interface UploadPhotoViewController : BaseViewController<UIImagePickerControllerDelegate
+,QBActionStatusDelegate> {
     
     __weak IBOutlet UIImageView *imageViewProfile;
     __weak IBOutlet UILabel *lblAllYouNeed;
     __weak IBOutlet UILabel *lblAlmostDone;
     __weak IBOutlet UITextView *txtViewUploadLater;
+    __weak IBOutlet UIButton *chooseImage;
 }
+@property (nonatomic,retain) UIImagePickerController* imagePicker;
+
+- (IBAction)openImageGallery:(id)sender;
 
 @end

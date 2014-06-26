@@ -87,6 +87,19 @@
         [txtField resignFirstResponder];
 }
 
+- (NSString *)checkLoginFields {
+    NSString *errorString = nil;
+    if (txtFieldUsername.text.length < 5)
+        errorString = @"Please enter username with atleast 5 characters";
+    if (txtFieldPassword.text.length < 6) {
+        if (errorString.length)
+            errorString = [[[errorString stringByReplacingOccurrencesOfString:@"username" withString:@"username, password"] stringByReplacingOccurrencesOfString:@"characters" withString:@"characters respectively"] stringByReplacingOccurrencesOfString:@"5" withString:@"5 and 6"];
+        else
+            errorString = @"Please enter password with atleast 6 characters";
+    }
+    return errorString;
+}
+
 #pragma mark - IBActions
 
 - (IBAction)btnCreateAccountAction:(id)sender {
@@ -96,11 +109,21 @@
 
 - (IBAction)btnSignInAction:(id)sender {
     
-    NSMutableDictionary *dicLoginDetail=[[NSMutableDictionary alloc]init];
-    [dicLoginDetail setValue:txtFieldUsername.text forKey:@"UserName"];
-    [dicLoginDetail setValue:txtFieldPassword.text forKey:@"Password"];
-    LoginModel *objLoginModel=[[LoginModel alloc]init];
-    [objLoginModel loginWithTarget:self Selector:@selector(serverResponse:) Detail:dicLoginDetail];
+    NSString *errorMessage = [self checkLoginFields];
+    if (errorMessage) {
+        [[[UIAlertView alloc] initWithTitle:@"Login Credentials"
+                                    message:errorMessage
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil, nil] show];
+    }
+    else {
+        NSMutableDictionary *dicLoginDetail=[[NSMutableDictionary alloc]init];
+        [dicLoginDetail setValue:txtFieldUsername.text forKey:@"UserName"];
+        [dicLoginDetail setValue:txtFieldPassword.text forKey:@"Password"];
+        LoginModel *objLoginModel=[[LoginModel alloc]init];
+        [objLoginModel loginWithTarget:self Selector:@selector(serverResponse:) Detail:dicLoginDetail];
+    }
 }
 
 - (IBAction)btnConnectFacebookAction:(id)sender {
@@ -151,12 +174,12 @@
 -(void)serverResponse:(Result *)userLoginResult;
 {
     if (userLoginResult.success) {
-//        [QBAuth createSessionWithDelegate:self];
+        //        [QBAuth createSessionWithDelegate:self];
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
         [[NSUserDefaults standardUserDefaults] synchronize];
         [self dismissViewControllerAnimated:true completion:nil];
     }
-//    NSLog(@"User Detail %@", userDetail);
+    //    NSLog(@"User Detail %@", userDetail);
 }
 
 @end

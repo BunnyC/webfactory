@@ -114,8 +114,9 @@
 - (void)refreshQBSession {
     NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
     NSDate *sessionExpDate = [userDefs objectForKey:_pudSessionExpiryDate];
+    BOOL isLoggedIn = [userDefs boolForKey:_pudLoggedIn];
     
-    if ([[NSDate date] timeIntervalSinceDate:sessionExpDate] > 0 && !refreshingSession) {
+    if (([[NSDate date] timeIntervalSinceDate:sessionExpDate] > 0 || !isLoggedIn)&& !refreshingSession) {
         [QBAuth createSessionWithDelegate:self];
         refreshingSession = true;
     }
@@ -320,14 +321,6 @@
                                delegate:self
                       cancelButtonTitle:@"OK!"
                       otherButtonTitles:nil] show];
-}
-
-
-#pragma mark - LoginView Delegate Method
-
--(void)pushProfileViewController
-{
-    
 }
 
 @end

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B1B5755E-1CE0-4075-878A-53EC2DC7B67B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PartyApp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>887065EC-FAE4-4268-A559-3EDE13DA4256</key>
+		<string>https://github.com/channi/PartyApp.git</string>
+		<key>9F18C374-E712-4FBA-ADEF-0AD576B1C332</key>
+		<string>https://github.com/channi/PartyApp.git</string>
+		<key>AC9352F4-5F5B-4503-A266-266C12CDC483</key>
+		<string>https://github.com/channi/webfactory.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>PartyApp.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>887065EC-FAE4-4268-A559-3EDE13DA4256</key>
+		<string>../../../WebFactory/PartyApp</string>
+		<key>9F18C374-E712-4FBA-ADEF-0AD576B1C332</key>
+		<string>../../PartyApp</string>
+		<key>AC9352F4-5F5B-4503-A266-266C12CDC483</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/channi/webfactory.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>AC9352F4-5F5B-4503-A266-266C12CDC483</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9F18C374-E712-4FBA-ADEF-0AD576B1C332</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PartyApp</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>887065EC-FAE4-4268-A559-3EDE13DA4256</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PartyApp</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AC9352F4-5F5B-4503-A266-266C12CDC483</string>
+			<key>IDESourceControlWCCName</key>
+			<string>webfactory</string>
+		</dict>
+	</array>
+</dict>
+</plist>

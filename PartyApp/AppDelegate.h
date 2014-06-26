@@ -10,7 +10,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "LoginViewController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate,QBActionStatusDelegate,LoginViewDelegate> {
+@interface AppDelegate : UIResponder <UIApplicationDelegate, QBActionStatusDelegate> {
     BOOL refreshingSession;
 }
 

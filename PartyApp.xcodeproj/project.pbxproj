@@ -68,7 +68,6 @@
 		8464A8AB195A066800583DE0 /* SplashScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8464A872195A066800583DE0 /* SplashScreenViewController.xib */; };
 		8464A8AC195A066800583DE0 /* UploadPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A875195A066800583DE0 /* UploadPhotoViewController.m */; };
 		8464A8AD195A066800583DE0 /* UploadPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8464A876195A066800583DE0 /* UploadPhotoViewController.xib */; };
-		8464A8B3195B9F8C00583DE0 /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8464A8B2195B9F8C00583DE0 /* Quickblox.framework */; };
 		84AD392A1957D3AA0004915B /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84AD39281957D3AA0004915B /* FacebookSDK.framework */; };
 		84AD392C1957FC3C0004915B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0941956A72D009DA53D /* MobileCoreServices.framework */; };
 		84AD392D1957FC3C0004915B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0961956A734009DA53D /* SystemConfiguration.framework */; };
@@ -84,6 +83,7 @@
 		CE35F0911956A71A009DA53D /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0901956A71A009DA53D /* libresolv.dylib */; };
 		CE35F0931956A722009DA53D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0921956A722009DA53D /* CoreLocation.framework */; };
 		CE35F0991956A73C009DA53D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0981956A73C009DA53D /* CFNetwork.framework */; };
+		CEA18F1B195BB3F400A6CACB /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8464A8B2195B9F8C00583DE0 /* Quickblox.framework */; };
 		CEB0377B195B548C009837A6 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB0377A195B548C009837A6 /* DataManager.m */; };
 /* End PBXBuildFile section */
 
@@ -201,6 +201,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEA18F1B195BB3F400A6CACB /* Quickblox.framework in Frameworks */,
 				84AD392C1957FC3C0004915B /* MobileCoreServices.framework in Frameworks */,
 				84AD392D1957FC3C0004915B /* SystemConfiguration.framework in Frameworks */,
 				CE35F0991956A73C009DA53D /* CFNetwork.framework in Frameworks */,
@@ -219,7 +220,6 @@
 				8425AF61194C3E7800E8CCF3 /* CoreGraphics.framework in Frameworks */,
 				8425AF63194C3E7800E8CCF3 /* UIKit.framework in Frameworks */,
 				8425AF5F194C3E7800E8CCF3 /* Foundation.framework in Frameworks */,
-				8464A8B3195B9F8C00583DE0 /* Quickblox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,6 +806,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Admin/Projects/PartyApp/iOSCode/webfactory,
+					"/Users/Gagan/Documents/Gagan\\ Important\\ Doc/Home\\ Project/\\ PartyApp\\ Project/webfactory",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PartyApp/PartyApp-Prefix.pch";
@@ -828,6 +829,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Admin/Projects/PartyApp/iOSCode/webfactory,
+					"/Users/Gagan/Documents/Gagan\\ Important\\ Doc/Home\\ Project/\\ PartyApp\\ Project/webfactory",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PartyApp/PartyApp-Prefix.pch";

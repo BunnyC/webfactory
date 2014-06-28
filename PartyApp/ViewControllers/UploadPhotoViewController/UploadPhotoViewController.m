@@ -128,13 +128,8 @@
   
     [self.imagePicker dismissViewControllerAnimated:NO completion:nil];
 
- [QBContent TUploadFile:imageData fileName:@"ProfileImage" contentType:@"image/png" isPublic:YES delegate:self];
-    // Upload file to QuickBlox server
-//    [self checkQBSession:^(BOOL finished) {
-//        if(finished){
-//           
-//        }
-//    }];
+     [QBContent TUploadFile:imageData fileName:@"ProfileImage" contentType:@"image/png" isPublic:YES delegate:self];
+
    
 }
 

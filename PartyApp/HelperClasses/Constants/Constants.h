@@ -18,6 +18,9 @@ FOUNDATION_EXPORT NSString *const _pPNGType;
 
 FOUNDATION_EXPORT NSString *const _pudLoggedIn;
 FOUNDATION_EXPORT NSString *const _pudSessionExpiryDate;
+FOUNDATION_EXPORT NSString *const _pUserInfoDic;
+FOUNDATION_EXPORT NSString *const _pUserProfilePic;
+
 FOUNDATION_EXPORT NSString *const _pErrUserNameAndPasswordRequired;
 FOUNDATION_EXPORT NSString *const _pErrInvalidUserNameAndPassword;
 

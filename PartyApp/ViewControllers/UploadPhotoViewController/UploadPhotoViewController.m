@@ -29,10 +29,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:FALSE animated:true];
-    [self setTitle:@"Party Friends"];
-    imageViewProfile.layer.borderWidth=1.5;
-    imageViewProfile.layer.borderColor=[UIColor blueColor].CGColor;
     // Do any additional setup after loading the view from its nib.
     [self setTitle:@"Create Account"];
     [self initDefaults];
@@ -48,6 +44,16 @@
 
 - (void)initDefaults {
     
+    UIImage *imageCamera = [[CommonFunctions sharedObject] imageWithName:@"cameraImage"
+                                                                 andType:_pPNGType];
+    UIColor *colorBack = [UIColor colorWithPatternImage:imageCamera];
+    [imageViewProfile setBackgroundColor:colorBack];
+    
+    UITapGestureRecognizer *tapToChooseImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseImageTapped:)];
+    [tapToChooseImage setNumberOfTapsRequired:1];
+    [tapToChooseImage setNumberOfTouchesRequired:1];
+    [imageViewProfile addGestureRecognizer:tapToChooseImage];
+    
     UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(backButtonAction:)];
     [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
     
@@ -59,13 +65,20 @@
     
     NSDictionary *dictAttrLater = [NSDictionary dictionaryWithObjectsAndKeys:
                                    [UIColor yellowColor], NSForegroundColorAttributeName,
-                                   @"later", NSLinkAttributeName,
-                                   [NSNumber numberWithInt:NSUnderlineStyleSingle], NSUnderlineStyleAttributeName, nil];
+                                   [UIFont systemFontOfSize:10], NSFontAttributeName,
+                                   @"later", NSLinkAttributeName, nil];
+    
+    NSDictionary *dictAttrTextSimple = [NSDictionary dictionaryWithObjectsAndKeys:
+                                        [UIColor whiteColor], NSForegroundColorAttributeName,
+                                        [UIFont systemFontOfSize:10], NSFontAttributeName, nil];
     
     NSRange rangeLater = [uploadLaterText rangeOfString:@"Upload Later"];
+    NSRange rangeSimple = [uploadLaterText rangeOfString:@"Don't want to add photo now?"];
     [attrTextLater addAttributes:dictAttrLater range:rangeLater];
+    [attrTextLater addAttributes:dictAttrTextSimple range:rangeSimple];
     
     [txtViewUploadLater setAttributedText:attrTextLater];
+    [txtViewUploadLater setTextAlignment:NSTextAlignmentCenter];
 }
 
 #pragma mark - UITextView Delegates
@@ -81,6 +94,17 @@
         shouldInteract = false;
     }
     return shouldInteract;
+}
+
+#pragma mark - Choose Image 
+
+- (void)chooseImageTapped:(UITapGestureRecognizer *)recognizer {
+    self.imagePicker = [[UIImagePickerController alloc] init];
+    self.imagePicker.allowsEditing = NO;
+    self.imagePicker.delegate = self;
+    self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:self.imagePicker animated:YES completion:nil];
 }
 
 #pragma mark - IBAction
@@ -100,17 +124,8 @@
     [self.navigationController pushViewController:objProfileView animated:YES];
 }
 
-
-
 - (IBAction)openImageGallery:(id)sender {
     
-    
-    self.imagePicker = [[UIImagePickerController alloc] init];
-    self.imagePicker.allowsEditing = NO;
-    self.imagePicker.delegate = self;
-    self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-
-    [self presentViewController:self.imagePicker animated:YES completion:nil];
 }
 
 
@@ -129,8 +144,6 @@
     [self.imagePicker dismissViewControllerAnimated:NO completion:nil];
 
      [QBContent TUploadFile:imageData fileName:@"ProfileImage" contentType:@"image/png" isPublic:YES delegate:self];
-
-   
 }
 
 
@@ -142,9 +155,8 @@
 }
 
 #pragma -markc check QBsession
--(void) checkQBSession:(myCompletion) compblock{
-    
-    AppDelegate *delegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
+
+- (void)checkQBSession:(myCompletion) compblock{
     
     QBASessionCreationRequest *extendedAuthRequest = [[QBASessionCreationRequest alloc] init];
     extendedAuthRequest.userLogin = @"gaganinder.singh";
@@ -156,8 +168,6 @@
 
 #pragma mark -
 #pragma mark QBActionStatusDelegate
-
-
 
 // QuickBlox API queries delegate
 -(void)completedWithResult:(Result *)result{
@@ -238,5 +248,6 @@
 
 -(void)setProgress:(float)progress{
     NSLog(@"progress: %f", progress);
+    [progressViewImageUpload setProgress:progress];
 }
 @end

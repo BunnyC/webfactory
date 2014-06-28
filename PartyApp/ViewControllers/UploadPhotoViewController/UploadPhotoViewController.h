@@ -16,6 +16,7 @@ typedef void(^myCompletion)(BOOL);
     __weak IBOutlet UILabel *lblAlmostDone;
     __weak IBOutlet UITextView *txtViewUploadLater;
     __weak IBOutlet UIButton *chooseImage;
+    __weak IBOutlet UIProgressView *progressViewImageUpload;
 }
 @property (nonatomic,retain) UIImagePickerController* imagePicker;
 

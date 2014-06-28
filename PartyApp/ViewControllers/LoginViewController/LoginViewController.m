@@ -139,17 +139,8 @@
 
 - (IBAction)btnCreateAccountAction:(id)sender {
     
-    NSString *xibName = NSStringFromClass([UploadPhotoViewController class]);
-    BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
-    if (!isiPhone5)
-        xibName = [NSString stringWithFormat:@"%@4", xibName];
-    
-    UploadPhotoViewController *objUploadPhotoViewController = [[UploadPhotoViewController alloc] initWithNibName:xibName bundle:nil];
-    
-    [self.navigationController pushViewController:objUploadPhotoViewController animated:YES];
-    
-//    RegisterViewController *objRegisterViewController = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
-//    [self.navigationController pushViewController:objRegisterViewController animated:YES];
+    RegisterViewController *objRegisterViewController = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
+    [self.navigationController pushViewController:objRegisterViewController animated:YES];
 }
 
 - (IBAction)btnSignInAction:(id)sender {

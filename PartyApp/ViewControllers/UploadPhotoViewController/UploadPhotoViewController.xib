@@ -46,7 +46,7 @@
                             </connections>
                         </button>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" delaysContentTouches="NO" editable="NO" text="By Signing up you accept our Terms of Use and Privacy Policy" translatesAutoresizingMaskIntoConstraints="NO" id="Pmy-YU-hgk">
-                            <rect key="frame" x="70" y="65" width="180" height="50"/>
+                            <rect key="frame" x="49" y="65" width="222" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <color key="tintColor" cyan="0.00013732910160000001" magenta="0.00016784667970000001" yellow="1" black="0.0" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>

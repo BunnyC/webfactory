@@ -191,21 +191,21 @@
     if (userLoginResult.success) {
         //        [QBAuth createSessionWithDelegate:self];
         
-        ProfileViewController *objProfileView;
-        for (id controller in self.navigationController.viewControllers) {
-            
-            if([(ProfileViewController *)controller isKindOfClass:[ProfileViewController class]])
-            {
-                objProfileView=(ProfileViewController *)controller;
-                break;
-            }
-        }
         QBUUserLogInResult *res = (QBUUserLogInResult *)userLoginResult;
-       
+        
+        NSMutableArray *arrTags=[res.user.tags copy];
+        
+        NSString *moto=[[arrTags objectAtIndex:0]isKindOfClass:[NSNull class]]?@"share you moto":[arrTags objectAtIndex:0];
+        
+        NSDictionary *userInfo=[NSDictionary dictionaryWithObjectsAndKeys:res.user.fullName,@"first_name",moto,@"moto", nil];
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
+        
         [[NSUserDefaults standardUserDefaults] synchronize];
         [self dismissViewControllerAnimated:true completion:^{
-          // [objProfileView updateUserProfileData:]
+            if([_delegate respondsToSelector:@selector(updateUserInfo:)])
+            {
+                [_delegate ]
+            }
         }];
     }
     //    NSLog(@"User Detail %@", userDetail);

@@ -8,11 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LoginViewDelegate <NSObject>
+
+@optional
+-(void)updateUserInfo:(NSDictionary *)dic;
+
+@end
 @interface LoginViewController : BaseViewController<UITextFieldDelegate> {
     __weak IBOutlet UITextField *txtFieldUsername;
     __weak IBOutlet UITextField *txtFieldPassword;
     __weak IBOutlet UILabel *lblForgotPassword;
     __weak IBOutlet UITextView *txtViewForgotPassword;
+    
 }
+
+@property (nonatomic,strong) id<LoginViewDelegate> delegate;
 
 @end

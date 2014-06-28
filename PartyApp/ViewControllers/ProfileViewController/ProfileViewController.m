@@ -49,6 +49,15 @@
     lblMotto.text=[NSString stringWithFormat:@"%@",@"Share your moto"];
 }
 
+
+#pragma mark loginView Delegate
+
+-(void)updateUserInfo:(NSDictionary *)dic
+{
+    lblName.text=[NSString stringWithFormat:@"%@ %@",[dic objectForKey:@"first_name"],[dic objectForKey:@"last_name"]];
+    lblActive.text=@"active";
+    lblMotto.text=[NSString stringWithFormat:@"%@",@"Share your moto"];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -9,8 +9,9 @@
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
 #import "LoginModel.h"
-#import <FacebookSDK/FacebookSDK.h>
 #import "AppDelegate.h"
+#import "ForgotPasswordViewController.h"
+#import <FacebookSDK/FacebookSDK.h>
 @interface LoginViewController () <UITextFieldDelegate, UITextViewDelegate, QBActionStatusDelegate>
 
 @end
@@ -33,6 +34,7 @@
     // Do any additional setup after loading the view from its nib.
     [self.navigationController setNavigationBarHidden:true animated:true];
     [self setTitle:@"Login"];
+
     
     [self initDefaults];
 }
@@ -62,6 +64,7 @@
                                   [UIColor yellowColor], NSForegroundColorAttributeName,
                                   @"forgotpassword", NSLinkAttributeName,
                                   [NSNumber numberWithInt:NSUnderlineStyleSingle], NSUnderlineStyleAttributeName, nil];
+    
     NSRange rangeClickHere = [forgotPasswordText rangeOfString:@"Click HERE"];
     [attrTextForgotLabel addAttributes:dictAttrText range:rangeClickHere];
     
@@ -76,6 +79,8 @@
     if ([URL.absoluteString isEqualToString:@"forgotpassword"]) {
         NSLog(@"Forgot Password");
         shouldInteract = false;
+        ForgotPasswordViewController *forgotPasswordView=[[ForgotPasswordViewController alloc]initWithNibName:@"ForgotPasswordViewController" bundle:nil];
+        [self.navigationController pushViewController:forgotPasswordView animated:YES];
     }
     return shouldInteract;
 }

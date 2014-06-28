@@ -83,6 +83,10 @@
 		CE35F0911956A71A009DA53D /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0901956A71A009DA53D /* libresolv.dylib */; };
 		CE35F0931956A722009DA53D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0921956A722009DA53D /* CoreLocation.framework */; };
 		CE35F0991956A73C009DA53D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0981956A73C009DA53D /* CFNetwork.framework */; };
+		CE9D376C195E771B001F05D9 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9D376A195E771B001F05D9 /* ForgotPasswordViewController.m */; };
+		CE9D376D195E771B001F05D9 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9D376A195E771B001F05D9 /* ForgotPasswordViewController.m */; };
+		CE9D376E195E771B001F05D9 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9D376B195E771B001F05D9 /* ForgotPasswordViewController.xib */; };
+		CE9D376F195E771B001F05D9 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9D376B195E771B001F05D9 /* ForgotPasswordViewController.xib */; };
 		CEA18F1B195BB3F400A6CACB /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8464A8B2195B9F8C00583DE0 /* Quickblox.framework */; };
 		CEB0377B195B548C009837A6 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB0377A195B548C009837A6 /* DataManager.m */; };
 /* End PBXBuildFile section */
@@ -192,6 +196,9 @@
 		CE35F0941956A72D009DA53D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CE35F0961956A734009DA53D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		CE35F0981956A73C009DA53D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		CE9D3769195E771B001F05D9 /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewController.h; sourceTree = "<group>"; };
+		CE9D376A195E771B001F05D9 /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordViewController.m; sourceTree = "<group>"; };
+		CE9D376B195E771B001F05D9 /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
 		CEB03779195B548C009837A6 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		CEB0377A195B548C009837A6 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -436,6 +443,7 @@
 		8464A85B195A066800583DE0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CE9D3768195E76F7001F05D9 /* ForgotPassword */,
 				8464A85C195A066800583DE0 /* BaseViewController */,
 				8464A85F195A066800583DE0 /* LoginViewController */,
 				8464A863195A066800583DE0 /* LogNightViewController */,
@@ -538,6 +546,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		CE9D3768195E76F7001F05D9 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				CE9D3769195E771B001F05D9 /* ForgotPasswordViewController.h */,
+				CE9D376A195E771B001F05D9 /* ForgotPasswordViewController.m */,
+				CE9D376B195E771B001F05D9 /* ForgotPasswordViewController.xib */,
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -613,6 +631,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE9D376E195E771B001F05D9 /* ForgotPasswordViewController.xib in Resources */,
 				8464A893195A066800583DE0 /* commentIcon.png in Resources */,
 				8464A89C195A066800583DE0 /* whiteButton.png in Resources */,
 				8464A880195A066800583DE0 /* appBackground4@2x.png in Resources */,
@@ -658,6 +677,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE9D376F195E771B001F05D9 /* ForgotPasswordViewController.xib in Resources */,
 				8425AF82194C3E7800E8CCF3 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -683,6 +703,7 @@
 				8464A89F195A066800583DE0 /* main.m in Sources */,
 				8464A8AC195A066800583DE0 /* UploadPhotoViewController.m in Sources */,
 				CEB0377B195B548C009837A6 /* DataManager.m in Sources */,
+				CE9D376C195E771B001F05D9 /* ForgotPasswordViewController.m in Sources */,
 				8464A8A6195A066800583DE0 /* ProfileViewController.m in Sources */,
 				8464A879195A066800583DE0 /* LoginModel.m in Sources */,
 			);
@@ -692,6 +713,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE9D376D195E771B001F05D9 /* ForgotPasswordViewController.m in Sources */,
 				8425AF84194C3E7800E8CCF3 /* PartyAppTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

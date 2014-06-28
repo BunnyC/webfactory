@@ -105,10 +105,10 @@
 //    [objCreateUser set]
 //    [objCreateUser setMotto]
 
-  //  [QBUsers signUp:objCreateUser delegate:self];
+    [QBUsers signUp:objCreateUser delegate:self];
     
-    UploadPhotoViewController *objUploadPhotoViewController = [[UploadPhotoViewController alloc] initWithNibName:@"UploadPhotoViewController" bundle:nil];
-    [self.navigationController pushViewController:objUploadPhotoViewController animated:YES];
+//    UploadPhotoViewController *objUploadPhotoViewController = [[UploadPhotoViewController alloc] initWithNibName:@"UploadPhotoViewController" bundle:nil];
+//    [self.navigationController pushViewController:objUploadPhotoViewController animated:YES];
 
     
 }
@@ -132,9 +132,12 @@
 //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Registration was successful. Please now sign in." message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
 //            [alert show];
             
-                UploadPhotoViewController *objUploadPhotoViewController = [[UploadPhotoViewController alloc] initWithNibName:@"UploadPhotoViewController" bundle:nil];
-                [self.navigationController pushViewController:objUploadPhotoViewController animated:YES];
+
             
+            QBASessionCreationRequest *extendedAuthRequest = [QBASessionCreationRequest request];
+            extendedAuthRequest.userLogin = txtFieldUsername.text; // ID: 218651
+            extendedAuthRequest.userPassword = txtFieldPassword.text;
+            [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
             // Errors
         }else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Errors"
@@ -145,8 +148,15 @@
             [alert show];
            
 		}
-	}	
- 
+	}
+   else if(result.success && [result isKindOfClass:QBAAuthSessionCreationResult.class]){
+        
+                       UploadPhotoViewController *objUploadPhotoViewController = [[UploadPhotoViewController alloc] initWithNibName:@"UploadPhotoViewController" bundle:nil];
+                       [self.navigationController pushViewController:objUploadPhotoViewController animated:YES];
+       
+        // Success, You have got User session
+    }
+    
 }
 
 @end

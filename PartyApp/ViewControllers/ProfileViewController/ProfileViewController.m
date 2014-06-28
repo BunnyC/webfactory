@@ -9,6 +9,7 @@
 #import "ProfileViewController.h"
 #import "LoginViewController.h"
 #import "LogNightViewController.h"
+#import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
 @interface ProfileViewController () <QBActionStatusDelegate>
 
@@ -41,18 +42,38 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    if([[NSUserDefaults standardUserDefaults]objectForKey:_pUserInfoDic])
+    {
+    NSDictionary *userInfo=[[NSUserDefaults standardUserDefaults]objectForKey:_pUserInfoDic];
+    [self updateUserInfo:userInfo];
+    }
+}
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    
     [self downloadFile];
 }
 
 
 -(void)downloadFile{
+    
     int fileID = [(QBCBlob *)[[[DataManager instance] fileList] lastObject] ID];
+    
     if(fileID > 0){
+        
         // Download file from QuickBlox server
+        [[NSUserDefaults standardUserDefaults]setInteger:fileID forKey:_pUserProfilePic];
         [QBContent TDownloadFileWithBlobID:fileID delegate:self];
+    }
+    else
+    {
+               
+         [QBAuth createSessionWithDelegate:self];
+       
+   
     }
     
 }
@@ -61,6 +82,8 @@
 #pragma mark - Update UserInformation
 -(void)updateUserProfileData:(NSDictionary *)userInfo
 {
+    [[NSUserDefaults standardUserDefaults]setObject:userInfo forKey:_pUserInfoDic];
+    [[NSUserDefaults standardUserDefaults]synchronize];
     lblName.text=[NSString stringWithFormat:@"%@ %@",[userInfo objectForKey:@"first_name"],[userInfo objectForKey:@"last_name"]];
     lblActive.text=@"active";
     lblMotto.text=[NSString stringWithFormat:@"%@",@"Share your moto"];
@@ -71,6 +94,8 @@
 
 -(void)updateUserInfo:(NSDictionary *)dic
 {
+    [[NSUserDefaults standardUserDefaults]setObject:dic forKey:_pUserInfoDic];
+    [[NSUserDefaults standardUserDefaults]synchronize];
     lblName.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"first_name"]];
     lblActive.text=@"active";
     lblMotto.text=[NSString stringWithFormat:@"%@",@"Share your moto"];
@@ -143,12 +168,27 @@
                 imageViewProfile.image=imageView.image;
 
                 //
-                [[[DataManager instance] fileList] removeLastObject];
+               // [[[DataManager instance] fileList] removeLastObject];
              
             }
         }
     }
+    
+    if([result isKindOfClass:[QBAAuthSessionCreationResult class]]){
+        // Success result
+        if(result.success){
+         
+            int fileID = [[NSUserDefaults standardUserDefaults]integerForKey:_pUserProfilePic];
+            
+            [QBContent TDownloadFileWithBlobID:fileID delegate:self];
+            
+    
+        }
+        
+    }
 }
+
+
 
 -(void)setProgress:(float)progress{
     NSLog(@"progress: %f", progress);

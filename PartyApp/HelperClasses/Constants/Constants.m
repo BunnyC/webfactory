@@ -19,6 +19,8 @@ NSString *const _pAccountKey            = @"eYyNwpmdQnAxbyiJs3CG";
 
 NSString *const _pudLoggedIn            = @"IsLoggedIn";
 NSString *const _pudSessionExpiryDate   = @"SessionExpiryDate";
+NSString *const _pUserInfoDic           = @"UserProfileInfomation";
+NSString *const _pUserProfilePic        = @"UserProfilePic";
 
 #pragma mark - Error Message
 

@@ -11,6 +11,7 @@
                 <outlet property="txtFieldUsername" destination="WtN-Bo-9RS" id="nJh-RB-cbd"/>
                 <outlet property="txtViewForgotPassword" destination="lxK-UO-I4N" id="Q4v-b1-k0I"/>
                 <outlet property="view" destination="1" id="dab-Kx-EoB"/>
+                <outlet property="viewBottom" destination="o1e-QU-0Bq" id="7Ko-Ta-mSw"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -26,7 +27,7 @@
                             <rect key="frame" x="107" y="46" width="106" height="136"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Username" minimumFontSize="17" id="WtN-Bo-9RS">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" background="txtFldW.png" id="WtN-Bo-9RS" customClass="PATextField">
                             <rect key="frame" x="50" y="209" width="221" height="40"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -36,7 +37,7 @@
                                 <outlet property="delegate" destination="-1" id="8R2-rM-xxd"/>
                             </connections>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Password" minimumFontSize="17" id="a7q-6g-0qy">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" background="txtFldW.png" id="a7q-6g-0qy" customClass="PATextField">
                             <rect key="frame" x="50" y="256" width="221" height="40"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -112,5 +113,6 @@
         <image name="imageLogo.png" width="106" height="136"/>
         <image name="magentaButton.png" width="137" height="36"/>
         <image name="purpleButton.png" width="183" height="36"/>
+        <image name="txtFldW.png" width="183" height="36"/>
     </resources>
 </document>

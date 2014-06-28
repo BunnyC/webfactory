@@ -42,6 +42,8 @@
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
     
+    [[UITextField appearance] setTintColor:[UIColor whiteColor]];
+    
     NSString *xibName = NSStringFromClass([ProfileViewController class]);
     BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
     if (!isiPhone5)

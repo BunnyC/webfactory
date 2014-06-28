@@ -28,6 +28,12 @@
     return ([UIScreen mainScreen].bounds.size.height == 568);
 }
 
+- (UIImage *)imageWithName:(NSString *)name andType:(NSString *)type {
+    NSString *pathForFile = [[NSBundle mainBundle] pathForResource:name ofType:type];
+    UIImage *image = [UIImage imageWithContentsOfFile:pathForFile];
+    return image;
+}
+
 - (void)setLocalImageForImageView:(UIImageView *)imageView
                      withFileName:(NSString *)fileName
                           andType:(NSString *)type {
@@ -35,9 +41,7 @@
     if (![self isDeviceiPhone5])
         fileName = [NSString stringWithFormat:@"%@4", fileName];
     
-    NSString *pathForFile = [[NSBundle mainBundle] pathForResource:fileName ofType:type];
-    UIImage *image = [UIImage imageWithContentsOfFile:pathForFile];
-    [imageView setImage:image];
+    [imageView setImage:[self imageWithName:fileName andType:_pPNGType]];
 }
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
@@ -59,10 +63,11 @@
     UIColor *colorFromImage = [UIColor blackColor];
     NSString *pathForImage = [[NSBundle mainBundle] pathForResource:fileName ofType:type];
     UIImage *imageAtPath = [UIImage imageWithContentsOfFile:pathForImage];
-    CGSize screenSize = [UIScreen mainScreen].bounds.size;
-    UIImage *resizedImage = [self imageWithImage:imageAtPath
-                                    scaledToSize:CGSizeMake(320, screenSize.height - 64)];
-    colorFromImage = [UIColor colorWithPatternImage:resizedImage];
+//    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+//    UIImage *resizedImage = [self imageWithImage:imageAtPath
+//                                    scaledToSize:CGSizeMake(320, screenSize.height - 64)];
+//    colorFromImage = [UIColor colorWithPatternImage:resizedImage];
+    colorFromImage = [UIColor colorWithPatternImage:imageAtPath];
     return colorFromImage;
 }
 

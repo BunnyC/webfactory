@@ -182,6 +182,20 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
+    UIImage *selImage = [[CommonFunctions sharedObject] imageWithName:@"txtFldY"
+                                                              andType:_pPNGType];
+    UIImage *unselImage = [[CommonFunctions sharedObject] imageWithName:@"txtFldW"
+                                                                andType:_pPNGType];
+    
+    for (UITextField *textFs in scrollView.subviews) {
+        if ([textFs isKindOfClass:[UITextField class]]) {
+            if (textFs != textField)
+                [textFs setBackground:unselImage];
+            else
+                [textField setBackground:selImage];
+        }
+    }
+    
     int yOffset = textField.tag < 3 ? 0 : (textField.tag - 1) * (textField.tag == 3 ? 15 : 25);
     CGPoint offsetPoint = CGPointMake(0, yOffset);
     [scrollView setContentOffset:offsetPoint];

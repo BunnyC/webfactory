@@ -82,6 +82,12 @@
     
     [txtViewForgotPassword setAttributedText:attrTextForgotLabel];
     [txtViewForgotPassword setTextAlignment:NSTextAlignmentCenter];
+    
+    [self setTextFieldBackgroundsWithTextField:nil];
+    
+    UIImage *backImage = [[CommonFunctions sharedObject] imageWithName:@"viewBack" andType:_pPNGType];
+    UIColor *backColor = [UIColor colorWithPatternImage:backImage];
+    [viewBottom setBackgroundColor:backColor];
 }
 
 #pragma mark - TextView Delegates
@@ -110,6 +116,22 @@
             errorString=_pErrUserNameAndPasswordRequired;
     }
     return errorString;
+}
+
+- (void)setTextFieldBackgroundsWithTextField:(UITextField *)textField {
+    UIImage *selImage = [[CommonFunctions sharedObject] imageWithName:@"txtFldY"
+                                                              andType:_pPNGType];
+    UIImage *unselImage = [[CommonFunctions sharedObject] imageWithName:@"txtFldW"
+                                                                andType:_pPNGType];
+    
+    for (UITextField *textFs in scrollView.subviews) {
+        if ([textFs isKindOfClass:[UITextField class]]) {
+            if (textFs != textField)
+                [textFs setBackground:unselImage];
+            else
+                [textField setBackground:selImage];
+        }
+    }
 }
 
 #pragma mark - IBActions
@@ -172,6 +194,8 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     // -20 is used due to status bar settings in iOS 7
+    
+    [self setTextFieldBackgroundsWithTextField:textField];
     if (scrollView.contentOffset.y == -20) {
         
         BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
@@ -251,6 +275,7 @@
         if ([textField isKindOfClass:[UITextField class]]) {
             [textField resignFirstResponder];
             [scrollView setContentOffset:CGPointMake(0, -20)];
+            [self setTextFieldBackgroundsWithTextField:nil];
         }
     }
 }

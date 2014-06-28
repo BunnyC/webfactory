@@ -18,6 +18,8 @@
 
 - (BOOL)isDeviceiPhone5;
 
+- (UIImage *)imageWithName:(NSString *)name andType:(NSString *)type;
+
 - (void)setLocalImageForImageView:(UIImageView *)imageView
                      withFileName:(NSString *)fileName
                           andType:(NSString *)type;

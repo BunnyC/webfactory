@@ -15,10 +15,11 @@
 
 @end
 @interface LoginViewController : BaseViewController<UITextFieldDelegate> {
-    __weak IBOutlet UITextField *txtFieldUsername;
-    __weak IBOutlet UITextField *txtFieldPassword;
+    __weak IBOutlet PATextField *txtFieldUsername;
+    __weak IBOutlet PATextField *txtFieldPassword;
     __weak IBOutlet UITextView *txtViewForgotPassword;
     __weak IBOutlet UIScrollView *scrollView;
+    __weak IBOutlet UIView *viewBottom;
     
     NSDictionary *userInfo;
     

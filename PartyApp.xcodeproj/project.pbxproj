@@ -69,6 +69,13 @@
 		8464A8AC195A066800583DE0 /* UploadPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A875195A066800583DE0 /* UploadPhotoViewController.m */; };
 		8464A8AD195A066800583DE0 /* UploadPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8464A876195A066800583DE0 /* UploadPhotoViewController.xib */; };
 		8491FCD4195EB75B00FDC63F /* LoginViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8491FCD3195EB75B00FDC63F /* LoginViewController4.xib */; };
+		84A14327195F581200DC3970 /* txtFldW.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A14325195F581200DC3970 /* txtFldW.png */; };
+		84A14328195F581200DC3970 /* txtFldY.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A14326195F581200DC3970 /* txtFldY.png */; };
+		84A1432B195F582000DC3970 /* txtFldW@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A14329195F582000DC3970 /* txtFldW@2x.png */; };
+		84A1432C195F582000DC3970 /* txtFldY@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A1432A195F582000DC3970 /* txtFldY@2x.png */; };
+		84A14330195F5AD200DC3970 /* PATextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A1432F195F5AD200DC3970 /* PATextField.m */; };
+		84A14332195F5EEA00DC3970 /* viewBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A14331195F5EEA00DC3970 /* viewBack.png */; };
+		84A14334195F5EF300DC3970 /* viewBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A14333195F5EF300DC3970 /* viewBack@2x.png */; };
 		84AD392A1957D3AA0004915B /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84AD39281957D3AA0004915B /* FacebookSDK.framework */; };
 		84AD392C1957FC3C0004915B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0941956A72D009DA53D /* MobileCoreServices.framework */; };
 		84AD392D1957FC3C0004915B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0961956A734009DA53D /* SystemConfiguration.framework */; };
@@ -185,6 +192,14 @@
 		8464A876195A066800583DE0 /* UploadPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadPhotoViewController.xib; sourceTree = "<group>"; };
 		8464A8B2195B9F8C00583DE0 /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quickblox.framework; sourceTree = "<group>"; };
 		8491FCD3195EB75B00FDC63F /* LoginViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController4.xib; sourceTree = "<group>"; };
+		84A14325195F581200DC3970 /* txtFldW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = txtFldW.png; sourceTree = "<group>"; };
+		84A14326195F581200DC3970 /* txtFldY.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = txtFldY.png; sourceTree = "<group>"; };
+		84A14329195F582000DC3970 /* txtFldW@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "txtFldW@2x.png"; sourceTree = "<group>"; };
+		84A1432A195F582000DC3970 /* txtFldY@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "txtFldY@2x.png"; sourceTree = "<group>"; };
+		84A1432E195F5AD200DC3970 /* PATextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PATextField.h; path = PATextField/PATextField.h; sourceTree = "<group>"; };
+		84A1432F195F5AD200DC3970 /* PATextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PATextField.m; path = PATextField/PATextField.m; sourceTree = "<group>"; };
+		84A14331195F5EEA00DC3970 /* viewBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = viewBack.png; sourceTree = "<group>"; };
+		84A14333195F5EF300DC3970 /* viewBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "viewBack@2x.png"; sourceTree = "<group>"; };
 		84AD39281957D3AA0004915B /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		CE35F07E1956A66F009DA53D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CE35F0801956A68B009DA53D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -367,6 +382,7 @@
 		8464A82E195A066800583DE0 /* HelperClasses */ = {
 			isa = PBXGroup;
 			children = (
+				84A1432D195F5A9A00DC3970 /* PATextField */,
 				CEB03779195B548C009837A6 /* DataManager.h */,
 				CEB0377A195B548C009837A6 /* DataManager.m */,
 				8464A82F195A066800583DE0 /* CommonFunctions */,
@@ -405,6 +421,9 @@
 		8464A836195A066800583DE0 /* Retina */ = {
 			isa = PBXGroup;
 			children = (
+				84A14333195F5EF300DC3970 /* viewBack@2x.png */,
+				84A14329195F582000DC3970 /* txtFldW@2x.png */,
+				84A1432A195F582000DC3970 /* txtFldY@2x.png */,
 				8464A838195A066800583DE0 /* appBackground4@2x.png */,
 				8464A839195A066800583DE0 /* appBackground@2x.png */,
 				8464A83A195A066800583DE0 /* barButtonTick@2x.png */,
@@ -427,6 +446,9 @@
 		8464A847195A066800583DE0 /* Simple */ = {
 			isa = PBXGroup;
 			children = (
+				84A14331195F5EEA00DC3970 /* viewBack.png */,
+				84A14325195F581200DC3970 /* txtFldW.png */,
+				84A14326195F581200DC3970 /* txtFldY.png */,
 				8464A848195A066800583DE0 /* appBackground.png */,
 				8464A849195A066800583DE0 /* appBackground4.png */,
 				8464A84A195A066800583DE0 /* barButtonTick.png */,
@@ -555,6 +577,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		84A1432D195F5A9A00DC3970 /* PATextField */ = {
+			isa = PBXGroup;
+			children = (
+				84A1432E195F5AD200DC3970 /* PATextField.h */,
+				84A1432F195F5AD200DC3970 /* PATextField.m */,
+			);
+			name = PATextField;
+			sourceTree = "<group>";
+		};
 		CE9D3768195E76F7001F05D9 /* ForgotPassword */ = {
 			isa = PBXGroup;
 			children = (
@@ -654,15 +685,21 @@
 				8464A881195A066800583DE0 /* appBackground@2x.png in Resources */,
 				8464A891195A066800583DE0 /* barButtonTick.png in Resources */,
 				8464A8AD195A066800583DE0 /* UploadPhotoViewController.xib in Resources */,
+				84A14327195F581200DC3970 /* txtFldW.png in Resources */,
 				8464A8AB195A066800583DE0 /* SplashScreenViewController.xib in Resources */,
 				8464A887195A066800583DE0 /* location@2x.png in Resources */,
 				8464A88A195A066800583DE0 /* pinkButton@2x.png in Resources */,
 				8464A895195A066800583DE0 /* imageLogo.png in Resources */,
+				84A1432B195F582000DC3970 /* txtFldW@2x.png in Resources */,
 				8464A897195A066800583DE0 /* magentaButton.png in Resources */,
 				8464A89E195A066800583DE0 /* Images.xcassets in Resources */,
+				84A14328195F581200DC3970 /* txtFldY.png in Resources */,
 				8464A88C195A066800583DE0 /* tick@2x.png in Resources */,
+				84A14334195F5EF300DC3970 /* viewBack@2x.png in Resources */,
 				8464A87C195A066800583DE0 /* InfoPlist.strings in Resources */,
 				8464A88D195A066800583DE0 /* whiteButton@2x.png in Resources */,
+				84A14332195F5EEA00DC3970 /* viewBack.png in Resources */,
+				84A1432C195F582000DC3970 /* txtFldY@2x.png in Resources */,
 				8464A898195A066800583DE0 /* onlineImage.png in Resources */,
 				8464A88E195A066800583DE0 /* yellowButton@2x.png in Resources */,
 				8464A899195A066800583DE0 /* pinkButton.png in Resources */,
@@ -707,6 +744,7 @@
 				8464A87B195A066800583DE0 /* SigUpModel.m in Sources */,
 				8464A87D195A066800583DE0 /* CommonFunctions.m in Sources */,
 				8464A8A4195A066800583DE0 /* LogNightViewController.m in Sources */,
+				84A14330195F5AD200DC3970 /* PATextField.m in Sources */,
 				8464A8A2195A066800583DE0 /* LoginViewController.m in Sources */,
 				8464A87A195A066800583DE0 /* SignUpDataStructure.m in Sources */,
 				8464A878195A066800583DE0 /* LoginDataStructure.m in Sources */,

@@ -31,9 +31,7 @@
     // Do any additional setup after loading the view from its nib.
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:_pudLoggedIn]) {
-        LoginViewController *objLoginView = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:objLoginView];
-        [self presentViewController:navigationController animated:NO completion:nil];
+        [self showLoginView];
     }
     
     imageViewProfile.layer.borderColor= [UIColor blueColor].CGColor;
@@ -41,18 +39,25 @@
     
 }
 
-//- (void)viewWillAppear:(BOOL)animated {
-//    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-//    NSDate *sessionExpDate = [userDefs objectForKey:_pudSessionExpiryDate];
-//    
-//    if ([[NSDate date] timeIntervalSinceDate:sessionExpDate] > 0)
-//        [QBAuth createSessionWithDelegate:self];
-//}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Login View
+
+- (void)showLoginView {
+    
+    NSString *xibName = NSStringFromClass([LoginViewController class]);
+    BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
+    if (!isiPhone5)
+        xibName = [NSString stringWithFormat:@"%@4", xibName];
+    
+    LoginViewController *objLoginView = [[LoginViewController alloc] initWithNibName:xibName bundle:nil];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:objLoginView];
+    [navigationController.navigationBar setTranslucent:false];
+    [self presentViewController:navigationController animated:NO completion:nil];
 }
 
 #pragma mark - IBActions
@@ -71,6 +76,8 @@
     NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
     [userDefs setBool:false forKey:_pudLoggedIn];
     [userDefs synchronize];
+    
+    [self showLoginView];
 }
 - (IBAction)notificationsAction:(id)sender {
     int heightForView = 60;

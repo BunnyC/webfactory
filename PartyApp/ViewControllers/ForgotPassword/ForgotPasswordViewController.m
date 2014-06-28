@@ -8,7 +8,7 @@
 
 #import "ForgotPasswordViewController.h"
 
-@interface ForgotPasswordViewController ()
+@interface ForgotPasswordViewController () <UITextFieldDelegate>
 
 @end
 
@@ -26,19 +26,41 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:true animated:true];
-    [self setTitle:@"Login"];
-    
-    
     // Do any additional setup after loading the view from its nib.
+    
+    [self setTitle:@"Forgot Password"];
+    [self initDefaults];
+    
 }
 
 #pragma mark- Send Email When forgot password
+
 - (IBAction)btnForgotPasswordAction:(id)sender {
     
-    [QBUsers resetUserPasswordWithEmail:@"gaganinder.singh110@gmail.com" delegate:self];
+    BOOL validEmail = [[CommonFunctions sharedObject] validateEmailID:self.txtEmail.text];
+    if (validEmail)
+        [QBUsers resetUserPasswordWithEmail:self.txtEmail.text delegate:self];
+    else {
+        UIAlertView *newAlertView = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"Email ID entered is not valid." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [newAlertView show];
+    }
 }
 
+#pragma mark - Other Methods
+
+- (void)initDefaults {
+    UITapGestureRecognizer *tapOnScrollView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resetScrollView:)];
+    [tapOnScrollView setNumberOfTapsRequired:1];
+    [tapOnScrollView setNumberOfTouchesRequired:1];
+    [scrollView addGestureRecognizer:tapOnScrollView];
+}
+
+#pragma mark - UITextField Delegate Methods
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
+    [scrollView setContentOffset:CGPointMake(0, isiPhone5 ? 0 : 100)];
+}
 
 #pragma mark -
 #pragma mark QBActionStatusDelegate
@@ -55,6 +77,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Tap Gesture on ScrollView
+
+- (void)resetScrollView:(UITapGestureRecognizer *)recognizer {
+    [self.txtEmail resignFirstResponder];
+    [scrollView setContentOffset:CGPointMake(0, 0)];
 }
 
 @end

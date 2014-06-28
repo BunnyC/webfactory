@@ -25,4 +25,6 @@
 - (UIColor *)colorWithImageName:(NSString *)fileName
                         andType:(NSString *)type;
 
+- (BOOL)validateEmailID:(NSString *)emailID;
+
 @end

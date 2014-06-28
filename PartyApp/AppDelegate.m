@@ -39,12 +39,16 @@
     
     [self refreshQBSession];
 
+//    [[UINavigationBar appearance] setTranslucent:false];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
+    
     ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil];
     
     self.navController = [[UINavigationController alloc] initWithRootViewController:objProfileView];
     [self.navController.navigationBar setTranslucent:false];
-    [self.navController.navigationBar setBarTintColor:[UIColor blackColor]];
-    [self.navController.navigationBar setTintColor:[UIColor whiteColor]];
+//    [self.navController.navigationBar setBarTintColor:[UIColor blackColor]];
+//    [self.navController.navigationBar setTintColor:[UIColor whiteColor]];
     NSDictionary *attrNavBarText = [NSDictionary dictionaryWithObjectsAndKeys:
                                     [UIColor whiteColor], NSForegroundColorAttributeName,
                                     [UIFont systemFontOfSize:14], NSFontAttributeName, nil];

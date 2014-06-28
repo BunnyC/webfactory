@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ForgotPasswordViewController : BaseViewController<QBActionStatusDelegate>
+@interface ForgotPasswordViewController : BaseViewController <QBActionStatusDelegate> {
+    
+    __weak IBOutlet UIScrollView *scrollView;
+}
+
 @property (weak, nonatomic) IBOutlet UITextField *txtEmail;
 
 @end

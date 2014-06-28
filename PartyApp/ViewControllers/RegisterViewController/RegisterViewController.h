@@ -17,6 +17,7 @@
     __weak IBOutlet UITextField *txtFieldRepeatPassword;
     __weak IBOutlet UITextField *txtFieldMotto;
     __weak IBOutlet UITextView *txtViewTAndC;
+    __weak IBOutlet UIScrollView *scrollView;
 }
 
 @end

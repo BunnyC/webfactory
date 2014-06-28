@@ -57,19 +57,25 @@
 
 - (void)initDefaults {
     
-    NSString *forgotPasswordText = @"Forgot Password: Click HERE";
+    NSString *forgotPasswordText = @"Forgot Password? Click HERE";
     NSMutableAttributedString *attrTextForgotLabel = [[NSMutableAttributedString alloc] initWithString:forgotPasswordText];
     
-    NSDictionary *dictAttrText = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  [UIColor yellowColor], NSForegroundColorAttributeName,
-                                  @"forgotpassword", NSLinkAttributeName,
-                                  [NSNumber numberWithInt:NSUnderlineStyleSingle], NSUnderlineStyleAttributeName, nil];
+    NSDictionary *dictAttrTextForgot = [NSDictionary dictionaryWithObjectsAndKeys:
+                                        [UIColor yellowColor], NSForegroundColorAttributeName,
+                                        @"forgotpassword", NSLinkAttributeName,
+                                        [UIFont systemFontOfSize:10], NSFontAttributeName, nil];
+    
+    NSDictionary *dictAttrTextSimple = [NSDictionary dictionaryWithObjectsAndKeys:
+                                        [UIColor whiteColor], NSForegroundColorAttributeName,
+                                        [UIFont systemFontOfSize:10], NSFontAttributeName, nil];
     
     NSRange rangeClickHere = [forgotPasswordText rangeOfString:@"Click HERE"];
-    [attrTextForgotLabel addAttributes:dictAttrText range:rangeClickHere];
+    NSRange rangeForgotPass = [forgotPasswordText rangeOfString:@"Forgot Password?"];
+    [attrTextForgotLabel addAttributes:dictAttrTextForgot range:rangeClickHere];
+    [attrTextForgotLabel addAttributes:dictAttrTextSimple range:rangeForgotPass];
     
     [txtViewForgotPassword setAttributedText:attrTextForgotLabel];
-    
+    [txtViewForgotPassword setTextAlignment:NSTextAlignmentCenter];
 }
 
 #pragma mark - TextView Delegates

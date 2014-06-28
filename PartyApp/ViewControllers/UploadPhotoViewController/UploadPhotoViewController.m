@@ -29,6 +29,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:FALSE animated:true];
+    [self setTitle:@"Party Friends"];
     imageViewProfile.layer.borderWidth=1.5;
     imageViewProfile.layer.borderColor=[UIColor blueColor].CGColor;
     // Do any additional setup after loading the view from its nib.
@@ -89,9 +91,12 @@
 
 - (IBAction)nextButtonAction:(id)sender {
     
+    NSString *xibName = NSStringFromClass([ProfileViewController class]);
+    BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
+    if (!isiPhone5)
+        xibName = [NSString stringWithFormat:@"%@4", xibName];
     
-    
-    ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil];
+    ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:xibName bundle:nil];
     [self.navigationController pushViewController:objProfileView animated:YES];
 }
 
@@ -218,7 +223,12 @@
                     NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
                     [userDefs setBool:TRUE forKey:_pudLoggedIn];
                     
-                    ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil];
+                    NSString *xibName = NSStringFromClass([ProfileViewController class]);
+                    BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
+                    if (!isiPhone5)
+                        xibName = [NSString stringWithFormat:@"%@4", xibName];
+                    
+                    ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:xibName bundle:nil];
                     
                     [self.navigationController pushViewController:objProfileView animated:YES];
                     

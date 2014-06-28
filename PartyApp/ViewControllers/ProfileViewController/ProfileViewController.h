@@ -21,4 +21,6 @@
     __weak IBOutlet UITableView *tableViewNotifications;
 }
 
+-(void)updateUserProfileData:(NSDictionary *)userInfo;
 @end
+

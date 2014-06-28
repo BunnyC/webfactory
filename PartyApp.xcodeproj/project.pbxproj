@@ -88,6 +88,8 @@
 		CE9D376D195E771B001F05D9 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9D376A195E771B001F05D9 /* ForgotPasswordViewController.m */; };
 		CE9D376E195E771B001F05D9 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9D376B195E771B001F05D9 /* ForgotPasswordViewController.xib */; };
 		CE9D376F195E771B001F05D9 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9D376B195E771B001F05D9 /* ForgotPasswordViewController.xib */; };
+		CE9D3771195F02C1001F05D9 /* UploadPhotoViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9D3770195F02C1001F05D9 /* UploadPhotoViewController4.xib */; };
+		CE9D3773195F0C0F001F05D9 /* ProfileViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9D3772195F0C0F001F05D9 /* ProfileViewController4.xib */; };
 		CEA18F1B195BB3F400A6CACB /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8464A8B2195B9F8C00583DE0 /* Quickblox.framework */; };
 		CEB0377B195B548C009837A6 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB0377A195B548C009837A6 /* DataManager.m */; };
 /* End PBXBuildFile section */
@@ -201,6 +203,8 @@
 		CE9D3769195E771B001F05D9 /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewController.h; sourceTree = "<group>"; };
 		CE9D376A195E771B001F05D9 /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		CE9D376B195E771B001F05D9 /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
+		CE9D3770195F02C1001F05D9 /* UploadPhotoViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadPhotoViewController4.xib; sourceTree = "<group>"; };
+		CE9D3772195F0C0F001F05D9 /* ProfileViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController4.xib; sourceTree = "<group>"; };
 		CEB03779195B548C009837A6 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		CEB0377A195B548C009837A6 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -493,6 +497,7 @@
 				8464A868195A066800583DE0 /* ProfileViewController.h */,
 				8464A869195A066800583DE0 /* ProfileViewController.m */,
 				8464A86A195A066800583DE0 /* ProfileViewController.xib */,
+				CE9D3772195F0C0F001F05D9 /* ProfileViewController4.xib */,
 			);
 			path = ProfileViewController;
 			sourceTree = "<group>";
@@ -523,6 +528,7 @@
 				8464A874195A066800583DE0 /* UploadPhotoViewController.h */,
 				8464A875195A066800583DE0 /* UploadPhotoViewController.m */,
 				8464A876195A066800583DE0 /* UploadPhotoViewController.xib */,
+				CE9D3770195F02C1001F05D9 /* UploadPhotoViewController4.xib */,
 			);
 			path = UploadPhotoViewController;
 			sourceTree = "<group>";
@@ -642,6 +648,7 @@
 				8464A8A3195A066800583DE0 /* LoginViewController.xib in Resources */,
 				8464A884195A066800583DE0 /* commentIcon@2x.png in Resources */,
 				8464A88B195A066800583DE0 /* purpleButton@2x.png in Resources */,
+				CE9D3771195F02C1001F05D9 /* UploadPhotoViewController4.xib in Resources */,
 				8464A885195A066800583DE0 /* facebookIcon@2x.png in Resources */,
 				8464A883195A066800583DE0 /* blueButton@2x.png in Resources */,
 				8464A881195A066800583DE0 /* appBackground@2x.png in Resources */,
@@ -662,6 +669,7 @@
 				8464A896195A066800583DE0 /* location.png in Resources */,
 				8464A8A7195A066800583DE0 /* ProfileViewController.xib in Resources */,
 				8464A890195A066800583DE0 /* appBackground4.png in Resources */,
+				CE9D3773195F0C0F001F05D9 /* ProfileViewController4.xib in Resources */,
 				8464A888195A066800583DE0 /* magentaButton@2x.png in Resources */,
 				8464A88F195A066800583DE0 /* appBackground.png in Resources */,
 				8464A894195A066800583DE0 /* facebookIcon.png in Resources */,

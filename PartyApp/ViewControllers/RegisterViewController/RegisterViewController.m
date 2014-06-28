@@ -199,22 +199,18 @@
 }
 
 - (IBAction)nextButtonAction:(id)sender {
-    
+
     if ([self validateFields]) {
         QBUUser *objCreateUser=[[QBUUser alloc]init];
         
         [objCreateUser setLogin:txtFieldUsername.text];
         [objCreateUser setEmail:txtFieldEmail.text];
         [objCreateUser setPassword:txtFieldPassword.text];
-        [objCreateUser setFullName:txtFieldMotto.text]; // FullName Used for Moto
-        //    [objCreateUser set]
-        //    [objCreateUser setMotto]
-        
+        [objCreateUser setFullName:txtFieldUsername.text]; // FullName Used for Moto
+        [objCreateUser setTags:[NSMutableArray arrayWithObjects:txtFieldMotto.text, nil]];
         [QBUsers signUp:objCreateUser delegate:self];
         
-        //    UploadPhotoViewController *objUploadPhotoViewController = [[UploadPhotoViewController alloc] initWithNibName:@"UploadPhotoViewController" bundle:nil];
-        //    [self.navigationController pushViewController:objUploadPhotoViewController animated:YES];
-    }
+        }
 }
 
 #pragma mark - QuickBox Server Response
@@ -225,11 +221,7 @@
         
         // Success result
 		if(result.success){
-            //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Registration was successful. Please now sign in." message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-            //            [alert show];
-            
-            
-            
+          
             QBASessionCreationRequest *extendedAuthRequest = [QBASessionCreationRequest request];
             extendedAuthRequest.userLogin = txtFieldUsername.text; // ID: 218651
             extendedAuthRequest.userPassword = txtFieldPassword.text;
@@ -247,7 +239,13 @@
 	}
     else if(result.success && [result isKindOfClass:QBAAuthSessionCreationResult.class]){
         
-        UploadPhotoViewController *objUploadPhotoViewController = [[UploadPhotoViewController alloc] initWithNibName:@"UploadPhotoViewController" bundle:nil];
+        NSString *xibName = NSStringFromClass([UploadPhotoViewController class]);
+        BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
+        if (!isiPhone5)
+            xibName = [NSString stringWithFormat:@"%@4", xibName];
+        
+        UploadPhotoViewController *objUploadPhotoViewController = [[UploadPhotoViewController alloc] initWithNibName:xibName bundle:nil];
+        
         [self.navigationController pushViewController:objUploadPhotoViewController animated:YES];
         
         // Success, You have got User session

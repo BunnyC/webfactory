@@ -39,16 +39,19 @@
     
     [self refreshQBSession];
 
-//    [[UINavigationBar appearance] setTranslucent:false];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
     
-    ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil];
+    NSString *xibName = NSStringFromClass([ProfileViewController class]);
+    BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
+    if (!isiPhone5)
+        xibName = [NSString stringWithFormat:@"%@4", xibName];
+   
+    ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:xibName bundle:nil];
     
     self.navController = [[UINavigationController alloc] initWithRootViewController:objProfileView];
     [self.navController.navigationBar setTranslucent:false];
-//    [self.navController.navigationBar setBarTintColor:[UIColor blackColor]];
-//    [self.navController.navigationBar setTintColor:[UIColor whiteColor]];
+
     NSDictionary *attrNavBarText = [NSDictionary dictionaryWithObjectsAndKeys:
                                     [UIColor whiteColor], NSForegroundColorAttributeName,
                                     [UIFont systemFontOfSize:14], NSFontAttributeName, nil];
@@ -302,11 +305,23 @@
              [self showMessage:@"You're now logged in" withTitle:@"Welcome!"];
             // Success! Include your code to handle the results here
             NSLog(@"user info: %@", result);
+            _userInfo=(NSDictionary *)result;
+            ProfileViewController *objProfileView;
+            for (id controller in self.navController.viewControllers) {
+                
+                if([(ProfileViewController *)controller isKindOfClass:[ProfileViewController class]])
+                {
+                   objProfileView=(ProfileViewController *)controller;
+                    break;
+                }
+            }
             
             NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
             [userDefs setBool:TRUE forKey:_pudLoggedIn];
             [userDefs synchronize];
-            [self.navController dismissViewControllerAnimated:YES completion:nil];
+            [self.navController dismissViewControllerAnimated:YES completion:^{
+                [objProfileView updateUserProfileData:_userInfo];
+            }];
             
         } else {
             // An error occurred, we need to handle the error

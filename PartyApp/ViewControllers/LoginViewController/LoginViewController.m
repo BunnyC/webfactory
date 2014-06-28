@@ -11,6 +11,7 @@
 #import "LoginModel.h"
 #import "AppDelegate.h"
 #import "ForgotPasswordViewController.h"
+#import "ProfileViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
 @interface LoginViewController () <UITextFieldDelegate, UITextViewDelegate, QBActionStatusDelegate>
 
@@ -189,9 +190,23 @@
 {
     if (userLoginResult.success) {
         //        [QBAuth createSessionWithDelegate:self];
+        
+        ProfileViewController *objProfileView;
+        for (id controller in self.navigationController.viewControllers) {
+            
+            if([(ProfileViewController *)controller isKindOfClass:[ProfileViewController class]])
+            {
+                objProfileView=(ProfileViewController *)controller;
+                break;
+            }
+        }
+        QBUUserLogInResult *res = (QBUUserLogInResult *)userLoginResult;
+       
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        [self dismissViewControllerAnimated:true completion:nil];
+        [self dismissViewControllerAnimated:true completion:^{
+          // [objProfileView updateUserProfileData:]
+        }];
     }
     //    NSLog(@"User Detail %@", userDetail);
 }

@@ -28,6 +28,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:FALSE animated:true];
+    [self setTitle:@"Party Friends"];
     // Do any additional setup after loading the view from its nib.
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:_pudLoggedIn]) {
@@ -37,6 +39,14 @@
     imageViewProfile.layer.borderColor= [UIColor blueColor].CGColor;
     imageViewProfile.layer.borderWidth=1.5;
     
+}
+
+#pragma mark - Update UserInformation
+-(void)updateUserProfileData:(NSDictionary *)userInfo
+{
+    lblName.text=[NSString stringWithFormat:@"%@ %@",[userInfo objectForKey:@"first_name"],[userInfo objectForKey:@"last_name"]];
+    lblActive.text=@"active";
+    lblMotto.text=[NSString stringWithFormat:@"%@",@"Share your moto"];
 }
 
 - (void)didReceiveMemoryWarning

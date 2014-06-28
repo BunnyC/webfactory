@@ -12,8 +12,9 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, QBActionStatusDelegate> {
     BOOL refreshingSession;
+    
 }
-
+@property (nonatomic,retain) NSDictionary *userInfo;
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController *navController;
 

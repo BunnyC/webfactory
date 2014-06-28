@@ -58,6 +58,11 @@
 
 - (void)initDefaults {
     
+    UITapGestureRecognizer *tapOnScrollView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resetScrollView:)];
+    [tapOnScrollView setNumberOfTapsRequired:1];
+    [tapOnScrollView setNumberOfTouchesRequired:1];
+    [scrollView addGestureRecognizer:tapOnScrollView];
+    
     NSString *forgotPasswordText = @"Forgot Password? Click HERE";
     NSMutableAttributedString *attrTextForgotLabel = [[NSMutableAttributedString alloc] initWithString:forgotPasswordText];
     
@@ -93,11 +98,6 @@
 }
 
 #pragma mark - Other Methods
-
-- (void)resignKeyboard {
-    for (UITextField *txtField in self.view.subviews)
-        [txtField resignFirstResponder];
-}
 
 - (NSString *)checkLoginFields {
     NSString *errorString = nil;
@@ -168,18 +168,20 @@
     }
 }
 
-#pragma mark - Touch Methods
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    UIView *touchedView = [[touches anyObject] view];
-    if (![touchedView isKindOfClass:[UITextField class]])
-        [self resignKeyboard];
-}
-
 #pragma mark - TextField Delegate Method
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    // -20 is used due to status bar settings in iOS 7
+    if (scrollView.contentOffset.y == -20) {
+        
+        BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
+        
+        CGPoint offsetPoint = CGPointMake(0, txtFieldUsername.frame.origin.y / 4 - (isiPhone5 ? 25 : -20));
+        [scrollView setContentOffset:offsetPoint];
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
 }
@@ -209,6 +211,17 @@
         }];
     }
     //    NSLog(@"User Detail %@", userDetail);
+}
+
+#pragma mark - Tap Gesture on ScrollView
+
+- (void)resetScrollView:(UITapGestureRecognizer *)recognizer {
+    for (UITextField *textField in scrollView.subviews) {
+        if ([textField isKindOfClass:[UITextField class]]) {
+            [textField resignFirstResponder];
+            [scrollView setContentOffset:CGPointMake(0, -20)];
+        }
+    }
 }
 
 @end

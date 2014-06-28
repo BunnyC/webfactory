@@ -27,4 +27,7 @@
 
 - (BOOL)validateEmailID:(NSString *)emailID;
 
+- (UIView *)showLoadingViewInViewController:(UIViewController *)viewController;
+- (void)hideLoadingView:(UIView *)loadingView;
+
 @end

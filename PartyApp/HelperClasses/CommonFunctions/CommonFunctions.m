@@ -7,6 +7,7 @@
 //
 
 #import "CommonFunctions.h"
+#import "AppDelegate.h"
 
 @implementation CommonFunctions
 
@@ -73,6 +74,46 @@
     NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     return [emailTest evaluateWithObject:emailID];
+}
+
+- (UIView *)showLoadingViewInViewController:(UIViewController *)viewController {
+    
+    CGRect frameScreen = [[UIScreen mainScreen] bounds];
+    
+    UIView *loadingView = [[UIView alloc] initWithFrame:frameScreen];
+    [loadingView setBackgroundColor:[UIColor clearColor]];
+    
+    CGRect frameActivity = CGRectMake(frameScreen.size.width / 2 - 60 ,frameScreen.size.height / 2 - 40, 120, 80);
+    
+    UIView *viewActivity = [[UIView alloc] initWithFrame:frameActivity];
+    [viewActivity setBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.9f]];
+    [viewActivity.layer setCornerRadius:5];
+    
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [spinner setFrame:CGRectMake(frameActivity.size.width / 2 - 10, 15, 20, 20)];
+    [spinner startAnimating];
+    
+    UILabel *labelActivity = [[UILabel alloc] initWithFrame:
+                              CGRectMake(10, 40, viewActivity.frame.size.width - 20, 30)];
+    [labelActivity setTextAlignment:NSTextAlignmentCenter];
+    [labelActivity setBackgroundColor:[UIColor clearColor]];
+    [labelActivity setFont:[UIFont boldSystemFontOfSize:16]];
+    [labelActivity setTextColor:[UIColor whiteColor]];
+    [labelActivity setText:@"Loading"];
+    
+    [viewActivity addSubview:spinner];
+    [viewActivity addSubview:labelActivity];
+    
+    [loadingView addSubview:viewActivity];
+    
+    [[[viewController view] window] addSubview:loadingView];
+    
+    return loadingView;
+}
+
+- (void)hideLoadingView:(UIView *)loadingView {
+    [loadingView removeFromSuperview];
+    loadingView = nil;
 }
 
 @end

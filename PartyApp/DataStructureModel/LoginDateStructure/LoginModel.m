@@ -14,7 +14,8 @@
 {
     _delegate=target;
     _handler=selector;
-
+    
+    viewLoading = [[CommonFunctions sharedObject] showLoadingViewInViewController:_delegate];
     [QBUsers logInWithUserLogin:[loginDetail objectForKey:@"UserName"]
                        password:[loginDetail objectForKey:@"Password"]
                        delegate:self];
@@ -27,6 +28,7 @@
 
 -(void)completedWithResult:(Result *)result
 {
+    [[CommonFunctions sharedObject] hideLoadingView:viewLoading];
     if([result isKindOfClass:[QBUUserLogInResult class]]){
 		
         [[NSUserDefaults standardUserDefaults] setBool:result.success
@@ -56,7 +58,6 @@
    
         }
     }
-   
 }
 
 @end

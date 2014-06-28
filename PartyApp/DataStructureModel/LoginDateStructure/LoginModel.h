@@ -12,6 +12,7 @@
 {
     id  _delegate;
     SEL _handler;
+    UIView *viewLoading;
 }
 
 -(void)loginWithTarget:(id)target Selector:(SEL)selector Detail:(NSDictionary *)loginDetail;

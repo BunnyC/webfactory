@@ -41,6 +41,23 @@
     
 }
 
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self downloadFile];
+}
+
+
+-(void)downloadFile{
+    int fileID = [(QBCBlob *)[[[DataManager instance] fileList] lastObject] ID];
+    if(fileID > 0){
+        // Download file from QuickBlox server
+        [QBContent TDownloadFileWithBlobID:fileID delegate:self];
+    }
+    
+}
+
+
 #pragma mark - Update UserInformation
 -(void)updateUserProfileData:(NSDictionary *)userInfo
 {
@@ -104,6 +121,37 @@
     if (viewNotifications.frame.origin.y > 290) {
         heightForView = 280;
     }
+}
+
+
+// QuickBlox API queries delegate
+-(void)completedWithResult:(Result *)result{
+    
+    // Download file result
+    if ([result isKindOfClass:QBCFileDownloadTaskResult.class]) {
+        
+        // Success result
+        if (result.success) {
+            
+            QBCFileDownloadTaskResult *res = (QBCFileDownloadTaskResult *)result;
+            if ([res file]) {
+                
+                // Add image to gallery
+                [[DataManager instance] savePicture:[UIImage imageWithData:[res file]]];
+                UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[res file]]];
+                imageView.contentMode = UIViewContentModeScaleAspectFit;
+                imageViewProfile.image=imageView.image;
+
+                //
+                [[[DataManager instance] fileList] removeLastObject];
+             
+            }
+        }
+    }
+}
+
+-(void)setProgress:(float)progress{
+    NSLog(@"progress: %f", progress);
 }
 
 @end

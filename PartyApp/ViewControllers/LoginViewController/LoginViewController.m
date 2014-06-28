@@ -199,19 +199,50 @@
         
         NSString *moto=[[arrTags objectAtIndex:0]isKindOfClass:[NSNull class]]?@"share you moto":[arrTags objectAtIndex:0];
         
-        NSDictionary *userInfo=[NSDictionary dictionaryWithObjectsAndKeys:res.user.fullName,@"first_name",moto,@"moto", nil];
+        userInfo=[NSDictionary dictionaryWithObjectsAndKeys:res.user.fullName,@"first_name",moto,@"moto", nil];
+        
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
+        PagedRequest *pagedRequest = [[PagedRequest alloc] init];
+        [pagedRequest setPerPage:20];
+        
+        [QBContent blobsWithPagedRequest:pagedRequest delegate:self];
+        
         
         [[NSUserDefaults standardUserDefaults] synchronize];
-        [self dismissViewControllerAnimated:true completion:^{
-            if([_delegate respondsToSelector:@selector(updateUserInfo:)])
-            {
-                [_delegate performSelector:@selector(updateUserInfo:) withObject:userInfo];
-            }
-        }];
+        
     }
     //    NSLog(@"User Detail %@", userDetail);
 }
+
+#pragma mark -
+#pragma mark QBActionStatusDelegate
+
+// QuickBlox API queries delegate
+-(void)completedWithResult:(Result *)result{
+    // Success result
+    if(result.success){
+        
+        if ([result isKindOfClass:[QBCBlobPagedResult class]]){
+            
+            // Success result
+            if(result.success){
+                QBCBlobPagedResult *res = (QBCBlobPagedResult *)result;
+                
+                // Save user's filelist
+                [DataManager instance].fileList = [res.blobs mutableCopy];
+                
+                // hid splash screen
+                [self dismissViewControllerAnimated:true completion:^{
+                    if([_delegate respondsToSelector:@selector(updateUserInfo:)])
+                    {
+                        [_delegate performSelector:@selector(updateUserInfo:) withObject:userInfo];
+                    }
+                }];
+            }
+        }
+    }
+}
+
 
 #pragma mark - Tap Gesture on ScrollView
 

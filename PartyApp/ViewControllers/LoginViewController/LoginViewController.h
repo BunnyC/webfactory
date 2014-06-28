@@ -20,6 +20,8 @@
     __weak IBOutlet UITextView *txtViewForgotPassword;
     __weak IBOutlet UIScrollView *scrollView;
     
+    NSDictionary *userInfo;
+    
 }
 
 @property (nonatomic,strong) id<LoginViewDelegate> delegate;

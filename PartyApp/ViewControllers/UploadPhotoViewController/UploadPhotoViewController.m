@@ -215,6 +215,14 @@
                     // Save user's filelist
                     [DataManager instance].fileList = [res.blobs mutableCopy];
                     
+                    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+                    [userDefs setBool:TRUE forKey:_pudLoggedIn];
+                    
+                    ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil];
+                    
+                    [self.navigationController pushViewController:objProfileView animated:YES];
+                    
+                    
                     // hid splash screen
 //                    [self performSelector:@selector(hideSplashScreen) withObject:self afterDelay:1];
                 }

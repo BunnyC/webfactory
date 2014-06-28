@@ -17,6 +17,7 @@
     #import "CommonFunctions.h"
     #import "Constants.h"
     #import <Quickblox/Quickblox.h>
+    #import "DataManager.h"
     #import <MapKit/MapKit.h>
     #import <CoreData/CoreData.h>
     #import <QuartzCore/QuartzCore.h>

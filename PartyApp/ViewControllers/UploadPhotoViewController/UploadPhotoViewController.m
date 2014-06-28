@@ -123,13 +123,13 @@
   
     [self.imagePicker dismissViewControllerAnimated:NO completion:nil];
 
-
+ [QBContent TUploadFile:imageData fileName:@"ProfileImage" contentType:@"image/png" isPublic:YES delegate:self];
     // Upload file to QuickBlox server
-    [self checkQBSession:^(BOOL finished) {
-        if(finished){
-            [QBContent TUploadFile:imageData fileName:@"ProfileImage" contentType:@"image/png" isPublic:NO delegate:self];
-        }
-    }];
+//    [self checkQBSession:^(BOOL finished) {
+//        if(finished){
+//           
+//        }
+//    }];
    
 }
 
@@ -145,7 +145,12 @@
 -(void) checkQBSession:(myCompletion) compblock{
     
     AppDelegate *delegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
-    [delegate refreshQBSession];
+    
+    QBASessionCreationRequest *extendedAuthRequest = [[QBASessionCreationRequest alloc] init];
+    extendedAuthRequest.userLogin = @"gaganinder.singh";
+    extendedAuthRequest.userPassword = @"Devhub1234!";
+    
+    [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
     compblock(YES);
 }
 
@@ -179,6 +184,41 @@
         }else{
             [[[DataManager instance] fileList] removeLastObject];
            
+        }
+    }
+    else
+    {
+        if(result.success){
+            
+            // QuickBlox session creation  result
+            if ([result isKindOfClass:[QBAAuthSessionCreationResult class]]) {
+                
+                // Success result
+                if(result.success){
+                    
+                    // send request for getting user's filelist
+                    PagedRequest *pagedRequest = [[PagedRequest alloc] init];
+                    [pagedRequest setPerPage:20];
+                    
+                    [QBContent blobsWithPagedRequest:pagedRequest delegate:self];
+                    
+                  
+                }
+                
+                // Get User's files result
+            } else if ([result isKindOfClass:[QBCBlobPagedResult class]]){
+                
+                // Success result
+                if(result.success){
+                    QBCBlobPagedResult *res = (QBCBlobPagedResult *)result;
+                    
+                    // Save user's filelist
+                    [DataManager instance].fileList = [res.blobs mutableCopy];
+                    
+                    // hid splash screen
+//                    [self performSelector:@selector(hideSplashScreen) withObject:self afterDelay:1];
+                }
+            }
         }
     }
 }

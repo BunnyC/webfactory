@@ -96,21 +96,21 @@
 
 - (IBAction)nextButtonAction:(id)sender {
     
-//    QBUUser *objCreateUser=[[QBUUser alloc]init];
-//    
-//    [objCreateUser setLogin:txtFieldUsername.text];
-//    [objCreateUser setEmail:txtFieldEmail.text];
-//    [objCreateUser setPassword:txtFieldPassword.text];
-//    [objCreateUser setFullName:txtFieldMotto.text]; // FullName Used for Moto
-////    [objCreateUser set]
-////    [objCreateUser setMotto]
-//
-//    [QBUsers signUp:objCreateUser delegate:self];
+    QBUUser *objCreateUser=[[QBUUser alloc]init];
     
+    [objCreateUser setLogin:txtFieldUsername.text];
+    [objCreateUser setEmail:txtFieldEmail.text];
+    [objCreateUser setPassword:txtFieldPassword.text];
+    [objCreateUser setFullName:txtFieldMotto.text]; // FullName Used for Moto
+//    [objCreateUser set]
+//    [objCreateUser setMotto]
+
+  //  [QBUsers signUp:objCreateUser delegate:self];
     
     UploadPhotoViewController *objUploadPhotoViewController = [[UploadPhotoViewController alloc] initWithNibName:@"UploadPhotoViewController" bundle:nil];
     [self.navigationController pushViewController:objUploadPhotoViewController animated:YES];
-     
+
+    
 }
 
 #pragma mark - TextField Delegate Method
@@ -129,8 +129,11 @@
         
         // Success result
 		if(result.success){
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Registration was successful. Please now sign in." message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-            [alert show];
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Registration was successful. Please now sign in." message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+//            [alert show];
+            
+                UploadPhotoViewController *objUploadPhotoViewController = [[UploadPhotoViewController alloc] initWithNibName:@"UploadPhotoViewController" bundle:nil];
+                [self.navigationController pushViewController:objUploadPhotoViewController animated:YES];
             
             // Errors
         }else{

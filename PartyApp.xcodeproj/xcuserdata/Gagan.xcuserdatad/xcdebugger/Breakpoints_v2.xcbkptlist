@@ -313,14 +313,44 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PartyApp/ViewControllers/ProfileViewController/ProfileViewController.m"
-            timestampString = "425671842.20841"
+            filePath = "PartyApp/ViewControllers/LoginViewController/LoginViewController.m"
+            timestampString = "425672998.726197"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "-updateUserInfo:"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "-serverResponse:"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[LoginViewController serverResponse:]"
+                  moduleName = "PartyApp"
+                  urlString = "file://localhost/Users/Gagan/Documents/Gagan%20Important%20Doc/Home%20Project/%20PartyApp%20Project/webfactory/PartyApp/ViewControllers/LoginViewController/LoginViewController.m"
+                  timestampString = "425672999.87888"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "204"
+                  endingLineNumber = "204"
+                  offsetFromSymbolStart = "882">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[LoginViewController serverResponse:]_block_invoke"
+                  moduleName = "PartyApp"
+                  urlString = "file://localhost/Users/Gagan/Documents/Gagan%20Important%20Doc/Home%20Project/%20PartyApp%20Project/webfactory/PartyApp/ViewControllers/LoginViewController/LoginViewController.m"
+                  timestampString = "425672999.879097"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "204"
+                  endingLineNumber = "204"
+                  offsetFromSymbolStart = "21">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -330,29 +360,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyApp/ViewControllers/LoginViewController/LoginViewController.m"
-            timestampString = "425671884.102543"
+            timestampString = "425672998.726197"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
             landmarkName = "-serverResponse:"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PartyApp/ViewControllers/LoginViewController/LoginViewController.m"
-            timestampString = "425672188.190313"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "-serverResponse:"
-            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[LoginViewController serverResponse:]"
+                  moduleName = "PartyApp"
+                  urlString = "file://localhost/Users/Gagan/Documents/Gagan%20Important%20Doc/Home%20Project/%20PartyApp%20Project/webfactory/PartyApp/ViewControllers/LoginViewController/LoginViewController.m"
+                  timestampString = "425672999.879366"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "204"
+                  endingLineNumber = "204"
+                  offsetFromSymbolStart = "882">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[LoginViewController serverResponse:]_block_invoke"
+                  moduleName = "PartyApp"
+                  urlString = "file://localhost/Users/Gagan/Documents/Gagan%20Important%20Doc/Home%20Project/%20PartyApp%20Project/webfactory/PartyApp/ViewControllers/LoginViewController/LoginViewController.m"
+                  timestampString = "425672999.879644"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "204"
+                  endingLineNumber = "204"
+                  offsetFromSymbolStart = "21">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

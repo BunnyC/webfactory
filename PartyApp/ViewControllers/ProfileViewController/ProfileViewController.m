@@ -54,7 +54,7 @@
 
 -(void)updateUserInfo:(NSDictionary *)dic
 {
-    lblName.text=[NSString stringWithFormat:@"%@ %@",[dic objectForKey:@"first_name"],[dic objectForKey:@"last_name"]];
+    lblName.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"first_name"]];
     lblActive.text=@"active";
     lblMotto.text=[NSString stringWithFormat:@"%@",@"Share your moto"];
 }
@@ -74,6 +74,7 @@
         xibName = [NSString stringWithFormat:@"%@4", xibName];
     
     LoginViewController *objLoginView = [[LoginViewController alloc] initWithNibName:xibName bundle:nil];
+    objLoginView.delegate=self;
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:objLoginView];
     [navigationController.navigationBar setTranslucent:false];
     [self presentViewController:navigationController animated:NO completion:nil];

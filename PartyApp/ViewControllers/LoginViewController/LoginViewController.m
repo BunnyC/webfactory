@@ -204,7 +204,7 @@
         [self dismissViewControllerAnimated:true completion:^{
             if([_delegate respondsToSelector:@selector(updateUserInfo:)])
             {
-                [_delegate ]
+                [_delegate performSelector:@selector(updateUserInfo:) withObject:userInfo];
             }
         }];
     }

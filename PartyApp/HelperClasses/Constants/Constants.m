@@ -20,4 +20,9 @@ NSString *const _pAccountKey            = @"eYyNwpmdQnAxbyiJs3CG";
 NSString *const _pudLoggedIn            = @"IsLoggedIn";
 NSString *const _pudSessionExpiryDate   = @"SessionExpiryDate";
 
+#pragma mark - Error Message
+
+NSString *const _pErrUserNameAndPasswordRequired= @"Please enter password with atleast 6 characters";
+NSString *const _pErrInvalidUserNameAndPassword=@"Please enter correct username and password";
+
 @end

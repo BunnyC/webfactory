@@ -100,7 +100,7 @@
         if (errorString.length)
             errorString = [[[errorString stringByReplacingOccurrencesOfString:@"username" withString:@"username, password"] stringByReplacingOccurrencesOfString:@"characters" withString:@"characters respectively"] stringByReplacingOccurrencesOfString:@"5" withString:@"5 and 6"];
         else
-            errorString = @"Please enter password with atleast 6 characters";
+            errorString=_pErrUserNameAndPasswordRequired;
     }
     return errorString;
 }
@@ -126,8 +126,11 @@
         NSMutableDictionary *dicLoginDetail=[[NSMutableDictionary alloc]init];
         [dicLoginDetail setValue:txtFieldUsername.text forKey:@"UserName"];
         [dicLoginDetail setValue:txtFieldPassword.text forKey:@"Password"];
+        [txtFieldPassword resignFirstResponder];
+        [txtFieldPassword resignFirstResponder];
         LoginModel *objLoginModel=[[LoginModel alloc]init];
         [objLoginModel loginWithTarget:self Selector:@selector(serverResponse:) Detail:dicLoginDetail];
+
     }
 }
 

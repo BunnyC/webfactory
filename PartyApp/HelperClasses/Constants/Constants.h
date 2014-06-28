@@ -17,5 +17,7 @@ FOUNDATION_EXPORT NSString *const _pAccountKey;
 
 FOUNDATION_EXPORT NSString *const _pudLoggedIn;
 FOUNDATION_EXPORT NSString *const _pudSessionExpiryDate;
+FOUNDATION_EXPORT NSString *const _pErrUserNameAndPasswordRequired;
+FOUNDATION_EXPORT NSString *const _pErrInvalidUserNameAndPassword;
 
 @end

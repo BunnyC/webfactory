@@ -101,6 +101,12 @@
     
     [txtViewTAndC setAttributedText:attrTextTAndCPrivacy];
     [txtViewTAndC setTextAlignment:NSTextAlignmentCenter];
+    
+    [self setTextFieldBackgroundsWithTextField:nil];
+    
+    UIImage *backImage = [[CommonFunctions sharedObject] imageWithName:@"viewBack" andType:_pPNGType];
+    UIColor *backColor = [UIColor colorWithPatternImage:backImage];
+    [viewBottom setBackgroundColor:backColor];
 }
 
 #pragma mark - UITextView Delegates
@@ -118,7 +124,23 @@
     return shouldInteract;
 }
 
-#pragma mark - Field Validations
+#pragma mark - Other Methods
+
+- (void)setTextFieldBackgroundsWithTextField:(UITextField *)textField {
+    UIImage *selImage = [[CommonFunctions sharedObject] imageWithName:@"txtFldY"
+                                                              andType:_pPNGType];
+    UIImage *unselImage = [[CommonFunctions sharedObject] imageWithName:@"txtFldW"
+                                                                andType:_pPNGType];
+    
+    for (UITextField *textFs in scrollView.subviews) {
+        if ([textFs isKindOfClass:[UITextField class]]) {
+            if (textFs != textField)
+                [textFs setBackground:unselImage];
+            else
+                [textField setBackground:selImage];
+        }
+    }
+}
 
 - (BOOL)validateFields {
     BOOL validated = true;
@@ -182,19 +204,7 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
-    UIImage *selImage = [[CommonFunctions sharedObject] imageWithName:@"txtFldY"
-                                                              andType:_pPNGType];
-    UIImage *unselImage = [[CommonFunctions sharedObject] imageWithName:@"txtFldW"
-                                                                andType:_pPNGType];
-    
-    for (UITextField *textFs in scrollView.subviews) {
-        if ([textFs isKindOfClass:[UITextField class]]) {
-            if (textFs != textField)
-                [textFs setBackground:unselImage];
-            else
-                [textField setBackground:selImage];
-        }
-    }
+    [self setTextFieldBackgroundsWithTextField:textField];
     
     int yOffset = textField.tag < 3 ? 0 : (textField.tag - 1) * (textField.tag == 3 ? 15 : 25);
     CGPoint offsetPoint = CGPointMake(0, yOffset);
@@ -274,6 +284,7 @@
         if ([textField isKindOfClass:[UITextField class]]) {
             [textField resignFirstResponder];
             [scrollView setContentOffset:CGPointMake(0, 0)];
+            [self setTextFieldBackgroundsWithTextField:nil];
         }
     }
 }

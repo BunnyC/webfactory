@@ -10,14 +10,15 @@
 
 @interface RegisterViewController : BaseViewController<QBActionStatusDelegate,UITextFieldDelegate> {
     
-    __weak IBOutlet UITextField *txtFieldUsername;
-    __weak IBOutlet UITextField *txtFieldEmail;
-    __weak IBOutlet UITextField *txtFieldRepeatEmail;
-    __weak IBOutlet UITextField *txtFieldPassword;
-    __weak IBOutlet UITextField *txtFieldRepeatPassword;
-    __weak IBOutlet UITextField *txtFieldMotto;
+    __weak IBOutlet PATextField *txtFieldUsername;
+    __weak IBOutlet PATextField *txtFieldEmail;
+    __weak IBOutlet PATextField *txtFieldRepeatEmail;
+    __weak IBOutlet PATextField *txtFieldPassword;
+    __weak IBOutlet PATextField *txtFieldRepeatPassword;
+    __weak IBOutlet PATextField *txtFieldMotto;
     __weak IBOutlet UITextView *txtViewTAndC;
     __weak IBOutlet UIScrollView *scrollView;
+    __weak IBOutlet UIView *viewBottom;
 }
 
 @end

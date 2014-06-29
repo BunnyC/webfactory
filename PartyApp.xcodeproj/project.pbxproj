@@ -21,6 +21,9 @@
 		842715DC1960175600DBEA6E /* roundImageEffect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 842715DB1960175600DBEA6E /* roundImageEffect@2x.png */; };
 		842715DE196019C200DBEA6E /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 842715DD196019C200DBEA6E /* placeholder.png */; };
 		842715E0196019D000DBEA6E /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 842715DF196019D000DBEA6E /* placeholder@2x.png */; };
+		842715E51960390E00DBEA6E /* ServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 842715E41960390E00DBEA6E /* ServerConnection.m */; };
+		842715E81960399700DBEA6E /* RequestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 842715E71960399700DBEA6E /* RequestBuilder.m */; };
+		842715ED1960414800DBEA6E /* SessionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 842715EC1960414800DBEA6E /* SessionModel.m */; };
 		8464A877195A066800583DE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A81F195A066800583DE0 /* AppDelegate.m */; };
 		8464A878195A066800583DE0 /* LoginDataStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A824195A066800583DE0 /* LoginDataStructure.m */; };
 		8464A879195A066800583DE0 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A826195A066800583DE0 /* LoginModel.m */; };
@@ -148,6 +151,12 @@
 		842715DB1960175600DBEA6E /* roundImageEffect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roundImageEffect@2x.png"; sourceTree = "<group>"; };
 		842715DD196019C200DBEA6E /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		842715DF196019D000DBEA6E /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
+		842715E31960390E00DBEA6E /* ServerConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConnection.h; sourceTree = "<group>"; };
+		842715E41960390E00DBEA6E /* ServerConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConnection.m; sourceTree = "<group>"; };
+		842715E61960399700DBEA6E /* RequestBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestBuilder.h; sourceTree = "<group>"; };
+		842715E71960399700DBEA6E /* RequestBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestBuilder.m; sourceTree = "<group>"; };
+		842715EB1960414800DBEA6E /* SessionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SessionModel.h; path = Models/SessionModel/SessionModel.h; sourceTree = "<group>"; };
+		842715EC1960414800DBEA6E /* SessionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SessionModel.m; path = Models/SessionModel/SessionModel.m; sourceTree = "<group>"; };
 		8464A81E195A066800583DE0 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8464A81F195A066800583DE0 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8464A823195A066800583DE0 /* LoginDataStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginDataStructure.h; sourceTree = "<group>"; };
@@ -379,9 +388,45 @@
 			name = NotificationCell;
 			sourceTree = "<group>";
 		};
+		842715E11960390E00DBEA6E /* RequestBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				842715E61960399700DBEA6E /* RequestBuilder.h */,
+				842715E71960399700DBEA6E /* RequestBuilder.m */,
+			);
+			path = RequestBuilder;
+			sourceTree = "<group>";
+		};
+		842715E21960390E00DBEA6E /* ServerConnection */ = {
+			isa = PBXGroup;
+			children = (
+				842715E31960390E00DBEA6E /* ServerConnection.h */,
+				842715E41960390E00DBEA6E /* ServerConnection.m */,
+			);
+			path = ServerConnection;
+			sourceTree = "<group>";
+		};
+		842715E91960411100DBEA6E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				842715EA1960411700DBEA6E /* SessionModel */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		842715EA1960411700DBEA6E /* SessionModel */ = {
+			isa = PBXGroup;
+			children = (
+				842715EB1960414800DBEA6E /* SessionModel.h */,
+				842715EC1960414800DBEA6E /* SessionModel.m */,
+			);
+			name = SessionModel;
+			sourceTree = "<group>";
+		};
 		8464A81D195A066800583DE0 /* PartyApp */ = {
 			isa = PBXGroup;
 			children = (
+				842715E91960411100DBEA6E /* Models */,
 				8464A82E195A066800583DE0 /* HelperClasses */,
 				8464A821195A066800583DE0 /* DataStructureModel */,
 				8464A820195A066800583DE0 /* AppIcons */,
@@ -433,6 +478,8 @@
 		8464A82E195A066800583DE0 /* HelperClasses */ = {
 			isa = PBXGroup;
 			children = (
+				842715E11960390E00DBEA6E /* RequestBuilder */,
+				842715E21960390E00DBEA6E /* ServerConnection */,
 				84A1432D195F5A9A00DC3970 /* PATextField */,
 				CEB03779195B548C009837A6 /* DataManager.h */,
 				CEB0377A195B548C009837A6 /* DataManager.m */,
@@ -834,6 +881,7 @@
 				8464A87D195A066800583DE0 /* CommonFunctions.m in Sources */,
 				8464A8A4195A066800583DE0 /* LogNightViewController.m in Sources */,
 				84A14330195F5AD200DC3970 /* PATextField.m in Sources */,
+				842715E81960399700DBEA6E /* RequestBuilder.m in Sources */,
 				8464A8A2195A066800583DE0 /* LoginViewController.m in Sources */,
 				842715D41960125100DBEA6E /* NotificationCell.m in Sources */,
 				8464A87A195A066800583DE0 /* SignUpDataStructure.m in Sources */,
@@ -843,6 +891,8 @@
 				8464A89F195A066800583DE0 /* main.m in Sources */,
 				8464A8AC195A066800583DE0 /* UploadPhotoViewController.m in Sources */,
 				CEB0377B195B548C009837A6 /* DataManager.m in Sources */,
+				842715E51960390E00DBEA6E /* ServerConnection.m in Sources */,
+				842715ED1960414800DBEA6E /* SessionModel.m in Sources */,
 				CE9D376C195E771B001F05D9 /* ForgotPasswordViewController.m in Sources */,
 				8464A8A6195A066800583DE0 /* ProfileViewController.m in Sources */,
 				8464A879195A066800583DE0 /* LoginModel.m in Sources */,

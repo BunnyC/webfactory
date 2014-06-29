@@ -81,7 +81,43 @@
     return [emailTest evaluateWithObject:emailID];
 }
 
+//- (UIView *)showLoadingView {
+//    
+//    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//    
+//    CGSize scrSize = [[UIScreen mainScreen] bounds].size;
+//    
+//    UIView *backView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    [backView setBackgroundColor:[UIColor clearColor]];
+//    [backView setTag:100];
+//    
+//    CGRect loadingFrame = CGRectMake(scrSize.width/2 - 65, scrSize.height/2 - 25, 130, 50);
+//    UIView *loadingView = [[UIView alloc] initWithFrame:loadingFrame];
+//    [loadingView setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.9]];
+//    
+//    UIActivityIndicatorView *loadingActivity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+//    [loadingActivity setFrame:CGRectMake(10, 15, 20, 20)];
+//    [loadingActivity setHidesWhenStopped:YES];
+//    [loadingActivity startAnimating];
+//    [loadingView addSubview:loadingActivity];
+//    
+//    UILabel *loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 15, 80, 20)];
+//    [loadingLabel setBackgroundColor:[UIColor clearColor]];
+//    [loadingLabel setTextColor:[UIColor whiteColor]];
+//    [loadingLabel setFont:[UIFont boldSystemFontOfSize:15]];
+//    [loadingLabel setText:@"Loading..."];
+//    [loadingView addSubview:loadingLabel];
+//    
+//    [loadingView.layer setCornerRadius:10.0f];
+//    [backView addSubview:loadingView];
+//    [appDelegate.window addSubview:backView];
+//    
+//    return backView;
+//}
+
 - (UIView *)showLoadingViewInViewController:(UIViewController *)viewController {
+    
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     CGRect frameScreen = [[UIScreen mainScreen] bounds];
     
@@ -111,14 +147,18 @@
     
     [loadingView addSubview:viewActivity];
     
-    [[[viewController view] window] addSubview:loadingView];
+    [appDelegate.window addSubview:loadingView];
     
     return loadingView;
 }
 
 - (void)hideLoadingView:(UIView *)loadingView {
+    
+    [[loadingView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [loadingView removeFromSuperview];
-    loadingView = nil;
+    
+//    [loadingView removeFromSuperview];
+//    loadingView = nil;
 }
 
 - (UIColor *)colorWithHexString:(NSString *)hexString {

@@ -154,8 +154,8 @@
     imageViewProfile.contentMode = UIViewContentModeScaleAspectFit;
   
     [self.imagePicker dismissViewControllerAnimated:NO completion:nil];
-
-     [QBContent TUploadFile:imageData fileName:@"ProfileImage" contentType:@"image/png" isPublic:YES delegate:self];
+    [buttonNext setEnabled:false];
+    [QBContent TUploadFile:imageData fileName:@"ProfileImage" contentType:@"image/png" isPublic:YES delegate:self];
 }
 
 
@@ -183,7 +183,7 @@
 
 // QuickBlox API queries delegate
 -(void)completedWithResult:(Result *)result{
-    
+    [buttonNext setEnabled:true];
     // Download file result
     if ([result isKindOfClass:QBCFileDownloadTaskResult.class]) {
         

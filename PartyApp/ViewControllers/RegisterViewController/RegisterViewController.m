@@ -215,6 +215,7 @@
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self resetFramesForViews];
     [textField resignFirstResponder];
     return YES;
 }
@@ -228,6 +229,9 @@
 - (IBAction)nextButtonAction:(id)sender {
 
     if ([self validateFields]) {
+        
+        loadingView = [[CommonFunctions sharedObject] showLoadingViewInViewController:self];
+        
         QBUUser *objCreateUser=[[QBUUser alloc]init];
         
         [objCreateUser setLogin:txtFieldUsername.text];
@@ -236,14 +240,14 @@
         [objCreateUser setFullName:txtFieldUsername.text]; // FullName Used for Moto
         [objCreateUser setTags:[NSMutableArray arrayWithObjects:txtFieldMotto.text, nil]];
         [QBUsers signUp:objCreateUser delegate:self];
-        
-        }
+    }
 }
 
 #pragma mark - QuickBox Server Response
 
 -(void)completedWithResult:(Result *)result
 {
+    [[CommonFunctions sharedObject] hideLoadingView:loadingView];
     if([result isKindOfClass:[QBUUserResult class]]){
         
         // Success result
@@ -289,12 +293,16 @@
 
 #pragma mark - Tap Gesture on ScrollView
 
+- (void)resetFramesForViews {
+    [scrollView setContentOffset:CGPointMake(0, 0)];
+    [self setTextFieldBackgroundsWithTextField:nil];
+}
+
 - (void)resetScrollView:(UITapGestureRecognizer *)recognizer {
     for (UITextField *textField in scrollView.subviews) {
         if ([textField isKindOfClass:[UITextField class]]) {
             [textField resignFirstResponder];
-            [scrollView setContentOffset:CGPointMake(0, 0)];
-            [self setTextFieldBackgroundsWithTextField:nil];
+            [self resetFramesForViews];
         }
     }
 }

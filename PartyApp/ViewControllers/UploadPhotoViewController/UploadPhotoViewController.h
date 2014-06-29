@@ -15,8 +15,8 @@
     __weak IBOutlet UILabel *lblAllYouNeed;
     __weak IBOutlet UILabel *lblAlmostDone;
     __weak IBOutlet UITextView *txtViewUploadLater;
-    __weak IBOutlet UIButton *chooseImage;
     __weak IBOutlet UIProgressView *progressViewImageUpload;
+    __weak IBOutlet UIButton *buttonNext;
 }
 @property (nonatomic,retain) UIImagePickerController* imagePicker;
 

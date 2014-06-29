@@ -54,23 +54,32 @@
     [tapToChooseImage setNumberOfTouchesRequired:1];
     [imageViewProfile addGestureRecognizer:tapToChooseImage];
     
-    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(backButtonAction:)];
+    //  Setting up Navigation Item
+    UIImage *imgBackButton = [[CommonFunctions sharedObject] imageWithName:@"backButton"
+                                                                   andType:_pPNGType];
+    UIImage *nextButtonImage = [[CommonFunctions sharedObject] imageWithName:@"nextButton"
+                                                                     andType:_pPNGType];
+    
+    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:imgBackButton style:UIBarButtonItemStyleBordered target:self action:@selector(backButtonAction:)];
     [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
     
-    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:@selector(nextButtonAction:)];
+    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:nextButtonImage style:UIBarButtonItemStyleBordered target:self action:@selector(nextButtonAction:)];
     [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
     
+    //  Setting up Attributed Text
     NSString *uploadLaterText = @"Don't want to add photo now? Upload Later";
     NSMutableAttributedString *attrTextLater = [[NSMutableAttributedString alloc] initWithString:uploadLaterText];
     
+    UIFont *fontTextView = [UIFont fontWithName:@"ArialMT" size:9];
+    
     NSDictionary *dictAttrLater = [NSDictionary dictionaryWithObjectsAndKeys:
                                    [UIColor yellowColor], NSForegroundColorAttributeName,
-                                   [UIFont systemFontOfSize:10], NSFontAttributeName,
+                                   fontTextView, NSFontAttributeName,
                                    @"later", NSLinkAttributeName, nil];
     
     NSDictionary *dictAttrTextSimple = [NSDictionary dictionaryWithObjectsAndKeys:
                                         [UIColor whiteColor], NSForegroundColorAttributeName,
-                                        [UIFont systemFontOfSize:10], NSFontAttributeName, nil];
+                                        fontTextView, NSFontAttributeName, nil];
     
     NSRange rangeLater = [uploadLaterText rangeOfString:@"Upload Later"];
     NSRange rangeSimple = [uploadLaterText rangeOfString:@"Don't want to add photo now?"];

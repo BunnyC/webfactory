@@ -23,7 +23,6 @@
     [QBSettings setAuthorizationSecret:_pAuthorizationSecret];
     [QBSettings setAccountKey:_pAccountKey];
    
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
@@ -39,6 +38,16 @@
     
     [self refreshQBSession];
 
+    //  Navigation Bar Setup
+    UIColor *colorNavTitleText = [[CommonFunctions sharedObject] colorWithHexString:@"5f4b5e"];
+    UIFont *fontNavTitleText = [UIFont fontWithName:@"ArialMT" size:14];
+    
+    NSDictionary *dictNavTitleAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                            colorNavTitleText, NSForegroundColorAttributeName,
+                                            fontNavTitleText, NSFontAttributeName,
+                                            nil];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:dictNavTitleAttributes];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
     
@@ -125,12 +134,12 @@
     NSDate *sessionExpDate = [userDefs objectForKey:_pudSessionExpiryDate];
     BOOL isLoggedIn = [userDefs boolForKey:_pudLoggedIn];
 
-    [QBAuth createSessionWithDelegate:self];
+//    [QBAuth createSessionWithDelegate:self];
 
-//    if (([[NSDate date] timeIntervalSinceDate:sessionExpDate] > 0 || !isLoggedIn)&& !refreshingSession) {
-//        [QBAuth createSessionWithDelegate:self];
-//        refreshingSession = true;
-//    }
+    if (([[NSDate date] timeIntervalSinceDate:sessionExpDate] > 0 || !isLoggedIn)&& !refreshingSession) {
+        [QBAuth createSessionWithDelegate:self];
+        refreshingSession = true;
+    }
 }
 
 - (void)completedWithResult:(Result *)result{

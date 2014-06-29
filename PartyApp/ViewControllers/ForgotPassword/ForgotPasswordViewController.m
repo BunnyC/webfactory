@@ -53,11 +53,40 @@
     [tapOnScrollView setNumberOfTapsRequired:1];
     [tapOnScrollView setNumberOfTouchesRequired:1];
     [scrollView addGestureRecognizer:tapOnScrollView];
+    
+    UIImage *imgBackButton = [[CommonFunctions sharedObject] imageWithName:@"backButton"
+                                                                   andType:_pPNGType];
+    
+    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:imgBackButton style:UIBarButtonItemStyleBordered target:self action:@selector(backButtonAction:)];
+    [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
+    
+    [self setTextFieldBackgroundsWithTextField:nil];
+}
+
+- (void)setTextFieldBackgroundsWithTextField:(UITextField *)textField {
+    UIImage *selImage = [[CommonFunctions sharedObject] imageWithName:@"txtFldY"
+                                                              andType:_pPNGType];
+    UIImage *unselImage = [[CommonFunctions sharedObject] imageWithName:@"txtFldW"
+                                                                andType:_pPNGType];
+    
+    for (UITextField *textFs in scrollView.subviews) {
+        if ([textFs isKindOfClass:[UITextField class]]) {
+            if (textFs != textField)
+                [textFs setBackground:unselImage];
+            else
+                [textField setBackground:selImage];
+        }
+    }
+}
+
+- (void)backButtonAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UITextField Delegate Methods
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [self setTextFieldBackgroundsWithTextField:textField];
     BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
     [scrollView setContentOffset:CGPointMake(0, isiPhone5 ? 0 : 100)];
 }
@@ -84,6 +113,7 @@
 - (void)resetScrollView:(UITapGestureRecognizer *)recognizer {
     [self.txtEmail resignFirstResponder];
     [scrollView setContentOffset:CGPointMake(0, 0)];
+    [self setTextFieldBackgroundsWithTextField:nil];
 }
 
 @end

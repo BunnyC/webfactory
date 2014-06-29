@@ -13,6 +13,6 @@
     __weak IBOutlet UIScrollView *scrollView;
 }
 
-@property (weak, nonatomic) IBOutlet UITextField *txtEmail;
+@property (weak, nonatomic) IBOutlet PATextField *txtEmail;
 
 @end

@@ -67,14 +67,16 @@
     NSString *forgotPasswordText = @"Forgot Password? Click HERE";
     NSMutableAttributedString *attrTextForgotLabel = [[NSMutableAttributedString alloc] initWithString:forgotPasswordText];
     
+    UIFont *fontTextView = [UIFont fontWithName:@"ArialMT" size:9];
+    
     NSDictionary *dictAttrTextForgot = [NSDictionary dictionaryWithObjectsAndKeys:
                                         [UIColor yellowColor], NSForegroundColorAttributeName,
                                         @"forgotpassword", NSLinkAttributeName,
-                                        [UIFont systemFontOfSize:10], NSFontAttributeName, nil];
+                                        fontTextView, NSFontAttributeName, nil];
     
     NSDictionary *dictAttrTextSimple = [NSDictionary dictionaryWithObjectsAndKeys:
                                         [UIColor whiteColor], NSForegroundColorAttributeName,
-                                        [UIFont systemFontOfSize:10], NSFontAttributeName, nil];
+                                        fontTextView, NSFontAttributeName, nil];
     
     NSRange rangeClickHere = [forgotPasswordText rangeOfString:@"Click HERE"];
     NSRange rangeForgotPass = [forgotPasswordText rangeOfString:@"Forgot Password?"];
@@ -88,7 +90,7 @@
     
     UIImage *backImage = [[CommonFunctions sharedObject] imageWithName:@"viewBack" andType:_pPNGType];
     UIColor *backColor = [UIColor colorWithPatternImage:backImage];
-   // [viewBottom setBackgroundColor:backColor];
+    [viewBottom setBackgroundColor:backColor];
 }
 
 #pragma mark - TextView Delegates

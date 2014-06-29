@@ -32,4 +32,6 @@
 - (UIView *)showLoadingViewInViewController:(UIViewController *)viewController;
 - (void)hideLoadingView:(UIView *)loadingView;
 
+- (UIColor *)colorWithHexString:(NSString *)hexString;
+
 @end

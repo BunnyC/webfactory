@@ -31,6 +31,15 @@
     UIColor *backColor = [[CommonFunctions sharedObject] colorWithImageName:@"appBackground"
                                                                     andType:@"png"];
     [self.view setBackgroundColor:backColor];
+    
+//    UIImage *imgBackButton = [[CommonFunctions sharedObject] imageWithName:@"backButton"
+//                                                                   andType:_pPNGType];
+    
+//    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithImage:imgBackButton style:UIBarButtonItemStyleBordered target:nil action:nil];
+////    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
+////    self.navigationController.navigationBar.backIndicatorImage = imgBackButton;
+////    self.navigationController.navigationBar.backIndicatorTransitionMaskImage = imgBackButton;
+//    [self.navigationItem setBackBarButtonItem:backButtonItem];
 }
 
 - (void)didReceiveMemoryWarning

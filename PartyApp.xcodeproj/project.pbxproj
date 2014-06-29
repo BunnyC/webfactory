@@ -83,6 +83,10 @@
 		84AD392A1957D3AA0004915B /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84AD39281957D3AA0004915B /* FacebookSDK.framework */; };
 		84AD392C1957FC3C0004915B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0941956A72D009DA53D /* MobileCoreServices.framework */; };
 		84AD392D1957FC3C0004915B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0961956A734009DA53D /* SystemConfiguration.framework */; };
+		84C29E29195FDD050095A748 /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E27195FDD050095A748 /* backButton.png */; };
+		84C29E2A195FDD050095A748 /* nextButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E28195FDD050095A748 /* nextButton.png */; };
+		84C29E2D195FDD100095A748 /* backButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E2B195FDD100095A748 /* backButton@2x.png */; };
+		84C29E2E195FDD100095A748 /* nextButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E2C195FDD100095A748 /* nextButton@2x.png */; };
 		CE35F07F1956A670009DA53D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F07E1956A66F009DA53D /* Security.framework */; };
 		CE35F0811956A68B009DA53D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0801956A68B009DA53D /* QuartzCore.framework */; };
 		CE35F0831956A693009DA53D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0821956A693009DA53D /* AudioToolbox.framework */; };
@@ -209,6 +213,10 @@
 		84A14339195F6C5000DC3970 /* cameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraImage.png; sourceTree = "<group>"; };
 		84A1433B195F6C5C00DC3970 /* cameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cameraImage@2x.png"; sourceTree = "<group>"; };
 		84AD39281957D3AA0004915B /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		84C29E27195FDD050095A748 /* backButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButton.png; sourceTree = "<group>"; };
+		84C29E28195FDD050095A748 /* nextButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nextButton.png; sourceTree = "<group>"; };
+		84C29E2B195FDD100095A748 /* backButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton@2x.png"; sourceTree = "<group>"; };
+		84C29E2C195FDD100095A748 /* nextButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nextButton@2x.png"; sourceTree = "<group>"; };
 		CE35F07E1956A66F009DA53D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CE35F0801956A68B009DA53D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CE35F0821956A693009DA53D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -429,6 +437,8 @@
 		8464A836195A066800583DE0 /* Retina */ = {
 			isa = PBXGroup;
 			children = (
+				84C29E2B195FDD100095A748 /* backButton@2x.png */,
+				84C29E2C195FDD100095A748 /* nextButton@2x.png */,
 				84A1433B195F6C5C00DC3970 /* cameraImage@2x.png */,
 				84A14337195F6A3D00DC3970 /* mottoBack@2x.png */,
 				84A14333195F5EF300DC3970 /* viewBack@2x.png */,
@@ -456,6 +466,8 @@
 		8464A847195A066800583DE0 /* Simple */ = {
 			isa = PBXGroup;
 			children = (
+				84C29E27195FDD050095A748 /* backButton.png */,
+				84C29E28195FDD050095A748 /* nextButton.png */,
 				84A14339195F6C5000DC3970 /* cameraImage.png */,
 				84A14335195F6A3100DC3970 /* mottoBack.png */,
 				84A14331195F5EEA00DC3970 /* viewBack.png */,
@@ -483,14 +495,14 @@
 		8464A85B195A066800583DE0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				CE9D3768195E76F7001F05D9 /* ForgotPassword */,
 				8464A85C195A066800583DE0 /* BaseViewController */,
-				8464A85F195A066800583DE0 /* LoginViewController */,
-				8464A863195A066800583DE0 /* LogNightViewController */,
-				8464A867195A066800583DE0 /* ProfileViewController */,
-				8464A86B195A066800583DE0 /* RegisterViewController */,
+				CE9D3768195E76F7001F05D9 /* ForgotPassword */,
 				8464A86F195A066800583DE0 /* SplashScreen */,
+				8464A85F195A066800583DE0 /* LoginViewController */,
+				8464A86B195A066800583DE0 /* RegisterViewController */,
 				8464A873195A066800583DE0 /* UploadPhotoViewController */,
+				8464A867195A066800583DE0 /* ProfileViewController */,
+				8464A863195A066800583DE0 /* LogNightViewController */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -700,6 +712,8 @@
 				84A14327195F581200DC3970 /* txtFldW.png in Resources */,
 				8464A8AB195A066800583DE0 /* SplashScreenViewController.xib in Resources */,
 				8464A887195A066800583DE0 /* location@2x.png in Resources */,
+				84C29E2E195FDD100095A748 /* nextButton@2x.png in Resources */,
+				84C29E2D195FDD100095A748 /* backButton@2x.png in Resources */,
 				8464A88A195A066800583DE0 /* pinkButton@2x.png in Resources */,
 				8464A895195A066800583DE0 /* imageLogo.png in Resources */,
 				84A1432B195F582000DC3970 /* txtFldW@2x.png in Resources */,
@@ -713,6 +727,7 @@
 				84A14332195F5EEA00DC3970 /* viewBack.png in Resources */,
 				84A1432C195F582000DC3970 /* txtFldY@2x.png in Resources */,
 				8464A898195A066800583DE0 /* onlineImage.png in Resources */,
+				84C29E2A195FDD050095A748 /* nextButton.png in Resources */,
 				84A1433A195F6C5000DC3970 /* cameraImage.png in Resources */,
 				8464A88E195A066800583DE0 /* yellowButton@2x.png in Resources */,
 				8464A899195A066800583DE0 /* pinkButton.png in Resources */,
@@ -727,6 +742,7 @@
 				8464A88F195A066800583DE0 /* appBackground.png in Resources */,
 				8464A894195A066800583DE0 /* facebookIcon.png in Resources */,
 				8464A892195A066800583DE0 /* blueButton.png in Resources */,
+				84C29E29195FDD050095A748 /* backButton.png in Resources */,
 				8464A8A5195A066800583DE0 /* LogNightViewController.xib in Resources */,
 				8464A89D195A066800583DE0 /* yellowButton.png in Resources */,
 				8464A89B195A066800583DE0 /* tick.png in Resources */,

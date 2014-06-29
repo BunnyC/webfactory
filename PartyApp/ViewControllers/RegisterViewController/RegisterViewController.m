@@ -61,32 +61,35 @@
     [tapOnScrollView setNumberOfTapsRequired:1];
     [tapOnScrollView setNumberOfTouchesRequired:1];
     [scrollView addGestureRecognizer:tapOnScrollView];
+
+    // Setting up Bar Button Items
+    UIImage *imgBackButton = [[CommonFunctions sharedObject] imageWithName:@"backButton"
+                                                                   andType:_pPNGType];
+    UIImage *nextButtonImage = [[CommonFunctions sharedObject] imageWithName:@"nextButton"
+                                                                     andType:_pPNGType];
     
-    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(backButtonAction:)];
+    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:imgBackButton style:UIBarButtonItemStyleBordered target:self action:@selector(backButtonAction:)];
     [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
     
-    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:@selector(nextButtonAction:)];
+    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:nextButtonImage style:UIBarButtonItemStyleBordered target:self action:@selector(nextButtonAction:)];
     [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
     
+    // Setting Text View to show attributed text
     NSString *tAndCPrivacyText = @"By Signing up you accept our Terms of Use\nand Privacy Policy";
     NSMutableAttributedString *attrTextTAndCPrivacy = [[NSMutableAttributedString alloc] initWithString:tAndCPrivacyText];
     
-    //    NSDictionary *dictAttrTextForgot = [NSDictionary dictionaryWithObjectsAndKeys:
-    //                                        [UIColor yellowColor], NSForegroundColorAttributeName,
-    //                                        @"forgotpassword", NSLinkAttributeName,
-    //                                        [UIFont systemFontOfSize:9], NSFontAttributeName, nil];
-    //
+    UIFont *fontTextView = [UIFont fontWithName:@"ArialMT" size:9];
     NSDictionary *dictAttrTextSimple = [NSDictionary dictionaryWithObjectsAndKeys:
                                         [UIColor whiteColor], NSForegroundColorAttributeName,
-                                        [UIFont systemFontOfSize:9], NSFontAttributeName, nil];
+                                        fontTextView, NSFontAttributeName, nil];
     NSDictionary *dictAttrTAndC = [NSDictionary dictionaryWithObjectsAndKeys:
                                    [UIColor yellowColor], NSForegroundColorAttributeName,
                                    @"tandc", NSLinkAttributeName,
-                                   [UIFont systemFontOfSize:9], NSFontAttributeName, nil];
+                                   fontTextView, NSFontAttributeName, nil];
     NSDictionary *dictAttrPrivacy = [NSDictionary dictionaryWithObjectsAndKeys:
                                      [UIColor yellowColor], NSForegroundColorAttributeName,
                                      @"privacy", NSLinkAttributeName,
-                                     [UIFont systemFontOfSize:9], NSFontAttributeName, nil];
+                                     fontTextView, NSFontAttributeName, nil];
     
     NSRange rangeSimple1 = [tAndCPrivacyText rangeOfString:@"By Signing up you accept our"];
     NSRange rangeSimple2 = [tAndCPrivacyText rangeOfString:@"and"];

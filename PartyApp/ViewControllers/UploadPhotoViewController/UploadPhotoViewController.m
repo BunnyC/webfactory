@@ -120,7 +120,10 @@
     if (!isiPhone5)
         xibName = [NSString stringWithFormat:@"%@4", xibName];
     
+    [[NSUserDefaults standardUserDefaults]setBool:true forKey:_pudLoggedIn];
+    
     ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:xibName bundle:nil];
+
     [self.navigationController pushViewController:objProfileView animated:YES];
 }
 
@@ -154,17 +157,17 @@
 
 }
 
-#pragma -markc check QBsession
-
-- (void)checkQBSession:(myCompletion) compblock{
-    
-    QBASessionCreationRequest *extendedAuthRequest = [[QBASessionCreationRequest alloc] init];
-    extendedAuthRequest.userLogin = @"gaganinder.singh";
-    extendedAuthRequest.userPassword = @"Devhub1234!";
-    
-    [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
-    compblock(YES);
-}
+//#pragma -markc check QBsession
+//
+//- (void)checkQBSession:(myCompletion) compblock{
+//    
+//    QBASessionCreationRequest *extendedAuthRequest = [[QBASessionCreationRequest alloc] init];
+//    extendedAuthRequest.userLogin = @"gaganinder.singh";
+//    extendedAuthRequest.userPassword = @"Devhub1234!";
+//    
+//    [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
+//    compblock(YES);
+//}
 
 #pragma mark -
 #pragma mark QBActionStatusDelegate
@@ -181,19 +184,17 @@
             QBCFileDownloadTaskResult *res = (QBCFileDownloadTaskResult *)result;
             if ([res file]) {
                 
+                NSData *imageData=UIImagePNGRepresentation(imageViewProfile.image);
                 // Add image to gallery
-                [[DataManager instance] savePicture:[UIImage imageWithData:[res file]]];
+                [[DataManager instance] savePicture:[UIImage imageWithData:imageData]];
                 UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[res file]]];
                 imageView.contentMode = UIViewContentModeScaleAspectFit;
                 
                 //
-                [[[DataManager instance] fileList] removeLastObject];
+               // [[[DataManager instance] fileList] removeLastObject];
                 
                
             }
-        }else{
-            [[[DataManager instance] fileList] removeLastObject];
-           
         }
     }
     else
@@ -242,6 +243,16 @@
 //                    [self performSelector:@selector(hideSplashScreen) withObject:self afterDelay:1];
                 }
             }
+            else
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PartyApp"
+                                                                message:_pImgUploadingSuccess
+                                                               delegate:self
+                                                      cancelButtonTitle:@"Ok"
+                                                      otherButtonTitles: nil];
+            
+                [alert show];
+            }
         }
     }
 }
@@ -249,5 +260,23 @@
 -(void)setProgress:(float)progress{
     NSLog(@"progress: %f", progress);
     [progressViewImageUpload setProgress:progress];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex==0)
+    {
+        NSString *xibName = NSStringFromClass([ProfileViewController class]);
+        BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
+        if (!isiPhone5)
+            xibName = [NSString stringWithFormat:@"%@4", xibName];
+        
+        [[NSUserDefaults standardUserDefaults]setBool:true forKey:_pudLoggedIn];
+        
+        ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:xibName bundle:nil];
+      
+        [self.navigationController pushViewController:objProfileView animated:YES];
+        
+    }
 }
 @end

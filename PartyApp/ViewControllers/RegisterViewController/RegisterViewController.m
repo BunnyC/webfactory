@@ -250,6 +250,7 @@
             extendedAuthRequest.userLogin = txtFieldUsername.text; // ID: 218651
             extendedAuthRequest.userPassword = txtFieldPassword.text;
             [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
+            
             // Errors
         }else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Errors"
@@ -263,12 +264,18 @@
 	}
     else if(result.success && [result isKindOfClass:QBAAuthSessionCreationResult.class]){
         
+       NSDictionary * userInfo=[NSDictionary dictionaryWithObjectsAndKeys:txtFieldUsername.text,@"first_name",txtFieldMotto.text,@"moto", nil];
+
+        
+        
         NSString *xibName = NSStringFromClass([UploadPhotoViewController class]);
         BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
         if (!isiPhone5)
             xibName = [NSString stringWithFormat:@"%@4", xibName];
         
         UploadPhotoViewController *objUploadPhotoViewController = [[UploadPhotoViewController alloc] initWithNibName:xibName bundle:nil];
+        [[NSUserDefaults standardUserDefaults]setObject:userInfo forKey:_pUserInfoDic];
+        [[NSUserDefaults standardUserDefaults]synchronize];
         
         [self.navigationController pushViewController:objUploadPhotoViewController animated:YES];
         

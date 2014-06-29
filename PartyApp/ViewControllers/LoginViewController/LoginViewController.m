@@ -88,7 +88,7 @@
     
     UIImage *backImage = [[CommonFunctions sharedObject] imageWithName:@"viewBack" andType:_pPNGType];
     UIColor *backColor = [UIColor colorWithPatternImage:backImage];
-    [viewBottom setBackgroundColor:backColor];
+   // [viewBottom setBackgroundColor:backColor];
 }
 
 #pragma mark - TextView Delegates

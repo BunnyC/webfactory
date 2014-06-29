@@ -23,9 +23,13 @@ NSString *const _pudSessionExpiryDate   = @"SessionExpiryDate";
 NSString *const _pUserInfoDic           = @"UserProfileInfomation";
 NSString *const _pUserProfilePic        = @"UserProfilePic";
 
-#pragma mark - Error Message
+#pragma mark - Message Text
 
 NSString *const _pErrUserNameAndPasswordRequired= @"Please enter password with atleast 6 characters";
 NSString *const _pErrInvalidUserNameAndPassword=@"Please enter correct username and password";
+
+NSString *const _pImgUploadingSuccess=@"Image has been Successfully Uploaded";
+
+
 
 @end

@@ -124,11 +124,13 @@
     NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
     NSDate *sessionExpDate = [userDefs objectForKey:_pudSessionExpiryDate];
     BOOL isLoggedIn = [userDefs boolForKey:_pudLoggedIn];
-    
-    if (([[NSDate date] timeIntervalSinceDate:sessionExpDate] > 0 || !isLoggedIn)&& !refreshingSession) {
-        [QBAuth createSessionWithDelegate:self];
-        refreshingSession = true;
-    }
+
+    [QBAuth createSessionWithDelegate:self];
+
+//    if (([[NSDate date] timeIntervalSinceDate:sessionExpDate] > 0 || !isLoggedIn)&& !refreshingSession) {
+//        [QBAuth createSessionWithDelegate:self];
+//        refreshingSession = true;
+//    }
 }
 
 - (void)completedWithResult:(Result *)result{

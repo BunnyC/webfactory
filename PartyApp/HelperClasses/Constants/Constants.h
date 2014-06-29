@@ -23,5 +23,5 @@ FOUNDATION_EXPORT NSString *const _pUserProfilePic;
 
 FOUNDATION_EXPORT NSString *const _pErrUserNameAndPasswordRequired;
 FOUNDATION_EXPORT NSString *const _pErrInvalidUserNameAndPassword;
-
+FOUNDATION_EXPORT NSString *const _pImgUploadingSuccess;
 @end

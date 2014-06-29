@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
@@ -8,7 +8,6 @@
             <connections>
                 <outlet property="btnLogNight" destination="jXh-pp-H9O" id="r8r-br-HCw"/>
                 <outlet property="btnNotifications" destination="wHg-YW-Wo2" id="SCu-Qg-gCY"/>
-                <outlet property="imageViewProfile" destination="s0q-ni-fFk" id="Tho-yN-x6O"/>
                 <outlet property="imgViewActive" destination="Ixp-UN-kQw" id="cjZ-XX-kIv"/>
                 <outlet property="imgViewBackNotif" destination="Otx-BT-35I" id="RFf-QK-xvq"/>
                 <outlet property="lblActive" destination="eow-Rv-2K6" id="aDD-9Z-bli"/>
@@ -40,7 +39,7 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xwW-3F-L4K">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xwW-3F-L4K">
                     <rect key="frame" x="20" y="142" width="280" height="42"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="Arial-ItalicMT" family="Arial" pointSize="15"/>

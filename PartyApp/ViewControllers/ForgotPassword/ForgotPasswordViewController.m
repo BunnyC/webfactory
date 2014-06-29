@@ -96,12 +96,25 @@
 
 - (void)completedWithResult:(Result *)result{
     if(result.success && [result isKindOfClass:Result.class]){
+        
+    [self showMessage:_pResetPasswordMgs withTitle:@"Forgot Password"];
+    
         NSLog(@"Reset password OK");
     }else{
         NSLog(@"Errors=%@", result.errors);
     }
 }
 
+
+// Show an alert message
+- (void)showMessage:(NSString *)text withTitle:(NSString *)title
+{
+    [[[UIAlertView alloc] initWithTitle:title
+                                message:text
+                               delegate:self
+                      cancelButtonTitle:@"OK!"
+                      otherButtonTitles:nil] show];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

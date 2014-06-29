@@ -157,6 +157,7 @@
     [self.imagePicker dismissViewControllerAnimated:NO completion:nil];
     [buttonNext setEnabled:false];
     [progressViewImageUpload setHidden:false];
+    [self.view setUserInteractionEnabled:NO];
     [QBContent TUploadFile:imageData fileName:@"ProfileImage" contentType:@"image/png" isPublic:YES delegate:self];
 }
 
@@ -164,6 +165,7 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
 
+    [self.view setUserInteractionEnabled:YES];
     [self.imagePicker dismissViewControllerAnimated:NO completion:nil];
 
 }
@@ -256,6 +258,7 @@
             }
             else
             {
+                [self.view setUserInteractionEnabled:YES];
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PartyApp"
                                                                 message:_pImgUploadingSuccess
                                                                delegate:self
@@ -275,19 +278,19 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if(buttonIndex==0)
-    {
-        NSString *xibName = NSStringFromClass([ProfileViewController class]);
-        BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
-        if (!isiPhone5)
-            xibName = [NSString stringWithFormat:@"%@4", xibName];
-        
-        [[NSUserDefaults standardUserDefaults]setBool:true forKey:_pudLoggedIn];
-        
-        ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:xibName bundle:nil];
-      
-        [self.navigationController pushViewController:objProfileView animated:YES];
-        
-    }
+//    if(buttonIndex==0)
+//    {
+////        NSString *xibName = NSStringFromClass([ProfileViewController class]);
+////        BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
+////        if (!isiPhone5)
+////            xibName = [NSString stringWithFormat:@"%@4", xibName];
+////        
+////        [[NSUserDefaults standardUserDefaults]setBool:true forKey:_pudLoggedIn];
+////        
+////        ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:xibName bundle:nil];
+////      
+////        [self.navigationController pushViewController:objProfileView animated:YES];
+//        
+//    }
 }
 @end

@@ -30,6 +30,6 @@ NSString *const _pErrInvalidUserNameAndPassword=@"Please enter correct username 
 
 NSString *const _pImgUploadingSuccess=@"Image has been Successfully Uploaded";
 
-
+NSString *const _pResetPasswordMgs=@"Reset password link has sent to your email";
 
 @end

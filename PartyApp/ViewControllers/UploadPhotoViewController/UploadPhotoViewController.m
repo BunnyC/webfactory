@@ -46,8 +46,9 @@
     
     UIImage *imageCamera = [[CommonFunctions sharedObject] imageWithName:@"cameraImage"
                                                                  andType:_pPNGType];
-    UIColor *colorBack = [UIColor colorWithPatternImage:imageCamera];
-    [imageViewProfile setBackgroundColor:colorBack];
+//    UIColor *colorBack = [UIColor colorWithPatternImage:imageCamera];
+//    [imageViewProfile setBackgroundColor:colorBack];
+    [imageViewProfile setImage:imageCamera];
     
     UITapGestureRecognizer *tapToChooseImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseImageTapped:)];
     [tapToChooseImage setNumberOfTapsRequired:1];
@@ -155,6 +156,7 @@
   
     [self.imagePicker dismissViewControllerAnimated:NO completion:nil];
     [buttonNext setEnabled:false];
+    [progressViewImageUpload setHidden:false];
     [QBContent TUploadFile:imageData fileName:@"ProfileImage" contentType:@"image/png" isPublic:YES delegate:self];
 }
 

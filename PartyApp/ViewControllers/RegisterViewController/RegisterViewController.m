@@ -176,8 +176,8 @@
     }
     
     // Checking Passwords
-    if (strPassword.length < 6 && validated) {
-        errorMessage = @"Password can't be less than 6 characters.";
+    if (strPassword.length < 8 && validated) {
+        errorMessage = @"Password can't be less than 8 characters.";
         validated = false;
     }
     else {

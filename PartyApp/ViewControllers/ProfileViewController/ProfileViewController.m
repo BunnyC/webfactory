@@ -10,8 +10,10 @@
 #import "LoginViewController.h"
 #import "LogNightViewController.h"
 #import "AppDelegate.h"
+#import "NotificationCell.h"
 #import <FacebookSDK/FacebookSDK.h>
-@interface ProfileViewController () <QBActionStatusDelegate>
+
+@interface ProfileViewController () <QBActionStatusDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @end
 
@@ -29,7 +31,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:FALSE animated:true];
     [self setTitle:@"Party Friends"];
     // Do any additional setup after loading the view from its nib.
     
@@ -37,8 +38,7 @@
         [self showLoginView];
     }
     
-    imageViewProfile.layer.borderColor= [UIColor blueColor].CGColor;
-    imageViewProfile.layer.borderWidth=1.5;
+    [self initDefaults];
     
 }
 
@@ -46,8 +46,8 @@
 {
     if([[NSUserDefaults standardUserDefaults]objectForKey:_pUserInfoDic])
     {
-    NSDictionary *userInfo=[[NSUserDefaults standardUserDefaults]objectForKey:_pUserInfoDic];
-    [self updateUserInfo:userInfo];
+        NSDictionary *userInfo=[[NSUserDefaults standardUserDefaults]objectForKey:_pUserInfoDic];
+        [self updateUserInfo:userInfo];
     }
 }
 
@@ -70,14 +70,36 @@
     }
     else
     {
-               
+        UIImage *profileImage = [[CommonFunctions sharedObject] imageWithName:@"placeholder"
+                                                                      andType:_pPNGType];
+        [imageViewProfile setImage:profileImage];
          [QBAuth createSessionWithDelegate:self];
-       
-   
     }
-    
 }
 
+- (void)initDefaults {
+    
+    // Setting up Bar Button Items
+    UIImage *imgMenuButton = [[CommonFunctions sharedObject] imageWithName:@"buttonMenu"
+                                                                   andType:_pPNGType];
+    UIImage *imgNotificationButton = [[CommonFunctions sharedObject] imageWithName:@"buttonBell"
+                                                                           andType:_pPNGType];
+    
+    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:imgMenuButton style:UIBarButtonItemStyleBordered target:self action:nil];
+    [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
+    
+    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:imgNotificationButton style:UIBarButtonItemStyleBordered target:self action:nil];
+    [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
+    
+    UIImage *imgViewNotif = [[CommonFunctions sharedObject] imageWithName:@"notifTop"
+                                                                  andType:_pPNGType];
+    UIImage *imgResized = [imgViewNotif resizableImageWithCapInsets:UIEdgeInsetsMake(40, 0, 0, 0) resizingMode:UIImageResizingModeStretch];
+    [imgViewBackNotif setImage:imgResized];
+    [viewNotifications setBackgroundColor:[UIColor clearColor]];
+    
+    [tableViewNotifications.layer setCornerRadius:2];
+    [imageViewProfile.layer setCornerRadius:imageViewProfile.frame.size.width / 2];
+}
 
 #pragma mark - Update UserInformation
 -(void)updateUserProfileData:(NSDictionary *)userInfo
@@ -142,56 +164,79 @@
     [self showLoginView];
 }
 - (IBAction)notificationsAction:(id)sender {
-    int heightForView = 60;
-    if (viewNotifications.frame.origin.y > 290) {
-        heightForView = 280;
+    
+    CGRect frameView = self.view.frame;
+    CGRect newFrameForNotifView = viewNotifications.frame;
+    CGRect frameTable = tableViewNotifications.frame;
+    frameTable.origin.y = 52;
+    
+    int offsetAsPer3Rows = (65 * 3) + 14;
+    
+    if (newFrameForNotifView.origin.y >= frameView.size.height - 52) {
+        newFrameForNotifView.origin.y = newFrameForNotifView.origin.y - offsetAsPer3Rows;
+        newFrameForNotifView.size.height = newFrameForNotifView.size.height + offsetAsPer3Rows;
+        frameTable.size.height = 65 * 3;
     }
+    else {
+        newFrameForNotifView.origin.y = self.view.frame.size.height - 52;
+        newFrameForNotifView.size.height = 52;
+        frameTable.size.height = 0;
+    }
+    
+    [UIView animateWithDuration:0.25f
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^ {
+                         [viewNotifications setFrame:newFrameForNotifView];
+                         [tableViewNotifications setFrame:frameTable];
+                     }
+                     completion:nil];
 }
-
 
 // QuickBlox API queries delegate
 -(void)completedWithResult:(Result *)result{
-    
     // Download file result
     if ([result isKindOfClass:QBCFileDownloadTaskResult.class]) {
-        
         // Success result
         if (result.success) {
-            
             QBCFileDownloadTaskResult *res = (QBCFileDownloadTaskResult *)result;
             if ([res file]) {
-                
                 // Add image to gallery
                 [[DataManager instance] savePicture:[UIImage imageWithData:[res file]]];
                 UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[res file]]];
                 imageView.contentMode = UIViewContentModeScaleAspectFit;
                 imageViewProfile.image=imageView.image;
-
-                //
                // [[[DataManager instance] fileList] removeLastObject];
-             
             }
         }
     }
-    
     if([result isKindOfClass:[QBAAuthSessionCreationResult class]]){
         // Success result
         if(result.success){
-         
             int fileID = [[NSUserDefaults standardUserDefaults]integerForKey:_pUserProfilePic];
-            
             [QBContent TDownloadFileWithBlobID:fileID delegate:self];
-            
-    
         }
-        
     }
 }
 
-
-
 -(void)setProgress:(float)progress{
     NSLog(@"progress: %f", progress);
+}
+
+#pragma mark - UITableView Delegate & DataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 3;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellID = @"Cell";
+    NotificationCell *cell = (NotificationCell *)[tableView dequeueReusableCellWithIdentifier:cellID];
+    if (cell == nil) {
+        NSArray *arrXib = [[NSBundle mainBundle] loadNibNamed:@"NotificationCell" owner:self options:nil];
+        cell = [arrXib objectAtIndex:0];
+    }
+    return cell;
 }
 
 @end

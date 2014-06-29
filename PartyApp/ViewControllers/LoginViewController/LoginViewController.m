@@ -12,8 +12,8 @@
 #import "AppDelegate.h"
 #import "ForgotPasswordViewController.h"
 #import "ProfileViewController.h"
-#import "UploadPhotoViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
+
 @interface LoginViewController () <UITextFieldDelegate, UITextViewDelegate, QBActionStatusDelegate>
 
 @end

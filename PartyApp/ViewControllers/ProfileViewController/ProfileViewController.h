@@ -19,6 +19,8 @@
     __weak IBOutlet UIView *viewNotifications;
     __weak IBOutlet UIButton *btnNotifications;
     __weak IBOutlet UITableView *tableViewNotifications;
+    __weak IBOutlet UIButton *btnLogNight;
+    __weak IBOutlet UIImageView *imgViewBackNotif;
 }
 
 -(void)updateUserProfileData:(NSDictionary *)userInfo;

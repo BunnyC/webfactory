@@ -15,6 +15,12 @@
 		8425AF7A194C3E7800E8CCF3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8425AF62194C3E7800E8CCF3 /* UIKit.framework */; };
 		8425AF82194C3E7800E8CCF3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8425AF80194C3E7800E8CCF3 /* InfoPlist.strings */; };
 		8425AF84194C3E7800E8CCF3 /* PartyAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8425AF83194C3E7800E8CCF3 /* PartyAppTests.m */; };
+		842715D41960125100DBEA6E /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842715D31960125100DBEA6E /* NotificationCell.m */; };
+		842715D81960128200DBEA6E /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842715D71960128200DBEA6E /* NotificationCell.xib */; };
+		842715DA1960174700DBEA6E /* roundImageEffect.png in Resources */ = {isa = PBXBuildFile; fileRef = 842715D91960174700DBEA6E /* roundImageEffect.png */; };
+		842715DC1960175600DBEA6E /* roundImageEffect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 842715DB1960175600DBEA6E /* roundImageEffect@2x.png */; };
+		842715DE196019C200DBEA6E /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 842715DD196019C200DBEA6E /* placeholder.png */; };
+		842715E0196019D000DBEA6E /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 842715DF196019D000DBEA6E /* placeholder@2x.png */; };
 		8464A877195A066800583DE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A81F195A066800583DE0 /* AppDelegate.m */; };
 		8464A878195A066800583DE0 /* LoginDataStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A824195A066800583DE0 /* LoginDataStructure.m */; };
 		8464A879195A066800583DE0 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A826195A066800583DE0 /* LoginModel.m */; };
@@ -87,6 +93,12 @@
 		84C29E2A195FDD050095A748 /* nextButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E28195FDD050095A748 /* nextButton.png */; };
 		84C29E2D195FDD100095A748 /* backButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E2B195FDD100095A748 /* backButton@2x.png */; };
 		84C29E2E195FDD100095A748 /* nextButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E2C195FDD100095A748 /* nextButton@2x.png */; };
+		84C29E31195FFF0A0095A748 /* buttonBell.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E2F195FFF090095A748 /* buttonBell.png */; };
+		84C29E32195FFF0A0095A748 /* buttonMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E30195FFF0A0095A748 /* buttonMenu.png */; };
+		84C29E35195FFF160095A748 /* buttonBell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E33195FFF160095A748 /* buttonBell@2x.png */; };
+		84C29E36195FFF160095A748 /* buttonMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E34195FFF160095A748 /* buttonMenu@2x.png */; };
+		84C29E38196004EB0095A748 /* notifTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E37196004EB0095A748 /* notifTop.png */; };
+		84C29E3A196004F30095A748 /* notifTop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E39196004F30095A748 /* notifTop@2x.png */; };
 		CE35F07F1956A670009DA53D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F07E1956A66F009DA53D /* Security.framework */; };
 		CE35F0811956A68B009DA53D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0801956A68B009DA53D /* QuartzCore.framework */; };
 		CE35F0831956A693009DA53D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0821956A693009DA53D /* AudioToolbox.framework */; };
@@ -129,6 +141,13 @@
 		8425AF7F194C3E7800E8CCF3 /* PartyAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PartyAppTests-Info.plist"; sourceTree = "<group>"; };
 		8425AF81194C3E7800E8CCF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8425AF83194C3E7800E8CCF3 /* PartyAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PartyAppTests.m; sourceTree = "<group>"; };
+		842715D21960125000DBEA6E /* NotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationCell.h; path = NotificationCell/NotificationCell.h; sourceTree = "<group>"; };
+		842715D31960125100DBEA6E /* NotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationCell.m; path = NotificationCell/NotificationCell.m; sourceTree = "<group>"; };
+		842715D71960128200DBEA6E /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NotificationCell.xib; path = NotificationCell/NotificationCell.xib; sourceTree = "<group>"; };
+		842715D91960174700DBEA6E /* roundImageEffect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roundImageEffect.png; sourceTree = "<group>"; };
+		842715DB1960175600DBEA6E /* roundImageEffect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roundImageEffect@2x.png"; sourceTree = "<group>"; };
+		842715DD196019C200DBEA6E /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		842715DF196019D000DBEA6E /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
 		8464A81E195A066800583DE0 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8464A81F195A066800583DE0 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8464A823195A066800583DE0 /* LoginDataStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginDataStructure.h; sourceTree = "<group>"; };
@@ -217,6 +236,12 @@
 		84C29E28195FDD050095A748 /* nextButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nextButton.png; sourceTree = "<group>"; };
 		84C29E2B195FDD100095A748 /* backButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton@2x.png"; sourceTree = "<group>"; };
 		84C29E2C195FDD100095A748 /* nextButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nextButton@2x.png"; sourceTree = "<group>"; };
+		84C29E2F195FFF090095A748 /* buttonBell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonBell.png; sourceTree = "<group>"; };
+		84C29E30195FFF0A0095A748 /* buttonMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonMenu.png; sourceTree = "<group>"; };
+		84C29E33195FFF160095A748 /* buttonBell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonBell@2x.png"; sourceTree = "<group>"; };
+		84C29E34195FFF160095A748 /* buttonMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonMenu@2x.png"; sourceTree = "<group>"; };
+		84C29E37196004EB0095A748 /* notifTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notifTop.png; sourceTree = "<group>"; };
+		84C29E39196004F30095A748 /* notifTop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notifTop@2x.png"; sourceTree = "<group>"; };
 		CE35F07E1956A66F009DA53D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CE35F0801956A68B009DA53D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CE35F0821956A693009DA53D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -344,6 +369,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		842715D11960122000DBEA6E /* NotificationCell */ = {
+			isa = PBXGroup;
+			children = (
+				842715D21960125000DBEA6E /* NotificationCell.h */,
+				842715D31960125100DBEA6E /* NotificationCell.m */,
+				842715D71960128200DBEA6E /* NotificationCell.xib */,
+			);
+			name = NotificationCell;
+			sourceTree = "<group>";
+		};
 		8464A81D195A066800583DE0 /* PartyApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,6 +472,11 @@
 		8464A836195A066800583DE0 /* Retina */ = {
 			isa = PBXGroup;
 			children = (
+				842715DF196019D000DBEA6E /* placeholder@2x.png */,
+				842715DB1960175600DBEA6E /* roundImageEffect@2x.png */,
+				84C29E39196004F30095A748 /* notifTop@2x.png */,
+				84C29E33195FFF160095A748 /* buttonBell@2x.png */,
+				84C29E34195FFF160095A748 /* buttonMenu@2x.png */,
 				84C29E2B195FDD100095A748 /* backButton@2x.png */,
 				84C29E2C195FDD100095A748 /* nextButton@2x.png */,
 				84A1433B195F6C5C00DC3970 /* cameraImage@2x.png */,
@@ -466,6 +506,11 @@
 		8464A847195A066800583DE0 /* Simple */ = {
 			isa = PBXGroup;
 			children = (
+				842715DD196019C200DBEA6E /* placeholder.png */,
+				842715D91960174700DBEA6E /* roundImageEffect.png */,
+				84C29E37196004EB0095A748 /* notifTop.png */,
+				84C29E2F195FFF090095A748 /* buttonBell.png */,
+				84C29E30195FFF0A0095A748 /* buttonMenu.png */,
 				84C29E27195FDD050095A748 /* backButton.png */,
 				84C29E28195FDD050095A748 /* nextButton.png */,
 				84A14339195F6C5000DC3970 /* cameraImage.png */,
@@ -496,10 +541,10 @@
 			isa = PBXGroup;
 			children = (
 				8464A85C195A066800583DE0 /* BaseViewController */,
-				CE9D3768195E76F7001F05D9 /* ForgotPassword */,
 				8464A86F195A066800583DE0 /* SplashScreen */,
 				8464A85F195A066800583DE0 /* LoginViewController */,
 				8464A86B195A066800583DE0 /* RegisterViewController */,
+				CE9D3768195E76F7001F05D9 /* ForgotPassword */,
 				8464A873195A066800583DE0 /* UploadPhotoViewController */,
 				8464A867195A066800583DE0 /* ProfileViewController */,
 				8464A863195A066800583DE0 /* LogNightViewController */,
@@ -540,6 +585,7 @@
 		8464A867195A066800583DE0 /* ProfileViewController */ = {
 			isa = PBXGroup;
 			children = (
+				842715D11960122000DBEA6E /* NotificationCell */,
 				8464A868195A066800583DE0 /* ProfileViewController.h */,
 				8464A869195A066800583DE0 /* ProfileViewController.m */,
 				8464A86A195A066800583DE0 /* ProfileViewController.xib */,
@@ -697,14 +743,20 @@
 			files = (
 				CE9D376E195E771B001F05D9 /* ForgotPasswordViewController.xib in Resources */,
 				8464A893195A066800583DE0 /* commentIcon.png in Resources */,
+				84C29E32195FFF0A0095A748 /* buttonMenu.png in Resources */,
 				8464A89C195A066800583DE0 /* whiteButton.png in Resources */,
 				8464A880195A066800583DE0 /* appBackground4@2x.png in Resources */,
+				84C29E3A196004F30095A748 /* notifTop@2x.png in Resources */,
+				842715DC1960175600DBEA6E /* roundImageEffect@2x.png in Resources */,
 				8464A886195A066800583DE0 /* imageLogo@2x.png in Resources */,
+				84C29E31195FFF0A0095A748 /* buttonBell.png in Resources */,
 				8464A8A3195A066800583DE0 /* LoginViewController.xib in Resources */,
 				8464A884195A066800583DE0 /* commentIcon@2x.png in Resources */,
 				8464A88B195A066800583DE0 /* purpleButton@2x.png in Resources */,
+				842715D81960128200DBEA6E /* NotificationCell.xib in Resources */,
 				CE9D3771195F02C1001F05D9 /* UploadPhotoViewController4.xib in Resources */,
 				8464A885195A066800583DE0 /* facebookIcon@2x.png in Resources */,
+				84C29E38196004EB0095A748 /* notifTop.png in Resources */,
 				8464A883195A066800583DE0 /* blueButton@2x.png in Resources */,
 				8464A881195A066800583DE0 /* appBackground@2x.png in Resources */,
 				8464A891195A066800583DE0 /* barButtonTick.png in Resources */,
@@ -720,13 +772,17 @@
 				8464A897195A066800583DE0 /* magentaButton.png in Resources */,
 				8464A89E195A066800583DE0 /* Images.xcassets in Resources */,
 				84A14328195F581200DC3970 /* txtFldY.png in Resources */,
+				842715DE196019C200DBEA6E /* placeholder.png in Resources */,
 				8464A88C195A066800583DE0 /* tick@2x.png in Resources */,
+				842715DA1960174700DBEA6E /* roundImageEffect.png in Resources */,
 				84A14334195F5EF300DC3970 /* viewBack@2x.png in Resources */,
 				8464A87C195A066800583DE0 /* InfoPlist.strings in Resources */,
 				8464A88D195A066800583DE0 /* whiteButton@2x.png in Resources */,
 				84A14332195F5EEA00DC3970 /* viewBack.png in Resources */,
 				84A1432C195F582000DC3970 /* txtFldY@2x.png in Resources */,
+				842715E0196019D000DBEA6E /* placeholder@2x.png in Resources */,
 				8464A898195A066800583DE0 /* onlineImage.png in Resources */,
+				84C29E35195FFF160095A748 /* buttonBell@2x.png in Resources */,
 				84C29E2A195FDD050095A748 /* nextButton.png in Resources */,
 				84A1433A195F6C5000DC3970 /* cameraImage.png in Resources */,
 				8464A88E195A066800583DE0 /* yellowButton@2x.png in Resources */,
@@ -751,6 +807,7 @@
 				8491FCD4195EB75B00FDC63F /* LoginViewController4.xib in Resources */,
 				8464A889195A066800583DE0 /* onlineImage@2x.png in Resources */,
 				8464A89A195A066800583DE0 /* purpleButton.png in Resources */,
+				84C29E36195FFF160095A748 /* buttonMenu@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -778,6 +835,7 @@
 				8464A8A4195A066800583DE0 /* LogNightViewController.m in Sources */,
 				84A14330195F5AD200DC3970 /* PATextField.m in Sources */,
 				8464A8A2195A066800583DE0 /* LoginViewController.m in Sources */,
+				842715D41960125100DBEA6E /* NotificationCell.m in Sources */,
 				8464A87A195A066800583DE0 /* SignUpDataStructure.m in Sources */,
 				8464A878195A066800583DE0 /* LoginDataStructure.m in Sources */,
 				8464A87E195A066800583DE0 /* Constants.m in Sources */,

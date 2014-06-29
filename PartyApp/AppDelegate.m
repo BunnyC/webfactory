@@ -47,9 +47,9 @@
                                             fontNavTitleText, NSFontAttributeName,
                                             nil];
     
-    [[UINavigationBar appearance] setTitleTextAttributes:dictNavTitleAttributes];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:dictNavTitleAttributes];
     
     [[UITextField appearance] setTintColor:[UIColor whiteColor]];
     
@@ -59,14 +59,8 @@
         xibName = [NSString stringWithFormat:@"%@4", xibName];
    
     ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:xibName bundle:nil];
-    
     self.navController = [[UINavigationController alloc] initWithRootViewController:objProfileView];
     [self.navController.navigationBar setTranslucent:false];
-
-    NSDictionary *attrNavBarText = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    [UIColor whiteColor], NSForegroundColorAttributeName,
-                                    [UIFont systemFontOfSize:14], NSFontAttributeName, nil];
-    [self.navController.navigationBar setTitleTextAttributes:attrNavBarText];
     
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
         NSLog(@"Found a cached session");

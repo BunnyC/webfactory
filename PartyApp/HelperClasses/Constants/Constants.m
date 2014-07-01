@@ -10,10 +10,15 @@
 
 @implementation Constants
 
-NSInteger const _pApplicationID         = 11405;
-NSString *const _pAuthorizationKey      = @"aNmg3TVv-A98-qW";
-NSString *const _pAuthorizationSecret   = @"BzpdOHDkpLVjXdj";
-NSString *const _pAccountKey            = @"eYyNwpmdQnAxbyiJs3CG";
+//NSInteger const _pApplicationID         = 11405;
+//NSString *const _pAuthorizationKey      = @"aNmg3TVv-A98-qW";
+//NSString *const _pAuthorizationSecret   = @"BzpdOHDkpLVjXdj";
+//NSString *const _pAccountKey            = @"eYyNwpmdQnAxbyiJs3CG";
+
+NSInteger const _pApplicationID         = 11046;
+NSString *const _pAuthorizationKey      = @"ymVqnBnjYPz8Rjx";
+NSString *const _pAuthorizationSecret   = @"SSrdLfpR-LMC44H";
+NSString *const _pAccountKey            = @"4LPybW9cxp5xaosSztxE";
 NSString *const _pPNGType               = @"png";
 
 #pragma mark - UserDefault Keys

@@ -142,7 +142,10 @@
     if([result isKindOfClass:[QBAAuthSessionCreationResult class]]){
         // Success result
         if(result.success){
+            
             NSDate *sessionExpDate = [[QBBaseModule sharedModule] tokenExpirationDate];
+            
+            
             [[NSUserDefaults standardUserDefaults] setObject:sessionExpDate
                                                       forKey:_pudSessionExpiryDate];
             [[NSUserDefaults standardUserDefaults] synchronize];

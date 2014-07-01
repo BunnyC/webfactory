@@ -138,57 +138,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyApp/AppDelegate.m"
-            timestampString = "425707479.47183"
+            timestampString = "425928554.400724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "303"
-            endingLineNumber = "303"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
             landmarkName = "-requestForFBSession"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__34-[AppDelegate requestForFBSession]_block_invoke"
-                  moduleName = "PartyApp"
-                  urlString = "file://localhost/Users/Gagan/Documents/Gagan%20Important%20Doc/Home%20Project/%20PartyApp%20Project/webfactory/PartyApp/AppDelegate.m"
-                  timestampString = "425747154.05183"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "304"
-                  endingLineNumber = "304"
-                  offsetFromSymbolStart = "1369">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__copy_helper_block_225"
-                  moduleName = "PartyApp"
-                  urlString = "file://localhost/Users/Gagan/Documents/Gagan%20Important%20Doc/Home%20Project/%20PartyApp%20Project/webfactory/PartyApp/AppDelegate.m"
-                  timestampString = "425747154.052169"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "304"
-                  endingLineNumber = "304"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_226"
-                  moduleName = "PartyApp"
-                  urlString = "file://localhost/Users/Gagan/Documents/Gagan%20Important%20Doc/Home%20Project/%20PartyApp%20Project/webfactory/PartyApp/AppDelegate.m"
-                  timestampString = "425747154.052497"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "304"
-                  endingLineNumber = "304"
-                  offsetFromSymbolStart = "22">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -198,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyApp/AppDelegate.m"
-            timestampString = "425707479.47183"
+            timestampString = "425928554.400724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
+            startingLineNumber = "256"
+            endingLineNumber = "256"
             landmarkName = "-getUserInformation"
             landmarkType = "5">
             <Locations>
@@ -213,12 +169,12 @@
                   symbolName = "__33-[AppDelegate getUserInformation]_block_invoke"
                   moduleName = "PartyApp"
                   urlString = "file://localhost/Users/Gagan/Documents/Gagan%20Important%20Doc/Home%20Project/%20PartyApp%20Project/webfactory/PartyApp/AppDelegate.m"
-                  timestampString = "425747154.052832"
+                  timestampString = "425928624.724823"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "253"
-                  endingLineNumber = "253"
-                  offsetFromSymbolStart = "156">
+                  startingLineNumber = "257"
+                  endingLineNumber = "257"
+                  offsetFromSymbolStart = "161">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -227,12 +183,12 @@
                   symbolName = "__copy_helper_block_194"
                   moduleName = "PartyApp"
                   urlString = "file://localhost/Users/Gagan/Documents/Gagan%20Important%20Doc/Home%20Project/%20PartyApp%20Project/webfactory/PartyApp/AppDelegate.m"
-                  timestampString = "425747154.053147"
+                  timestampString = "425928624.725172"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "253"
-                  endingLineNumber = "253"
-                  offsetFromSymbolStart = "16">
+                  startingLineNumber = "257"
+                  endingLineNumber = "257"
+                  offsetFromSymbolStart = "18">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -241,12 +197,12 @@
                   symbolName = "__destroy_helper_block_195"
                   moduleName = "PartyApp"
                   urlString = "file://localhost/Users/Gagan/Documents/Gagan%20Important%20Doc/Home%20Project/%20PartyApp%20Project/webfactory/PartyApp/AppDelegate.m"
-                  timestampString = "425747154.053489"
+                  timestampString = "425928624.725656"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "253"
-                  endingLineNumber = "253"
-                  offsetFromSymbolStart = "22">
+                  startingLineNumber = "257"
+                  endingLineNumber = "257"
+                  offsetFromSymbolStart = "17">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -408,6 +364,22 @@
             startingLineNumber = "95"
             endingLineNumber = "95"
             landmarkName = "-initDefaults"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PartyApp/AppDelegate.m"
+            timestampString = "425928619.945766"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "-completedWithResult:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

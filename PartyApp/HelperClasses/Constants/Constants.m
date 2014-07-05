@@ -25,6 +25,8 @@ NSString *const _pPNGType               = @"png";
 
 NSString *const _pudLoggedIn            = @"IsLoggedIn";
 NSString *const _pudSessionExpiryDate   = @"SessionExpiryDate";
+NSString *const _pudSessionToken        = @"SessionToken";
+NSString *const _pudUserInfo            = @"UserInfo";
 NSString *const _pUserInfoDic           = @"UserProfileInfomation";
 NSString *const _pUserProfilePic        = @"UserProfilePic";
 
@@ -36,5 +38,8 @@ NSString *const _pErrInvalidUserNameAndPassword=@"Please enter correct username 
 NSString *const _pSignUpSuccess=@"User has successfully signup";
 
 NSString *const _pResetPasswordMgs=@"Reset password link has sent to your email";
+
+NSString *const _pURLBase   = @"http://api.quickblox.com/";
+NSString *const _pURLSignUp = @"users.json";
 
 @end

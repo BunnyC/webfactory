@@ -9,10 +9,6 @@
 #import "RegisterViewController.h"
 #import "UploadPhotoViewController.h"
 
-#define KUserName @"UserName"
-#define KEmail    @"Email"
-#define KPassword @"Password"
-#define KMoto     @"Moto"
 @interface RegisterViewController () <UITextViewDelegate>
 
 @end
@@ -211,11 +207,6 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
-    
-    if(textField.tag==2 || textField.tag==3)
-    {
-        [textField setKeyboardType:UIKeyboardTypeEmailAddress];
-    }
     [self setTextFieldBackgroundsWithTextField:textField];
     
     int yOffset = textField.tag < 3 ? 0 : (textField.tag - 1) * (textField.tag == 3 ? 15 : 25);
@@ -238,8 +229,18 @@
 - (IBAction)nextButtonAction:(id)sender {
 
     if ([self validateFields]) {
-  
-        NSDictionary *dicUserDeatail=[[NSDictionary alloc]initWithObjectsAndKeys:txtFieldUsername.text,KUserName,txtFieldEmail.text,KEmail,txtFieldPassword.text,KPassword,txtFieldMotto.text,KMoto ,nil];
+        
+//        NSDictionary *dicUserDeatail = [[NSDictionary alloc] initWithObjectsAndKeys:
+//                                        txtFieldUsername.text,  @"Username",
+//                                        txtFieldEmail.text,     @"Email",
+//                                        txtFieldPassword.text,  @"Password",
+//                                        txtFieldMotto.text,     @"Motto", nil];
+        
+        NSDictionary *dicUserDeatail = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                        txtFieldUsername.text,  @"login",
+                                        txtFieldEmail.text,     @"email",
+                                        txtFieldPassword.text,  @"password",
+                                        txtFieldMotto.text,     @"custom_data", nil];
         
         NSString *xibName = NSStringFromClass([UploadPhotoViewController class]);
         BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
@@ -248,9 +249,9 @@
         
         UploadPhotoViewController *objUploadPhotoViewController = [[UploadPhotoViewController alloc] initWithNibName:xibName bundle:nil];
         objUploadPhotoViewController.dicUserDetail=dicUserDeatail;
-         [self.navigationController pushViewController:objUploadPhotoViewController animated:YES];
+        [self.navigationController pushViewController:objUploadPhotoViewController animated:YES];
         
-        }
+    }
 }
 
 

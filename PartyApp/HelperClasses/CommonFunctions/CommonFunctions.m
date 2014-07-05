@@ -115,7 +115,7 @@
 //    return backView;
 //}
 
-- (UIView *)showLoadingViewInViewController:(UIViewController *)viewController {
+- (UIView *)showLoadingView {
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     

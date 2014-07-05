@@ -10,10 +10,13 @@
 
 @interface SigUpModel : NSObject
 {
-    id  _delegate;
+    id  _controller;
     SEL _handler;
 }
 
--(void)resgisterationWithTarget:(id)target Selector:(SEL)selector AndDetails:(NSMutableDictionary *)accountDetails;
+- (void)registerationForTarget:(id)target
+                   withselector:(SEL)selector
+                     andDetails:(NSDictionary *)accountDetails
+             toShowWindowLoader:(BOOL)toShow;
 
 @end

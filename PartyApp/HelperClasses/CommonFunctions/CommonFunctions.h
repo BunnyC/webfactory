@@ -29,7 +29,7 @@
 
 - (BOOL)validateEmailID:(NSString *)emailID;
 
-- (UIView *)showLoadingViewInViewController:(UIViewController *)viewController;
+- (UIView *)showLoadingView;
 - (void)hideLoadingView:(UIView *)loadingView;
 
 - (UIColor *)colorWithHexString:(NSString *)hexString;

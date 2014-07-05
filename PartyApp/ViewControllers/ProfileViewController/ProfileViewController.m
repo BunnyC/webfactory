@@ -44,17 +44,22 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-//    if([[NSUserDefaults standardUserDefaults]objectForKey:_pUserInfoDic])
-//    {
-//        NSDictionary *userInfo=[[NSUserDefaults standardUserDefaults]objectForKey:_pUserInfoDic];
-//        [self updateUserInfo:userInfo];
-//    }
+    //    if([[NSUserDefaults standardUserDefaults]objectForKey:_pUserInfoDic])
+    //    {
+    //        NSDictionary *userInfo=[[NSUserDefaults standardUserDefaults]objectForKey:_pUserInfoDic];
+    //        [self updateUserInfo:userInfo];
+    //    }
+    
+    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+    NSDictionary *userInfo = [userDefs objectForKey:_pudUserInfo];
+    [lblName setText:[userInfo objectForKey:@"username"]];
+    [lblMotto setText:[userInfo objectForKey:@"custom_object"]];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     
-   // [self downloadFile];
+    // [self downloadFile];
 }
 
 
@@ -73,7 +78,7 @@
         UIImage *profileImage = [[CommonFunctions sharedObject] imageWithName:@"placeholder"
                                                                       andType:_pPNGType];
         [imageViewProfile setImage:profileImage];
-         [QBAuth createSessionWithDelegate:self];
+        [QBAuth createSessionWithDelegate:self];
     }
 }
 
@@ -134,7 +139,7 @@
     [[NSUserDefaults standardUserDefaults]synchronize];
     lblName.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"first_name"]];
     lblActive.text=@"active";
-     lblMotto.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"moto"]];
+    lblMotto.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"moto"]];
 }
 
 
@@ -145,56 +150,56 @@
 
 -(void)handlePanGesture:(UIPanGestureRecognizer *)recognizer
 {
- 
- CGPoint translation = [recognizer translationInView:self.view];
- 
- int translationValue=(int
- )(recognizer.view.center.y + translation.y);
- 
- if(translationValue>btnLogNight.frame.origin.y+btnLogNight.frame.size.height && translationValue<self.view.frame.size.height-20+recognizer.view.frame.size.height/4)
- {
- 
- 
- recognizer.view.center = CGPointMake(recognizer.view.center.x,
- recognizer.view.center.y + translation.y);
- 
- 
- [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
- 
- 
- }
- 
- 
- if (recognizer.state == UIGestureRecognizerStateEnded) {
- 
- CGPoint velocity = [recognizer velocityInView:self.view];
- CGFloat magnitude = sqrtf((velocity.x * velocity.x) + (velocity.y * velocity.y));
- CGFloat slideMult = magnitude / 200;
- 
- 
- NSLog(@"magnitude: %f, slideMult: %f", magnitude, slideMult);
- 
- float slideFactor = 0.1 * slideMult; // Increase for more of a slide
- 
- CGPoint finalPoint = CGPointMake(recognizer.view.center.x,
- recognizer.view.center.y + (velocity.y * slideFactor));
- 
- finalPoint.y = MIN(MAX(finalPoint.y, btnLogNight.frame.origin.y+btnLogNight.frame.size.height), (self.view.bounds.size.height-25)+recognizer.view.frame.size.height/4);
- 
- NSLog(@"%f",finalPoint.y);
- 
- 
- [UIView animateWithDuration:slideFactor/2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
- 
- 
- recognizer.view.center = finalPoint;
- 
- 
- } completion:nil];
- 
- }
- 
- }
+    
+    CGPoint translation = [recognizer translationInView:self.view];
+    
+    int translationValue=(int
+                          )(recognizer.view.center.y + translation.y);
+    
+    if(translationValue>btnLogNight.frame.origin.y+btnLogNight.frame.size.height && translationValue<self.view.frame.size.height-20+recognizer.view.frame.size.height/4)
+    {
+        
+        
+        recognizer.view.center = CGPointMake(recognizer.view.center.x,
+                                             recognizer.view.center.y + translation.y);
+        
+        
+        [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
+        
+        
+    }
+    
+    
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        
+        CGPoint velocity = [recognizer velocityInView:self.view];
+        CGFloat magnitude = sqrtf((velocity.x * velocity.x) + (velocity.y * velocity.y));
+        CGFloat slideMult = magnitude / 200;
+        
+        
+        NSLog(@"magnitude: %f, slideMult: %f", magnitude, slideMult);
+        
+        float slideFactor = 0.1 * slideMult; // Increase for more of a slide
+        
+        CGPoint finalPoint = CGPointMake(recognizer.view.center.x,
+                                         recognizer.view.center.y + (velocity.y * slideFactor));
+        
+        finalPoint.y = MIN(MAX(finalPoint.y, btnLogNight.frame.origin.y+btnLogNight.frame.size.height), (self.view.bounds.size.height-25)+recognizer.view.frame.size.height/4);
+        
+        NSLog(@"%f",finalPoint.y);
+        
+        
+        [UIView animateWithDuration:slideFactor/2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            
+            
+            recognizer.view.center = finalPoint;
+            
+            
+        } completion:nil];
+        
+    }
+    
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -223,14 +228,14 @@
     LogNightViewController *objLogNight = [[LogNightViewController alloc] initWithNibName:@"LogNightViewController" bundle:nil];
     
     
-   // [self.navigationController pushViewController:objLogNight animated:YES];
+    // [self.navigationController pushViewController:objLogNight animated:YES];
 }
 - (IBAction)setReminderAction:(id)sender {
 }
 - (IBAction)editAccountAction:(id)sender {
 }
 - (IBAction)logoutAction:(id)sender {
-
+    
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
@@ -267,7 +272,7 @@
                 UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[res file]]];
                 imageView.contentMode = UIViewContentModeScaleAspectFit;
                 imageViewProfile.image=imageView.image;
-               // [[[DataManager instance] fileList] removeLastObject];
+                // [[[DataManager instance] fileList] removeLastObject];
             }
         }
     }

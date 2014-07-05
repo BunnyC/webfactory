@@ -251,6 +251,7 @@
 		84C29E34195FFF160095A748 /* buttonMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonMenu@2x.png"; sourceTree = "<group>"; };
 		84C29E37196004EB0095A748 /* notifTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notifTop.png; sourceTree = "<group>"; };
 		84C29E39196004F30095A748 /* notifTop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notifTop@2x.png"; sourceTree = "<group>"; };
+		84DF77021968793400A11C2F /* WebService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebService.h; sourceTree = "<group>"; };
 		CE35F07E1956A66F009DA53D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CE35F0801956A68B009DA53D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CE35F0821956A693009DA53D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -501,6 +502,7 @@
 		8464A832195A066800583DE0 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				84DF77021968793400A11C2F /* WebService.h */,
 				8464A833195A066800583DE0 /* Constants.h */,
 				8464A834195A066800583DE0 /* Constants.m */,
 			);

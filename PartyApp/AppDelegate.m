@@ -160,10 +160,11 @@
         if(result.success){
             
             NSDate *sessionExpDate = [[QBBaseModule sharedModule] tokenExpirationDate];
+            NSString *sessionToken = [[QBBaseModule sharedModule] token];
             
-            
-            [[NSUserDefaults standardUserDefaults] setObject:sessionExpDate
-                                                      forKey:_pudSessionExpiryDate];
+            NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+            [userDefs setObject:sessionExpDate  forKey:_pudSessionExpiryDate];
+            [userDefs setObject:sessionToken    forKey:_pudSessionToken];
             [[NSUserDefaults standardUserDefaults] synchronize];
             refreshingSession = false;
         }

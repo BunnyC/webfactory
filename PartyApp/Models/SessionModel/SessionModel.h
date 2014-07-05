@@ -10,4 +10,6 @@
 
 @interface SessionModel : NSObject
 
+- (void)fetchSessionInfo;
+
 @end

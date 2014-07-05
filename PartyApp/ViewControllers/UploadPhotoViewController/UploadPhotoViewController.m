@@ -11,11 +11,7 @@
 #import "DataManager.h"
 #import "AppDelegate.h"
 #import "RegisterViewController.h"
-
-#define KUserName @"UserName"
-#define KEmail    @"Email"
-#define KPassword @"Password"
-#define KMoto     @"Moto"
+#import "SigUpModel.h"
 
 @interface UploadPhotoViewController ()
 
@@ -52,7 +48,7 @@
     
     UIImage *imageCamera = [[CommonFunctions sharedObject] imageWithName:@"cameraImage"
                                                                  andType:_pPNGType];
-
+    
     resultType=KSignUpResultNone;
     [imageViewProfile setImage:imageCamera];
     
@@ -111,9 +107,10 @@
     return shouldInteract;
 }
 
-#pragma mark - Choose Image 
+#pragma mark - Choose Image
 
 - (void)chooseImageTapped:(UITapGestureRecognizer *)recognizer {
+    
     self.imagePicker = [[UIImagePickerController alloc] init];
     self.imagePicker.allowsEditing = NO;
     self.imagePicker.delegate = self;
@@ -130,30 +127,30 @@
 
 - (IBAction)nextButtonAction:(id)sender {
     
-   
+    
     switch (resultType) {
         case KSignUpResultNone:
             [self createUser];
             break;
-            case KCreateUserFailed:
+        case KCreateUserFailed:
             [self createUser];
             break;
-            case KCreateSessionFailed:
-             loadingView = [[CommonFunctions sharedObject] showLoadingViewInViewController:self];
+        case KCreateSessionFailed:
+            loadingView = [[CommonFunctions sharedObject] showLoadingView];
             [self createUserSession];
             break;
-            case KImageUploadFailed:
-             loadingView = [[CommonFunctions sharedObject] showLoadingViewInViewController:self];
+        case KImageUploadFailed:
+            loadingView = [[CommonFunctions sharedObject] showLoadingView];
             [self uploadProfileImage];
             break;
-            case KSignUpCompletionDone:
+        case KSignUpCompletionDone:
             [self showProfileView];
             break;
             
         default:
             break;
     }
- 
+    
 }
 
 
@@ -168,16 +165,13 @@
     [imageViewProfile setImage:[UIImage imageWithData:imageData]];
     imageViewProfile.contentMode = UIViewContentModeScaleAspectFit;
     [self.imagePicker dismissViewControllerAnimated:NO completion:nil];
-   
 }
 
-
-
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-
+    
     [self.view setUserInteractionEnabled:YES];
     [self.imagePicker dismissViewControllerAnimated:NO completion:nil];
-
+    
 }
 
 #pragma mark -
@@ -192,7 +186,7 @@
                                           otherButtonTitles:nil, nil];
     
     if([result isKindOfClass:[QBUUserResult class]]){
-      
+        
         if(result.success){
             resultType=KCreateUserSuccess;
             for (id view in self.navigationController.viewControllers) {
@@ -221,12 +215,12 @@
         
         if(result.success)
         {
-        resultType=KCreateSessionSuccess;
-        //[buttonNext setEnabled:false];
-        [progressViewImageUpload setHidden:false];
-        [self.view setUserInteractionEnabled:NO];
-        [self uploadProfileImage];
-        
+            resultType=KCreateSessionSuccess;
+            //[buttonNext setEnabled:false];
+            [progressViewImageUpload setHidden:false];
+            [self.view setUserInteractionEnabled:NO];
+            [self uploadProfileImage];
+            
         }
         else
         {
@@ -234,12 +228,12 @@
             resultType=KCreateSessionFailed;
             alert.message=[result.errors description];
             [buttonNext setEnabled:TRUE];
-             [progressViewImageUpload setHidden:TRUE];
+            [progressViewImageUpload setHidden:TRUE];
             alert.title=@"Errors";
             [self.view setUserInteractionEnabled:YES];
             [alert show];
         }
-
+        
     }
     else
     {
@@ -263,7 +257,7 @@
             [alert show];
         }
         
-      
+        
     }
 }
 
@@ -279,35 +273,71 @@
 
 -(void)createUser
 {
-     loadingView = [[CommonFunctions sharedObject] showLoadingViewInViewController:self];
-    QBUUser *objCreateUser=[[QBUUser alloc]init];
-    [objCreateUser setLogin:[_dicUserDetail objectForKey:KUserName]];
-    [objCreateUser setEmail:[_dicUserDetail objectForKey:KEmail]];
-    [objCreateUser setPassword:[_dicUserDetail objectForKey:KPassword]];
-    [objCreateUser setFullName:[_dicUserDetail objectForKey:KUserName]];
-    [QBUsers signUp:objCreateUser delegate:self];
+    loadingView = [[CommonFunctions sharedObject] showLoadingView];
+//    QBUUser *objCreateUser=[[QBUUser alloc]init];
+//    [objCreateUser setLogin:[_dicUserDetail objectForKey:@"Username"]];
+//    [objCreateUser setEmail:[_dicUserDetail objectForKey:@"Email"]];
+//    [objCreateUser setPassword:[_dicUserDetail objectForKey:@"Password"]];
+//    [objCreateUser setFullName:[_dicUserDetail objectForKey:@"Motto"]];
+//    [QBUsers signUp:objCreateUser delegate:self];
+    
+    NSDictionary *dictUser = [NSDictionary dictionaryWithObject:_dicUserDetail forKey:@"user"];
+    NSString *password = [_dicUserDetail objectForKey:@"password"];
+    [[NSUserDefaults standardUserDefaults] setObject:password forKey:@"Password"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    SigUpModel *objSignUpModel = [[SigUpModel alloc] init];
+    [objSignUpModel registerationForTarget:self
+                              withselector:@selector(serverResponseForSignUp:)
+                                andDetails:dictUser
+                        toShowWindowLoader:NO];
+    
     [buttonNext setEnabled:false];
- 
+    
+}
+
+- (void)serverResponseForSignUp:(NSDictionary *)responseDict {
+//    NSLog(@"Response is : %@", responseDict);
+    if (![responseDict objectForKey:@"errors"]) {
+        [self createUserSession];
+    }
+    else {
+        NSArray *arrErrors = [responseDict objectForKey:@"errors"];
+        NSString *strErrors = [arrErrors componentsJoinedByString:@", "];
+        
+        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                             message:strErrors
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"OK"
+                                                   otherButtonTitles:nil, nil];
+        [errorAlert show];
+        [self.navigationController popViewControllerAnimated:YES];
+        
+        [[CommonFunctions sharedObject] hideLoadingView:loadingView];
+    }
 }
 
 #pragma create user session
 
--(void)createUserSession
-{
+-(void)createUserSession {
+    
+    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+    NSDictionary *userInfo = [userDefs objectForKey:_pudUserInfo];
+    
     QBASessionCreationRequest *extendedAuthRequest = [QBASessionCreationRequest request];
-    extendedAuthRequest.userLogin = [_dicUserDetail objectForKey:KUserName]; // ID: 218651
-    extendedAuthRequest.userPassword =[_dicUserDetail objectForKey:KPassword];
+    extendedAuthRequest.userLogin = [userInfo objectForKey:@"login"]; // ID: 218651
+    extendedAuthRequest.userPassword =[userDefs objectForKey:@"Password"];
     [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
 }
 
-#pragma Image Uploading 
+#pragma Image Uploading
 
 -(void)uploadProfileImage
 {
     if(imageUploadStatus==KImageUploadNow)
     {
-    NSData *data=UIImagePNGRepresentation(imageViewProfile.image);
-    [QBContent TUploadFile:data fileName:@"ProfileImage" contentType:@"image/png" isPublic:YES delegate:self];
+        NSData *data=UIImagePNGRepresentation(imageViewProfile.image);
+        [QBContent TUploadFile:data fileName:@"ProfileImage" contentType:@"image/png" isPublic:YES delegate:self];
     }
     else
     {
@@ -327,8 +357,7 @@
 
 #pragma show Profile View
 
--(void)showProfileView
-{
+-(void)showProfileView {
     
     NSString *xibName = NSStringFromClass([ProfileViewController class]);
     BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
@@ -338,11 +367,6 @@
     [[NSUserDefaults standardUserDefaults]setBool:true forKey:_pudLoggedIn];
     
     ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:xibName bundle:nil];
-    
-    NSDictionary * userInfo=[NSDictionary dictionaryWithObjectsAndKeys:[_dicUserDetail objectForKey:KUserName],@"first_name",[_dicUserDetail objectForKey:KMoto],@"moto", nil];
-    [[NSUserDefaults standardUserDefaults]setObject:userInfo forKey:_pUserInfoDic];
-    [[NSUserDefaults standardUserDefaults]synchronize];
-
     [self.navigationController pushViewController:objProfileView animated:YES];
 }
 

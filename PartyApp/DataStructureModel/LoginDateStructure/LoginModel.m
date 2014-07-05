@@ -15,7 +15,7 @@
     _delegate=target;
     _handler=selector;
     
-    viewLoading = [[CommonFunctions sharedObject] showLoadingViewInViewController:_delegate];
+    viewLoading = [[CommonFunctions sharedObject] showLoadingView];
     [QBUsers logInWithUserLogin:[loginDetail objectForKey:@"UserName"]
                        password:[loginDetail objectForKey:@"Password"]
                        delegate:self];

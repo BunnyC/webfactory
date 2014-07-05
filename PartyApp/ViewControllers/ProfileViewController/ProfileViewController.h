@@ -9,8 +9,7 @@
 #import "BaseViewController.h"
 #import "LoginViewController.h"
 @interface ProfileViewController : BaseViewController<LoginViewDelegate> {
-    
-    __weak IBOutlet UIImageView *imageViewProfile;
+      __weak IBOutlet UIImageView *imageViewProfile;
     __weak IBOutlet UILabel *lblName;
     __weak IBOutlet UILabel *lblMotto;
     __weak IBOutlet UIView *viewActive;

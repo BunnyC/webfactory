@@ -18,8 +18,10 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController *navController;
 
-- (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;
-- (void)userLoggedIn;
-- (void)userLoggedOut;
+@property (strong, nonatomic) FBSession *session;
+//- (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;
+//- (void)userLoggedIn;
+//- (void)userLoggedOut;
+- (void)getUserInformation;
 - (void)refreshQBSession;
 @end

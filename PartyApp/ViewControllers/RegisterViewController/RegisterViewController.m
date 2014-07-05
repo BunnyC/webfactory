@@ -9,6 +9,10 @@
 #import "RegisterViewController.h"
 #import "UploadPhotoViewController.h"
 
+#define KUserName @"UserName"
+#define KEmail    @"Email"
+#define KPassword @"Password"
+#define KMoto     @"Moto"
 @interface RegisterViewController () <UITextViewDelegate>
 
 @end
@@ -207,6 +211,11 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
+    
+    if(textField.tag==2 || textField.tag==3)
+    {
+        [textField setKeyboardType:UIKeyboardTypeEmailAddress];
+    }
     [self setTextFieldBackgroundsWithTextField:textField];
     
     int yOffset = textField.tag < 3 ? 0 : (textField.tag - 1) * (textField.tag == 3 ? 15 : 25);
@@ -230,50 +239,17 @@
 
     if ([self validateFields]) {
         
-        loadingView = [[CommonFunctions sharedObject] showLoadingViewInViewController:self];
+       // 
         
-        QBUUser *objCreateUser=[[QBUUser alloc]init];
+//        QBUUser *objCreateUser=[[QBUUser alloc]init];
+//        
+//        [objCreateUser setLogin:txtFieldUsername.text];
+//        [objCreateUser setEmail:txtFieldEmail.text];
+//        [objCreateUser setPassword:txtFieldPassword.text];
+//        [objCreateUser setFullName:txtFieldMotto.text]; // FullName Used for Moto
+    
         
-        [objCreateUser setLogin:txtFieldUsername.text];
-        [objCreateUser setEmail:txtFieldEmail.text];
-        [objCreateUser setPassword:txtFieldPassword.text];
-        [objCreateUser setFullName:txtFieldUsername.text]; // FullName Used for Moto
-        [objCreateUser setTags:[NSMutableArray arrayWithObjects:txtFieldMotto.text, nil]];
-        [QBUsers signUp:objCreateUser delegate:self];
-    }
-}
-
-#pragma mark - QuickBox Server Response
-
--(void)completedWithResult:(Result *)result
-{
-    [[CommonFunctions sharedObject] hideLoadingView:loadingView];
-    if([result isKindOfClass:[QBUUserResult class]]){
-        
-        // Success result
-		if(result.success){
-          
-            QBASessionCreationRequest *extendedAuthRequest = [QBASessionCreationRequest request];
-            extendedAuthRequest.userLogin = txtFieldUsername.text; // ID: 218651
-            extendedAuthRequest.userPassword = txtFieldPassword.text;
-            [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
-            
-            // Errors
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Errors"
-                                                            message:[result.errors description]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles:nil, nil];
-            [alert show];
-            
-		}
-	}
-    else if(result.success && [result isKindOfClass:QBAAuthSessionCreationResult.class]){
-        
-       NSDictionary * userInfo=[NSDictionary dictionaryWithObjectsAndKeys:txtFieldUsername.text,@"first_name",txtFieldMotto.text,@"moto", nil];
-
-        
+        NSDictionary *dicUserDeatail=[[NSDictionary alloc]initWithObjectsAndKeys:txtFieldUsername.text,KUserName,txtFieldEmail.text,KEmail,txtFieldPassword.text,KPassword,txtFieldMotto.text,KMoto ,nil];
         
         NSString *xibName = NSStringFromClass([UploadPhotoViewController class]);
         BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
@@ -281,13 +257,18 @@
             xibName = [NSString stringWithFormat:@"%@4", xibName];
         
         UploadPhotoViewController *objUploadPhotoViewController = [[UploadPhotoViewController alloc] initWithNibName:xibName bundle:nil];
-        [[NSUserDefaults standardUserDefaults]setObject:userInfo forKey:_pUserInfoDic];
-        [[NSUserDefaults standardUserDefaults]synchronize];
+        objUploadPhotoViewController.dicUserDetail=dicUserDeatail;
+         [self.navigationController pushViewController:objUploadPhotoViewController animated:YES];
         
-        [self.navigationController pushViewController:objUploadPhotoViewController animated:YES];
-        
-        // Success, You have got User session
+        //[QBUsers signUp:objCreateUser delegate:self];
     }
+}
+
+#pragma mark - QuickBox Server Response
+
+-(void)completedWithResult:(Result *)result
+{
+  
     
 }
 

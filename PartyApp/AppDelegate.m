@@ -62,6 +62,7 @@
     self.navController = [[UINavigationController alloc] initWithRootViewController:objProfileView];
     [self.navController.navigationBar setTranslucent:false];
     
+    /*
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
         NSLog(@"Found a cached session");
         // If there's one, just open the session silently, without showing the user the login UI
@@ -76,7 +77,7 @@
         
         // If there's no cached session, we will show a login button
     }
-    
+    */
     [self.window setRootViewController:self.navController];
     self.window.backgroundColor = [UIColor blackColor];
     [self.window makeKeyAndVisible];
@@ -84,6 +85,16 @@
     return YES;
 }
 
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    // attempt to extract a token from the url
+    return [FBAppCall handleOpenURL:url
+                  sourceApplication:sourceApplication
+                        withSession:self.session];
+}
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -107,19 +118,24 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
     [self refreshQBSession];
-    [FBAppCall handleDidBecomeActive];
+    [FBAppEvents activateApp];
+  
+    [FBAppCall handleDidBecomeActiveWithSession:self.session];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    
+     [self.session close];
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    return [FBSession.activeSession handleOpenURL:url];
-}
+//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+//{
+//    return [FBSession.activeSession handleOpenURL:url];
+//}
 
 #pragma mark - QBSession Methods
 
@@ -157,8 +173,10 @@
     }
 }
 
+
 #pragma mark - Facebook Specific Methods
 
+/*
 // This method will handle ALL the session state changes in the app
 - (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error
 {
@@ -240,6 +258,7 @@
     }
     
 }
+*/
 
 -(void)getUserInformation
 {

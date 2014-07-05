@@ -91,6 +91,28 @@
     UIImage *backImage = [[CommonFunctions sharedObject] imageWithName:@"viewBack" andType:_pPNGType];
     UIColor *backColor = [UIColor colorWithPatternImage:backImage];
     [viewBottom setBackgroundColor:backColor];
+    
+    //[self updateView];
+    
+    AppDelegate *appDelegate =(AppDelegate *) [[UIApplication sharedApplication]delegate];
+    if (!appDelegate.session.isOpen) {
+        // create a fresh session object
+        appDelegate.session = [[FBSession alloc] init];
+        
+        // if we don't have a cached token, a call to open here would cause UX for login to
+        // occur; we don't want that to happen unless the user clicks the login button, and so
+        // we check here to make sure we have a token before calling open
+        if (appDelegate.session.state == FBSessionStateCreatedTokenLoaded) {
+            // even though we had a cached token, we need to login to make the session usable
+            [appDelegate.session openWithCompletionHandler:^(FBSession *session,
+                                                             FBSessionState status,
+                                                             NSError *error) {
+                // we recurse here, in order to update buttons and labels
+                //[self updateView];
+            }];
+        }
+    }
+
 }
 
 #pragma mark - TextView Delegates
@@ -169,6 +191,65 @@
 
 - (IBAction)btnConnectFacebookAction:(id)sender {
     
+    
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    [appDelegate.session closeAndClearTokenInformation];
+   
+
+        if (appDelegate.session.state != FBSessionStateCreated) {
+            // Create a new, logged out session.
+            appDelegate.session = [[FBSession alloc] init];
+        }
+        
+        // if the session isn't open, let's open it now and present the login UX to the user
+        [appDelegate.session openWithCompletionHandler:^(FBSession *session,
+                                                         FBSessionState status,
+                                                         NSError *error) {
+            // and here we make sure to update our UX according to the new session state
+            //[self updateView];
+           // [appDelegate getUserInformation];
+            
+        
+            ///////
+            FBRequest *me = [[FBRequest alloc] initWithSession:session
+                                                     graphPath:@"me"];
+            [me startWithCompletionHandler:^(FBRequestConnection *connection,
+                                             // we expect a user as a result, and so are using FBGraphUser protocol
+                                             // as our result type; in order to allow us to access first_name and
+                                             // birthday with property syntax
+                                             NSDictionary<FBGraphUser> *user,
+                                             NSError *error) {
+                
+                if (error) {
+                    NSLog(@"Couldn't get info : %@", error.localizedDescription);
+                    return;
+                }
+                ProfileViewController *objProfileView;
+                for (id controller in self.navigationController
+                     
+                     
+                     .viewControllers) {
+                    
+                    if([(ProfileViewController *)controller isKindOfClass:[ProfileViewController class]])
+                    {
+                        objProfileView=(ProfileViewController *)controller;
+                        break;
+                    }
+                }
+                
+                NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+                [userDefs setBool:TRUE forKey:_pudLoggedIn];
+                [userDefs synchronize];
+                [self.navigationController dismissViewControllerAnimated:YES completion:^{
+                    [objProfileView updateUserProfileData:user];
+                }];
+            
+            }];            ///////
+        }];
+    
+
+    
+    /*
     // If the session state is any of the two "open" states when the button is clicked
     if (FBSession.activeSession.state == FBSessionStateOpen
         || FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
@@ -192,7 +273,26 @@
              [appDelegate sessionStateChanged:session state:state error:error];
          }];
     }
+     */
+    
 }
+
+
+- (void)updateView {
+    // get the app delegate, so that we can reference the session property
+    AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+//    if (appDelegate.session.isOpen) {
+//        // valid account UI is shown whenever the session is open
+//        [self.buttonLoginLogout setTitle:@"Log out" forState:UIControlStateNormal];
+//        [self.textNoteOrLink setText:[NSString stringWithFormat:@"https://graph.facebook.com/me/friends?access_token=%@",
+//                                      appDelegate.session.accessTokenData.accessToken]];
+//    } else {
+//        // login-needed account UI is shown whenever the session is closed
+//        [self.buttonLoginLogout setTitle:@"Log in" forState:UIControlStateNormal];
+//        [self.textNoteOrLink setText:@"Login to create a link to fetch account data"];
+//    }
+}
+
 
 #pragma mark - TextField Delegate Method
 

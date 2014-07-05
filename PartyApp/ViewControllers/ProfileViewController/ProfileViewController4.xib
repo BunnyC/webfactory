@@ -9,7 +9,6 @@
                 <outlet property="btnLogNight" destination="jXh-pp-H9O" id="r8r-br-HCw"/>
                 <outlet property="btnNotifications" destination="wHg-YW-Wo2" id="SCu-Qg-gCY"/>
                 <outlet property="imgViewActive" destination="Ixp-UN-kQw" id="cjZ-XX-kIv"/>
-                <outlet property="imgViewBackNotif" destination="Otx-BT-35I" id="RFf-QK-xvq"/>
                 <outlet property="lblActive" destination="eow-Rv-2K6" id="aDD-9Z-bli"/>
                 <outlet property="lblMotto" destination="xwW-3F-L4K" id="4PB-o5-B0O"/>
                 <outlet property="lblName" destination="Hls-JQ-I3F" id="jKP-cC-Rbb"/>
@@ -109,7 +108,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" id="NQ7-p7-47a">
-                    <rect key="frame" x="0.0" y="364" width="320" height="52"/>
+                    <rect key="frame" x="0.0" y="366" width="320" height="133"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Otx-BT-35I">
@@ -128,7 +127,7 @@
                             </connections>
                         </button>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="22" sectionFooterHeight="22" id="DcJ-TT-rxA">
-                            <rect key="frame" x="15" y="52" width="290" height="0.0"/>
+                            <rect key="frame" x="15" y="52" width="290" height="81"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -138,7 +137,7 @@
                             </connections>
                         </tableView>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>

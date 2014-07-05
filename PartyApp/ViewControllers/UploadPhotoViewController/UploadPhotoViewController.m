@@ -11,6 +11,12 @@
 #import "DataManager.h"
 #import "AppDelegate.h"
 
+#define KUserName @"UserName"
+#define KEmail    @"Email"
+#define KPassword @"Password"
+#define KMoto     @"Moto"
+
+
 @interface UploadPhotoViewController ()
 
 @end
@@ -46,8 +52,8 @@
     
     UIImage *imageCamera = [[CommonFunctions sharedObject] imageWithName:@"cameraImage"
                                                                  andType:_pPNGType];
-//    UIColor *colorBack = [UIColor colorWithPatternImage:imageCamera];
-//    [imageViewProfile setBackgroundColor:colorBack];
+
+    resultType=KSignUpResultNone;
     [imageViewProfile setImage:imageCamera];
     
     UITapGestureRecognizer *tapToChooseImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseImageTapped:)];
@@ -125,20 +131,28 @@
 
 - (IBAction)nextButtonAction:(id)sender {
     
-    NSString *xibName = NSStringFromClass([ProfileViewController class]);
-    BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
-    if (!isiPhone5)
-        xibName = [NSString stringWithFormat:@"%@4", xibName];
-    
-    [[NSUserDefaults standardUserDefaults]setBool:true forKey:_pudLoggedIn];
-    
-    ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:xibName bundle:nil];
-
-    [self.navigationController pushViewController:objProfileView animated:YES];
-}
-
-- (IBAction)openImageGallery:(id)sender {
-    
+    loadingView = [[CommonFunctions sharedObject] showLoadingViewInViewController:self];
+    switch (resultType) {
+        case KSignUpResultNone:
+            [self createUser];
+            break;
+            case KCreateUserFailed:
+            [self createUser];
+            break;
+            case KCreateSessionFailed:
+            [self createUserSession];
+            break;
+            case KImageUploadFailed:
+            [self uploadProfileImage];
+            break;
+            case KSignUpCompletionDone:
+            [self showProfileView];
+            break;
+            
+        default:
+            break;
+    }
+ 
 }
 
 
@@ -153,12 +167,8 @@
     // Show image on gallery
     [imageViewProfile setImage:[UIImage imageWithData:imageData]];
     imageViewProfile.contentMode = UIViewContentModeScaleAspectFit;
-  
     [self.imagePicker dismissViewControllerAnimated:NO completion:nil];
-    [buttonNext setEnabled:false];
-    [progressViewImageUpload setHidden:false];
-    [self.view setUserInteractionEnabled:NO];
-    [QBContent TUploadFile:imageData fileName:@"ProfileImage" contentType:@"image/png" isPublic:YES delegate:self];
+   
 }
 
 
@@ -170,104 +180,80 @@
 
 }
 
-//#pragma -markc check QBsession
-//
-//- (void)checkQBSession:(myCompletion) compblock{
-//    
-//    QBASessionCreationRequest *extendedAuthRequest = [[QBASessionCreationRequest alloc] init];
-//    extendedAuthRequest.userLogin = @"gaganinder.singh";
-//    extendedAuthRequest.userPassword = @"Devhub1234!";
-//    
-//    [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
-//    compblock(YES);
-//}
-
 #pragma mark -
 #pragma mark QBActionStatusDelegate
 
-// QuickBlox API queries delegate
 -(void)completedWithResult:(Result *)result{
-    [buttonNext setEnabled:true];
-    // Download file result
-    if ([result isKindOfClass:QBCFileDownloadTaskResult.class]) {
-        
-        // Success result
-        if (result.success) {
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Errors"
+                                                    message:@""
+                                                   delegate:nil
+                                          cancelButtonTitle:@"Ok"
+                                          otherButtonTitles:nil, nil];
+    
+   
+    
+    if([result isKindOfClass:[QBUUserResult class]]){
+      
+        if(result.success){
+            resultType=KCreateUserSuccess;
+            [self createUserSession];
             
-            QBCFileDownloadTaskResult *res = (QBCFileDownloadTaskResult *)result;
-            if ([res file]) {
-                
-                NSData *imageData=UIImagePNGRepresentation(imageViewProfile.image);
-                // Add image to gallery
-                [[DataManager instance] savePicture:[UIImage imageWithData:imageData]];
-                UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[res file]]];
-                imageView.contentMode = UIViewContentModeScaleAspectFit;
-                
-                //
-               // [[[DataManager instance] fileList] removeLastObject];
-                
-               
-            }
+        }else{
+            
+            [[CommonFunctions sharedObject] hideLoadingView:loadingView];
+            [buttonNext setEnabled:TRUE];
+            [self.view setUserInteractionEnabled:YES];
+            resultType=KCreateSessionFailed;
+            alert.message=[result.errors description];
+            [alert show];
+            
         }
+    }
+    else if([result isKindOfClass:QBAAuthSessionCreationResult.class]){
+        
+        if(result.success)
+        {
+        resultType=KCreateSessionSuccess;
+        //[buttonNext setEnabled:false];
+        [progressViewImageUpload setHidden:false];
+        [self.view setUserInteractionEnabled:NO];
+        [self uploadProfileImage];
+        
+        }
+        else
+        {
+            [[CommonFunctions sharedObject] hideLoadingView:loadingView];
+            resultType=KCreateSessionFailed;
+            alert.message=[result.errors description];
+            [buttonNext setEnabled:TRUE];
+             [progressViewImageUpload setHidden:TRUE];
+            [self.view setUserInteractionEnabled:YES];
+            [alert show];
+        }
+
     }
     else
     {
-        if(result.success){
-            
-            // QuickBlox session creation  result
-            if ([result isKindOfClass:[QBAAuthSessionCreationResult class]]) {
-                
-                // Success result
-                if(result.success){
-                    
-                    // send request for getting user's filelist
-                    PagedRequest *pagedRequest = [[PagedRequest alloc] init];
-                    [pagedRequest setPerPage:20];
-                    
-                    [QBContent blobsWithPagedRequest:pagedRequest delegate:self];
-                    
-                  
-                }
-                
-                // Get User's files result
-            } else if ([result isKindOfClass:[QBCBlobPagedResult class]]){
-                
-                // Success result
-                if(result.success){
-                    QBCBlobPagedResult *res = (QBCBlobPagedResult *)result;
-                    
-                    // Save user's filelist
-                    [DataManager instance].fileList = [res.blobs mutableCopy];
-                    
-                    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-                    [userDefs setBool:TRUE forKey:_pudLoggedIn];
-                    
-                    NSString *xibName = NSStringFromClass([ProfileViewController class]);
-                    BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
-                    if (!isiPhone5)
-                        xibName = [NSString stringWithFormat:@"%@4", xibName];
-                    
-                    ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:xibName bundle:nil];
-                    
-                    [self.navigationController pushViewController:objProfileView animated:YES];
-                    
-                    
-                    // hid splash screen
-//                    [self performSelector:@selector(hideSplashScreen) withObject:self afterDelay:1];
-                }
-            }
-            else
-            {
-                [self.view setUserInteractionEnabled:YES];
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PartyApp"
-                                                                message:_pImgUploadingSuccess
-                                                               delegate:self
-                                                      cancelButtonTitle:@"Ok"
-                                                      otherButtonTitles: nil];
-            
-                [alert show];
-            }
+        if(result.success)
+        {
+            [[CommonFunctions sharedObject] hideLoadingView:loadingView];
+            resultType=KSignUpCompletionDone;
+            [buttonNext setEnabled:TRUE];
+            [self.view setUserInteractionEnabled:YES];
+            alert.message=_pImgUploadingSuccess;
+            [alert show];
         }
+        else
+        {
+            [[CommonFunctions sharedObject] hideLoadingView:loadingView];
+            [buttonNext setEnabled:TRUE];
+            [self.view setUserInteractionEnabled:YES];
+            resultType=KImageUploadFailed;
+            [alert show];
+        }
+        
+      
     }
 }
 
@@ -276,21 +262,66 @@
     [progressViewImageUpload setProgress:progress];
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+
+#pragma mark - SignUp Methods
+
+#pragma create user account with user details
+
+-(void)createUser
 {
-//    if(buttonIndex==0)
-//    {
-////        NSString *xibName = NSStringFromClass([ProfileViewController class]);
-////        BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
-////        if (!isiPhone5)
-////            xibName = [NSString stringWithFormat:@"%@4", xibName];
-////        
-////        [[NSUserDefaults standardUserDefaults]setBool:true forKey:_pudLoggedIn];
-////        
-////        ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:xibName bundle:nil];
-////      
-////        [self.navigationController pushViewController:objProfileView animated:YES];
-//        
-//    }
+    QBUUser *objCreateUser=[[QBUUser alloc]init];
+    [objCreateUser setLogin:[_dicUserDetail objectForKey:KUserName]];
+    [objCreateUser setEmail:[_dicUserDetail objectForKey:KEmail]];
+    [objCreateUser setPassword:[_dicUserDetail objectForKey:KPassword]];
+    [objCreateUser setFullName:[_dicUserDetail objectForKey:KUserName]];
+    [QBUsers signUp:objCreateUser delegate:self];
+    [buttonNext setEnabled:false];
+ 
+}
+
+#pragma create user session
+
+-(void)createUserSession
+{
+    QBASessionCreationRequest *extendedAuthRequest = [QBASessionCreationRequest request];
+    extendedAuthRequest.userLogin = [_dicUserDetail objectForKey:KUserName]; // ID: 218651
+    extendedAuthRequest.userPassword =[_dicUserDetail objectForKey:KPassword];
+    [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
+}
+
+#pragma Image Uploading 
+
+-(void)uploadProfileImage
+{
+    NSData *data=UIImagePNGRepresentation(imageViewProfile.image);
+    [QBContent TUploadFile:data fileName:@"ProfileImage" contentType:@"image/png" isPublic:YES delegate:self];
+}
+
+#pragma show Profile View
+
+-(void)showProfileView
+{
+    
+    NSString *xibName = NSStringFromClass([ProfileViewController class]);
+    BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
+    if (!isiPhone5)
+        xibName = [NSString stringWithFormat:@"%@4", xibName];
+    
+    [[NSUserDefaults standardUserDefaults]setBool:true forKey:_pudLoggedIn];
+    
+    ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:xibName bundle:nil];
+    
+    NSDictionary * userInfo=[NSDictionary dictionaryWithObjectsAndKeys:[_dicUserDetail objectForKey:KUserName],@"first_name",[_dicUserDetail objectForKey:KMoto],@"moto", nil];
+    [[NSUserDefaults standardUserDefaults]setObject:userInfo forKey:_pUserInfoDic];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+
+    [self.navigationController pushViewController:objProfileView animated:YES];
+}
+
+#pragma mark - Delloc Method
+
+-(void)dealloc
+{
+    
 }
 @end

@@ -33,7 +33,7 @@ NSString *const _pUserProfilePic        = @"UserProfilePic";
 NSString *const _pErrUserNameAndPasswordRequired= @"Please enter password with atleast 6 characters";
 NSString *const _pErrInvalidUserNameAndPassword=@"Please enter correct username and password";
 
-NSString *const _pImgUploadingSuccess=@"Image has been Successfully Uploaded";
+NSString *const _pSignUpSuccess=@"User has successfully signup";
 
 NSString *const _pResetPasswordMgs=@"Reset password link has sent to your email";
 

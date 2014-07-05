@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface RegisterViewController : BaseViewController<QBActionStatusDelegate,UITextFieldDelegate> {
     
     __weak IBOutlet PATextField *txtFieldUsername;
@@ -24,4 +23,5 @@
     UIView *loadingView;
 }
 
+-(void)clearTextBoxes;
 @end

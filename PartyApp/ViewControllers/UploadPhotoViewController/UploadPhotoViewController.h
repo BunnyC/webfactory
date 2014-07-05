@@ -7,6 +7,8 @@
 //
 
 #import "BaseViewController.h"
+
+
 typedef enum {
     KCreateUserSuccess,
     KCreateUserFailed,
@@ -15,10 +17,15 @@ typedef enum {
     KImageUploadSuccess,
     KImageUploadFailed,
     KSignUpResultNone,
-    KImageUploadLater,
     KSignUpCompletionDone
     
 }signUpResultType ;
+
+
+typedef enum{
+    KImageUploadLater,
+    KImageUploadNow
+}ImageUploadStatus;
 
 @interface UploadPhotoViewController : BaseViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, QBActionStatusDelegate,UIAlertViewDelegate> {
     
@@ -31,10 +38,16 @@ typedef enum {
       UIView *loadingView;
     BOOL isSignUpSuccess;
     signUpResultType resultType;
+    ImageUploadStatus imageUploadStatus;
 
 }
+
 @property (nonatomic,retain) UIImagePickerController* imagePicker;
 @property (nonatomic,retain)NSDictionary *dicUserDetail;
-- (IBAction)openImageGallery:(id)sender;
+
 
 @end
+
+
+
+

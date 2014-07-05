@@ -10,12 +10,12 @@
 #import "ProfileViewController.h"
 #import "DataManager.h"
 #import "AppDelegate.h"
+#import "RegisterViewController.h"
 
 #define KUserName @"UserName"
 #define KEmail    @"Email"
 #define KPassword @"Password"
 #define KMoto     @"Moto"
-
 
 @interface UploadPhotoViewController ()
 
@@ -101,12 +101,11 @@
 
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
     BOOL shouldInteract = true;
-    if ([URL.absoluteString isEqualToString:@"tandc"]) {
-        NSLog(@"T & C");
-        shouldInteract = false;
-    }
-    else if ([URL.absoluteString isEqualToString:@"privacy"]) {
-        NSLog(@"privacy");
+    
+    NSLog(@"%@",URL.absoluteString);
+    if ([URL.absoluteString isEqualToString:@"later"]) {
+        imageUploadStatus=KImageUploadLater;
+        [self createUser];
         shouldInteract = false;
     }
     return shouldInteract;
@@ -131,7 +130,7 @@
 
 - (IBAction)nextButtonAction:(id)sender {
     
-    loadingView = [[CommonFunctions sharedObject] showLoadingViewInViewController:self];
+   
     switch (resultType) {
         case KSignUpResultNone:
             [self createUser];
@@ -140,9 +139,11 @@
             [self createUser];
             break;
             case KCreateSessionFailed:
+             loadingView = [[CommonFunctions sharedObject] showLoadingViewInViewController:self];
             [self createUserSession];
             break;
             case KImageUploadFailed:
+             loadingView = [[CommonFunctions sharedObject] showLoadingViewInViewController:self];
             [self uploadProfileImage];
             break;
             case KSignUpCompletionDone:
@@ -163,8 +164,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     UIImage* selectedImage = [info valueForKey:UIImagePickerControllerOriginalImage];
     NSData* imageData = UIImagePNGRepresentation(selectedImage);
-    
-    // Show image on gallery
+    imageUploadStatus=KImageUploadNow;
     [imageViewProfile setImage:[UIImage imageWithData:imageData]];
     imageViewProfile.contentMode = UIViewContentModeScaleAspectFit;
     [self.imagePicker dismissViewControllerAnimated:NO completion:nil];
@@ -185,18 +185,24 @@
 
 -(void)completedWithResult:(Result *)result{
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Errors"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
                                                     message:@""
                                                    delegate:nil
                                           cancelButtonTitle:@"Ok"
                                           otherButtonTitles:nil, nil];
     
-   
-    
     if([result isKindOfClass:[QBUUserResult class]]){
       
         if(result.success){
             resultType=KCreateUserSuccess;
+            for (id view in self.navigationController.viewControllers) {
+                if([(RegisterViewController *)view isKindOfClass:[RegisterViewController class]])
+                {
+                    [(RegisterViewController *)view clearTextBoxes];
+                    break;
+                }
+            }
+            
             [self createUserSession];
             
         }else{
@@ -205,6 +211,7 @@
             [buttonNext setEnabled:TRUE];
             [self.view setUserInteractionEnabled:YES];
             resultType=KCreateSessionFailed;
+            alert.title=@"Errors";
             alert.message=[result.errors description];
             [alert show];
             
@@ -228,6 +235,7 @@
             alert.message=[result.errors description];
             [buttonNext setEnabled:TRUE];
              [progressViewImageUpload setHidden:TRUE];
+            alert.title=@"Errors";
             [self.view setUserInteractionEnabled:YES];
             [alert show];
         }
@@ -238,16 +246,18 @@
         if(result.success)
         {
             [[CommonFunctions sharedObject] hideLoadingView:loadingView];
+            alert.title=@"";
             resultType=KSignUpCompletionDone;
             [buttonNext setEnabled:TRUE];
             [self.view setUserInteractionEnabled:YES];
-            alert.message=_pImgUploadingSuccess;
+            alert.message=_pSignUpSuccess;
             [alert show];
         }
         else
         {
             [[CommonFunctions sharedObject] hideLoadingView:loadingView];
             [buttonNext setEnabled:TRUE];
+            alert.title=@"Errors";
             [self.view setUserInteractionEnabled:YES];
             resultType=KImageUploadFailed;
             [alert show];
@@ -269,6 +279,7 @@
 
 -(void)createUser
 {
+     loadingView = [[CommonFunctions sharedObject] showLoadingViewInViewController:self];
     QBUUser *objCreateUser=[[QBUUser alloc]init];
     [objCreateUser setLogin:[_dicUserDetail objectForKey:KUserName]];
     [objCreateUser setEmail:[_dicUserDetail objectForKey:KEmail]];
@@ -293,8 +304,25 @@
 
 -(void)uploadProfileImage
 {
+    if(imageUploadStatus==KImageUploadNow)
+    {
     NSData *data=UIImagePNGRepresentation(imageViewProfile.image);
     [QBContent TUploadFile:data fileName:@"ProfileImage" contentType:@"image/png" isPublic:YES delegate:self];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                        message:@""
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil, nil];
+        [[CommonFunctions sharedObject] hideLoadingView:loadingView];
+        resultType=KSignUpCompletionDone;
+        [buttonNext setEnabled:TRUE];
+        [self.view setUserInteractionEnabled:YES];
+        alert.message=_pSignUpSuccess;
+        [alert show];
+    }
 }
 
 #pragma show Profile View

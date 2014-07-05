@@ -23,6 +23,6 @@ FOUNDATION_EXPORT NSString *const _pUserProfilePic;
 
 FOUNDATION_EXPORT NSString *const _pErrUserNameAndPasswordRequired;
 FOUNDATION_EXPORT NSString *const _pErrInvalidUserNameAndPassword;
-FOUNDATION_EXPORT NSString *const _pImgUploadingSuccess;
+FOUNDATION_EXPORT NSString *const _pSignUpSuccess;
 FOUNDATION_EXPORT NSString *const _pResetPasswordMgs;
 @end

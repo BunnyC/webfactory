@@ -238,17 +238,7 @@
 - (IBAction)nextButtonAction:(id)sender {
 
     if ([self validateFields]) {
-        
-       // 
-        
-//        QBUUser *objCreateUser=[[QBUUser alloc]init];
-//        
-//        [objCreateUser setLogin:txtFieldUsername.text];
-//        [objCreateUser setEmail:txtFieldEmail.text];
-//        [objCreateUser setPassword:txtFieldPassword.text];
-//        [objCreateUser setFullName:txtFieldMotto.text]; // FullName Used for Moto
-    
-        
+  
         NSDictionary *dicUserDeatail=[[NSDictionary alloc]initWithObjectsAndKeys:txtFieldUsername.text,KUserName,txtFieldEmail.text,KEmail,txtFieldPassword.text,KPassword,txtFieldMotto.text,KMoto ,nil];
         
         NSString *xibName = NSStringFromClass([UploadPhotoViewController class]);
@@ -260,17 +250,10 @@
         objUploadPhotoViewController.dicUserDetail=dicUserDeatail;
          [self.navigationController pushViewController:objUploadPhotoViewController animated:YES];
         
-        //[QBUsers signUp:objCreateUser delegate:self];
-    }
+        }
 }
 
-#pragma mark - QuickBox Server Response
 
--(void)completedWithResult:(Result *)result
-{
-  
-    
-}
 
 #pragma mark - Tap Gesture on ScrollView
 
@@ -288,4 +271,14 @@
     }
 }
 
+#pragma mark - UploadImage Delegate Method
+
+-(void)clearTextBoxes
+{
+    txtFieldEmail.text=@"";
+    txtFieldUsername.text=@"";
+    txtFieldRepeatEmail.text=@"";
+    txtFieldPassword.text=@"";
+    txtFieldRepeatPassword.text=@"";
+}
 @end

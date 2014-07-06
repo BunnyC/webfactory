@@ -45,38 +45,6 @@
             timestampString = "426286232.619049"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PartyApp/ViewControllers/ProfileViewController/ProfileViewController.m"
-            timestampString = "426286232.619049"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "-downloadFile"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PartyApp/ViewControllers/ProfileViewController/ProfileViewController.m"
-            timestampString = "426286232.619049"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "202"
             endingLineNumber = "202"
             landmarkName = "-handlePanGesture:"
@@ -121,7 +89,7 @@
                   symbolName = "-[SigUpModel serverResponseForSignUp:]"
                   moduleName = "PartyApp"
                   urlString = "file:///Users/Admin/Projects/PartyApp/iOSCode/webfactory/PartyApp/DataStructureModel/SiginUpDataStructure/SigUpModel.m"
-                  timestampString = "426286470.25908"
+                  timestampString = "426333161.648253"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
@@ -135,7 +103,7 @@
                   symbolName = "-[SigUpModel serverResponseForSignUp:]"
                   moduleName = "PartyApp"
                   urlString = "file:///Users/Admin/Projects/PartyApp/iOSCode/webfactory/PartyApp/DataStructureModel/SiginUpDataStructure/SigUpModel.m"
-                  timestampString = "426286470.259387"
+                  timestampString = "426333161.648417"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
@@ -158,6 +126,22 @@
             startingLineNumber = "322"
             endingLineNumber = "322"
             landmarkName = "-createUserSession"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PartyApp/ViewControllers/LogNightViewController/LogNightViewController.m"
+            timestampString = "426333161.284354"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "-tappedOnImage:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

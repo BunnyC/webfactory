@@ -58,7 +58,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [self sendPageRequest];
+//    [self sendPageRequest];
     // [self downloadFile];
 }
 

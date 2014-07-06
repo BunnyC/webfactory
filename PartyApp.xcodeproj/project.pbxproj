@@ -112,6 +112,14 @@
 		84DF77801969240000A11C2F /* viewBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77601969240000A11C2F /* viewBack@2x.png */; };
 		84DF77811969240000A11C2F /* whiteButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77611969240000A11C2F /* whiteButton@2x.png */; };
 		84DF77821969240000A11C2F /* yellowButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77621969240000A11C2F /* yellowButton@2x.png */; };
+		84DF77861969323100A11C2F /* LogNightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DF77851969323100A11C2F /* LogNightCell.m */; };
+		84DF77881969326200A11C2F /* LogNightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77871969326200A11C2F /* LogNightCell.xib */; };
+		84DF778A19693A0300A11C2F /* sharingOptions.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF778919693A0300A11C2F /* sharingOptions.png */; };
+		84DF778C19693A2600A11C2F /* sharingOptions@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF778B19693A2600A11C2F /* sharingOptions@2x.png */; };
+		84DF778E1969425300A11C2F /* tableSeparator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF778D1969425300A11C2F /* tableSeparator@2x.png */; };
+		84DF77901969428500A11C2F /* tableSeparator.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF778F1969428500A11C2F /* tableSeparator.png */; };
+		84DF7792196947A300A11C2F /* textViewBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7791196947A300A11C2F /* textViewBack.png */; };
+		84DF7794196947B900A11C2F /* textViewBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7793196947B900A11C2F /* textViewBack@2x.png */; };
 		CE35F07F1956A670009DA53D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F07E1956A66F009DA53D /* Security.framework */; };
 		CE35F0811956A68B009DA53D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0801956A68B009DA53D /* QuartzCore.framework */; };
 		CE35F0831956A693009DA53D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0821956A693009DA53D /* AudioToolbox.framework */; };
@@ -272,6 +280,15 @@
 		84DF77601969240000A11C2F /* viewBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "viewBack@2x.png"; sourceTree = "<group>"; };
 		84DF77611969240000A11C2F /* whiteButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteButton@2x.png"; sourceTree = "<group>"; };
 		84DF77621969240000A11C2F /* yellowButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yellowButton@2x.png"; sourceTree = "<group>"; };
+		84DF77841969323100A11C2F /* LogNightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogNightCell.h; path = LogNightCell/LogNightCell.h; sourceTree = "<group>"; };
+		84DF77851969323100A11C2F /* LogNightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogNightCell.m; path = LogNightCell/LogNightCell.m; sourceTree = "<group>"; };
+		84DF77871969326200A11C2F /* LogNightCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LogNightCell.xib; path = LogNightCell/LogNightCell.xib; sourceTree = "<group>"; };
+		84DF778919693A0300A11C2F /* sharingOptions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sharingOptions.png; sourceTree = "<group>"; };
+		84DF778B19693A2600A11C2F /* sharingOptions@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharingOptions@2x.png"; sourceTree = "<group>"; };
+		84DF778D1969425300A11C2F /* tableSeparator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableSeparator@2x.png"; sourceTree = "<group>"; };
+		84DF778F1969428500A11C2F /* tableSeparator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableSeparator.png; sourceTree = "<group>"; };
+		84DF7791196947A300A11C2F /* textViewBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textViewBack.png; sourceTree = "<group>"; };
+		84DF7793196947B900A11C2F /* textViewBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textViewBack@2x.png"; sourceTree = "<group>"; };
 		CE35F07E1956A66F009DA53D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CE35F0801956A68B009DA53D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CE35F0821956A693009DA53D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -541,6 +558,9 @@
 		8464A836195A066800583DE0 /* Retina */ = {
 			isa = PBXGroup;
 			children = (
+				84DF7793196947B900A11C2F /* textViewBack@2x.png */,
+				84DF778D1969425300A11C2F /* tableSeparator@2x.png */,
+				84DF778B19693A2600A11C2F /* sharingOptions@2x.png */,
 				84DF77431969240000A11C2F /* appBackground@2x.png */,
 				84DF77441969240000A11C2F /* appBackground4@2x.png */,
 				84DF77451969240000A11C2F /* backButton@2x.png */,
@@ -580,6 +600,9 @@
 		8464A847195A066800583DE0 /* Simple */ = {
 			isa = PBXGroup;
 			children = (
+				84DF7791196947A300A11C2F /* textViewBack.png */,
+				84DF778F1969428500A11C2F /* tableSeparator.png */,
+				84DF778919693A0300A11C2F /* sharingOptions.png */,
 				84DF7703196923EE00A11C2F /* appBackground.png */,
 				84DF7704196923EE00A11C2F /* appBackground4.png */,
 				84DF7705196923EE00A11C2F /* backButton.png */,
@@ -654,6 +677,7 @@
 		8464A863195A066800583DE0 /* LogNightViewController */ = {
 			isa = PBXGroup;
 			children = (
+				84DF7783196931FB00A11C2F /* LogNightCell */,
 				8464A864195A066800583DE0 /* LogNightViewController.h */,
 				8464A865195A066800583DE0 /* LogNightViewController.m */,
 				8464A866195A066800583DE0 /* LogNightViewController.xib */,
@@ -733,6 +757,16 @@
 				84A1432F195F5AD200DC3970 /* PATextField.m */,
 			);
 			name = PATextField;
+			sourceTree = "<group>";
+		};
+		84DF7783196931FB00A11C2F /* LogNightCell */ = {
+			isa = PBXGroup;
+			children = (
+				84DF77841969323100A11C2F /* LogNightCell.h */,
+				84DF77851969323100A11C2F /* LogNightCell.m */,
+				84DF77871969326200A11C2F /* LogNightCell.xib */,
+			);
+			name = LogNightCell;
 			sourceTree = "<group>";
 		};
 		CE9D3768195E76F7001F05D9 /* ForgotPassword */ = {
@@ -840,12 +874,15 @@
 				84DF776F1969240000A11C2F /* magentaButton@2x.png in Resources */,
 				84DF772D196923EE00A11C2F /* imageLogo.png in Resources */,
 				84DF77811969240000A11C2F /* whiteButton@2x.png in Resources */,
+				84DF7794196947B900A11C2F /* textViewBack@2x.png in Resources */,
+				84DF77881969326200A11C2F /* LogNightCell.xib in Resources */,
 				84DF7737196923EE00A11C2F /* roundImageEffect.png in Resources */,
 				84DF773B196923EE00A11C2F /* tick.png in Resources */,
 				84DF77641969240000A11C2F /* appBackground4@2x.png in Resources */,
 				CE9D3771195F02C1001F05D9 /* UploadPhotoViewController4.xib in Resources */,
 				84DF7741196923EE00A11C2F /* whiteButton.png in Resources */,
 				84DF7723196923EE00A11C2F /* appBackground.png in Resources */,
+				84DF77901969428500A11C2F /* tableSeparator.png in Resources */,
 				84DF772C196923EE00A11C2F /* facebookIcon.png in Resources */,
 				8464A8AD195A066800583DE0 /* UploadPhotoViewController.xib in Resources */,
 				84DF7727196923EE00A11C2F /* blueButton.png in Resources */,
@@ -864,9 +901,11 @@
 				84DF777B1969240000A11C2F /* tick@2x.png in Resources */,
 				84DF772E196923EE00A11C2F /* location.png in Resources */,
 				8464A89E195A066800583DE0 /* Images.xcassets in Resources */,
+				84DF778C19693A2600A11C2F /* sharingOptions@2x.png in Resources */,
 				84DF77801969240000A11C2F /* viewBack@2x.png in Resources */,
 				84DF7729196923EE00A11C2F /* buttonMenu.png in Resources */,
 				84DF77761969240000A11C2F /* purpleButton@2x.png in Resources */,
+				84DF7792196947A300A11C2F /* textViewBack.png in Resources */,
 				84DF77741969240000A11C2F /* pinkButton@2x.png in Resources */,
 				84DF77691969240000A11C2F /* buttonMenu@2x.png in Resources */,
 				8464A87C195A066800583DE0 /* InfoPlist.strings in Resources */,
@@ -883,6 +922,7 @@
 				84DF77711969240000A11C2F /* nextButton@2x.png in Resources */,
 				84DF77701969240000A11C2F /* mottoBack@2x.png in Resources */,
 				8464A8A7195A066800583DE0 /* ProfileViewController.xib in Resources */,
+				84DF778A19693A0300A11C2F /* sharingOptions.png in Resources */,
 				84DF77781969240000A11C2F /* selCommentIcon@2x.png in Resources */,
 				84DF77751969240000A11C2F /* placeholder@2x.png in Resources */,
 				84DF7742196923EE00A11C2F /* yellowButton.png in Resources */,
@@ -895,6 +935,7 @@
 				8464A8A9195A066800583DE0 /* RegisterViewController.xib in Resources */,
 				84DF77651969240000A11C2F /* backButton@2x.png in Resources */,
 				8491FCD4195EB75B00FDC63F /* LoginViewController4.xib in Resources */,
+				84DF778E1969425300A11C2F /* tableSeparator@2x.png in Resources */,
 				84DF7730196923EE00A11C2F /* mottoBack.png in Resources */,
 				84DF77721969240000A11C2F /* notifTop@2x.png in Resources */,
 				84DF77791969240000A11C2F /* selFacebookIcon.png in Resources */,
@@ -920,6 +961,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8464A877195A066800583DE0 /* AppDelegate.m in Sources */,
+				84DF77861969323100A11C2F /* LogNightCell.m in Sources */,
 				8464A8AA195A066800583DE0 /* SplashScreenViewController.m in Sources */,
 				8464A8A1195A066800583DE0 /* BaseViewController.m in Sources */,
 				8464A87B195A066800583DE0 /* SigUpModel.m in Sources */,

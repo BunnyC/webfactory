@@ -324,7 +324,7 @@
         
         NSString *moto=[res.user.fullName isKindOfClass:[NSNull class]]?@"share you moto":res.user.fullName;
         
-        userInfo=[NSDictionary dictionaryWithObjectsAndKeys:res.user.login,@"first_name",moto,@"moto", nil];
+        userInfo=[NSDictionary dictionaryWithObjectsAndKeys:res.user.fullName,@"first_name",moto,@"moto", nil];
         
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
         [[NSUserDefaults standardUserDefaults] synchronize];

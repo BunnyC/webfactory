@@ -319,25 +319,22 @@
 -(void)serverResponse:(Result *)userLoginResult;
 {
     if (userLoginResult.success) {
-        //        [QBAuth createSessionWithDelegate:self];
         
         QBUUserLogInResult *res = (QBUUserLogInResult *)userLoginResult;
         
-        NSMutableArray *arrTags=[res.user.tags copy];
+        NSString *moto=[res.user.fullName isKindOfClass:[NSNull class]]?@"share you moto":res.user.fullName;
         
-        NSString *moto=[[arrTags objectAtIndex:0]isKindOfClass:[NSNull class]]?@"share you moto":[arrTags objectAtIndex:0];
-        
-        userInfo=[NSDictionary dictionaryWithObjectsAndKeys:res.user.fullName,@"first_name",moto,@"moto", nil];
+        userInfo=[NSDictionary dictionaryWithObjectsAndKeys:res.user.login,@"first_name",moto,@"moto", nil];
         
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
-        PagedRequest *pagedRequest = [[PagedRequest alloc] init];
-        [pagedRequest setPerPage:20];
-        
-        [QBContent blobsWithPagedRequest:pagedRequest delegate:self];
-        
-        
         [[NSUserDefaults standardUserDefaults] synchronize];
-        
+
+        [self dismissViewControllerAnimated:true completion:^{
+            if([_delegate respondsToSelector:@selector(updateUserInfo:)])
+            {
+                [_delegate performSelector:@selector(updateUserInfo:) withObject:userInfo];
+            }
+        }];
     }
     //    NSLog(@"User Detail %@", userDetail);
 }
@@ -345,6 +342,7 @@
 #pragma mark -
 #pragma mark QBActionStatusDelegate
 
+/*
 // QuickBlox API queries delegate
 -(void)completedWithResult:(Result *)result{
     // Success result
@@ -370,7 +368,7 @@
         }
     }
 }
-
+*/
 
 #pragma mark - Tap Gesture on ScrollView
 

@@ -58,11 +58,18 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    
+    [self sendPageRequest];
     // [self downloadFile];
 }
 
 
+-(void)sendPageRequest
+{
+    PagedRequest *pagedRequest = [[PagedRequest alloc] init];
+    [pagedRequest setPerPage:20];
+    [QBContent blobsWithPagedRequest:pagedRequest delegate:self];
+    
+}
 -(void)downloadFile{
     
     int fileID = [(QBCBlob *)[[[DataManager instance] fileList] lastObject] ID];
@@ -106,7 +113,9 @@
     
     [tableViewNotifications.layer setCornerRadius:2];
     [imageViewProfile.layer setCornerRadius:imageViewProfile.frame.size.width / 2];
-    
+    UIImage *profileImage = [[CommonFunctions sharedObject] imageWithName:@"placeholder"
+                                                                  andType:_pPNGType];
+    [imageViewProfile setImage:profileImage];
     UIPanGestureRecognizer *panGesture=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePanGesture:)];
     //[viewNotifications addGestureRecognizer:panGesture];
     
@@ -247,7 +256,9 @@
         // cause the implicit cached-token login to occur on next launch of the application
         [appDelegate.session closeAndClearTokenInformation];
     }
-    
+    UIImage *profileImage = [[CommonFunctions sharedObject] imageWithName:@"placeholder"
+                                                                  andType:_pPNGType];
+    [imageViewProfile setImage:profileImage];
     NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
     [userDefs setBool:false forKey:_pudLoggedIn];
     [userDefs synchronize];
@@ -259,7 +270,6 @@
     
 }
 
-// QuickBlox API queries delegate
 -(void)completedWithResult:(Result *)result{
     // Download file result
     if ([result isKindOfClass:QBCFileDownloadTaskResult.class]) {
@@ -276,13 +286,22 @@
             }
         }
     }
-    if([result isKindOfClass:[QBAAuthSessionCreationResult class]]){
+    else if ([result isKindOfClass:[QBCBlobPagedResult class]]){
+        
         // Success result
         if(result.success){
-            int fileID = [[NSUserDefaults standardUserDefaults]integerForKey:_pUserProfilePic];
-            [QBContent TDownloadFileWithBlobID:fileID delegate:self];
+            QBCBlobPagedResult *res = (QBCBlobPagedResult *)result;
+            
+            // Save user's filelist
+            [DataManager instance].fileList = [res.blobs mutableCopy];
+            
+            NSLog(@"%@", [DataManager instance].fileList);
+            [self downloadFile];
+            // hid splash screen
+            
         }
     }
+    
 }
 
 -(void)setProgress:(float)progress{

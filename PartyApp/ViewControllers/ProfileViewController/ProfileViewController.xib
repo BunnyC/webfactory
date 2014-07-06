@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="btnLogNight" destination="kZp-n0-FCR" id="UoZ-86-W4T"/>
                 <outlet property="btnNotifications" destination="JSs-gf-kWf" id="Ljz-cy-pgU"/>
+                <outlet property="imageViewProfile" destination="Lh9-H2-5yc" id="4l6-y0-0cJ"/>
                 <outlet property="imgViewActive" destination="J9R-Bg-hwc" id="qA7-6O-Rva"/>
                 <outlet property="imgViewBackNotif" destination="9nX-WA-NmX" id="2xa-AU-q84"/>
                 <outlet property="lblActive" destination="e2v-fr-L9o" id="1uD-vg-HkW"/>

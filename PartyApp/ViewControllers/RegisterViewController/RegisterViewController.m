@@ -14,7 +14,7 @@
 @end
 
 @implementation RegisterViewController
-
+@synthesize isEditDetail;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -29,6 +29,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setTitle:@"Create Account"];
+    
     [self initDefaults];
 }
 
@@ -110,6 +111,32 @@
     UIImage *backImage = [[CommonFunctions sharedObject] imageWithName:@"viewBack" andType:_pPNGType];
     UIColor *backColor = [UIColor colorWithPatternImage:backImage];
     [viewBottom setBackgroundColor:backColor];
+    
+    if(isEditDetail)
+    {
+        [self fillUserDetailForEdit];
+    }
+    
+}
+
+
+#pragma mark - Update User Detail For Edit
+
+-(void)fillUserDetailForEdit
+{
+    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+    NSDictionary *dicUserInfo=[userDefs objectForKey:_pUserInfoDic];
+    NSDictionary *userInfo = [userDefs objectForKey:_pudUserInfo];
+    
+    txtFieldUsername.text=[dicUserInfo objectForKey:@"first_name"];
+    txtFieldEmail.text=[dicUserInfo objectForKey:@"email"];
+    txtFieldRepeatEmail.text=[dicUserInfo objectForKey:@"email"];
+    
+    NSLog(@"%@",[userDefs objectForKey:@"Password"]);
+    txtFieldPassword.text=[userDefs objectForKey:@"Password"];
+    txtFieldRepeatPassword.text=[userDefs objectForKey:@"Password"];
+    txtFieldMotto.text=[dicUserInfo objectForKey:@"custom_data"];
+    
 }
 
 #pragma mark - UITextView Delegates

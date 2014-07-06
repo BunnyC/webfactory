@@ -216,6 +216,7 @@
         if(result.success)
         {
             resultType=KCreateSessionSuccess;
+            NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
             //[buttonNext setEnabled:false];
             [progressViewImageUpload setHidden:false];
             [self.view setUserInteractionEnabled:NO];
@@ -322,7 +323,7 @@
 -(void)createUserSession {
     
     NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-    NSDictionary *userInfo = [userDefs objectForKey:_pudUserInfo];
+    NSMutableDictionary *userInfo = [userDefs objectForKey:_pudUserInfo];
     
     QBASessionCreationRequest *extendedAuthRequest = [QBASessionCreationRequest request];
     extendedAuthRequest.userLogin = [userInfo objectForKey:@"login"]; // ID: 218651

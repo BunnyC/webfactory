@@ -11,6 +11,7 @@
 #import "LogNightViewController.h"
 #import "AppDelegate.h"
 #import "NotificationCell.h"
+#import "RegisterViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
 
 @interface ProfileViewController () <QBActionStatusDelegate, UITableViewDataSource, UITableViewDelegate>
@@ -136,7 +137,7 @@
     [[NSUserDefaults standardUserDefaults]synchronize];
     lblName.text=[NSString stringWithFormat:@"%@ %@",[userInfo objectForKey:@"first_name"],[userInfo objectForKey:@"last_name"]];
     lblActive.text=@"active";
-    lblMotto.text=[NSString stringWithFormat:@"%@",[userInfo objectForKey:@"moto"]];
+    lblMotto.text=[NSString stringWithFormat:@"%@",[userInfo objectForKey:@"custom_data"]];
 }
 
 
@@ -148,7 +149,7 @@
     [[NSUserDefaults standardUserDefaults]synchronize];
     lblName.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"first_name"]];
     lblActive.text=@"active";
-    lblMotto.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"moto"]];
+    lblMotto.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"custom_data"]];
 }
 
 
@@ -242,6 +243,10 @@
 - (IBAction)setReminderAction:(id)sender {
 }
 - (IBAction)editAccountAction:(id)sender {
+    
+    RegisterViewController *objRegisterView=[[RegisterViewController alloc]initWithNibName:@"RegisterViewController" bundle:nil];
+    objRegisterView.isEditDetail=TRUE;
+    [self.navigationController pushViewController:objRegisterView animated:YES];
 }
 - (IBAction)logoutAction:(id)sender {
     

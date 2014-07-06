@@ -164,6 +164,7 @@
 - (IBAction)btnCreateAccountAction:(id)sender {
     
     RegisterViewController *objRegisterViewController = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
+    objRegisterViewController.isEditDetail=FALSE;
     [self.navigationController pushViewController:objRegisterViewController animated:YES];
 }
 
@@ -324,7 +325,11 @@
         
         NSString *moto=[res.user.fullName isKindOfClass:[NSNull class]]?@"share you moto":res.user.fullName;
         
-        userInfo=[NSDictionary dictionaryWithObjectsAndKeys:res.user.fullName,@"first_name",moto,@"moto", nil];
+        userInfo=[NSDictionary dictionaryWithObjectsAndKeys:res.user.fullName,@"first_name",moto,@"custom_data",res.user.email,@"email",txtFieldPassword.text,@"Password", nil];
+        
+        NSString *password=res.user.password;
+        [[NSUserDefaults standardUserDefaults] setObject:txtFieldPassword.text forKey:@"Password"];
+    
         
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
         [[NSUserDefaults standardUserDefaults] synchronize];

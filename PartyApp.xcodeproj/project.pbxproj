@@ -17,10 +17,6 @@
 		8425AF84194C3E7800E8CCF3 /* PartyAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8425AF83194C3E7800E8CCF3 /* PartyAppTests.m */; };
 		842715D41960125100DBEA6E /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842715D31960125100DBEA6E /* NotificationCell.m */; };
 		842715D81960128200DBEA6E /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842715D71960128200DBEA6E /* NotificationCell.xib */; };
-		842715DA1960174700DBEA6E /* roundImageEffect.png in Resources */ = {isa = PBXBuildFile; fileRef = 842715D91960174700DBEA6E /* roundImageEffect.png */; };
-		842715DC1960175600DBEA6E /* roundImageEffect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 842715DB1960175600DBEA6E /* roundImageEffect@2x.png */; };
-		842715DE196019C200DBEA6E /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 842715DD196019C200DBEA6E /* placeholder.png */; };
-		842715E0196019D000DBEA6E /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 842715DF196019D000DBEA6E /* placeholder@2x.png */; };
 		842715E51960390E00DBEA6E /* ServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 842715E41960390E00DBEA6E /* ServerConnection.m */; };
 		842715E81960399700DBEA6E /* RequestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 842715E71960399700DBEA6E /* RequestBuilder.m */; };
 		842715ED1960414800DBEA6E /* SessionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 842715EC1960414800DBEA6E /* SessionModel.m */; };
@@ -32,36 +28,6 @@
 		8464A87C195A066800583DE0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8464A82C195A066800583DE0 /* InfoPlist.strings */; };
 		8464A87D195A066800583DE0 /* CommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A831195A066800583DE0 /* CommonFunctions.m */; };
 		8464A87E195A066800583DE0 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A834195A066800583DE0 /* Constants.m */; };
-		8464A880195A066800583DE0 /* appBackground4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A838195A066800583DE0 /* appBackground4@2x.png */; };
-		8464A881195A066800583DE0 /* appBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A839195A066800583DE0 /* appBackground@2x.png */; };
-		8464A882195A066800583DE0 /* barButtonTick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A83A195A066800583DE0 /* barButtonTick@2x.png */; };
-		8464A883195A066800583DE0 /* blueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A83B195A066800583DE0 /* blueButton@2x.png */; };
-		8464A884195A066800583DE0 /* commentIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A83C195A066800583DE0 /* commentIcon@2x.png */; };
-		8464A885195A066800583DE0 /* facebookIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A83D195A066800583DE0 /* facebookIcon@2x.png */; };
-		8464A886195A066800583DE0 /* imageLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A83E195A066800583DE0 /* imageLogo@2x.png */; };
-		8464A887195A066800583DE0 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A83F195A066800583DE0 /* location@2x.png */; };
-		8464A888195A066800583DE0 /* magentaButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A840195A066800583DE0 /* magentaButton@2x.png */; };
-		8464A889195A066800583DE0 /* onlineImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A841195A066800583DE0 /* onlineImage@2x.png */; };
-		8464A88A195A066800583DE0 /* pinkButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A842195A066800583DE0 /* pinkButton@2x.png */; };
-		8464A88B195A066800583DE0 /* purpleButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A843195A066800583DE0 /* purpleButton@2x.png */; };
-		8464A88C195A066800583DE0 /* tick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A844195A066800583DE0 /* tick@2x.png */; };
-		8464A88D195A066800583DE0 /* whiteButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A845195A066800583DE0 /* whiteButton@2x.png */; };
-		8464A88E195A066800583DE0 /* yellowButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A846195A066800583DE0 /* yellowButton@2x.png */; };
-		8464A88F195A066800583DE0 /* appBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A848195A066800583DE0 /* appBackground.png */; };
-		8464A890195A066800583DE0 /* appBackground4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A849195A066800583DE0 /* appBackground4.png */; };
-		8464A891195A066800583DE0 /* barButtonTick.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A84A195A066800583DE0 /* barButtonTick.png */; };
-		8464A892195A066800583DE0 /* blueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A84B195A066800583DE0 /* blueButton.png */; };
-		8464A893195A066800583DE0 /* commentIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A84C195A066800583DE0 /* commentIcon.png */; };
-		8464A894195A066800583DE0 /* facebookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A84D195A066800583DE0 /* facebookIcon.png */; };
-		8464A895195A066800583DE0 /* imageLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A84E195A066800583DE0 /* imageLogo.png */; };
-		8464A896195A066800583DE0 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A84F195A066800583DE0 /* location.png */; };
-		8464A897195A066800583DE0 /* magentaButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A850195A066800583DE0 /* magentaButton.png */; };
-		8464A898195A066800583DE0 /* onlineImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A851195A066800583DE0 /* onlineImage.png */; };
-		8464A899195A066800583DE0 /* pinkButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A852195A066800583DE0 /* pinkButton.png */; };
-		8464A89A195A066800583DE0 /* purpleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A853195A066800583DE0 /* purpleButton.png */; };
-		8464A89B195A066800583DE0 /* tick.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A854195A066800583DE0 /* tick.png */; };
-		8464A89C195A066800583DE0 /* whiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A855195A066800583DE0 /* whiteButton.png */; };
-		8464A89D195A066800583DE0 /* yellowButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8464A856195A066800583DE0 /* yellowButton.png */; };
 		8464A89E195A066800583DE0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8464A857195A066800583DE0 /* Images.xcassets */; };
 		8464A89F195A066800583DE0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A858195A066800583DE0 /* main.m */; };
 		8464A8A1195A066800583DE0 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A85E195A066800583DE0 /* BaseViewController.m */; };
@@ -78,30 +44,74 @@
 		8464A8AC195A066800583DE0 /* UploadPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A875195A066800583DE0 /* UploadPhotoViewController.m */; };
 		8464A8AD195A066800583DE0 /* UploadPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8464A876195A066800583DE0 /* UploadPhotoViewController.xib */; };
 		8491FCD4195EB75B00FDC63F /* LoginViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8491FCD3195EB75B00FDC63F /* LoginViewController4.xib */; };
-		84A14327195F581200DC3970 /* txtFldW.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A14325195F581200DC3970 /* txtFldW.png */; };
-		84A14328195F581200DC3970 /* txtFldY.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A14326195F581200DC3970 /* txtFldY.png */; };
-		84A1432B195F582000DC3970 /* txtFldW@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A14329195F582000DC3970 /* txtFldW@2x.png */; };
-		84A1432C195F582000DC3970 /* txtFldY@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A1432A195F582000DC3970 /* txtFldY@2x.png */; };
 		84A14330195F5AD200DC3970 /* PATextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A1432F195F5AD200DC3970 /* PATextField.m */; };
-		84A14332195F5EEA00DC3970 /* viewBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A14331195F5EEA00DC3970 /* viewBack.png */; };
-		84A14334195F5EF300DC3970 /* viewBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A14333195F5EF300DC3970 /* viewBack@2x.png */; };
-		84A14336195F6A3100DC3970 /* mottoBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A14335195F6A3100DC3970 /* mottoBack.png */; };
-		84A14338195F6A3D00DC3970 /* mottoBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A14337195F6A3D00DC3970 /* mottoBack@2x.png */; };
-		84A1433A195F6C5000DC3970 /* cameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A14339195F6C5000DC3970 /* cameraImage.png */; };
-		84A1433C195F6C5C00DC3970 /* cameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A1433B195F6C5C00DC3970 /* cameraImage@2x.png */; };
 		84AD392A1957D3AA0004915B /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84AD39281957D3AA0004915B /* FacebookSDK.framework */; };
 		84AD392C1957FC3C0004915B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0941956A72D009DA53D /* MobileCoreServices.framework */; };
 		84AD392D1957FC3C0004915B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0961956A734009DA53D /* SystemConfiguration.framework */; };
-		84C29E29195FDD050095A748 /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E27195FDD050095A748 /* backButton.png */; };
-		84C29E2A195FDD050095A748 /* nextButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E28195FDD050095A748 /* nextButton.png */; };
-		84C29E2D195FDD100095A748 /* backButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E2B195FDD100095A748 /* backButton@2x.png */; };
-		84C29E2E195FDD100095A748 /* nextButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E2C195FDD100095A748 /* nextButton@2x.png */; };
-		84C29E31195FFF0A0095A748 /* buttonBell.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E2F195FFF090095A748 /* buttonBell.png */; };
-		84C29E32195FFF0A0095A748 /* buttonMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E30195FFF0A0095A748 /* buttonMenu.png */; };
-		84C29E35195FFF160095A748 /* buttonBell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E33195FFF160095A748 /* buttonBell@2x.png */; };
-		84C29E36195FFF160095A748 /* buttonMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E34195FFF160095A748 /* buttonMenu@2x.png */; };
-		84C29E38196004EB0095A748 /* notifTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E37196004EB0095A748 /* notifTop.png */; };
-		84C29E3A196004F30095A748 /* notifTop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C29E39196004F30095A748 /* notifTop@2x.png */; };
+		84DF7723196923EE00A11C2F /* appBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7703196923EE00A11C2F /* appBackground.png */; };
+		84DF7724196923EE00A11C2F /* appBackground4.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7704196923EE00A11C2F /* appBackground4.png */; };
+		84DF7725196923EE00A11C2F /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7705196923EE00A11C2F /* backButton.png */; };
+		84DF7726196923EE00A11C2F /* barButtonTick.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7706196923EE00A11C2F /* barButtonTick.png */; };
+		84DF7727196923EE00A11C2F /* blueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7707196923EE00A11C2F /* blueButton.png */; };
+		84DF7728196923EE00A11C2F /* buttonBell.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7708196923EE00A11C2F /* buttonBell.png */; };
+		84DF7729196923EE00A11C2F /* buttonMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7709196923EE00A11C2F /* buttonMenu.png */; };
+		84DF772A196923EE00A11C2F /* cameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF770A196923EE00A11C2F /* cameraImage.png */; };
+		84DF772B196923EE00A11C2F /* commentIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF770B196923EE00A11C2F /* commentIcon.png */; };
+		84DF772C196923EE00A11C2F /* facebookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF770C196923EE00A11C2F /* facebookIcon.png */; };
+		84DF772D196923EE00A11C2F /* imageLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF770D196923EE00A11C2F /* imageLogo.png */; };
+		84DF772E196923EE00A11C2F /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF770E196923EE00A11C2F /* location.png */; };
+		84DF772F196923EE00A11C2F /* magentaButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF770F196923EE00A11C2F /* magentaButton.png */; };
+		84DF7730196923EE00A11C2F /* mottoBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7710196923EE00A11C2F /* mottoBack.png */; };
+		84DF7731196923EE00A11C2F /* nextButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7711196923EE00A11C2F /* nextButton.png */; };
+		84DF7732196923EE00A11C2F /* notifTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7712196923EE00A11C2F /* notifTop.png */; };
+		84DF7733196923EE00A11C2F /* onlineImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7713196923EE00A11C2F /* onlineImage.png */; };
+		84DF7734196923EE00A11C2F /* pinkButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7714196923EE00A11C2F /* pinkButton.png */; };
+		84DF7735196923EE00A11C2F /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7715196923EE00A11C2F /* placeholder.png */; };
+		84DF7736196923EE00A11C2F /* purpleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7716196923EE00A11C2F /* purpleButton.png */; };
+		84DF7737196923EE00A11C2F /* roundImageEffect.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7717196923EE00A11C2F /* roundImageEffect.png */; };
+		84DF7738196923EE00A11C2F /* selCommentIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7718196923EE00A11C2F /* selCommentIcon.png */; };
+		84DF7739196923EE00A11C2F /* selFacebookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7719196923EE00A11C2F /* selFacebookIcon.png */; };
+		84DF773A196923EE00A11C2F /* selImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF771A196923EE00A11C2F /* selImg.png */; };
+		84DF773B196923EE00A11C2F /* tick.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF771B196923EE00A11C2F /* tick.png */; };
+		84DF773C196923EE00A11C2F /* txtFldW.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF771C196923EE00A11C2F /* txtFldW.png */; };
+		84DF773D196923EE00A11C2F /* txtFldY.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF771D196923EE00A11C2F /* txtFldY.png */; };
+		84DF773E196923EE00A11C2F /* unselImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF771E196923EE00A11C2F /* unselImg.png */; };
+		84DF773F196923EE00A11C2F /* unselLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF771F196923EE00A11C2F /* unselLocation.png */; };
+		84DF7740196923EE00A11C2F /* viewBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7720196923EE00A11C2F /* viewBack.png */; };
+		84DF7741196923EE00A11C2F /* whiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7721196923EE00A11C2F /* whiteButton.png */; };
+		84DF7742196923EE00A11C2F /* yellowButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7722196923EE00A11C2F /* yellowButton.png */; };
+		84DF77631969240000A11C2F /* appBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77431969240000A11C2F /* appBackground@2x.png */; };
+		84DF77641969240000A11C2F /* appBackground4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77441969240000A11C2F /* appBackground4@2x.png */; };
+		84DF77651969240000A11C2F /* backButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77451969240000A11C2F /* backButton@2x.png */; };
+		84DF77661969240000A11C2F /* barButtonTick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77461969240000A11C2F /* barButtonTick@2x.png */; };
+		84DF77671969240000A11C2F /* blueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77471969240000A11C2F /* blueButton@2x.png */; };
+		84DF77681969240000A11C2F /* buttonBell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77481969240000A11C2F /* buttonBell@2x.png */; };
+		84DF77691969240000A11C2F /* buttonMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77491969240000A11C2F /* buttonMenu@2x.png */; };
+		84DF776A1969240000A11C2F /* cameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF774A1969240000A11C2F /* cameraImage@2x.png */; };
+		84DF776B1969240000A11C2F /* commentIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF774B1969240000A11C2F /* commentIcon@2x.png */; };
+		84DF776C1969240000A11C2F /* facebookIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF774C1969240000A11C2F /* facebookIcon@2x.png */; };
+		84DF776D1969240000A11C2F /* imageLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF774D1969240000A11C2F /* imageLogo@2x.png */; };
+		84DF776E1969240000A11C2F /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF774E1969240000A11C2F /* location@2x.png */; };
+		84DF776F1969240000A11C2F /* magentaButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF774F1969240000A11C2F /* magentaButton@2x.png */; };
+		84DF77701969240000A11C2F /* mottoBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77501969240000A11C2F /* mottoBack@2x.png */; };
+		84DF77711969240000A11C2F /* nextButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77511969240000A11C2F /* nextButton@2x.png */; };
+		84DF77721969240000A11C2F /* notifTop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77521969240000A11C2F /* notifTop@2x.png */; };
+		84DF77731969240000A11C2F /* onlineImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77531969240000A11C2F /* onlineImage@2x.png */; };
+		84DF77741969240000A11C2F /* pinkButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77541969240000A11C2F /* pinkButton@2x.png */; };
+		84DF77751969240000A11C2F /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77551969240000A11C2F /* placeholder@2x.png */; };
+		84DF77761969240000A11C2F /* purpleButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77561969240000A11C2F /* purpleButton@2x.png */; };
+		84DF77771969240000A11C2F /* roundImageEffect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77571969240000A11C2F /* roundImageEffect@2x.png */; };
+		84DF77781969240000A11C2F /* selCommentIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77581969240000A11C2F /* selCommentIcon@2x.png */; };
+		84DF77791969240000A11C2F /* selFacebookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77591969240000A11C2F /* selFacebookIcon.png */; };
+		84DF777A1969240000A11C2F /* selImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF775A1969240000A11C2F /* selImg@2x.png */; };
+		84DF777B1969240000A11C2F /* tick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF775B1969240000A11C2F /* tick@2x.png */; };
+		84DF777C1969240000A11C2F /* txtFldW@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF775C1969240000A11C2F /* txtFldW@2x.png */; };
+		84DF777D1969240000A11C2F /* txtFldY@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF775D1969240000A11C2F /* txtFldY@2x.png */; };
+		84DF777E1969240000A11C2F /* unselImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF775E1969240000A11C2F /* unselImg@2x.png */; };
+		84DF777F1969240000A11C2F /* unselLocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF775F1969240000A11C2F /* unselLocation@2x.png */; };
+		84DF77801969240000A11C2F /* viewBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77601969240000A11C2F /* viewBack@2x.png */; };
+		84DF77811969240000A11C2F /* whiteButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77611969240000A11C2F /* whiteButton@2x.png */; };
+		84DF77821969240000A11C2F /* yellowButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77621969240000A11C2F /* yellowButton@2x.png */; };
 		CE35F07F1956A670009DA53D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F07E1956A66F009DA53D /* Security.framework */; };
 		CE35F0811956A68B009DA53D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0801956A68B009DA53D /* QuartzCore.framework */; };
 		CE35F0831956A693009DA53D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0821956A693009DA53D /* AudioToolbox.framework */; };
@@ -147,10 +157,6 @@
 		842715D21960125000DBEA6E /* NotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationCell.h; path = NotificationCell/NotificationCell.h; sourceTree = "<group>"; };
 		842715D31960125100DBEA6E /* NotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationCell.m; path = NotificationCell/NotificationCell.m; sourceTree = "<group>"; };
 		842715D71960128200DBEA6E /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NotificationCell.xib; path = NotificationCell/NotificationCell.xib; sourceTree = "<group>"; };
-		842715D91960174700DBEA6E /* roundImageEffect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roundImageEffect.png; sourceTree = "<group>"; };
-		842715DB1960175600DBEA6E /* roundImageEffect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roundImageEffect@2x.png"; sourceTree = "<group>"; };
-		842715DD196019C200DBEA6E /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
-		842715DF196019D000DBEA6E /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
 		842715E31960390E00DBEA6E /* ServerConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConnection.h; sourceTree = "<group>"; };
 		842715E41960390E00DBEA6E /* ServerConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConnection.m; sourceTree = "<group>"; };
 		842715E61960399700DBEA6E /* RequestBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestBuilder.h; sourceTree = "<group>"; };
@@ -172,36 +178,6 @@
 		8464A831195A066800583DE0 /* CommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFunctions.m; sourceTree = "<group>"; };
 		8464A833195A066800583DE0 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		8464A834195A066800583DE0 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
-		8464A838195A066800583DE0 /* appBackground4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appBackground4@2x.png"; sourceTree = "<group>"; };
-		8464A839195A066800583DE0 /* appBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appBackground@2x.png"; sourceTree = "<group>"; };
-		8464A83A195A066800583DE0 /* barButtonTick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "barButtonTick@2x.png"; sourceTree = "<group>"; };
-		8464A83B195A066800583DE0 /* blueButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueButton@2x.png"; sourceTree = "<group>"; };
-		8464A83C195A066800583DE0 /* commentIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "commentIcon@2x.png"; sourceTree = "<group>"; };
-		8464A83D195A066800583DE0 /* facebookIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebookIcon@2x.png"; sourceTree = "<group>"; };
-		8464A83E195A066800583DE0 /* imageLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imageLogo@2x.png"; sourceTree = "<group>"; };
-		8464A83F195A066800583DE0 /* location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@2x.png"; sourceTree = "<group>"; };
-		8464A840195A066800583DE0 /* magentaButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "magentaButton@2x.png"; sourceTree = "<group>"; };
-		8464A841195A066800583DE0 /* onlineImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "onlineImage@2x.png"; sourceTree = "<group>"; };
-		8464A842195A066800583DE0 /* pinkButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinkButton@2x.png"; sourceTree = "<group>"; };
-		8464A843195A066800583DE0 /* purpleButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purpleButton@2x.png"; sourceTree = "<group>"; };
-		8464A844195A066800583DE0 /* tick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick@2x.png"; sourceTree = "<group>"; };
-		8464A845195A066800583DE0 /* whiteButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteButton@2x.png"; sourceTree = "<group>"; };
-		8464A846195A066800583DE0 /* yellowButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yellowButton@2x.png"; sourceTree = "<group>"; };
-		8464A848195A066800583DE0 /* appBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appBackground.png; sourceTree = "<group>"; };
-		8464A849195A066800583DE0 /* appBackground4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appBackground4.png; sourceTree = "<group>"; };
-		8464A84A195A066800583DE0 /* barButtonTick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barButtonTick.png; sourceTree = "<group>"; };
-		8464A84B195A066800583DE0 /* blueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueButton.png; sourceTree = "<group>"; };
-		8464A84C195A066800583DE0 /* commentIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = commentIcon.png; sourceTree = "<group>"; };
-		8464A84D195A066800583DE0 /* facebookIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebookIcon.png; sourceTree = "<group>"; };
-		8464A84E195A066800583DE0 /* imageLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imageLogo.png; sourceTree = "<group>"; };
-		8464A84F195A066800583DE0 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
-		8464A850195A066800583DE0 /* magentaButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magentaButton.png; sourceTree = "<group>"; };
-		8464A851195A066800583DE0 /* onlineImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = onlineImage.png; sourceTree = "<group>"; };
-		8464A852195A066800583DE0 /* pinkButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinkButton.png; sourceTree = "<group>"; };
-		8464A853195A066800583DE0 /* purpleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purpleButton.png; sourceTree = "<group>"; };
-		8464A854195A066800583DE0 /* tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tick.png; sourceTree = "<group>"; };
-		8464A855195A066800583DE0 /* whiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteButton.png; sourceTree = "<group>"; };
-		8464A856195A066800583DE0 /* yellowButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowButton.png; sourceTree = "<group>"; };
 		8464A857195A066800583DE0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8464A858195A066800583DE0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8464A859195A066800583DE0 /* PartyApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PartyApp-Info.plist"; sourceTree = "<group>"; };
@@ -228,30 +204,74 @@
 		8464A876195A066800583DE0 /* UploadPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadPhotoViewController.xib; sourceTree = "<group>"; };
 		8464A8B2195B9F8C00583DE0 /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quickblox.framework; sourceTree = "<group>"; };
 		8491FCD3195EB75B00FDC63F /* LoginViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController4.xib; sourceTree = "<group>"; };
-		84A14325195F581200DC3970 /* txtFldW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = txtFldW.png; sourceTree = "<group>"; };
-		84A14326195F581200DC3970 /* txtFldY.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = txtFldY.png; sourceTree = "<group>"; };
-		84A14329195F582000DC3970 /* txtFldW@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "txtFldW@2x.png"; sourceTree = "<group>"; };
-		84A1432A195F582000DC3970 /* txtFldY@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "txtFldY@2x.png"; sourceTree = "<group>"; };
 		84A1432E195F5AD200DC3970 /* PATextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PATextField.h; path = PATextField/PATextField.h; sourceTree = "<group>"; };
 		84A1432F195F5AD200DC3970 /* PATextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PATextField.m; path = PATextField/PATextField.m; sourceTree = "<group>"; };
-		84A14331195F5EEA00DC3970 /* viewBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = viewBack.png; sourceTree = "<group>"; };
-		84A14333195F5EF300DC3970 /* viewBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "viewBack@2x.png"; sourceTree = "<group>"; };
-		84A14335195F6A3100DC3970 /* mottoBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mottoBack.png; sourceTree = "<group>"; };
-		84A14337195F6A3D00DC3970 /* mottoBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mottoBack@2x.png"; sourceTree = "<group>"; };
-		84A14339195F6C5000DC3970 /* cameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraImage.png; sourceTree = "<group>"; };
-		84A1433B195F6C5C00DC3970 /* cameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cameraImage@2x.png"; sourceTree = "<group>"; };
 		84AD39281957D3AA0004915B /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
-		84C29E27195FDD050095A748 /* backButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButton.png; sourceTree = "<group>"; };
-		84C29E28195FDD050095A748 /* nextButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nextButton.png; sourceTree = "<group>"; };
-		84C29E2B195FDD100095A748 /* backButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton@2x.png"; sourceTree = "<group>"; };
-		84C29E2C195FDD100095A748 /* nextButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nextButton@2x.png"; sourceTree = "<group>"; };
-		84C29E2F195FFF090095A748 /* buttonBell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonBell.png; sourceTree = "<group>"; };
-		84C29E30195FFF0A0095A748 /* buttonMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonMenu.png; sourceTree = "<group>"; };
-		84C29E33195FFF160095A748 /* buttonBell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonBell@2x.png"; sourceTree = "<group>"; };
-		84C29E34195FFF160095A748 /* buttonMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonMenu@2x.png"; sourceTree = "<group>"; };
-		84C29E37196004EB0095A748 /* notifTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notifTop.png; sourceTree = "<group>"; };
-		84C29E39196004F30095A748 /* notifTop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notifTop@2x.png"; sourceTree = "<group>"; };
 		84DF77021968793400A11C2F /* WebService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebService.h; sourceTree = "<group>"; };
+		84DF7703196923EE00A11C2F /* appBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appBackground.png; sourceTree = "<group>"; };
+		84DF7704196923EE00A11C2F /* appBackground4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appBackground4.png; sourceTree = "<group>"; };
+		84DF7705196923EE00A11C2F /* backButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButton.png; sourceTree = "<group>"; };
+		84DF7706196923EE00A11C2F /* barButtonTick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barButtonTick.png; sourceTree = "<group>"; };
+		84DF7707196923EE00A11C2F /* blueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueButton.png; sourceTree = "<group>"; };
+		84DF7708196923EE00A11C2F /* buttonBell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonBell.png; sourceTree = "<group>"; };
+		84DF7709196923EE00A11C2F /* buttonMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonMenu.png; sourceTree = "<group>"; };
+		84DF770A196923EE00A11C2F /* cameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraImage.png; sourceTree = "<group>"; };
+		84DF770B196923EE00A11C2F /* commentIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = commentIcon.png; sourceTree = "<group>"; };
+		84DF770C196923EE00A11C2F /* facebookIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebookIcon.png; sourceTree = "<group>"; };
+		84DF770D196923EE00A11C2F /* imageLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imageLogo.png; sourceTree = "<group>"; };
+		84DF770E196923EE00A11C2F /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
+		84DF770F196923EE00A11C2F /* magentaButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magentaButton.png; sourceTree = "<group>"; };
+		84DF7710196923EE00A11C2F /* mottoBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mottoBack.png; sourceTree = "<group>"; };
+		84DF7711196923EE00A11C2F /* nextButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nextButton.png; sourceTree = "<group>"; };
+		84DF7712196923EE00A11C2F /* notifTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notifTop.png; sourceTree = "<group>"; };
+		84DF7713196923EE00A11C2F /* onlineImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = onlineImage.png; sourceTree = "<group>"; };
+		84DF7714196923EE00A11C2F /* pinkButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinkButton.png; sourceTree = "<group>"; };
+		84DF7715196923EE00A11C2F /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		84DF7716196923EE00A11C2F /* purpleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purpleButton.png; sourceTree = "<group>"; };
+		84DF7717196923EE00A11C2F /* roundImageEffect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roundImageEffect.png; sourceTree = "<group>"; };
+		84DF7718196923EE00A11C2F /* selCommentIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selCommentIcon.png; sourceTree = "<group>"; };
+		84DF7719196923EE00A11C2F /* selFacebookIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selFacebookIcon.png; sourceTree = "<group>"; };
+		84DF771A196923EE00A11C2F /* selImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selImg.png; sourceTree = "<group>"; };
+		84DF771B196923EE00A11C2F /* tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tick.png; sourceTree = "<group>"; };
+		84DF771C196923EE00A11C2F /* txtFldW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = txtFldW.png; sourceTree = "<group>"; };
+		84DF771D196923EE00A11C2F /* txtFldY.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = txtFldY.png; sourceTree = "<group>"; };
+		84DF771E196923EE00A11C2F /* unselImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unselImg.png; sourceTree = "<group>"; };
+		84DF771F196923EE00A11C2F /* unselLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unselLocation.png; sourceTree = "<group>"; };
+		84DF7720196923EE00A11C2F /* viewBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = viewBack.png; sourceTree = "<group>"; };
+		84DF7721196923EE00A11C2F /* whiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteButton.png; sourceTree = "<group>"; };
+		84DF7722196923EE00A11C2F /* yellowButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowButton.png; sourceTree = "<group>"; };
+		84DF77431969240000A11C2F /* appBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appBackground@2x.png"; sourceTree = "<group>"; };
+		84DF77441969240000A11C2F /* appBackground4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appBackground4@2x.png"; sourceTree = "<group>"; };
+		84DF77451969240000A11C2F /* backButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton@2x.png"; sourceTree = "<group>"; };
+		84DF77461969240000A11C2F /* barButtonTick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "barButtonTick@2x.png"; sourceTree = "<group>"; };
+		84DF77471969240000A11C2F /* blueButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueButton@2x.png"; sourceTree = "<group>"; };
+		84DF77481969240000A11C2F /* buttonBell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonBell@2x.png"; sourceTree = "<group>"; };
+		84DF77491969240000A11C2F /* buttonMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonMenu@2x.png"; sourceTree = "<group>"; };
+		84DF774A1969240000A11C2F /* cameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cameraImage@2x.png"; sourceTree = "<group>"; };
+		84DF774B1969240000A11C2F /* commentIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "commentIcon@2x.png"; sourceTree = "<group>"; };
+		84DF774C1969240000A11C2F /* facebookIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebookIcon@2x.png"; sourceTree = "<group>"; };
+		84DF774D1969240000A11C2F /* imageLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imageLogo@2x.png"; sourceTree = "<group>"; };
+		84DF774E1969240000A11C2F /* location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@2x.png"; sourceTree = "<group>"; };
+		84DF774F1969240000A11C2F /* magentaButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "magentaButton@2x.png"; sourceTree = "<group>"; };
+		84DF77501969240000A11C2F /* mottoBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mottoBack@2x.png"; sourceTree = "<group>"; };
+		84DF77511969240000A11C2F /* nextButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nextButton@2x.png"; sourceTree = "<group>"; };
+		84DF77521969240000A11C2F /* notifTop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notifTop@2x.png"; sourceTree = "<group>"; };
+		84DF77531969240000A11C2F /* onlineImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "onlineImage@2x.png"; sourceTree = "<group>"; };
+		84DF77541969240000A11C2F /* pinkButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinkButton@2x.png"; sourceTree = "<group>"; };
+		84DF77551969240000A11C2F /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
+		84DF77561969240000A11C2F /* purpleButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purpleButton@2x.png"; sourceTree = "<group>"; };
+		84DF77571969240000A11C2F /* roundImageEffect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roundImageEffect@2x.png"; sourceTree = "<group>"; };
+		84DF77581969240000A11C2F /* selCommentIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selCommentIcon@2x.png"; sourceTree = "<group>"; };
+		84DF77591969240000A11C2F /* selFacebookIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selFacebookIcon.png; sourceTree = "<group>"; };
+		84DF775A1969240000A11C2F /* selImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selImg@2x.png"; sourceTree = "<group>"; };
+		84DF775B1969240000A11C2F /* tick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick@2x.png"; sourceTree = "<group>"; };
+		84DF775C1969240000A11C2F /* txtFldW@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "txtFldW@2x.png"; sourceTree = "<group>"; };
+		84DF775D1969240000A11C2F /* txtFldY@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "txtFldY@2x.png"; sourceTree = "<group>"; };
+		84DF775E1969240000A11C2F /* unselImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unselImg@2x.png"; sourceTree = "<group>"; };
+		84DF775F1969240000A11C2F /* unselLocation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unselLocation@2x.png"; sourceTree = "<group>"; };
+		84DF77601969240000A11C2F /* viewBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "viewBack@2x.png"; sourceTree = "<group>"; };
+		84DF77611969240000A11C2F /* whiteButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteButton@2x.png"; sourceTree = "<group>"; };
+		84DF77621969240000A11C2F /* yellowButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yellowButton@2x.png"; sourceTree = "<group>"; };
 		CE35F07E1956A66F009DA53D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CE35F0801956A68B009DA53D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CE35F0821956A693009DA53D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -521,33 +541,38 @@
 		8464A836195A066800583DE0 /* Retina */ = {
 			isa = PBXGroup;
 			children = (
-				842715DF196019D000DBEA6E /* placeholder@2x.png */,
-				842715DB1960175600DBEA6E /* roundImageEffect@2x.png */,
-				84C29E39196004F30095A748 /* notifTop@2x.png */,
-				84C29E33195FFF160095A748 /* buttonBell@2x.png */,
-				84C29E34195FFF160095A748 /* buttonMenu@2x.png */,
-				84C29E2B195FDD100095A748 /* backButton@2x.png */,
-				84C29E2C195FDD100095A748 /* nextButton@2x.png */,
-				84A1433B195F6C5C00DC3970 /* cameraImage@2x.png */,
-				84A14337195F6A3D00DC3970 /* mottoBack@2x.png */,
-				84A14333195F5EF300DC3970 /* viewBack@2x.png */,
-				84A14329195F582000DC3970 /* txtFldW@2x.png */,
-				84A1432A195F582000DC3970 /* txtFldY@2x.png */,
-				8464A838195A066800583DE0 /* appBackground4@2x.png */,
-				8464A839195A066800583DE0 /* appBackground@2x.png */,
-				8464A83A195A066800583DE0 /* barButtonTick@2x.png */,
-				8464A83B195A066800583DE0 /* blueButton@2x.png */,
-				8464A83C195A066800583DE0 /* commentIcon@2x.png */,
-				8464A83D195A066800583DE0 /* facebookIcon@2x.png */,
-				8464A83E195A066800583DE0 /* imageLogo@2x.png */,
-				8464A83F195A066800583DE0 /* location@2x.png */,
-				8464A840195A066800583DE0 /* magentaButton@2x.png */,
-				8464A841195A066800583DE0 /* onlineImage@2x.png */,
-				8464A842195A066800583DE0 /* pinkButton@2x.png */,
-				8464A843195A066800583DE0 /* purpleButton@2x.png */,
-				8464A844195A066800583DE0 /* tick@2x.png */,
-				8464A845195A066800583DE0 /* whiteButton@2x.png */,
-				8464A846195A066800583DE0 /* yellowButton@2x.png */,
+				84DF77431969240000A11C2F /* appBackground@2x.png */,
+				84DF77441969240000A11C2F /* appBackground4@2x.png */,
+				84DF77451969240000A11C2F /* backButton@2x.png */,
+				84DF77461969240000A11C2F /* barButtonTick@2x.png */,
+				84DF77471969240000A11C2F /* blueButton@2x.png */,
+				84DF77481969240000A11C2F /* buttonBell@2x.png */,
+				84DF77491969240000A11C2F /* buttonMenu@2x.png */,
+				84DF774A1969240000A11C2F /* cameraImage@2x.png */,
+				84DF774B1969240000A11C2F /* commentIcon@2x.png */,
+				84DF774C1969240000A11C2F /* facebookIcon@2x.png */,
+				84DF774D1969240000A11C2F /* imageLogo@2x.png */,
+				84DF774E1969240000A11C2F /* location@2x.png */,
+				84DF774F1969240000A11C2F /* magentaButton@2x.png */,
+				84DF77501969240000A11C2F /* mottoBack@2x.png */,
+				84DF77511969240000A11C2F /* nextButton@2x.png */,
+				84DF77521969240000A11C2F /* notifTop@2x.png */,
+				84DF77531969240000A11C2F /* onlineImage@2x.png */,
+				84DF77541969240000A11C2F /* pinkButton@2x.png */,
+				84DF77551969240000A11C2F /* placeholder@2x.png */,
+				84DF77561969240000A11C2F /* purpleButton@2x.png */,
+				84DF77571969240000A11C2F /* roundImageEffect@2x.png */,
+				84DF77581969240000A11C2F /* selCommentIcon@2x.png */,
+				84DF77591969240000A11C2F /* selFacebookIcon.png */,
+				84DF775A1969240000A11C2F /* selImg@2x.png */,
+				84DF775B1969240000A11C2F /* tick@2x.png */,
+				84DF775C1969240000A11C2F /* txtFldW@2x.png */,
+				84DF775D1969240000A11C2F /* txtFldY@2x.png */,
+				84DF775E1969240000A11C2F /* unselImg@2x.png */,
+				84DF775F1969240000A11C2F /* unselLocation@2x.png */,
+				84DF77601969240000A11C2F /* viewBack@2x.png */,
+				84DF77611969240000A11C2F /* whiteButton@2x.png */,
+				84DF77621969240000A11C2F /* yellowButton@2x.png */,
 			);
 			path = Retina;
 			sourceTree = "<group>";
@@ -555,33 +580,38 @@
 		8464A847195A066800583DE0 /* Simple */ = {
 			isa = PBXGroup;
 			children = (
-				842715DD196019C200DBEA6E /* placeholder.png */,
-				842715D91960174700DBEA6E /* roundImageEffect.png */,
-				84C29E37196004EB0095A748 /* notifTop.png */,
-				84C29E2F195FFF090095A748 /* buttonBell.png */,
-				84C29E30195FFF0A0095A748 /* buttonMenu.png */,
-				84C29E27195FDD050095A748 /* backButton.png */,
-				84C29E28195FDD050095A748 /* nextButton.png */,
-				84A14339195F6C5000DC3970 /* cameraImage.png */,
-				84A14335195F6A3100DC3970 /* mottoBack.png */,
-				84A14331195F5EEA00DC3970 /* viewBack.png */,
-				84A14325195F581200DC3970 /* txtFldW.png */,
-				84A14326195F581200DC3970 /* txtFldY.png */,
-				8464A848195A066800583DE0 /* appBackground.png */,
-				8464A849195A066800583DE0 /* appBackground4.png */,
-				8464A84A195A066800583DE0 /* barButtonTick.png */,
-				8464A84B195A066800583DE0 /* blueButton.png */,
-				8464A84C195A066800583DE0 /* commentIcon.png */,
-				8464A84D195A066800583DE0 /* facebookIcon.png */,
-				8464A84E195A066800583DE0 /* imageLogo.png */,
-				8464A84F195A066800583DE0 /* location.png */,
-				8464A850195A066800583DE0 /* magentaButton.png */,
-				8464A851195A066800583DE0 /* onlineImage.png */,
-				8464A852195A066800583DE0 /* pinkButton.png */,
-				8464A853195A066800583DE0 /* purpleButton.png */,
-				8464A854195A066800583DE0 /* tick.png */,
-				8464A855195A066800583DE0 /* whiteButton.png */,
-				8464A856195A066800583DE0 /* yellowButton.png */,
+				84DF7703196923EE00A11C2F /* appBackground.png */,
+				84DF7704196923EE00A11C2F /* appBackground4.png */,
+				84DF7705196923EE00A11C2F /* backButton.png */,
+				84DF7706196923EE00A11C2F /* barButtonTick.png */,
+				84DF7707196923EE00A11C2F /* blueButton.png */,
+				84DF7708196923EE00A11C2F /* buttonBell.png */,
+				84DF7709196923EE00A11C2F /* buttonMenu.png */,
+				84DF770A196923EE00A11C2F /* cameraImage.png */,
+				84DF770B196923EE00A11C2F /* commentIcon.png */,
+				84DF770C196923EE00A11C2F /* facebookIcon.png */,
+				84DF770D196923EE00A11C2F /* imageLogo.png */,
+				84DF770E196923EE00A11C2F /* location.png */,
+				84DF770F196923EE00A11C2F /* magentaButton.png */,
+				84DF7710196923EE00A11C2F /* mottoBack.png */,
+				84DF7711196923EE00A11C2F /* nextButton.png */,
+				84DF7712196923EE00A11C2F /* notifTop.png */,
+				84DF7713196923EE00A11C2F /* onlineImage.png */,
+				84DF7714196923EE00A11C2F /* pinkButton.png */,
+				84DF7715196923EE00A11C2F /* placeholder.png */,
+				84DF7716196923EE00A11C2F /* purpleButton.png */,
+				84DF7717196923EE00A11C2F /* roundImageEffect.png */,
+				84DF7718196923EE00A11C2F /* selCommentIcon.png */,
+				84DF7719196923EE00A11C2F /* selFacebookIcon.png */,
+				84DF771A196923EE00A11C2F /* selImg.png */,
+				84DF771B196923EE00A11C2F /* tick.png */,
+				84DF771C196923EE00A11C2F /* txtFldW.png */,
+				84DF771D196923EE00A11C2F /* txtFldY.png */,
+				84DF771E196923EE00A11C2F /* unselImg.png */,
+				84DF771F196923EE00A11C2F /* unselLocation.png */,
+				84DF7720196923EE00A11C2F /* viewBack.png */,
+				84DF7721196923EE00A11C2F /* whiteButton.png */,
+				84DF7722196923EE00A11C2F /* yellowButton.png */,
 			);
 			path = Simple;
 			sourceTree = "<group>";
@@ -793,73 +823,83 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84DF77661969240000A11C2F /* barButtonTick@2x.png in Resources */,
 				CE9D376E195E771B001F05D9 /* ForgotPasswordViewController.xib in Resources */,
-				8464A893195A066800583DE0 /* commentIcon.png in Resources */,
-				84C29E32195FFF0A0095A748 /* buttonMenu.png in Resources */,
-				8464A89C195A066800583DE0 /* whiteButton.png in Resources */,
-				8464A880195A066800583DE0 /* appBackground4@2x.png in Resources */,
-				84C29E3A196004F30095A748 /* notifTop@2x.png in Resources */,
-				842715DC1960175600DBEA6E /* roundImageEffect@2x.png in Resources */,
-				8464A886195A066800583DE0 /* imageLogo@2x.png in Resources */,
-				84C29E31195FFF0A0095A748 /* buttonBell.png in Resources */,
+				84DF7738196923EE00A11C2F /* selCommentIcon.png in Resources */,
+				84DF776E1969240000A11C2F /* location@2x.png in Resources */,
+				84DF773C196923EE00A11C2F /* txtFldW.png in Resources */,
+				84DF7733196923EE00A11C2F /* onlineImage.png in Resources */,
+				84DF773F196923EE00A11C2F /* unselLocation.png in Resources */,
+				84DF7735196923EE00A11C2F /* placeholder.png in Resources */,
 				8464A8A3195A066800583DE0 /* LoginViewController.xib in Resources */,
-				8464A884195A066800583DE0 /* commentIcon@2x.png in Resources */,
-				8464A88B195A066800583DE0 /* purpleButton@2x.png in Resources */,
+				84DF7731196923EE00A11C2F /* nextButton.png in Resources */,
+				84DF776D1969240000A11C2F /* imageLogo@2x.png in Resources */,
 				842715D81960128200DBEA6E /* NotificationCell.xib in Resources */,
+				84DF7732196923EE00A11C2F /* notifTop.png in Resources */,
+				84DF773E196923EE00A11C2F /* unselImg.png in Resources */,
+				84DF776F1969240000A11C2F /* magentaButton@2x.png in Resources */,
+				84DF772D196923EE00A11C2F /* imageLogo.png in Resources */,
+				84DF77811969240000A11C2F /* whiteButton@2x.png in Resources */,
+				84DF7737196923EE00A11C2F /* roundImageEffect.png in Resources */,
+				84DF773B196923EE00A11C2F /* tick.png in Resources */,
+				84DF77641969240000A11C2F /* appBackground4@2x.png in Resources */,
 				CE9D3771195F02C1001F05D9 /* UploadPhotoViewController4.xib in Resources */,
-				8464A885195A066800583DE0 /* facebookIcon@2x.png in Resources */,
-				84C29E38196004EB0095A748 /* notifTop.png in Resources */,
-				8464A883195A066800583DE0 /* blueButton@2x.png in Resources */,
-				8464A881195A066800583DE0 /* appBackground@2x.png in Resources */,
-				8464A891195A066800583DE0 /* barButtonTick.png in Resources */,
+				84DF7741196923EE00A11C2F /* whiteButton.png in Resources */,
+				84DF7723196923EE00A11C2F /* appBackground.png in Resources */,
+				84DF772C196923EE00A11C2F /* facebookIcon.png in Resources */,
 				8464A8AD195A066800583DE0 /* UploadPhotoViewController.xib in Resources */,
-				84A14327195F581200DC3970 /* txtFldW.png in Resources */,
+				84DF7727196923EE00A11C2F /* blueButton.png in Resources */,
 				8464A8AB195A066800583DE0 /* SplashScreenViewController.xib in Resources */,
-				8464A887195A066800583DE0 /* location@2x.png in Resources */,
-				84C29E2E195FDD100095A748 /* nextButton@2x.png in Resources */,
-				84C29E2D195FDD100095A748 /* backButton@2x.png in Resources */,
-				8464A88A195A066800583DE0 /* pinkButton@2x.png in Resources */,
-				8464A895195A066800583DE0 /* imageLogo.png in Resources */,
-				84A1432B195F582000DC3970 /* txtFldW@2x.png in Resources */,
-				8464A897195A066800583DE0 /* magentaButton.png in Resources */,
+				84DF777A1969240000A11C2F /* selImg@2x.png in Resources */,
+				84DF7739196923EE00A11C2F /* selFacebookIcon.png in Resources */,
+				84DF77681969240000A11C2F /* buttonBell@2x.png in Resources */,
+				84DF7724196923EE00A11C2F /* appBackground4.png in Resources */,
+				84DF773A196923EE00A11C2F /* selImg.png in Resources */,
+				84DF77821969240000A11C2F /* yellowButton@2x.png in Resources */,
+				84DF777F1969240000A11C2F /* unselLocation@2x.png in Resources */,
+				84DF776C1969240000A11C2F /* facebookIcon@2x.png in Resources */,
+				84DF77731969240000A11C2F /* onlineImage@2x.png in Resources */,
+				84DF776B1969240000A11C2F /* commentIcon@2x.png in Resources */,
+				84DF77671969240000A11C2F /* blueButton@2x.png in Resources */,
+				84DF777B1969240000A11C2F /* tick@2x.png in Resources */,
+				84DF772E196923EE00A11C2F /* location.png in Resources */,
 				8464A89E195A066800583DE0 /* Images.xcassets in Resources */,
-				84A14328195F581200DC3970 /* txtFldY.png in Resources */,
-				842715DE196019C200DBEA6E /* placeholder.png in Resources */,
-				8464A88C195A066800583DE0 /* tick@2x.png in Resources */,
-				842715DA1960174700DBEA6E /* roundImageEffect.png in Resources */,
-				84A14334195F5EF300DC3970 /* viewBack@2x.png in Resources */,
+				84DF77801969240000A11C2F /* viewBack@2x.png in Resources */,
+				84DF7729196923EE00A11C2F /* buttonMenu.png in Resources */,
+				84DF77761969240000A11C2F /* purpleButton@2x.png in Resources */,
+				84DF77741969240000A11C2F /* pinkButton@2x.png in Resources */,
+				84DF77691969240000A11C2F /* buttonMenu@2x.png in Resources */,
 				8464A87C195A066800583DE0 /* InfoPlist.strings in Resources */,
-				8464A88D195A066800583DE0 /* whiteButton@2x.png in Resources */,
-				84A14332195F5EEA00DC3970 /* viewBack.png in Resources */,
-				84A1432C195F582000DC3970 /* txtFldY@2x.png in Resources */,
-				842715E0196019D000DBEA6E /* placeholder@2x.png in Resources */,
-				8464A898195A066800583DE0 /* onlineImage.png in Resources */,
-				84C29E35195FFF160095A748 /* buttonBell@2x.png in Resources */,
-				84C29E2A195FDD050095A748 /* nextButton.png in Resources */,
-				84A1433A195F6C5000DC3970 /* cameraImage.png in Resources */,
-				8464A88E195A066800583DE0 /* yellowButton@2x.png in Resources */,
-				8464A899195A066800583DE0 /* pinkButton.png in Resources */,
-				84A14336195F6A3100DC3970 /* mottoBack.png in Resources */,
-				84A14338195F6A3D00DC3970 /* mottoBack@2x.png in Resources */,
-				84A1433C195F6C5C00DC3970 /* cameraImage@2x.png in Resources */,
-				8464A896195A066800583DE0 /* location.png in Resources */,
+				84DF7734196923EE00A11C2F /* pinkButton.png in Resources */,
+				84DF7728196923EE00A11C2F /* buttonBell.png in Resources */,
+				84DF772A196923EE00A11C2F /* cameraImage.png in Resources */,
+				84DF772F196923EE00A11C2F /* magentaButton.png in Resources */,
+				84DF7726196923EE00A11C2F /* barButtonTick.png in Resources */,
+				84DF773D196923EE00A11C2F /* txtFldY.png in Resources */,
+				84DF7736196923EE00A11C2F /* purpleButton.png in Resources */,
+				84DF777E1969240000A11C2F /* unselImg@2x.png in Resources */,
+				84DF777D1969240000A11C2F /* txtFldY@2x.png in Resources */,
+				84DF777C1969240000A11C2F /* txtFldW@2x.png in Resources */,
+				84DF77711969240000A11C2F /* nextButton@2x.png in Resources */,
+				84DF77701969240000A11C2F /* mottoBack@2x.png in Resources */,
 				8464A8A7195A066800583DE0 /* ProfileViewController.xib in Resources */,
-				8464A890195A066800583DE0 /* appBackground4.png in Resources */,
+				84DF77781969240000A11C2F /* selCommentIcon@2x.png in Resources */,
+				84DF77751969240000A11C2F /* placeholder@2x.png in Resources */,
+				84DF7742196923EE00A11C2F /* yellowButton.png in Resources */,
 				CE9D3773195F0C0F001F05D9 /* ProfileViewController4.xib in Resources */,
-				8464A888195A066800583DE0 /* magentaButton@2x.png in Resources */,
-				8464A88F195A066800583DE0 /* appBackground.png in Resources */,
-				8464A894195A066800583DE0 /* facebookIcon.png in Resources */,
-				8464A892195A066800583DE0 /* blueButton.png in Resources */,
-				84C29E29195FDD050095A748 /* backButton.png in Resources */,
+				84DF77771969240000A11C2F /* roundImageEffect@2x.png in Resources */,
 				8464A8A5195A066800583DE0 /* LogNightViewController.xib in Resources */,
-				8464A89D195A066800583DE0 /* yellowButton.png in Resources */,
-				8464A89B195A066800583DE0 /* tick.png in Resources */,
-				8464A882195A066800583DE0 /* barButtonTick@2x.png in Resources */,
+				84DF7740196923EE00A11C2F /* viewBack.png in Resources */,
+				84DF776A1969240000A11C2F /* cameraImage@2x.png in Resources */,
+				84DF7725196923EE00A11C2F /* backButton.png in Resources */,
 				8464A8A9195A066800583DE0 /* RegisterViewController.xib in Resources */,
+				84DF77651969240000A11C2F /* backButton@2x.png in Resources */,
 				8491FCD4195EB75B00FDC63F /* LoginViewController4.xib in Resources */,
-				8464A889195A066800583DE0 /* onlineImage@2x.png in Resources */,
-				8464A89A195A066800583DE0 /* purpleButton.png in Resources */,
-				84C29E36195FFF160095A748 /* buttonMenu@2x.png in Resources */,
+				84DF7730196923EE00A11C2F /* mottoBack.png in Resources */,
+				84DF77721969240000A11C2F /* notifTop@2x.png in Resources */,
+				84DF77791969240000A11C2F /* selFacebookIcon.png in Resources */,
+				84DF77631969240000A11C2F /* appBackground@2x.png in Resources */,
+				84DF772B196923EE00A11C2F /* commentIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

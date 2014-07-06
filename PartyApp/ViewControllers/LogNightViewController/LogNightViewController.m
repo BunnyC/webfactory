@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) NSArray *arrOptions;
 @property (strong, nonatomic) NSArray *arrImages;
+@property (strong, nonatomic) NSMutableDictionary *dictOptions;
 
 @end
 
@@ -44,12 +45,34 @@
 - (void)initDefaults {
     self.arrOptions = [NSArray arrayWithObjects:@"Allow Location", @"Notify Friends", @"Post on Facebook", nil];
     self.arrImages = [NSArray arrayWithObjects:@"location", @"commentIcon", @"facebookIcon", nil];
+    
+    NSNumber *numberValue = [NSNumber numberWithInt:0];
+    
+    NSMutableDictionary *dictLocation = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                         @"location", @"SelImage",
+                                         @"unselLocation", @"UnSelImage",
+                                         numberValue, @"Selected", nil];
+    
+    NSMutableDictionary *dictNotify = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                       @"selCommentIcon", @"SelImage",
+                                       @"commentIcon", @"UnSelImage",
+                                       numberValue, @"Selected", nil];
+    
+    NSMutableDictionary *dictFacebook = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                         @"selFacebookIcon", @"SelImage",
+                                         @"facebookIcon", @"UnSelImage",
+                                         numberValue, @"Selected", nil];
+    
+    self.dictOptions = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                        dictLocation, @"Allow Location",
+                        dictNotify, @"Notify Friends",
+                        dictFacebook, @"Post on Facebook", nil];
 }
 
 #pragma mark - UITableView Delegates & DataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return [[self.dictOptions allKeys] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -60,13 +83,34 @@
         [cell.contentView setBackgroundColor:[UIColor clearColor]];
         [cell setBackgroundColor:[UIColor clearColor]];
     }
-    NSString *imageName = [self.arrImages objectAtIndex:indexPath.row];
-    NSString *imagePath = [[NSBundle mainBundle] pathForResource:imageName ofType:@"png"];
-    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
-    [cell.imageView setImage:image];
     
-    [cell.textLabel setText:[self.arrOptions objectAtIndex:indexPath.row]];
+    CommonFunctions *commFunc = [CommonFunctions sharedObject];
+    
+    NSArray *arrOptions = [self.dictOptions allKeys];
+    
+    int selected = [[[arrOptions objectAtIndex:indexPath.row] objectForKey:@"Selected"] intValue];
+    
+    if (selected) {
+        UIImageView *imgViewAcc = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 14, 13)];
+        [imgViewAcc setContentMode:UIViewContentModeCenter];
+        
+        UIImage *imageAcc = [commFunc imageWithName:@"tick" andType:_pPNGType];
+        
+        [imgViewAcc setImage:imageAcc];
+        
+    }
+    
+    NSString *keyName = selected ? @"UnSelImage" : @"SelImage";
+    NSString *imageName = [[arrOptions objectAtIndex:indexPath.row] objectForKey:keyName];
+    UIImage *imageMain = [commFunc imageWithName:imageName andType:_pPNGType];
+    [cell.imageView setImage:imageMain];
+    
+    [cell.textLabel setText:[[self.dictOptions allKeys] objectAtIndex:indexPath.row]];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
 }
 
 @end

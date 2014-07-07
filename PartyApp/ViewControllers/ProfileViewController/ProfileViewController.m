@@ -12,6 +12,8 @@
 #import "AppDelegate.h"
 #import "NotificationCell.h"
 #import "RegisterViewController.h"
+#import "AddReminderViewController.h"
+
 #import <FacebookSDK/FacebookSDK.h>
 
 @interface ProfileViewController () <QBActionStatusDelegate, UITableViewDataSource, UITableViewDelegate>
@@ -249,6 +251,8 @@
     [self.navigationController pushViewController:objLogNight animated:YES];
 }
 - (IBAction)setReminderAction:(id)sender {
+    AddReminderViewController *objAddReminderView = [[AddReminderViewController alloc] initWithNibName:@"AddReminderViewController" bundle:nil];
+    [self.navigationController pushViewController:objAddReminderView animated:YES];
 }
 - (IBAction)editAccountAction:(id)sender {
     

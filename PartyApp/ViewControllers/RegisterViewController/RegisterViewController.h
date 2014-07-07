@@ -22,6 +22,5 @@
     UIView *loadingView;
 }
 
-@property (nonatomic,assign) BOOL isEditDetail;
 -(void)clearTextBoxes;
 @end

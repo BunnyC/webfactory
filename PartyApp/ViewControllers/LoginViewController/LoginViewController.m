@@ -164,9 +164,9 @@
 - (IBAction)btnCreateAccountAction:(id)sender {
     
     RegisterViewController *objRegisterViewController = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
-    objRegisterViewController.isEditDetail=FALSE;
     [self.navigationController pushViewController:objRegisterViewController animated:YES];
 }
+
 
 - (IBAction)btnSignInAction:(id)sender {
     
@@ -179,20 +179,17 @@
                           otherButtonTitles:nil, nil] show];
     }
     else {
-        NSMutableDictionary *dictLoginDetail=[[NSMutableDictionary alloc]init];
-        [dictLoginDetail setValue:txtFieldUsername.text forKey:@"login"];
-        [dictLoginDetail setValue:txtFieldPassword.text forKey:@"password"];
-
+        NSMutableDictionary *dicLoginDetail=[[NSMutableDictionary alloc]init];
+        [dicLoginDetail setValue:txtFieldUsername.text forKey:@"UserName"];
+        [dicLoginDetail setValue:txtFieldPassword.text forKey:@"Password"];
+        [txtFieldPassword resignFirstResponder];
+        [txtFieldPassword resignFirstResponder];
         LoginModel *objLoginModel=[[LoginModel alloc]init];
-        [objLoginModel loginWithTarget:self
-                              selector:@selector(serverResponseOfLogin:)
-                             andDetail:dictLoginDetail
-                    toShowWindowLoader:true];
+        [objLoginModel loginWithTarget:self selector:@selector(serverResponse:) andDetail:dicLoginDetail toShowWindowLoader:YES];
         
-        [self resetFramesForView];
+        
     }
 }
-
 - (IBAction)btnConnectFacebookAction:(id)sender {
     
     
@@ -295,18 +292,9 @@
 
 - (void)updateView {
     // get the app delegate, so that we can reference the session property
-//    AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
-//    if (appDelegate.session.isOpen) {
-//        // valid account UI is shown whenever the session is open
-//        [self.buttonLoginLogout setTitle:@"Log out" forState:UIControlStateNormal];
-//        [self.textNoteOrLink setText:[NSString stringWithFormat:@"https://graph.facebook.com/me/friends?access_token=%@",
-//                                      appDelegate.session.accessTokenData.accessToken]];
-//    } else {
-//        // login-needed account UI is shown whenever the session is closed
-//        [self.buttonLoginLogout setTitle:@"Log in" forState:UIControlStateNormal];
-//        [self.textNoteOrLink setText:@"Login to create a link to fetch account data"];
-//    }
+    AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
 }
+
 
 
 #pragma mark - TextField Delegate Method
@@ -329,60 +317,46 @@
     return YES;
 }
 
+
 #pragma mark - Server Response
 
--(void)serverResponseOfLogin:(NSDictionary *)dictUserLoginResult;
+-(void)serverResponse:(Result *)userLoginResult;
 {
-    
-    if (![dictUserLoginResult objectForKey:@"errors"]) {
-//        [self createUserSession];
-        [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
-    else {
-        NSArray *arrErrors = [dictUserLoginResult objectForKey:@"errors"];
-        NSString *strErrors = [arrErrors componentsJoinedByString:@", "];
+    if (userLoginResult.success) {
         
-        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                             message:strErrors
-                                                            delegate:nil
-                                                   cancelButtonTitle:@"OK"
-                                                   otherButtonTitles:nil, nil];
-        [errorAlert show];
+        QBUUserLogInResult *res = (QBUUserLogInResult *)userLoginResult;
+        
+        NSString *moto=[res.user.fullName isKindOfClass:[NSNull class]]?@"share you moto":res.user.fullName;
+        
+        userInfo=[NSDictionary dictionaryWithObjectsAndKeys:res.user.fullName,@"first_name",moto,@"custom_data",res.user.email,@"email",txtFieldPassword.text,@"Password", nil];
+        
+        NSString *password=res.user.password;
+        [[NSUserDefaults standardUserDefaults] setObject:txtFieldPassword.text forKey:@"Password"];
+        
+        [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [self dismissViewControllerAnimated:true completion:^{
+            if([_delegate respondsToSelector:@selector(updateUserInfo:)])
+            {
+                [_delegate performSelector:@selector(updateUserInfo:) withObject:userInfo];
+            }
+        }];
     }
-    
-    NSLog(@"Result : %@", dictUserLoginResult);
-    
-//    if (userLoginResult.success) {
-//        
-//        QBUUserLogInResult *res = (QBUUserLogInResult *)userLoginResult;
-//        
-//        NSString *moto=[res.user.fullName isKindOfClass:[NSNull class]]?@"share you moto":res.user.fullName;
-//        
-//        userInfo=[NSDictionary dictionaryWithObjectsAndKeys:res.user.fullName,@"first_name",moto,@"custom_data",res.user.email,@"email",txtFieldPassword.text,@"Password", nil];
-//        
-//        NSString *password=res.user.password;
-//        [[NSUserDefaults standardUserDefaults] setObject:txtFieldPassword.text forKey:@"Password"];
-//    
-//        
-//        [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
-//
-//        [self dismissViewControllerAnimated:true completion:^{
-//            if([_delegate respondsToSelector:@selector(updateUserInfo:)])
-//            {
-//                [_delegate performSelector:@selector(updateUserInfo:) withObject:userInfo];
-//            }
-//        }];
-//    }
     //    NSLog(@"User Detail %@", userDetail);
 }
 
 #pragma mark - Tap Gesture on ScrollView
 
 - (void)resetScrollView:(UITapGestureRecognizer *)recognizer {
-    
-    [self resetFramesForView];
+    for (UITextField *textField in scrollView.subviews) {
+        if ([textField isKindOfClass:[UITextField class]]) {
+            [textField resignFirstResponder];
+            [scrollView setContentOffset:CGPointMake(0, -20)];
+            [self setTextFieldBackgroundsWithTextField:nil];
+        }
+    }
 }
+
 
 @end

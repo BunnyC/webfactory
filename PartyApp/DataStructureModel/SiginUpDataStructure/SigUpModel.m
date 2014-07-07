@@ -25,14 +25,11 @@
     
     NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
-    NSString *strPost = nil;
-    strPost = jsonString;
-    
     NSString *serviceUrl = [NSString stringWithFormat:@"%@%@", _pURLBase, _pURLSignUp];
     
     NSMutableURLRequest *request = [RequestBuilder sendRequest:serviceUrl
                                                    requestType:@"POST"
-                                               combinedDataStr:strPost];
+                                               combinedDataStr:jsonString];
     
     ServerConnection *serverConn = [[ServerConnection alloc] init];
     [serverConn serverRequest:self

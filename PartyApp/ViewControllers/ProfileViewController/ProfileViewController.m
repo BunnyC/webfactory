@@ -59,7 +59,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-//    [self sendPageRequest];
+    [self sendPageRequest];
     // [self downloadFile];
 }
 
@@ -118,15 +118,15 @@
                                                                   andType:_pPNGType];
     [imageViewProfile setImage:profileImage];
     UIPanGestureRecognizer *panGesture=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePanGesture:)];
-    //[viewNotifications addGestureRecognizer:panGesture];
+    [viewNotifications addGestureRecognizer:panGesture];
     
-    UISwipeGestureRecognizer *swipeUp=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipPanGestureHandler:)];
-    [swipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
-    [viewNotifications addGestureRecognizer:swipeUp];
-    
-    UISwipeGestureRecognizer *swipeDown=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipPanGestureHandler:)];
-    [swipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
-    [viewNotifications addGestureRecognizer:swipeDown];
+//    UISwipeGestureRecognizer *swipeUp=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipPanGestureHandler:)];
+//    [swipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
+//    [viewNotifications addGestureRecognizer:swipeUp];
+//    
+//    UISwipeGestureRecognizer *swipeDown=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipPanGestureHandler:)];
+//    [swipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
+//    [viewNotifications addGestureRecognizer:swipeDown];
     
 }
 
@@ -152,64 +152,67 @@
     lblMotto.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"custom_data"]];
 }
 
-
-- (void)swipPanGestureHandler:(UIGestureRecognizer *)recognizer
-{
-    [self handleRecentReminderView];
-}
-
--(void)handlePanGesture:(UIPanGestureRecognizer *)recognizer
-{
-    
-    CGPoint translation = [recognizer translationInView:self.view];
-    
-    int translationValue=(int
-                          )(recognizer.view.center.y + translation.y);
-    
-    if(translationValue>btnLogNight.frame.origin.y+btnLogNight.frame.size.height && translationValue<self.view.frame.size.height-20+recognizer.view.frame.size.height/4)
-    {
-        
-        
-        recognizer.view.center = CGPointMake(recognizer.view.center.x,
-                                             recognizer.view.center.y + translation.y);
-        
-        
-        [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
-        
-        
-    }
-    
-    
-    if (recognizer.state == UIGestureRecognizerStateEnded) {
-        
-        CGPoint velocity = [recognizer velocityInView:self.view];
-        CGFloat magnitude = sqrtf((velocity.x * velocity.x) + (velocity.y * velocity.y));
-        CGFloat slideMult = magnitude / 200;
-        
-        
-        NSLog(@"magnitude: %f, slideMult: %f", magnitude, slideMult);
-        
-        float slideFactor = 0.1 * slideMult; // Increase for more of a slide
-        
-        CGPoint finalPoint = CGPointMake(recognizer.view.center.x,
-                                         recognizer.view.center.y + (velocity.y * slideFactor));
-        
-        finalPoint.y = MIN(MAX(finalPoint.y, btnLogNight.frame.origin.y+btnLogNight.frame.size.height), (self.view.bounds.size.height-25)+recognizer.view.frame.size.height/4);
-        
-        NSLog(@"%f",finalPoint.y);
-        
-        
-        [UIView animateWithDuration:slideFactor/2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            
-            
-            recognizer.view.center = finalPoint;
-            
-            
-        } completion:nil];
-        
-    }
+- (void)handlePanGesture:(UIPanGestureRecognizer *)recognizer {
     
 }
+
+//- (void)swipPanGestureHandler:(UIGestureRecognizer *)recognizer
+//{
+//    [self handleRecentReminderView];
+//}
+//
+//-(void)handlePanGesture:(UIPanGestureRecognizer *)recognizer
+//{
+//    
+//    CGPoint translation = [recognizer translationInView:self.view];
+//    
+//    int translationValue=(int
+//                          )(recognizer.view.center.y + translation.y);
+//    
+//    if(translationValue>btnLogNight.frame.origin.y+btnLogNight.frame.size.height && translationValue<self.view.frame.size.height-20+recognizer.view.frame.size.height/4)
+//    {
+//        
+//        
+//        recognizer.view.center = CGPointMake(recognizer.view.center.x,
+//                                             recognizer.view.center.y + translation.y);
+//        
+//        
+//        [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
+//        
+//        
+//    }
+//    
+//    
+//    if (recognizer.state == UIGestureRecognizerStateEnded) {
+//        
+//        CGPoint velocity = [recognizer velocityInView:self.view];
+//        CGFloat magnitude = sqrtf((velocity.x * velocity.x) + (velocity.y * velocity.y));
+//        CGFloat slideMult = magnitude / 200;
+//        
+//        
+//        NSLog(@"magnitude: %f, slideMult: %f", magnitude, slideMult);
+//        
+//        float slideFactor = 0.1 * slideMult; // Increase for more of a slide
+//        
+//        CGPoint finalPoint = CGPointMake(recognizer.view.center.x,
+//                                         recognizer.view.center.y + (velocity.y * slideFactor));
+//        
+//        finalPoint.y = MIN(MAX(finalPoint.y, btnLogNight.frame.origin.y+btnLogNight.frame.size.height), (self.view.bounds.size.height-25)+recognizer.view.frame.size.height/4);
+//        
+//        NSLog(@"%f",finalPoint.y);
+//        
+//        
+//        [UIView animateWithDuration:slideFactor/2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+//            
+//            
+//            recognizer.view.center = finalPoint;
+//            
+//            
+//        } completion:nil];
+//        
+//    }
+//    
+//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -236,7 +239,12 @@
 #pragma mark - IBActions
 - (IBAction)logNightAction:(id)sender {
     
-    LogNightViewController *objLogNight = [[LogNightViewController alloc] initWithNibName:@"LogNightViewController" bundle:nil];
+    NSString *xibName = NSStringFromClass([LogNightViewController class]);
+    BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
+    if (!isiPhone5)
+        xibName = [NSString stringWithFormat:@"%@4", xibName];
+    
+    LogNightViewController *objLogNight = [[LogNightViewController alloc] initWithNibName:xibName bundle:nil];
     
     [self.navigationController pushViewController:objLogNight animated:YES];
 }

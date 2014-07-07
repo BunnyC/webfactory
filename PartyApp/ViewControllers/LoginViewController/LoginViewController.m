@@ -134,7 +134,7 @@
     NSString *errorString = nil;
     if (txtFieldUsername.text.length < 5)
         errorString = @"Please enter username with atleast 5 characters";
-    if (txtFieldPassword.text.length < 6) {
+    if (txtFieldPassword.text.length < 8) {
         if (errorString.length)
             errorString = [[[errorString stringByReplacingOccurrencesOfString:@"username" withString:@"username, password"] stringByReplacingOccurrencesOfString:@"characters" withString:@"characters respectively"] stringByReplacingOccurrencesOfString:@"5" withString:@"5 and 6"];
         else
@@ -179,14 +179,17 @@
                           otherButtonTitles:nil, nil] show];
     }
     else {
-        NSMutableDictionary *dicLoginDetail=[[NSMutableDictionary alloc]init];
-        [dicLoginDetail setValue:txtFieldUsername.text forKey:@"UserName"];
-        [dicLoginDetail setValue:txtFieldPassword.text forKey:@"Password"];
-        [txtFieldPassword resignFirstResponder];
-        [txtFieldPassword resignFirstResponder];
-        LoginModel *objLoginModel=[[LoginModel alloc]init];
-        [objLoginModel loginWithTarget:self Selector:@selector(serverResponse:) Detail:dicLoginDetail];
+        NSMutableDictionary *dictLoginDetail=[[NSMutableDictionary alloc]init];
+        [dictLoginDetail setValue:txtFieldUsername.text forKey:@"login"];
+        [dictLoginDetail setValue:txtFieldPassword.text forKey:@"password"];
 
+        LoginModel *objLoginModel=[[LoginModel alloc]init];
+        [objLoginModel loginWithTarget:self
+                              selector:@selector(serverResponseOfLogin:)
+                             andDetail:dictLoginDetail
+                    toShowWindowLoader:true];
+        
+        [self resetFramesForView];
     }
 }
 
@@ -278,10 +281,21 @@
     
 }
 
+#pragma mark - Other Methods
+
+- (void)resetFramesForView {
+    
+    for (UITextField *textField in scrollView.subviews)
+        if ([textField isKindOfClass:[UITextField class]])
+            [textField resignFirstResponder];
+    
+    [scrollView setContentOffset:CGPointMake(0, -20)];
+    [self setTextFieldBackgroundsWithTextField:nil];
+}
 
 - (void)updateView {
     // get the app delegate, so that we can reference the session property
-    AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+//    AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
 //    if (appDelegate.session.isOpen) {
 //        // valid account UI is shown whenever the session is open
 //        [self.buttonLoginLogout setTitle:@"Log out" forState:UIControlStateNormal];
@@ -317,74 +331,58 @@
 
 #pragma mark - Server Response
 
--(void)serverResponse:(Result *)userLoginResult;
+-(void)serverResponseOfLogin:(NSDictionary *)dictUserLoginResult;
 {
-    if (userLoginResult.success) {
-        
-        QBUUserLogInResult *res = (QBUUserLogInResult *)userLoginResult;
-        
-        NSString *moto=[res.user.fullName isKindOfClass:[NSNull class]]?@"share you moto":res.user.fullName;
-        
-        userInfo=[NSDictionary dictionaryWithObjectsAndKeys:res.user.fullName,@"first_name",moto,@"custom_data",res.user.email,@"email",txtFieldPassword.text,@"Password", nil];
-        
-        NSString *password=res.user.password;
-        [[NSUserDefaults standardUserDefaults] setObject:txtFieldPassword.text forKey:@"Password"];
     
-        
+    if (![dictUserLoginResult objectForKey:@"errors"]) {
+//        [self createUserSession];
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-
-        [self dismissViewControllerAnimated:true completion:^{
-            if([_delegate respondsToSelector:@selector(updateUserInfo:)])
-            {
-                [_delegate performSelector:@selector(updateUserInfo:) withObject:userInfo];
-            }
-        }];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
+    else {
+        NSArray *arrErrors = [dictUserLoginResult objectForKey:@"errors"];
+        NSString *strErrors = [arrErrors componentsJoinedByString:@", "];
+        
+        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                             message:strErrors
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"OK"
+                                                   otherButtonTitles:nil, nil];
+        [errorAlert show];
+    }
+    
+    NSLog(@"Result : %@", dictUserLoginResult);
+    
+//    if (userLoginResult.success) {
+//        
+//        QBUUserLogInResult *res = (QBUUserLogInResult *)userLoginResult;
+//        
+//        NSString *moto=[res.user.fullName isKindOfClass:[NSNull class]]?@"share you moto":res.user.fullName;
+//        
+//        userInfo=[NSDictionary dictionaryWithObjectsAndKeys:res.user.fullName,@"first_name",moto,@"custom_data",res.user.email,@"email",txtFieldPassword.text,@"Password", nil];
+//        
+//        NSString *password=res.user.password;
+//        [[NSUserDefaults standardUserDefaults] setObject:txtFieldPassword.text forKey:@"Password"];
+//    
+//        
+//        [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//
+//        [self dismissViewControllerAnimated:true completion:^{
+//            if([_delegate respondsToSelector:@selector(updateUserInfo:)])
+//            {
+//                [_delegate performSelector:@selector(updateUserInfo:) withObject:userInfo];
+//            }
+//        }];
+//    }
     //    NSLog(@"User Detail %@", userDetail);
 }
-
-#pragma mark -
-#pragma mark QBActionStatusDelegate
-
-/*
-// QuickBlox API queries delegate
--(void)completedWithResult:(Result *)result{
-    // Success result
-    if(result.success){
-        
-        if ([result isKindOfClass:[QBCBlobPagedResult class]]){
-            
-            // Success result
-            if(result.success){
-                QBCBlobPagedResult *res = (QBCBlobPagedResult *)result;
-                
-                // Save user's filelist
-                [DataManager instance].fileList = [res.blobs mutableCopy];
-                
-                // hid splash screen
-                [self dismissViewControllerAnimated:true completion:^{
-                    if([_delegate respondsToSelector:@selector(updateUserInfo:)])
-                    {
-                        [_delegate performSelector:@selector(updateUserInfo:) withObject:userInfo];
-                    }
-                }];
-            }
-        }
-    }
-}
-*/
 
 #pragma mark - Tap Gesture on ScrollView
 
 - (void)resetScrollView:(UITapGestureRecognizer *)recognizer {
-    for (UITextField *textField in scrollView.subviews) {
-        if ([textField isKindOfClass:[UITextField class]]) {
-            [textField resignFirstResponder];
-            [scrollView setContentOffset:CGPointMake(0, -20)];
-            [self setTextFieldBackgroundsWithTextField:nil];
-        }
-    }
+    
+    [self resetFramesForView];
 }
 
 @end

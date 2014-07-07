@@ -7,57 +7,72 @@
 //
 
 #import "LoginModel.h"
+#import "WebService.h"
 
 @implementation LoginModel
 
--(void)loginWithTarget:(id)target Selector:(SEL)selector Detail:(NSDictionary *)loginDetail
-{
-    _delegate=target;
+-(void)loginWithTarget:(id)target
+              selector:(SEL)selector
+             andDetail:(NSDictionary *)loginDetail
+    toShowWindowLoader:(BOOL)toShow {
+    
+    _controller=target;
     _handler=selector;
     
-    viewLoading = [[CommonFunctions sharedObject] showLoadingView];
-    [QBUsers logInWithUserLogin:[loginDetail objectForKey:@"UserName"]
-                       password:[loginDetail objectForKey:@"Password"]
-                       delegate:self];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:loginDetail
+                                                   options:NSJSONWritingPrettyPrinted
+                                                     error:nil];
+    
+    NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSString *serviceUrl = [NSString stringWithFormat:@"%@%@", _pURLBase, _pURLLogin];
+    
+    NSMutableURLRequest *request = [RequestBuilder sendRequest:serviceUrl
+                                                   requestType:@"POST"
+                                               combinedDataStr:jsonString];
+    
+    ServerConnection *serverConn = [[ServerConnection alloc] init];
+    [serverConn serverRequest:self
+                     selector:@selector(serverResponseForLogin:)
+                serverRequest:request
+           toShowWindowLoader:toShow];
     
 }
 
+#pragma mark - Server Response
 
-#pragma mark -Server Response
-
-
--(void)completedWithResult:(Result *)result
-{
-    [[CommonFunctions sharedObject] hideLoadingView:viewLoading];
-    if([result isKindOfClass:[QBUUserLogInResult class]]){
-		
-        [[NSUserDefaults standardUserDefaults] setBool:result.success
-                                                forKey:_pudLoggedIn];
+- (void)serverResponseForLogin:(NSMutableData *)responseData {
+    NSError *error = nil;
+    NSMutableDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:responseData
+                                                                        options:NSJSONReadingAllowFragments
+                                                                          error:&error];
+    
+    NSDictionary *responseReceived = nil;
+    
+    if ([responseDict objectForKey:@"user"]) {
+        NSMutableDictionary *dictUserInfo = [[NSMutableDictionary alloc] initWithDictionary:[responseDict objectForKey:@"user"]];
         
-        // Success result
-        if(result.success){
-            
-            QBUUserLogInResult *res = (QBUUserLogInResult *)result;
-            
-            // save current user
-            NSLog(@"UserName: %@ ",res.user);
-            
-            [_delegate performSelectorOnMainThread:_handler
-                                        withObject:result
-                                     waitUntilDone:YES];
+        for (NSString *keyName in [dictUserInfo allKeys])
+            if ([dictUserInfo objectForKey:keyName] == (id)[NSNull null])
+                [dictUserInfo setObject:@"" forKey:keyName];
         
-            // Errors
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Errors"
-                                                            message:_pErrInvalidUserNameAndPassword
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles: nil];
-            alert.tag = 1;
-            [alert show];
-   
-        }
+        NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+        [userDefs setObject:dictUserInfo forKey:_pudUserInfo];
+        [userDefs synchronize];
+        responseReceived = dictUserInfo;
     }
+    else {
+        
+        NSMutableArray *arrErrors = [[NSMutableArray alloc] init];
+        [arrErrors addObject:@"Login credentials don't match our database."];
+        NSDictionary *dictError = [NSDictionary dictionaryWithObject:arrErrors
+                                                              forKey:@"errors"];
+        responseReceived = dictError;
+    }
+    
+    [_controller performSelectorOnMainThread:_handler
+                                  withObject:responseReceived
+                               waitUntilDone:YES];
 }
 
 @end

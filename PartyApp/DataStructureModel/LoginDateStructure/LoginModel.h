@@ -10,10 +10,14 @@
 
 @interface LoginModel : NSObject<QBActionStatusDelegate>
 {
-    id  _delegate;
+    id  _controller;
     SEL _handler;
     UIView *viewLoading;
 }
 
--(void)loginWithTarget:(id)target Selector:(SEL)selector Detail:(NSDictionary *)loginDetail;
+-(void)loginWithTarget:(id)target
+              selector:(SEL)selector
+             andDetail:(NSDictionary *)loginDetail
+    toShowWindowLoader:(BOOL)toShow;
+
 @end

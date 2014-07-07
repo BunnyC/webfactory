@@ -21,9 +21,7 @@
 		842715E81960399700DBEA6E /* RequestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 842715E71960399700DBEA6E /* RequestBuilder.m */; };
 		842715ED1960414800DBEA6E /* SessionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 842715EC1960414800DBEA6E /* SessionModel.m */; };
 		8464A877195A066800583DE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A81F195A066800583DE0 /* AppDelegate.m */; };
-		8464A878195A066800583DE0 /* LoginDataStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A824195A066800583DE0 /* LoginDataStructure.m */; };
 		8464A879195A066800583DE0 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A826195A066800583DE0 /* LoginModel.m */; };
-		8464A87A195A066800583DE0 /* SignUpDataStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A829195A066800583DE0 /* SignUpDataStructure.m */; };
 		8464A87B195A066800583DE0 /* SigUpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A82B195A066800583DE0 /* SigUpModel.m */; };
 		8464A87C195A066800583DE0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8464A82C195A066800583DE0 /* InfoPlist.strings */; };
 		8464A87D195A066800583DE0 /* CommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A831195A066800583DE0 /* CommonFunctions.m */; };
@@ -102,7 +100,7 @@
 		84DF77761969240000A11C2F /* purpleButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77561969240000A11C2F /* purpleButton@2x.png */; };
 		84DF77771969240000A11C2F /* roundImageEffect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77571969240000A11C2F /* roundImageEffect@2x.png */; };
 		84DF77781969240000A11C2F /* selCommentIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77581969240000A11C2F /* selCommentIcon@2x.png */; };
-		84DF77791969240000A11C2F /* selFacebookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77591969240000A11C2F /* selFacebookIcon.png */; };
+		84DF77791969240000A11C2F /* selFacebookIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77591969240000A11C2F /* selFacebookIcon@2x.png */; };
 		84DF777A1969240000A11C2F /* selImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF775A1969240000A11C2F /* selImg@2x.png */; };
 		84DF777B1969240000A11C2F /* tick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF775B1969240000A11C2F /* tick@2x.png */; };
 		84DF777C1969240000A11C2F /* txtFldW@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF775C1969240000A11C2F /* txtFldW@2x.png */; };
@@ -120,6 +118,8 @@
 		84DF77901969428500A11C2F /* tableSeparator.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF778F1969428500A11C2F /* tableSeparator.png */; };
 		84DF7792196947A300A11C2F /* textViewBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7791196947A300A11C2F /* textViewBack.png */; };
 		84DF7794196947B900A11C2F /* textViewBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7793196947B900A11C2F /* textViewBack@2x.png */; };
+		84DF77961969A4BF00A11C2F /* LogNightViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77951969A4BF00A11C2F /* LogNightViewController4.xib */; };
+		84DF779A1969AC1F00A11C2F /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DF77991969AC1F00A11C2F /* FXBlurView.m */; };
 		CE35F07F1956A670009DA53D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F07E1956A66F009DA53D /* Security.framework */; };
 		CE35F0811956A68B009DA53D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0801956A68B009DA53D /* QuartzCore.framework */; };
 		CE35F0831956A693009DA53D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0821956A693009DA53D /* AudioToolbox.framework */; };
@@ -173,12 +173,8 @@
 		842715EC1960414800DBEA6E /* SessionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SessionModel.m; path = Models/SessionModel/SessionModel.m; sourceTree = "<group>"; };
 		8464A81E195A066800583DE0 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8464A81F195A066800583DE0 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8464A823195A066800583DE0 /* LoginDataStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginDataStructure.h; sourceTree = "<group>"; };
-		8464A824195A066800583DE0 /* LoginDataStructure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginDataStructure.m; sourceTree = "<group>"; };
 		8464A825195A066800583DE0 /* LoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModel.h; sourceTree = "<group>"; };
 		8464A826195A066800583DE0 /* LoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
-		8464A828195A066800583DE0 /* SignUpDataStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpDataStructure.h; sourceTree = "<group>"; };
-		8464A829195A066800583DE0 /* SignUpDataStructure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpDataStructure.m; sourceTree = "<group>"; };
 		8464A82A195A066800583DE0 /* SigUpModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SigUpModel.h; sourceTree = "<group>"; };
 		8464A82B195A066800583DE0 /* SigUpModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SigUpModel.m; sourceTree = "<group>"; };
 		8464A82D195A066800583DE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -270,7 +266,7 @@
 		84DF77561969240000A11C2F /* purpleButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purpleButton@2x.png"; sourceTree = "<group>"; };
 		84DF77571969240000A11C2F /* roundImageEffect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roundImageEffect@2x.png"; sourceTree = "<group>"; };
 		84DF77581969240000A11C2F /* selCommentIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selCommentIcon@2x.png"; sourceTree = "<group>"; };
-		84DF77591969240000A11C2F /* selFacebookIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selFacebookIcon.png; sourceTree = "<group>"; };
+		84DF77591969240000A11C2F /* selFacebookIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selFacebookIcon@2x.png"; sourceTree = "<group>"; };
 		84DF775A1969240000A11C2F /* selImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selImg@2x.png"; sourceTree = "<group>"; };
 		84DF775B1969240000A11C2F /* tick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tick@2x.png"; sourceTree = "<group>"; };
 		84DF775C1969240000A11C2F /* txtFldW@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "txtFldW@2x.png"; sourceTree = "<group>"; };
@@ -289,6 +285,9 @@
 		84DF778F1969428500A11C2F /* tableSeparator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableSeparator.png; sourceTree = "<group>"; };
 		84DF7791196947A300A11C2F /* textViewBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textViewBack.png; sourceTree = "<group>"; };
 		84DF7793196947B900A11C2F /* textViewBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textViewBack@2x.png"; sourceTree = "<group>"; };
+		84DF77951969A4BF00A11C2F /* LogNightViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogNightViewController4.xib; sourceTree = "<group>"; };
+		84DF77981969AC1F00A11C2F /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
+		84DF77991969AC1F00A11C2F /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		CE35F07E1956A66F009DA53D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CE35F0801956A68B009DA53D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CE35F0821956A693009DA53D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -494,8 +493,6 @@
 		8464A822195A066800583DE0 /* LoginDateStructure */ = {
 			isa = PBXGroup;
 			children = (
-				8464A823195A066800583DE0 /* LoginDataStructure.h */,
-				8464A824195A066800583DE0 /* LoginDataStructure.m */,
 				8464A825195A066800583DE0 /* LoginModel.h */,
 				8464A826195A066800583DE0 /* LoginModel.m */,
 			);
@@ -505,8 +502,6 @@
 		8464A827195A066800583DE0 /* SiginUpDataStructure */ = {
 			isa = PBXGroup;
 			children = (
-				8464A828195A066800583DE0 /* SignUpDataStructure.h */,
-				8464A829195A066800583DE0 /* SignUpDataStructure.m */,
 				8464A82A195A066800583DE0 /* SigUpModel.h */,
 				8464A82B195A066800583DE0 /* SigUpModel.m */,
 			);
@@ -516,6 +511,7 @@
 		8464A82E195A066800583DE0 /* HelperClasses */ = {
 			isa = PBXGroup;
 			children = (
+				84DF77971969AC1E00A11C2F /* FXBlurView */,
 				842715E11960390E00DBEA6E /* RequestBuilder */,
 				842715E21960390E00DBEA6E /* ServerConnection */,
 				84A1432D195F5A9A00DC3970 /* PATextField */,
@@ -583,7 +579,7 @@
 				84DF77561969240000A11C2F /* purpleButton@2x.png */,
 				84DF77571969240000A11C2F /* roundImageEffect@2x.png */,
 				84DF77581969240000A11C2F /* selCommentIcon@2x.png */,
-				84DF77591969240000A11C2F /* selFacebookIcon.png */,
+				84DF77591969240000A11C2F /* selFacebookIcon@2x.png */,
 				84DF775A1969240000A11C2F /* selImg@2x.png */,
 				84DF775B1969240000A11C2F /* tick@2x.png */,
 				84DF775C1969240000A11C2F /* txtFldW@2x.png */,
@@ -681,6 +677,7 @@
 				8464A864195A066800583DE0 /* LogNightViewController.h */,
 				8464A865195A066800583DE0 /* LogNightViewController.m */,
 				8464A866195A066800583DE0 /* LogNightViewController.xib */,
+				84DF77951969A4BF00A11C2F /* LogNightViewController4.xib */,
 			);
 			path = LogNightViewController;
 			sourceTree = "<group>";
@@ -767,6 +764,15 @@
 				84DF77871969326200A11C2F /* LogNightCell.xib */,
 			);
 			name = LogNightCell;
+			sourceTree = "<group>";
+		};
+		84DF77971969AC1E00A11C2F /* FXBlurView */ = {
+			isa = PBXGroup;
+			children = (
+				84DF77981969AC1F00A11C2F /* FXBlurView.h */,
+				84DF77991969AC1F00A11C2F /* FXBlurView.m */,
+			);
+			path = FXBlurView;
 			sourceTree = "<group>";
 		};
 		CE9D3768195E76F7001F05D9 /* ForgotPassword */ = {
@@ -879,6 +885,7 @@
 				84DF7737196923EE00A11C2F /* roundImageEffect.png in Resources */,
 				84DF773B196923EE00A11C2F /* tick.png in Resources */,
 				84DF77641969240000A11C2F /* appBackground4@2x.png in Resources */,
+				84DF77961969A4BF00A11C2F /* LogNightViewController4.xib in Resources */,
 				CE9D3771195F02C1001F05D9 /* UploadPhotoViewController4.xib in Resources */,
 				84DF7741196923EE00A11C2F /* whiteButton.png in Resources */,
 				84DF7723196923EE00A11C2F /* appBackground.png in Resources */,
@@ -938,7 +945,7 @@
 				84DF778E1969425300A11C2F /* tableSeparator@2x.png in Resources */,
 				84DF7730196923EE00A11C2F /* mottoBack.png in Resources */,
 				84DF77721969240000A11C2F /* notifTop@2x.png in Resources */,
-				84DF77791969240000A11C2F /* selFacebookIcon.png in Resources */,
+				84DF77791969240000A11C2F /* selFacebookIcon@2x.png in Resources */,
 				84DF77631969240000A11C2F /* appBackground@2x.png in Resources */,
 				84DF772B196923EE00A11C2F /* commentIcon.png in Resources */,
 			);
@@ -965,14 +972,13 @@
 				8464A8AA195A066800583DE0 /* SplashScreenViewController.m in Sources */,
 				8464A8A1195A066800583DE0 /* BaseViewController.m in Sources */,
 				8464A87B195A066800583DE0 /* SigUpModel.m in Sources */,
+				84DF779A1969AC1F00A11C2F /* FXBlurView.m in Sources */,
 				8464A87D195A066800583DE0 /* CommonFunctions.m in Sources */,
 				8464A8A4195A066800583DE0 /* LogNightViewController.m in Sources */,
 				84A14330195F5AD200DC3970 /* PATextField.m in Sources */,
 				842715E81960399700DBEA6E /* RequestBuilder.m in Sources */,
 				8464A8A2195A066800583DE0 /* LoginViewController.m in Sources */,
 				842715D41960125100DBEA6E /* NotificationCell.m in Sources */,
-				8464A87A195A066800583DE0 /* SignUpDataStructure.m in Sources */,
-				8464A878195A066800583DE0 /* LoginDataStructure.m in Sources */,
 				8464A87E195A066800583DE0 /* Constants.m in Sources */,
 				8464A8A8195A066800583DE0 /* RegisterViewController.m in Sources */,
 				8464A89F195A066800583DE0 /* main.m in Sources */,
@@ -1111,7 +1117,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Admin/Projects/PartyApp/iOSCode/webfactory,
-					"/Users/Gagan/Documents/Gagan\\ Important\\ Doc/Home\\ Project/\\ PartyApp\\ Project/webfactory",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PartyApp/PartyApp-Prefix.pch";
@@ -1137,7 +1142,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Admin/Projects/PartyApp/iOSCode/webfactory,
-					"/Users/Gagan/Documents/Gagan\\ Important\\ Doc/Home\\ Project/\\ PartyApp\\ Project/webfactory",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PartyApp/PartyApp-Prefix.pch";

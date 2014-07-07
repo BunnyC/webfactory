@@ -124,18 +124,23 @@
 
 -(void)fillUserDetailForEdit
 {
+    
+//    @"login",
+//    @"email",
+//    @"password",
+//    @"custom_data"
+    
     NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-    NSDictionary *dicUserInfo=[userDefs objectForKey:_pUserInfoDic];
+//    NSDictionary *dicUserInfo=[userDefs objectForKey:_pUserInfoDic];
     NSDictionary *userInfo = [userDefs objectForKey:_pudUserInfo];
     
-    txtFieldUsername.text=[dicUserInfo objectForKey:@"first_name"];
-    txtFieldEmail.text=[dicUserInfo objectForKey:@"email"];
-    txtFieldRepeatEmail.text=[dicUserInfo objectForKey:@"email"];
+    txtFieldUsername.text=[userInfo objectForKey:@"login"];
+    txtFieldEmail.text=[userInfo objectForKey:@"email"];
+    txtFieldRepeatEmail.text=[userInfo objectForKey:@"email"];
     
-    NSLog(@"%@",[userDefs objectForKey:@"Password"]);
     txtFieldPassword.text=[userDefs objectForKey:@"Password"];
     txtFieldRepeatPassword.text=[userDefs objectForKey:@"Password"];
-    txtFieldMotto.text=[dicUserInfo objectForKey:@"custom_data"];
+    txtFieldMotto.text=[userInfo objectForKey:@"custom_data"];
     
 }
 

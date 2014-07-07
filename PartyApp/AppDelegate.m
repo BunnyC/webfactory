@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ProfileViewController.h"
 #import "SplashScreenViewController.h"
+#import "FXBlurView.h"
 
 @implementation AppDelegate
 
@@ -36,7 +37,7 @@
         [userDefs setObject:[NSDate date] forKey:_pudSessionExpiryDate];
     [userDefs synchronize];
     
-    [self refreshQBSession];
+//    [self refreshQBSession];
 
     //  Navigation Bar Setup
     UIColor *colorNavTitleText = [[CommonFunctions sharedObject] colorWithHexString:@"5f4b5e"];
@@ -110,14 +111,13 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    [self refreshQBSession];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
-    [self refreshQBSession];
+    [QBAuth createSessionWithDelegate:self];
     [FBAppEvents activateApp];
   
     [FBAppCall handleDidBecomeActiveWithSession:self.session];
@@ -137,20 +137,7 @@
 //    return [FBSession.activeSession handleOpenURL:url];
 //}
 
-#pragma mark - QBSession Methods
-
-- (void)refreshQBSession {
-    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-    NSDate *sessionExpDate = [userDefs objectForKey:_pudSessionExpiryDate];
-    BOOL isLoggedIn = [userDefs boolForKey:_pudLoggedIn];
-
-//    [QBAuth createSessionWithDelegate:self];
-
-    if (([[NSDate date] timeIntervalSinceDate:sessionExpDate] > 0 || !isLoggedIn)&& !refreshingSession) {
-        [QBAuth createSessionWithDelegate:self];
-        refreshingSession = true;
-    }
-}
+#pragma mark - QBSession Delegate
 
 - (void)completedWithResult:(Result *)result{
     
@@ -159,18 +146,26 @@
         // Success result
         if(result.success){
             
+            for (UIView *view in self.window.subviews) {
+                if ([view isKindOfClass:[FXBlurView class]]) {
+                    for (UIView *subView in view.subviews)
+                        [subView removeFromSuperview];
+                    [view removeFromSuperview];
+                }
+            }
+            
             NSDate *sessionExpDate = [[QBBaseModule sharedModule] tokenExpirationDate];
             NSString *sessionToken = [[QBBaseModule sharedModule] token];
             
             NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
             [userDefs setObject:sessionExpDate  forKey:_pudSessionExpiryDate];
             [userDefs setObject:sessionToken    forKey:_pudSessionToken];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+            [userDefs synchronize];
             refreshingSession = false;
         }
-        else{
-            
-        }
+        else
+            [self showMessage:@"Unable to make connection this time."
+                    withTitle:@"No Connectivity"];
     }
 }
 

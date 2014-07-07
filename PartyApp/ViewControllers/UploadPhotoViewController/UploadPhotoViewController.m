@@ -216,7 +216,6 @@
         if(result.success)
         {
             resultType=KCreateSessionSuccess;
-            NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
             //[buttonNext setEnabled:false];
             [progressViewImageUpload setHidden:false];
             [self.view setUserInteractionEnabled:NO];

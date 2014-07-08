@@ -156,13 +156,13 @@
 		CE35F0911956A71A009DA53D /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0901956A71A009DA53D /* libresolv.dylib */; };
 		CE35F0931956A722009DA53D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0921956A722009DA53D /* CoreLocation.framework */; };
 		CE35F0991956A73C009DA53D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0981956A73C009DA53D /* CFNetwork.framework */; };
-		CE702DB1196B061F006C34AE /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE702DB0196B061F006C34AE /* Quickblox.framework */; };
 		CE9D376C195E771B001F05D9 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9D376A195E771B001F05D9 /* ForgotPasswordViewController.m */; };
 		CE9D376D195E771B001F05D9 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9D376A195E771B001F05D9 /* ForgotPasswordViewController.m */; };
 		CE9D376E195E771B001F05D9 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9D376B195E771B001F05D9 /* ForgotPasswordViewController.xib */; };
 		CE9D376F195E771B001F05D9 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9D376B195E771B001F05D9 /* ForgotPasswordViewController.xib */; };
 		CE9D3771195F02C1001F05D9 /* UploadPhotoViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9D3770195F02C1001F05D9 /* UploadPhotoViewController4.xib */; };
 		CE9D3773195F0C0F001F05D9 /* ProfileViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9D3772195F0C0F001F05D9 /* ProfileViewController4.xib */; };
+		CEA18F1B195BB3F400A6CACB /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8464A8B2195B9F8C00583DE0 /* Quickblox.framework */; };
 		CEB0377B195B548C009837A6 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB0377A195B548C009837A6 /* DataManager.m */; };
 /* End PBXBuildFile section */
 
@@ -230,6 +230,7 @@
 		8464A874195A066800583DE0 /* UploadPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadPhotoViewController.h; sourceTree = "<group>"; };
 		8464A875195A066800583DE0 /* UploadPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadPhotoViewController.m; sourceTree = "<group>"; };
 		8464A876195A066800583DE0 /* UploadPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadPhotoViewController.xib; sourceTree = "<group>"; };
+		8464A8B2195B9F8C00583DE0 /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quickblox.framework; sourceTree = "<group>"; };
 		8491FCD3195EB75B00FDC63F /* LoginViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController4.xib; sourceTree = "<group>"; };
 		84A1432E195F5AD200DC3970 /* PATextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PATextField.h; path = PATextField/PATextField.h; sourceTree = "<group>"; };
 		84A1432F195F5AD200DC3970 /* PATextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PATextField.m; path = PATextField/PATextField.m; sourceTree = "<group>"; };
@@ -350,7 +351,6 @@
 		CE35F0941956A72D009DA53D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CE35F0961956A734009DA53D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		CE35F0981956A73C009DA53D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		CE702DB0196B061F006C34AE /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quickblox.framework; sourceTree = "<group>"; };
 		CE9D3769195E771B001F05D9 /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewController.h; sourceTree = "<group>"; };
 		CE9D376A195E771B001F05D9 /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		CE9D376B195E771B001F05D9 /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
@@ -365,7 +365,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE702DB1196B061F006C34AE /* Quickblox.framework in Frameworks */,
+				CEA18F1B195BB3F400A6CACB /* Quickblox.framework in Frameworks */,
 				84AD392C1957FC3C0004915B /* MobileCoreServices.framework in Frameworks */,
 				84AD392D1957FC3C0004915B /* SystemConfiguration.framework in Frameworks */,
 				CE35F0991956A73C009DA53D /* CFNetwork.framework in Frameworks */,
@@ -422,7 +422,7 @@
 		8425AF5D194C3E7800E8CCF3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CE702DB0196B061F006C34AE /* Quickblox.framework */,
+				8464A8B2195B9F8C00583DE0 /* Quickblox.framework */,
 				84AD39281957D3AA0004915B /* FacebookSDK.framework */,
 				CE35F0981956A73C009DA53D /* CFNetwork.framework */,
 				CE35F0961956A734009DA53D /* SystemConfiguration.framework */,
@@ -1239,7 +1239,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Admin/Projects/PartyApp/iOSCode/webfactory,
-					"/Users/Gagan/Documents/Gagan\\ Important\\ Doc/Home\\ Project/\\ PartyApp\\ Project/webfactory",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PartyApp/PartyApp-Prefix.pch";
@@ -1265,7 +1264,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Admin/Projects/PartyApp/iOSCode/webfactory,
-					"/Users/Gagan/Documents/Gagan\\ Important\\ Doc/Home\\ Project/\\ PartyApp\\ Project/webfactory",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PartyApp/PartyApp-Prefix.pch";

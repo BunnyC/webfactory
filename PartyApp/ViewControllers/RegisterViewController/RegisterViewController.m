@@ -14,7 +14,7 @@
 @end
 
 @implementation RegisterViewController
-
+@synthesize isEditDetail;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -45,6 +45,7 @@
 }
 
 #pragma mark - Initializing Defaults
+
 - (void)initDefaults {
     
     if (![[CommonFunctions sharedObject] isDeviceiPhone5]) {
@@ -61,7 +62,7 @@
     [tapOnScrollView setNumberOfTapsRequired:1];
     [tapOnScrollView setNumberOfTouchesRequired:1];
     [scrollView addGestureRecognizer:tapOnScrollView];
-    
+
     // Setting up Bar Button Items
     UIImage *imgBackButton = [[CommonFunctions sharedObject] imageWithName:@"backButton"
                                                                    andType:_pPNGType];
@@ -111,8 +112,7 @@
     UIColor *backColor = [UIColor colorWithPatternImage:backImage];
     [viewBottom setBackgroundColor:backColor];
     
-    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-    if ([userDefs objectForKey:_pudLoggedIn])
+    if(isEditDetail)
     {
         [self fillUserDetailForEdit];
     }

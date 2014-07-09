@@ -14,7 +14,7 @@
 @end
 
 @implementation RegisterViewController
-@synthesize isEditDetail;
+@synthesize objUser,imgProfilePic;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -112,7 +112,9 @@
     UIColor *backColor = [UIColor colorWithPatternImage:backImage];
     [viewBottom setBackgroundColor:backColor];
     
-    if(isEditDetail)
+    NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
+    
+    if([userDefaults boolForKey:_pudLoggedIn])
     {
         [self fillUserDetailForEdit];
     }
@@ -131,16 +133,15 @@
 //    @"custom_data"
     
     NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-//    NSDictionary *dicUserInfo=[userDefs objectForKey:_pUserInfoDic];
-    NSDictionary *userInfo = [userDefs objectForKey:_pudUserInfo];
+////    NSDictionary *dicUserInfo=[userDefs objectForKey:_pUserInfoDic];
+//    NSDictionary *userInfo = [userDefs objectForKey:_pudUserInfo];
     
-    txtFieldUsername.text=[userInfo objectForKey:@"login"];
-    txtFieldEmail.text=[userInfo objectForKey:@"email"];
-    txtFieldRepeatEmail.text=[userInfo objectForKey:@"email"];
-    
+    txtFieldUsername.text=objUser.login;
+    txtFieldEmail.text=objUser.email;
+    txtFieldRepeatEmail.text=objUser.email;
     txtFieldPassword.text=[userDefs objectForKey:@"Password"];
     txtFieldRepeatPassword.text=[userDefs objectForKey:@"Password"];
-    txtFieldMotto.text=[userInfo objectForKey:@"custom_data"];
+    txtFieldMotto.text=@"Static Text";
     
 }
 
@@ -262,17 +263,37 @@
 
     if ([self validateFields]) {
         
-//        NSDictionary *dicUserDeatail = [[NSDictionary alloc] initWithObjectsAndKeys:
-//                                        txtFieldUsername.text,  @"Username",
-//                                        txtFieldEmail.text,     @"Email",
-//                                        txtFieldPassword.text,  @"Password",
-//                                        txtFieldMotto.text,     @"Motto", nil];
+        NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+        if(![userDefs boolForKey:_pudLoggedIn])
+        {
+            objUser =[[QBUUser alloc]init];
+        }
         
         NSDictionary *dicUserDeatail = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                        txtFieldUsername.text,  @"login",
-                                        txtFieldEmail.text,     @"email",
-                                        txtFieldPassword.text,  @"password",
-                                        txtFieldMotto.text,     @"custom_data", nil];
+                                        txtFieldUsername.text,  @"Username",
+                                        txtFieldEmail.text,     @"Email",
+                                        txtFieldPassword.text,  @"Password",
+                                        txtFieldMotto.text,     @"Motto", nil];
+        
+        
+        [objUser setLogin:txtFieldUsername.text];
+        [objUser setEmail:txtFieldEmail.text];
+        [objUser setPassword:txtFieldPassword.text];
+        [objUser setOldPassword:txtFieldPassword.text];
+        [objUser setFullName:[NSString stringWithFormat:@"%@&%@",txtFieldUsername.text,txtFieldMotto.text ]];
+
+        //[objUser setTags:[NSMutableArray arrayWithObjects:motoData, nil]];
+        
+//        NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+//        //    NSDictionary *dicUserInfo=[userDefs objectForKey:_pUserInfoDic];
+//        NSMutableDictionary *userInfo = [[userDefs objectForKey:_pudUserInfo] mutableCopy];
+//        
+//        [userInfo setValue:txtFieldUsername.text forKey:@"login"];
+//        [userInfo setValue:txtFieldEmail.text forKey:@"email"];
+//       // [userInfo setValue:txtFieldPassword.text forKey:@"password"];
+//        [userInfo setValue:txtFieldMotto.text forKey:@"custom_data"];
+        
+        
         
         NSString *xibName = NSStringFromClass([UploadPhotoViewController class]);
         BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
@@ -280,7 +301,8 @@
             xibName = [NSString stringWithFormat:@"%@4", xibName];
         
         UploadPhotoViewController *objUploadPhotoViewController = [[UploadPhotoViewController alloc] initWithNibName:xibName bundle:nil];
-        objUploadPhotoViewController.dicUserDetail=dicUserDeatail;
+        objUploadPhotoViewController.objUser=objUser;
+        objUploadPhotoViewController.imgProfilePic=imgProfilePic;
         [self.navigationController pushViewController:objUploadPhotoViewController animated:YES];
         
     }

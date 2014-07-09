@@ -11,13 +11,15 @@
 
 typedef enum {
     KCreateUserSuccess,
+    KUpdateUserSuccess,
     KCreateUserFailed,
     KCreateSessionSuccess,
     KCreateSessionFailed,
     KImageUploadSuccess,
     KImageUploadFailed,
     KSignUpResultNone,
-    KSignUpCompletionDone
+    KSignUpCompletionDone,
+    KUpdateCompletionDone
     
 }signUpResultType ;
 
@@ -43,8 +45,8 @@ typedef enum{
 }
 
 @property (nonatomic,retain) UIImagePickerController* imagePicker;
-@property (nonatomic,retain)NSDictionary *dicUserDetail;
-
+@property (nonatomic,retain)QBUUser *objUser;
+@property (nonatomic,weak)UIImage *imgProfilePic;
 
 @end
 

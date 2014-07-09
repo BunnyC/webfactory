@@ -145,13 +145,15 @@
 
 #pragma mark loginView Delegate
 
--(void)updateUserInfo:(NSDictionary *)dic
+-(void)updateUserInfo:(QBUUser *)objUser
 {
-    [[NSUserDefaults standardUserDefaults]setObject:dic forKey:_pUserInfoDic];
-    [[NSUserDefaults standardUserDefaults]synchronize];
-    lblName.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"first_name"]];
-    lblActive.text=@"active";
-    lblMotto.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"custom_data"]];
+//    [[NSUserDefaults standardUserDefaults]setObject:objUser forKey:_pUserInfoDic];
+//    [[NSUserDefaults standardUserDefaults]synchronize];
+    objUserDetail=objUser;
+    lblName.text=objUser.fullName;
+    
+    //lblActive.text=@"QBUUserAnswer";
+    lblMotto.text=@"Static Text";
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)recognizer {
@@ -257,7 +259,8 @@
 - (IBAction)editAccountAction:(id)sender {
     
     RegisterViewController *objRegisterView=[[RegisterViewController alloc]initWithNibName:@"RegisterViewController" bundle:nil];
-    objRegisterView.isEditDetail=TRUE;
+    objRegisterView.objUser=objUserDetail;
+    objRegisterView.imgProfilePic=imageViewProfile.image;
     [self.navigationController pushViewController:objRegisterView animated:YES];
 }
 - (IBAction)logoutAction:(id)sender {

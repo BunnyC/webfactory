@@ -18,7 +18,7 @@
 @end
 
 @implementation UploadPhotoViewController
-
+@synthesize imgProfilePic;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -91,6 +91,12 @@
     
     [txtViewUploadLater setAttributedText:attrTextLater];
     [txtViewUploadLater setTextAlignment:NSTextAlignmentCenter];
+    
+    if(imgProfilePic)
+    {
+        [imageViewProfile setImage:imgProfilePic];
+        imageUploadStatus=KImageUploadNow;
+    }
 }
 
 #pragma mark - UITextView Delegates
@@ -98,10 +104,19 @@
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
     BOOL shouldInteract = true;
     
-    NSLog(@"%@",URL.absoluteString);
     if ([URL.absoluteString isEqualToString:@"later"]) {
         imageUploadStatus=KImageUploadLater;
-        [self createUser];
+
+        NSUserDefaults *userDefaluts=[NSUserDefaults standardUserDefaults];
+        if([userDefaluts boolForKey:_pudLoggedIn])
+        {
+            [self updateUserDetails];
+        }
+        else
+        {
+            [self createUser];
+        }
+        
         shouldInteract = false;
     }
     return shouldInteract;
@@ -146,6 +161,9 @@
         case KSignUpCompletionDone:
             [self showProfileView];
             break;
+        case KUpdateCompletionDone:
+            [self showProfileView];
+            break;
             
         default:
             break;
@@ -178,13 +196,119 @@
 #pragma mark QBActionStatusDelegate
 
 -(void)completedWithResult:(Result *)result{
-    
+
+    NSUserDefaults *userDefls=[NSUserDefaults standardUserDefaults];
+    if([userDefls boolForKey:_pudLoggedIn])
+    {
+        [self updatingProfileDetailHandler:result];
+    }
+    else
+    {
+        [self signUpHandler:result];
+    }
+
+}
+
+-(void)updatingProfileDetailHandler:(Result *)result
+{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
                                                     message:@""
                                                    delegate:nil
                                           cancelButtonTitle:@"Ok"
                                           otherButtonTitles:nil, nil];
-    
+    if([result isKindOfClass:[QBUUserResult class]])
+    {
+        
+        if(result.success){
+            resultType=KUpdateUserSuccess;
+            for (id view in self.navigationController.viewControllers) {
+                if([(RegisterViewController *)view isKindOfClass:[RegisterViewController class]])
+                {
+                    [(RegisterViewController *)view clearTextBoxes];
+                    break;
+                }
+            }
+            
+            [progressViewImageUpload setHidden:false];
+            [self.view setUserInteractionEnabled:NO];
+            
+              if(imgProfilePic)
+              imageUploadStatus=KImageUploadNow;
+            
+            [self uploadProfileImage];
+            //[self createUserSession];
+            
+        }else{
+            
+            [[CommonFunctions sharedObject] hideLoadingView:loadingView];
+            [buttonNext setEnabled:TRUE];
+            [self.view setUserInteractionEnabled:YES];
+            resultType=KCreateSessionFailed;
+            alert.title=@"Errors";
+            alert.message=[result.errors description];
+            [alert show];
+            
+        }
+    }
+    /*
+    else if([result isKindOfClass:QBAAuthSessionCreationResult.class]){
+        
+        if(result.success)
+        {
+            resultType=KCreateSessionSuccess;
+            //[buttonNext setEnabled:false];
+            [progressViewImageUpload setHidden:false];
+            [self.view setUserInteractionEnabled:NO];
+            [self uploadProfileImage];
+            
+        }
+        else
+        {
+            [[CommonFunctions sharedObject] hideLoadingView:loadingView];
+            resultType=KCreateSessionFailed;
+            alert.message=[result.errors description];
+            [buttonNext setEnabled:TRUE];
+            [progressViewImageUpload setHidden:TRUE];
+            alert.title=@"Errors";
+            [self.view setUserInteractionEnabled:YES];
+            [alert show];
+        }
+        
+    }
+     */
+    else
+    {
+        if(result.success)
+        {
+            [[CommonFunctions sharedObject] hideLoadingView:loadingView];
+            alert.title=@"";
+            resultType=KUpdateCompletionDone;
+            [buttonNext setEnabled:TRUE];
+            [self.view setUserInteractionEnabled:YES];
+            alert.message=_pUpdateProfileSuccess;
+            [alert show];
+        }
+        else
+        {
+            [[CommonFunctions sharedObject] hideLoadingView:loadingView];
+            [buttonNext setEnabled:TRUE];
+            alert.title=@"Errors";
+            [self.view setUserInteractionEnabled:YES];
+            resultType=KImageUploadFailed;
+            [alert show];
+        }
+        
+        
+    }
+}
+
+-(void)signUpHandler:(Result *)result
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                    message:@""
+                                                   delegate:nil
+                                          cancelButtonTitle:@"Ok"
+                                          otherButtonTitles:nil, nil];
     if([result isKindOfClass:[QBUUserResult class]]){
         
         if(result.success){
@@ -260,7 +384,6 @@
         
     }
 }
-
 -(void)setProgress:(float)progress{
     NSLog(@"progress: %f", progress);
     [progressViewImageUpload setProgress:progress];
@@ -274,17 +397,18 @@
 -(void)createUser
 {
     loadingView = [[CommonFunctions sharedObject] showLoadingView];
-//    QBUUser *objCreateUser=[[QBUUser alloc]init];
-//    [objCreateUser setLogin:[_dicUserDetail objectForKey:@"Username"]];
-//    [objCreateUser setEmail:[_dicUserDetail objectForKey:@"Email"]];
-//    [objCreateUser setPassword:[_dicUserDetail objectForKey:@"Password"]];
-//    [objCreateUser setFullName:[_dicUserDetail objectForKey:@"Motto"]];
-//    [QBUsers signUp:objCreateUser delegate:self];
     
-    NSDictionary *dictUser = [NSDictionary dictionaryWithObject:_dicUserDetail forKey:@"user"];
-    NSString *password = [_dicUserDetail objectForKey:@"password"];
+    NSString *password = _objUser.password;
     [[NSUserDefaults standardUserDefaults] setObject:password forKey:@"Password"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    NSDictionary *dictUser = [NSDictionary dictionaryWithObjectsAndKeys:_objUser.login,@"login",_objUser.fullName,@"full_name",_objUser.email,@"email",password,@"password",nil];
+    
+    dictUser=[NSDictionary dictionaryWithObject:dictUser forKey:@"user"];
+    
+    
+    
+   
     
     SigUpModel *objSignUpModel = [[SigUpModel alloc] init];
     [objSignUpModel registerationForTarget:self
@@ -294,6 +418,24 @@
     
     [buttonNext setEnabled:false];
     
+}
+
+-(void)updateUserDetails
+{
+   
+    loadingView = [[CommonFunctions sharedObject] showLoadingView];
+   
+    [QBUsers updateUser:_objUser delegate:self];
+
+    
+//    SigUpModel *objSignUpModel = [[SigUpModel alloc] init];
+//    [objSignUpModel UpdateUserWithTarget:self
+//                              withselector:@selector(serverResponseForSignUp:)
+//                                andDetails:dictUser
+//                        toShowWindowLoader:NO];
+    
+    [buttonNext setEnabled:false];
+
 }
 
 - (void)serverResponseForSignUp:(NSDictionary *)responseDict {

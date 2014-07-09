@@ -164,7 +164,7 @@
 - (IBAction)btnCreateAccountAction:(id)sender {
     
     RegisterViewController *objRegisterViewController = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
-    objRegisterViewController.isEditDetail=FALSE;
+   
     [self.navigationController pushViewController:objRegisterViewController animated:YES];
 }
 
@@ -179,6 +179,9 @@
                           otherButtonTitles:nil, nil] show];
     }
     else {
+        
+        
+        /*
         NSMutableDictionary *dictLoginDetail=[[NSMutableDictionary alloc]init];
         [dictLoginDetail setValue:txtFieldUsername.text forKey:@"login"];
         [dictLoginDetail setValue:txtFieldPassword.text forKey:@"password"];
@@ -190,6 +193,8 @@
                     toShowWindowLoader:true];
         
         [self resetFramesForView];
+         */
+        [QBUsers logInWithUserLogin:txtFieldUsername.text password:txtFieldPassword.text delegate:self];
     }
 }
 
@@ -337,7 +342,13 @@
     if (![dictUserLoginResult objectForKey:@"errors"]) {
 //        [self createUserSession];
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+           [_delegate performSelector:@selector(updateUserInfo:) withObject:dictUserLoginResult];
+        
+        }];
     }
     else {
         NSArray *arrErrors = [dictUserLoginResult objectForKey:@"errors"];
@@ -378,6 +389,30 @@
     //    NSLog(@"User Detail %@", userDetail);
 }
 
+
+#pragma mark - QBSession Delegate Method
+
+-(void)completedWithResult:(Result *)result
+{
+        if (result.success) {
+    
+            QBUUserLogInResult *res = (QBUUserLogInResult *)result;
+    
+
+//            NSString *password=res.user.password;
+            [[NSUserDefaults standardUserDefaults] setObject:txtFieldPassword.text forKey:@"Password"];
+            [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+    
+            [self dismissViewControllerAnimated:true completion:^{
+                if([_delegate respondsToSelector:@selector(updateUserInfo:)])
+                {
+                    [_delegate performSelector:@selector(updateUserInfo:) withObject:res.user];
+                }
+            }];
+       }
+
+}
 #pragma mark - Tap Gesture on ScrollView
 
 - (void)resetScrollView:(UITapGestureRecognizer *)recognizer {

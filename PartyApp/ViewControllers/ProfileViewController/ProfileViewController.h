@@ -20,8 +20,10 @@
     __weak IBOutlet UITableView *tableViewNotifications;
     __weak IBOutlet UIButton *btnLogNight;
     __weak IBOutlet UIImageView *imgViewBackNotif;
+    
+    QBUUser *objUserDetail;
 }
 
--(void)updateUserProfileData:(NSDictionary *)userInfo;
+-(void)updateUserProfileData:(QBUUser *)userInfo;
 @end
 

@@ -38,6 +38,37 @@
            toShowWindowLoader:toShow];
 }
 
+
+- (void)UpdateUserWithTarget:(id)target  withselector:(SEL)selector
+                    andDetails:(NSDictionary *)accountDetails
+            toShowWindowLoader:(BOOL)toShow {
+    
+    _controller = target;
+    _handler = selector;
+    
+    accountDetails=[accountDetails objectForKey:@"user"];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:accountDetails
+                                                   options:NSJSONWritingPrettyPrinted
+                                                     error:nil];
+    
+    NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSString *serviceUrl = [NSString stringWithFormat:@"%@%@/%@.json", _pURLBase, _pURLUpdate,[[accountDetails objectForKey:@"user"] objectForKey:@"id"]];
+    
+    NSMutableURLRequest *request = [RequestBuilder sendRequest:serviceUrl
+                                                   requestType:@"POST"
+                                               combinedDataStr:jsonString];
+    
+    ServerConnection *serverConn = [[ServerConnection alloc] init];
+    [serverConn serverRequest:self
+                     selector:@selector(serverResponseForSignUp:)
+                serverRequest:request
+           toShowWindowLoader:toShow];
+}
+
+
+
+
 -(void)serverResponseForSignUp:(NSMutableData *)responseData {
     
     NSError *error = nil;

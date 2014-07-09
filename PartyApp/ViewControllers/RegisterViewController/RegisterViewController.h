@@ -22,6 +22,7 @@
     UIView *loadingView;
 }
 
-@property (nonatomic,assign) BOOL isEditDetail;
+@property (nonatomic,strong)QBUUser *objUser;
+@property (nonatomic,weak)UIImage *imgProfilePic;
 -(void)clearTextBoxes;
 @end

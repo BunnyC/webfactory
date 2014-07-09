@@ -19,4 +19,9 @@
                      andDetails:(NSDictionary *)accountDetails
              toShowWindowLoader:(BOOL)toShow;
 
+
+- (void)UpdateUserWithTarget:(id)target
+                  withselector:(SEL)selector
+                    andDetails:(NSDictionary *)accountDetails
+            toShowWindowLoader:(BOOL)toShow;
 @end

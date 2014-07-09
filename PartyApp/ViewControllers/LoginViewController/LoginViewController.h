@@ -14,7 +14,7 @@
 -(void)updateUserInfo:(NSDictionary *)dic;
 
 @end
-@interface LoginViewController : BaseViewController<UITextFieldDelegate> {
+@interface LoginViewController : BaseViewController<UITextFieldDelegate,QBActionStatusDelegate> {
     __weak IBOutlet PATextField *txtFieldUsername;
     __weak IBOutlet PATextField *txtFieldPassword;
     __weak IBOutlet UITextView *txtViewForgotPassword;

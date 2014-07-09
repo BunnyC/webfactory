@@ -22,7 +22,7 @@ FOUNDATION_EXPORT NSString *const _pudSessionToken;
 FOUNDATION_EXPORT NSString *const _pudUserInfo;
 FOUNDATION_EXPORT NSString *const _pUserInfoDic;
 FOUNDATION_EXPORT NSString *const _pUserProfilePic;
-
+FOUNDATION_EXPORT NSString *const _pUpdateProfileSuccess;
 
 FOUNDATION_EXPORT NSString *const _pErrUserNameAndPasswordRequired;
 FOUNDATION_EXPORT NSString *const _pErrInvalidUserNameAndPassword;
@@ -32,5 +32,6 @@ FOUNDATION_EXPORT NSString *const _pResetPasswordMgs;
 FOUNDATION_EXPORT NSString *const _pURLBase;
 FOUNDATION_EXPORT NSString *const _pURLSignUp;
 FOUNDATION_EXPORT NSString *const _pURLLogin;
+FOUNDATION_EXPORT NSString *const _pURLUpdate;
 
 @end

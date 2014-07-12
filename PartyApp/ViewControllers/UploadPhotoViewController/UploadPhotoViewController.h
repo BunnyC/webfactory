@@ -41,6 +41,7 @@ typedef enum{
     BOOL isSignUpSuccess;
     signUpResultType resultType;
     ImageUploadStatus imageUploadStatus;
+    NSDictionary *dicInfo;
 
 }
 

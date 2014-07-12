@@ -23,5 +23,5 @@
 - (void)UpdateUserWithTarget:(id)target
                   withselector:(SEL)selector
                     andDetails:(NSDictionary *)accountDetails
-            toShowWindowLoader:(BOOL)toShow;
+          toShowWindowLoader:(BOOL)toShow User_id:(NSString *)userid;
 @end

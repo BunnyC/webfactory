@@ -131,7 +131,10 @@
 //    @"email",
 //    @"password",
 //    @"custom_data"
-    
+//    NSRange range=[objUser.fullName rangeOfString:@"&"];
+//    
+//    NSString *name=[objUser.fullName substringToIndex:range.location];
+//    NSString *moto=[objUser.fullName substringFromIndex:range.location+1];
     NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
 ////    NSDictionary *dicUserInfo=[userDefs objectForKey:_pUserInfoDic];
 //    NSDictionary *userInfo = [userDefs objectForKey:_pudUserInfo];
@@ -141,7 +144,8 @@
     txtFieldRepeatEmail.text=objUser.email;
     txtFieldPassword.text=[userDefs objectForKey:@"Password"];
     txtFieldRepeatPassword.text=[userDefs objectForKey:@"Password"];
-    txtFieldMotto.text=@"Static Text";
+    NSRange range=[objUser.website rangeOfString:@"http://"];
+    txtFieldMotto.text=[objUser.website substringFromIndex:range.location+range.length];
     
 }
 
@@ -276,11 +280,13 @@
                                         txtFieldMotto.text,     @"Motto", nil];
         
         
+        
         [objUser setLogin:txtFieldUsername.text];
         [objUser setEmail:txtFieldEmail.text];
         [objUser setPassword:txtFieldPassword.text];
-        [objUser setOldPassword:txtFieldPassword.text];
-        [objUser setFullName:[NSString stringWithFormat:@"%@&%@",txtFieldUsername.text,txtFieldMotto.text ]];
+        [objUser setOldPassword:[userDefs objectForKey:@"Password"]];
+        //[objUser setFullName:[NSString stringWithFormat:@"%@",txtFieldUsername.text]];
+        [objUser setWebsite:[NSString stringWithFormat:@"%@",txtFieldMotto.text]];
 
         //[objUser setTags:[NSMutableArray arrayWithObjects:motoData, nil]];
         

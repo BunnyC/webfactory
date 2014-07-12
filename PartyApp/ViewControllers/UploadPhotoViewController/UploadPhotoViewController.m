@@ -402,7 +402,14 @@
     [[NSUserDefaults standardUserDefaults] setObject:password forKey:@"Password"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    NSDictionary *dictUser = [NSDictionary dictionaryWithObjectsAndKeys:_objUser.login,@"login",_objUser.fullName,@"full_name",_objUser.email,@"email",password,@"password",nil];
+    NSDictionary *dictUser = [[NSDictionary alloc ]initWithObjectsAndKeys:_objUser.login,@"login",_objUser.fullName,@"full_name",_objUser.email,@"email",password,@"password",_objUser.website,@"website",nil];
+//    NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
+//    
+//    [dic setObject:_objUser.login forKey:@"login"];
+//    [dic setObject:_objUser.fullName forKey:@"full_name"];
+//    [dic setObject:_objUser.email forKey:@"email"];
+//    [dic setObject:_objUser.password forKey:@"password"];
+    
     
     dictUser=[NSDictionary dictionaryWithObject:dictUser forKey:@"user"];
     
@@ -438,9 +445,20 @@
 
 }
 
+-(void)updateProfilePic
+{
+    if(imageUploadStatus==KImageUploadNow)
+    {
+        NSData *data=UIImagePNGRepresentation(imageViewProfile.image);
+        //[QBContent TUpdateFileWithData:data file:_objUser.blobID delegate:self];
+    }
+
+}
+
 - (void)serverResponseForSignUp:(NSDictionary *)responseDict {
-//    NSLog(@"Response is : %@", responseDict);
+    
     if (![responseDict objectForKey:@"errors"]) {
+        dicInfo=responseDict;
         [self createUserSession];
     }
     else {
@@ -497,6 +515,8 @@
     }
 }
 
+
+
 #pragma show Profile View
 
 -(void)showProfileView {
@@ -509,7 +529,10 @@
     [[NSUserDefaults standardUserDefaults]setBool:true forKey:_pudLoggedIn];
     
     ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:xibName bundle:nil];
+    objProfileView.isComeFromSignUp=true;
+    objProfileView.dicUserInfo=dicInfo;
     [self.navigationController pushViewController:objProfileView animated:YES];
+
 }
 
 #pragma mark - Delloc Method

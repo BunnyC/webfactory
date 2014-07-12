@@ -21,7 +21,7 @@
 @end
 
 @implementation ProfileViewController
-
+@synthesize objUserDetail;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -53,10 +53,10 @@
     //        [self updateUserInfo:userInfo];
     //    }
     
-    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-    NSDictionary *userInfo = [userDefs objectForKey:_pudUserInfo];
-    [lblName setText:[userInfo objectForKey:@"username"]];
-    [lblMotto setText:[userInfo objectForKey:@"custom_object"]];
+   // NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+   // NSDictionary *userInfo = [userDefs objectForKey:_pudUserInfo];
+    //[lblName setText:[userInfo objectForKey:@"username"]];
+    //[lblMotto setText:[userInfo objectForKey:@"custom_object"]];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -121,7 +121,10 @@
     [imageViewProfile setImage:profileImage];
     UIPanGestureRecognizer *panGesture=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePanGesture:)];
     [viewNotifications addGestureRecognizer:panGesture];
-    
+    if(_isComeFromSignUp)
+    {
+        [self updateUserProfileData:_dicUserInfo];
+    }
 //    UISwipeGestureRecognizer *swipeUp=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipPanGestureHandler:)];
 //    [swipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
 //    [viewNotifications addGestureRecognizer:swipeUp];
@@ -135,11 +138,30 @@
 #pragma mark - Update UserInformation
 -(void)updateUserProfileData:(NSDictionary *)userInfo
 {
-    [[NSUserDefaults standardUserDefaults]setObject:userInfo forKey:_pUserInfoDic];
-    [[NSUserDefaults standardUserDefaults]synchronize];
-    lblName.text=[NSString stringWithFormat:@"%@ %@",[userInfo objectForKey:@"first_name"],[userInfo objectForKey:@"last_name"]];
+    
+//    NSRange range=[[userInfo objectForKey:@"full_name"] rangeOfString:@"&"];
+//    
+//    NSString *name=[[userInfo objectForKey:@"full_name"] substringToIndex:range.location];
+//    NSString *moto=[[userInfo objectForKey:@"full_name"] substringFromIndex:range.location+1];
+
+    lblName.text=[userInfo objectForKey:@"full_name"];
+      NSRange range=[[userInfo objectForKey:@"website"] rangeOfString:@"http://"];
+    //lblActive.text=@"QBUUserAnswer";
+    lblMotto.text=[[userInfo objectForKey:@"website"] substringFromIndex:range.location+range.length];
+    
+    
+    
+   // lblName.text=name;
     lblActive.text=@"active";
-    lblMotto.text=[NSString stringWithFormat:@"%@",[userInfo objectForKey:@"custom_data"]];
+   // lblMotto.text=moto;
+    if(!objUserDetail)
+    {
+        objUserDetail=[[QBUUser alloc]init];
+    }
+    objUserDetail.ID=[[userInfo objectForKey:@"id"]integerValue];
+    objUserDetail.fullName=[userInfo objectForKey:@"full_name"];
+    objUserDetail.email=[userInfo objectForKey:@"email"];
+    objUserDetail.login=[userInfo objectForKey:@"full_name"];
 }
 
 
@@ -149,11 +171,19 @@
 {
 //    [[NSUserDefaults standardUserDefaults]setObject:objUser forKey:_pUserInfoDic];
 //    [[NSUserDefaults standardUserDefaults]synchronize];
+    
+//    NSRange range=[objUser.fullName rangeOfString:@"&"];
+//
+//    NSString *name=[objUser.fullName substringToIndex:range.location];
+//    NSString *moto=[objUser.fullName substringFromIndex:range.location+1];
+    
+    NSRange range=[objUser.website rangeOfString:@"http://"];
+    
     objUserDetail=objUser;
     lblName.text=objUser.fullName;
     
     //lblActive.text=@"QBUUserAnswer";
-    lblMotto.text=@"Static Text";
+    lblMotto.text=[objUser.website substringFromIndex:range.location+range.length];
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)recognizer {

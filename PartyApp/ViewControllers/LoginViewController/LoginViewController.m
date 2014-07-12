@@ -13,7 +13,7 @@
 #import "ForgotPasswordViewController.h"
 #import "ProfileViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
-
+#import "SigUpModel.h"
 @interface LoginViewController () <UITextFieldDelegate, UITextViewDelegate, QBActionStatusDelegate>
 
 @end
@@ -179,9 +179,8 @@
                           otherButtonTitles:nil, nil] show];
     }
     else {
+        loadingView=[[CommonFunctions sharedObject]showLoadingView];
         
-        
-        /*
         NSMutableDictionary *dictLoginDetail=[[NSMutableDictionary alloc]init];
         [dictLoginDetail setValue:txtFieldUsername.text forKey:@"login"];
         [dictLoginDetail setValue:txtFieldPassword.text forKey:@"password"];
@@ -193,8 +192,8 @@
                     toShowWindowLoader:true];
         
         [self resetFramesForView];
-         */
-        [QBUsers logInWithUserLogin:txtFieldUsername.text password:txtFieldPassword.text delegate:self];
+         
+      //  [QBUsers logInWithUserLogin:txtFieldUsername.text password:txtFieldPassword.text delegate:self];
     }
 }
 
@@ -250,7 +249,7 @@
                 [userDefs setBool:TRUE forKey:_pudLoggedIn];
                 [userDefs synchronize];
                 [self.navigationController dismissViewControllerAnimated:YES completion:^{
-                    [objProfileView updateUserProfileData:user];
+                    //[objProfileView updateUserInfo:user];
                 }];
             
             }];            ///////
@@ -340,15 +339,59 @@
 {
     
     if (![dictUserLoginResult objectForKey:@"errors"]) {
-//        [self createUserSession];
-        [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
-        [self dismissViewControllerAnimated:YES completion:^{
-            
-           [_delegate performSelector:@selector(updateUserInfo:) withObject:dictUserLoginResult];
         
-        }];
+        NSLog(@"user dic %@",dictUserLoginResult);
+        
+        NSString *login=[[dictUserLoginResult objectForKey:@"login"]isKindOfClass:[NSNull class]]?@"":[dictUserLoginResult objectForKey:@"login"];
+        
+        NSString *password=txtFieldPassword.text;
+        
+        NSString *email=[[dictUserLoginResult objectForKey:@"email"]isKindOfClass:[NSNull class]]?@"":[dictUserLoginResult objectForKey:@"email"];
+        
+         NSString *blog_id=[[dictUserLoginResult objectForKey:@"blob_id"]isKindOfClass:[NSNull class]]?@"":[dictUserLoginResult objectForKey:@"blob_id"];
+        
+         NSString *externalId=[[dictUserLoginResult objectForKey:@"external_user_id"]isKindOfClass:[NSNull class]]?@"":[dictUserLoginResult objectForKey:@"external_user_id"];
+        
+        NSString *facebook_id=[[dictUserLoginResult objectForKey:@"facebook_id"]isKindOfClass:[NSNull class]]?@"":[dictUserLoginResult objectForKey:@"facebook_id"];
+        
+      NSString *twitter_id=[[dictUserLoginResult objectForKey:@"twitter_id"]isKindOfClass:[NSNull class]]?@"":[dictUserLoginResult objectForKey:@"twitter_id"];
+        
+         NSString *full_name=[[dictUserLoginResult objectForKey:@"full_name"]isKindOfClass:[NSNull class]]?@"":[dictUserLoginResult objectForKey:@"full_name"];
+        
+        
+        NSString *phone=[[dictUserLoginResult objectForKey:@"phone"]isKindOfClass:[NSNull class]]?@"":[dictUserLoginResult objectForKey:@"phone"];
+        
+        NSString *website=[[dictUserLoginResult objectForKey:@"website"]isKindOfClass:[NSNull class]]?@"":[dictUserLoginResult objectForKey:@"website"];
+        
+        NSString *customdata=[[dictUserLoginResult objectForKey:@"custom_data"]isKindOfClass:[NSNull class]]?@"":[dictUserLoginResult objectForKey:@"custom_data"];
+        
+        NSString *tag=[[dictUserLoginResult objectForKey:@"user_tags"]isKindOfClass:[NSNull class]]?@"":[dictUserLoginResult objectForKey:@"user_tags"];
+        
+        NSDictionary *detail=[[NSDictionary alloc]initWithObjectsAndKeys:login,@"login",password,@"password",email,@"email",blog_id,@"blog_id",externalId,@"external_user_id",facebook_id,@"facebook_id",twitter_id,@"twitter_id",full_name,@"full_name",phone,@"phone",website,@"website",customdata,@"custom_data",tag,@"user_tags", nil];
+        
+        
+       NSDictionary *dictUser=[NSDictionary dictionaryWithObject:detail forKey:@"user"];
+        
+            SigUpModel *objSignUpModel = [[SigUpModel alloc] init];
+            [objSignUpModel UpdateUserWithTarget:self
+                                      withselector:@selector(serverResponseOfLogin:)
+                                        andDetails:dictUser
+                                toShowWindowLoader:NO User_id:[dictUserLoginResult objectForKey:@"id"]];
+        
+        
+//      [self createUserSession];
+        
+//        [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//        [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
+//        
+//        
+//        
+//        [self dismissViewControllerAnimated:YES completion:^{
+//            
+//          // [_delegate performSelector:@selector(updateUserInfo:) withObject:dictUserLoginResult];
+//        
+//        }];
     }
     else {
         NSArray *arrErrors = [dictUserLoginResult objectForKey:@"errors"];
@@ -390,27 +433,61 @@
 }
 
 
+-(void)createUserSession {
+
+    QBASessionCreationRequest *extendedAuthRequest = [QBASessionCreationRequest request];
+    extendedAuthRequest.userLogin = txtFieldUsername.text; // ID: 218651
+    extendedAuthRequest.userPassword =txtFieldPassword.text;
+    [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
+}
+
 #pragma mark - QBSession Delegate Method
 
 -(void)completedWithResult:(Result *)result
 {
-        if (result.success) {
+    [self.view endEditing:YES];
+
+    [loadingView removeFromSuperview];
+    if (result.success) {
     
             QBUUserLogInResult *res = (QBUUserLogInResult *)result;
     
+        NSLog(@"%@", res.user);
+        
 
 //            NSString *password=res.user.password;
             [[NSUserDefaults standardUserDefaults] setObject:txtFieldPassword.text forKey:@"Password"];
             [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
             [[NSUserDefaults standardUserDefaults] synchronize];
-    
-            [self dismissViewControllerAnimated:true completion:^{
-                if([_delegate respondsToSelector:@selector(updateUserInfo:)])
-                {
-                    [_delegate performSelector:@selector(updateUserInfo:) withObject:res.user];
-                }
-            }];
-       }
+
+        
+        [self dismissViewControllerAnimated:true completion:^{
+            if([_delegate respondsToSelector:@selector(updateUserInfo:)])
+            {
+                [_delegate performSelector:@selector(updateUserInfo:) withObject:res.user];
+            }
+        }];
+
+    }
+    else {
+        
+        //[scrollView setContentOffset:CGPointMake(0, 0)];
+
+        txtFieldUsername.text=@"";
+        txtFieldPassword.text=@"";
+         [self resetFramesForView];
+        UIImage *unselImage =[[CommonFunctions sharedObject]imageWithName:@"txtFldW" andType:_pPNGType];
+        [txtFieldUsername setBackground:unselImage];
+        [txtFieldPassword setBackground:unselImage];
+        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                             message:_pErrInvalidUserNameAndPassword
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"OK"
+                                                   otherButtonTitles:nil, nil];
+        [errorAlert show];
+    }
+
+
 
 }
 #pragma mark - Tap Gesture on ScrollView

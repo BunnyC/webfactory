@@ -22,6 +22,7 @@
     __weak IBOutlet UIView *viewBottom;
     
     NSDictionary *userInfo;
+    UIView *loadingView;
     
 }
 

@@ -60,6 +60,7 @@
         xibName = [NSString stringWithFormat:@"%@4", xibName];
    
     ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:xibName bundle:nil];
+    objProfileView.isComeFromSignUp=FALSE;
     self.navController = [[UINavigationController alloc] initWithRootViewController:objProfileView];
     [self.navController.navigationBar setTranslucent:false];
     
@@ -116,7 +117,8 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = YES;
     [QBAuth createSessionWithDelegate:self];
     [FBAppEvents activateApp];
   
@@ -141,6 +143,8 @@
 
 - (void)completedWithResult:(Result *)result{
     
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = nil;
     // QuickBlox application authorization result
     if([result isKindOfClass:[QBAAuthSessionCreationResult class]]){
         // Success result
@@ -345,7 +349,7 @@
             [userDefs setBool:TRUE forKey:_pudLoggedIn];
             [userDefs synchronize];
             [self.navController dismissViewControllerAnimated:YES completion:^{
-                [objProfileView updateUserProfileData:_userInfo];
+                //[objProfileView updateUserProfileData:_userInfo];
             }];
             
         } else {

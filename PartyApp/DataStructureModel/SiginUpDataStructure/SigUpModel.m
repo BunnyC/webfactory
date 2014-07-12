@@ -39,21 +39,26 @@
 }
 
 
-- (void)UpdateUserWithTarget:(id)target  withselector:(SEL)selector
-                    andDetails:(NSDictionary *)accountDetails
-            toShowWindowLoader:(BOOL)toShow {
+- (void)UpdateUserWithTarget:(id)target
+                withselector:(SEL)selector
+                  andDetails:(NSDictionary *)accountDetails
+          toShowWindowLoader:(BOOL)toShow User_id:(NSString *)userid {
     
     _controller = target;
     _handler = selector;
     
+    
+    NSString *serviceUrl = [NSString stringWithFormat:@"%@%@/%@.json", _pURLBase, _pURLUpdate,userid];
+    
     accountDetails=[accountDetails objectForKey:@"user"];
+    
     NSData *data = [NSJSONSerialization dataWithJSONObject:accountDetails
                                                    options:NSJSONWritingPrettyPrinted
                                                      error:nil];
     
     NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
-    NSString *serviceUrl = [NSString stringWithFormat:@"%@%@/%@.json", _pURLBase, _pURLUpdate,[[accountDetails objectForKey:@"user"] objectForKey:@"id"]];
+    
     
     NSMutableURLRequest *request = [RequestBuilder sendRequest:serviceUrl
                                                    requestType:@"POST"

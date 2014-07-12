@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SigUpModel : NSObject
+@interface SignUpModel : NSObject
 {
     id  _controller;
     SEL _handler;

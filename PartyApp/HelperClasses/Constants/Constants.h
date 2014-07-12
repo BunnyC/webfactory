@@ -16,10 +16,10 @@ FOUNDATION_EXPORT NSString *const _pAuthorizationSecret;
 FOUNDATION_EXPORT NSString *const _pAccountKey;
 FOUNDATION_EXPORT NSString *const _pPNGType;
 
-FOUNDATION_EXPORT NSString *const _pFontArialRoundedMT;
 FOUNDATION_EXPORT NSString *const _pFontArialMT;
 FOUNDATION_EXPORT NSString *const _pFontArialBoldMT;
 FOUNDATION_EXPORT NSString *const _pFontArialItalicMT;
+FOUNDATION_EXPORT NSString *const _pFontArialRoundedMT;
 
 FOUNDATION_EXPORT NSString *const _pudLoggedIn;
 FOUNDATION_EXPORT NSString *const _pudSessionExpiryDate;

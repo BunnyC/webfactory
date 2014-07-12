@@ -21,8 +21,6 @@
 		842715E81960399700DBEA6E /* RequestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 842715E71960399700DBEA6E /* RequestBuilder.m */; };
 		842715ED1960414800DBEA6E /* SessionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 842715EC1960414800DBEA6E /* SessionModel.m */; };
 		8464A877195A066800583DE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A81F195A066800583DE0 /* AppDelegate.m */; };
-		8464A879195A066800583DE0 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A826195A066800583DE0 /* LoginModel.m */; };
-		8464A87B195A066800583DE0 /* SigUpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A82B195A066800583DE0 /* SigUpModel.m */; };
 		8464A87C195A066800583DE0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8464A82C195A066800583DE0 /* InfoPlist.strings */; };
 		8464A87D195A066800583DE0 /* CommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A831195A066800583DE0 /* CommonFunctions.m */; };
 		8464A87E195A066800583DE0 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A834195A066800583DE0 /* Constants.m */; };
@@ -48,6 +46,9 @@
 		84A110AC197158D60035E181 /* cbSel.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A110A9197158D60035E181 /* cbSel.png */; };
 		84A110AD197158D60035E181 /* cbUnSel.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A110AA197158D60035E181 /* cbUnSel.png */; };
 		84A110AE197158D60035E181 /* whenNWhere.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A110AB197158D60035E181 /* whenNWhere.png */; };
+		84A110B3197166B50035E181 /* SignUpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A110B2197166B50035E181 /* SignUpModel.m */; };
+		84A110B6197166CF0035E181 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A110B5197166CF0035E181 /* LoginModel.m */; };
+		84A110BA197167840035E181 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A110B9197167840035E181 /* DataManager.m */; };
 		84A14330195F5AD200DC3970 /* PATextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A1432F195F5AD200DC3970 /* PATextField.m */; };
 		84A4880A196AAAC1006BC223 /* AddReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A48808196AAAC1006BC223 /* AddReminderViewController.m */; };
 		84A4880B196AAAC1006BC223 /* AddReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A48809196AAAC1006BC223 /* AddReminderViewController.xib */; };
@@ -169,7 +170,6 @@
 		CE9D376F195E771B001F05D9 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9D376B195E771B001F05D9 /* ForgotPasswordViewController.xib */; };
 		CE9D3771195F02C1001F05D9 /* UploadPhotoViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9D3770195F02C1001F05D9 /* UploadPhotoViewController4.xib */; };
 		CE9D3773195F0C0F001F05D9 /* ProfileViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9D3772195F0C0F001F05D9 /* ProfileViewController4.xib */; };
-		CEB0377B195B548C009837A6 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB0377A195B548C009837A6 /* DataManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -203,10 +203,6 @@
 		842715EC1960414800DBEA6E /* SessionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SessionModel.m; path = Models/SessionModel/SessionModel.m; sourceTree = "<group>"; };
 		8464A81E195A066800583DE0 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8464A81F195A066800583DE0 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8464A825195A066800583DE0 /* LoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModel.h; sourceTree = "<group>"; };
-		8464A826195A066800583DE0 /* LoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
-		8464A82A195A066800583DE0 /* SigUpModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SigUpModel.h; sourceTree = "<group>"; };
-		8464A82B195A066800583DE0 /* SigUpModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SigUpModel.m; sourceTree = "<group>"; };
 		8464A82D195A066800583DE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8464A830195A066800583DE0 /* CommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonFunctions.h; sourceTree = "<group>"; };
 		8464A831195A066800583DE0 /* CommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFunctions.m; sourceTree = "<group>"; };
@@ -244,6 +240,12 @@
 		84A110A9197158D60035E181 /* cbSel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cbSel.png; sourceTree = "<group>"; };
 		84A110AA197158D60035E181 /* cbUnSel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cbUnSel.png; sourceTree = "<group>"; };
 		84A110AB197158D60035E181 /* whenNWhere.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whenNWhere.png; sourceTree = "<group>"; };
+		84A110B1197166B50035E181 /* SignUpModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpModel.h; path = Models/SignUpModel/SignUpModel.h; sourceTree = "<group>"; };
+		84A110B2197166B50035E181 /* SignUpModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpModel.m; path = Models/SignUpModel/SignUpModel.m; sourceTree = "<group>"; };
+		84A110B4197166CF0035E181 /* LoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginModel.h; path = Models/LoginModel/LoginModel.h; sourceTree = "<group>"; };
+		84A110B5197166CF0035E181 /* LoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginModel.m; path = Models/LoginModel/LoginModel.m; sourceTree = "<group>"; };
+		84A110B8197167840035E181 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		84A110B9197167840035E181 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		84A1432E195F5AD200DC3970 /* PATextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PATextField.h; path = PATextField/PATextField.h; sourceTree = "<group>"; };
 		84A1432F195F5AD200DC3970 /* PATextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PATextField.m; path = PATextField/PATextField.m; sourceTree = "<group>"; };
 		84A48807196AAAC1006BC223 /* AddReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddReminderViewController.h; path = AddReminderViewController/AddReminderViewController.h; sourceTree = "<group>"; };
@@ -368,8 +370,6 @@
 		CE9D376B195E771B001F05D9 /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
 		CE9D3770195F02C1001F05D9 /* UploadPhotoViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadPhotoViewController4.xib; sourceTree = "<group>"; };
 		CE9D3772195F0C0F001F05D9 /* ProfileViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController4.xib; sourceTree = "<group>"; };
-		CEB03779195B548C009837A6 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
-		CEB0377A195B548C009837A6 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -507,6 +507,8 @@
 		842715E91960411100DBEA6E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				84A110B01971660E0035E181 /* SignUpModel */,
+				84A110AF197165FF0035E181 /* LoginModel */,
 				842715EA1960411700DBEA6E /* SessionModel */,
 			);
 			name = Models;
@@ -524,49 +526,13 @@
 		8464A81D195A066800583DE0 /* PartyApp */ = {
 			isa = PBXGroup;
 			children = (
-				842715E91960411100DBEA6E /* Models */,
 				8464A82E195A066800583DE0 /* HelperClasses */,
-				8464A821195A066800583DE0 /* DataStructureModel */,
-				8464A820195A066800583DE0 /* AppIcons */,
+				842715E91960411100DBEA6E /* Models */,
 				8464A8B4195BA0DD00583DE0 /* AppDelegate */,
 				8464A85B195A066800583DE0 /* ViewControllers */,
 				8464A8B5195BA13200583DE0 /* Supporting Files */,
 			);
 			path = PartyApp;
-			sourceTree = "<group>";
-		};
-		8464A820195A066800583DE0 /* AppIcons */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AppIcons;
-			sourceTree = "<group>";
-		};
-		8464A821195A066800583DE0 /* DataStructureModel */ = {
-			isa = PBXGroup;
-			children = (
-				8464A822195A066800583DE0 /* LoginDateStructure */,
-				8464A827195A066800583DE0 /* SiginUpDataStructure */,
-			);
-			path = DataStructureModel;
-			sourceTree = "<group>";
-		};
-		8464A822195A066800583DE0 /* LoginDateStructure */ = {
-			isa = PBXGroup;
-			children = (
-				8464A825195A066800583DE0 /* LoginModel.h */,
-				8464A826195A066800583DE0 /* LoginModel.m */,
-			);
-			path = LoginDateStructure;
-			sourceTree = "<group>";
-		};
-		8464A827195A066800583DE0 /* SiginUpDataStructure */ = {
-			isa = PBXGroup;
-			children = (
-				8464A82A195A066800583DE0 /* SigUpModel.h */,
-				8464A82B195A066800583DE0 /* SigUpModel.m */,
-			);
-			path = SiginUpDataStructure;
 			sourceTree = "<group>";
 		};
 		8464A82E195A066800583DE0 /* HelperClasses */ = {
@@ -576,8 +542,7 @@
 				842715E11960390E00DBEA6E /* RequestBuilder */,
 				842715E21960390E00DBEA6E /* ServerConnection */,
 				84A1432D195F5A9A00DC3970 /* PATextField */,
-				CEB03779195B548C009837A6 /* DataManager.h */,
-				CEB0377A195B548C009837A6 /* DataManager.m */,
+				84A110B7197167840035E181 /* DataManager */,
 				8464A82F195A066800583DE0 /* CommonFunctions */,
 				8464A832195A066800583DE0 /* Constants */,
 			);
@@ -815,6 +780,33 @@
 				8464A85A195A066800583DE0 /* PartyApp-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		84A110AF197165FF0035E181 /* LoginModel */ = {
+			isa = PBXGroup;
+			children = (
+				84A110B4197166CF0035E181 /* LoginModel.h */,
+				84A110B5197166CF0035E181 /* LoginModel.m */,
+			);
+			name = LoginModel;
+			sourceTree = "<group>";
+		};
+		84A110B01971660E0035E181 /* SignUpModel */ = {
+			isa = PBXGroup;
+			children = (
+				84A110B1197166B50035E181 /* SignUpModel.h */,
+				84A110B2197166B50035E181 /* SignUpModel.m */,
+			);
+			name = SignUpModel;
+			sourceTree = "<group>";
+		};
+		84A110B7197167840035E181 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				84A110B8197167840035E181 /* DataManager.h */,
+				84A110B9197167840035E181 /* DataManager.m */,
+			);
+			path = DataManager;
 			sourceTree = "<group>";
 		};
 		84A1432D195F5A9A00DC3970 /* PATextField */ = {
@@ -1116,7 +1108,6 @@
 				84DF77861969323100A11C2F /* LogNightCell.m in Sources */,
 				8464A8AA195A066800583DE0 /* SplashScreenViewController.m in Sources */,
 				8464A8A1195A066800583DE0 /* BaseViewController.m in Sources */,
-				8464A87B195A066800583DE0 /* SigUpModel.m in Sources */,
 				84DF779A1969AC1F00A11C2F /* FXBlurView.m in Sources */,
 				8464A87D195A066800583DE0 /* CommonFunctions.m in Sources */,
 				8464A8A4195A066800583DE0 /* LogNightViewController.m in Sources */,
@@ -1124,17 +1115,18 @@
 				842715E81960399700DBEA6E /* RequestBuilder.m in Sources */,
 				8464A8A2195A066800583DE0 /* LoginViewController.m in Sources */,
 				84A4880A196AAAC1006BC223 /* AddReminderViewController.m in Sources */,
+				84A110BA197167840035E181 /* DataManager.m in Sources */,
 				842715D41960125100DBEA6E /* NotificationCell.m in Sources */,
 				8464A87E195A066800583DE0 /* Constants.m in Sources */,
 				8464A8A8195A066800583DE0 /* RegisterViewController.m in Sources */,
 				8464A89F195A066800583DE0 /* main.m in Sources */,
+				84A110B3197166B50035E181 /* SignUpModel.m in Sources */,
 				8464A8AC195A066800583DE0 /* UploadPhotoViewController.m in Sources */,
-				CEB0377B195B548C009837A6 /* DataManager.m in Sources */,
 				842715E51960390E00DBEA6E /* ServerConnection.m in Sources */,
 				842715ED1960414800DBEA6E /* SessionModel.m in Sources */,
 				CE9D376C195E771B001F05D9 /* ForgotPasswordViewController.m in Sources */,
 				8464A8A6195A066800583DE0 /* ProfileViewController.m in Sources */,
-				8464A879195A066800583DE0 /* LoginModel.m in Sources */,
+				84A110B6197166CF0035E181 /* LoginModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

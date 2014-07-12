@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 WebFactory. All rights reserved.
 //
 
-#import "SigUpModel.h"
+#import "SignUpModel.h"
 #import "WebService.h"
 
-@implementation SigUpModel
+@implementation SignUpModel
 
 - (void)registerationForTarget:(id)target
                   withselector:(SEL)selector

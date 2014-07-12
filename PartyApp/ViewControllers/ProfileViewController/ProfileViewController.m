@@ -37,9 +37,9 @@
     [self setTitle:@"Party Friends"];
     // Do any additional setup after loading the view from its nib.
     
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:_pudLoggedIn]) {
-        [self showLoginView];
-    }
+//    if (![[NSUserDefaults standardUserDefaults] boolForKey:_pudLoggedIn]) {
+//        [self showLoginView];
+//    }
     
     [self initDefaults];
     

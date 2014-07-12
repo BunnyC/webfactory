@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="buttonWhen" destination="wY2-IJ-o2v" id="g5V-Pv-Vt3"/>
                 <outlet property="buttonWhere" destination="r7g-gC-fb0" id="vlU-lO-53h"/>
+                <outlet property="imageViewBack" destination="wJv-du-1hI" id="HKt-Wb-F6f"/>
                 <outlet property="pickerDate" destination="WPZ-2w-aKF" id="yfw-Lt-z2m"/>
                 <outlet property="pickerSeconds" destination="DFP-2Q-5Ss" id="ysh-GZ-mjO"/>
                 <outlet property="pickerTime" destination="eUk-Fh-5QM" id="uqR-dk-yoS"/>
@@ -165,28 +166,35 @@
                                     <rect key="frame" x="14" y="31" width="292" height="162"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="wJv-du-1hI">
+                                            <rect key="frame" x="0.0" y="0.0" width="292" height="162"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                         <pickerView tag="3" contentMode="scaleToFill" id="WPZ-2w-aKF">
-                                            <rect key="frame" x="10" y="0.0" width="110" height="162"/>
+                                            <rect key="frame" x="15" y="0.0" width="65" height="162"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" red="0.91764705879999997" green="0.69803921570000005" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <outlet property="dataSource" destination="-1" id="Yrc-kt-OR6"/>
                                                 <outlet property="delegate" destination="-1" id="3xa-qJ-NZl"/>
                                             </connections>
                                         </pickerView>
                                         <pickerView tag="2" contentMode="scaleToFill" id="eUk-Fh-5QM">
-                                            <rect key="frame" x="130" y="0.0" width="70" height="162"/>
+                                            <rect key="frame" x="114" y="0.0" width="65" height="162"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" red="0.91764705879999997" green="0.69803921570000005" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <outlet property="dataSource" destination="-1" id="aEd-aU-b71"/>
                                                 <outlet property="delegate" destination="-1" id="Ize-mM-fEU"/>
                                             </connections>
                                         </pickerView>
                                         <pickerView tag="1" contentMode="scaleToFill" id="DFP-2Q-5Ss">
-                                            <rect key="frame" x="210" y="0.0" width="80" height="162"/>
+                                            <rect key="frame" x="213" y="0.0" width="65" height="162"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" red="0.91764705879999997" green="0.69803921570000005" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <outlet property="dataSource" destination="-1" id="Zk9-nv-gY6"/>
                                                 <outlet property="delegate" destination="-1" id="udp-Zi-ZtI"/>
@@ -195,10 +203,14 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="40" sectionFooterHeight="22" id="sHk-hW-TMm">
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="40" sectionFooterHeight="22" id="sHk-hW-TMm">
                                     <rect key="frame" x="14" y="201" width="292" height="80"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-1" id="wdo-sb-VgH"/>
+                                        <outlet property="delegate" destination="-1" id="DrN-W7-gjk"/>
+                                    </connections>
                                 </tableView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

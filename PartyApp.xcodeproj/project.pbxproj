@@ -20,6 +20,14 @@
 		842715E51960390E00DBEA6E /* ServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 842715E41960390E00DBEA6E /* ServerConnection.m */; };
 		842715E81960399700DBEA6E /* RequestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 842715E71960399700DBEA6E /* RequestBuilder.m */; };
 		842715ED1960414800DBEA6E /* SessionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 842715EC1960414800DBEA6E /* SessionModel.m */; };
+		842B8C8F197199B400BECFD7 /* repeat.png in Resources */ = {isa = PBXBuildFile; fileRef = 842B8C8D197199B400BECFD7 /* repeat.png */; };
+		842B8C90197199B400BECFD7 /* selRepeat.png in Resources */ = {isa = PBXBuildFile; fileRef = 842B8C8E197199B400BECFD7 /* selRepeat.png */; };
+		842B8C93197199C200BECFD7 /* repeat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 842B8C91197199C200BECFD7 /* repeat@2x.png */; };
+		842B8C94197199C200BECFD7 /* selRepeat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 842B8C92197199C200BECFD7 /* selRepeat@2x.png */; };
+		842B8C9719719D2B00BECFD7 /* iconNotes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 842B8C9519719D2B00BECFD7 /* iconNotes@2x.png */; };
+		842B8C9819719D2B00BECFD7 /* iconSelNotes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 842B8C9619719D2B00BECFD7 /* iconSelNotes@2x.png */; };
+		842B8C9B19719D6400BECFD7 /* iconNotes.png in Resources */ = {isa = PBXBuildFile; fileRef = 842B8C9919719D6400BECFD7 /* iconNotes.png */; };
+		842B8C9C19719D6400BECFD7 /* iconSelNotes.png in Resources */ = {isa = PBXBuildFile; fileRef = 842B8C9A19719D6400BECFD7 /* iconSelNotes.png */; };
 		8464A877195A066800583DE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A81F195A066800583DE0 /* AppDelegate.m */; };
 		8464A87C195A066800583DE0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8464A82C195A066800583DE0 /* InfoPlist.strings */; };
 		8464A87D195A066800583DE0 /* CommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A831195A066800583DE0 /* CommonFunctions.m */; };
@@ -201,6 +209,14 @@
 		842715E71960399700DBEA6E /* RequestBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestBuilder.m; sourceTree = "<group>"; };
 		842715EB1960414800DBEA6E /* SessionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SessionModel.h; path = Models/SessionModel/SessionModel.h; sourceTree = "<group>"; };
 		842715EC1960414800DBEA6E /* SessionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SessionModel.m; path = Models/SessionModel/SessionModel.m; sourceTree = "<group>"; };
+		842B8C8D197199B400BECFD7 /* repeat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = repeat.png; sourceTree = "<group>"; };
+		842B8C8E197199B400BECFD7 /* selRepeat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selRepeat.png; sourceTree = "<group>"; };
+		842B8C91197199C200BECFD7 /* repeat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "repeat@2x.png"; sourceTree = "<group>"; };
+		842B8C92197199C200BECFD7 /* selRepeat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selRepeat@2x.png"; sourceTree = "<group>"; };
+		842B8C9519719D2B00BECFD7 /* iconNotes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconNotes@2x.png"; sourceTree = "<group>"; };
+		842B8C9619719D2B00BECFD7 /* iconSelNotes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconSelNotes@2x.png"; sourceTree = "<group>"; };
+		842B8C9919719D6400BECFD7 /* iconNotes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconNotes.png; sourceTree = "<group>"; };
+		842B8C9A19719D6400BECFD7 /* iconSelNotes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconSelNotes.png; sourceTree = "<group>"; };
 		8464A81E195A066800583DE0 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8464A81F195A066800583DE0 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8464A82D195A066800583DE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -580,20 +596,20 @@
 		8464A836195A066800583DE0 /* Retina */ = {
 			isa = PBXGroup;
 			children = (
-				84A48823196AB730006BC223 /* ReminderIcons */,
-				84DF7793196947B900A11C2F /* textViewBack@2x.png */,
-				84DF778D1969425300A11C2F /* tableSeparator@2x.png */,
-				84DF778B19693A2600A11C2F /* sharingOptions@2x.png */,
-				84DF77431969240000A11C2F /* appBackground@2x.png */,
 				84DF77441969240000A11C2F /* appBackground4@2x.png */,
+				84DF77431969240000A11C2F /* appBackground@2x.png */,
 				84DF77451969240000A11C2F /* backButton@2x.png */,
 				84DF77461969240000A11C2F /* barButtonTick@2x.png */,
 				84DF77471969240000A11C2F /* blueButton@2x.png */,
 				84DF77481969240000A11C2F /* buttonBell@2x.png */,
 				84DF77491969240000A11C2F /* buttonMenu@2x.png */,
 				84DF774A1969240000A11C2F /* cameraImage@2x.png */,
+				84A110A3197158A40035E181 /* cbSel@2x.png */,
+				84A110A4197158A40035E181 /* cbUnSel@2x.png */,
 				84DF774B1969240000A11C2F /* commentIcon@2x.png */,
 				84DF774C1969240000A11C2F /* facebookIcon@2x.png */,
+				842B8C9519719D2B00BECFD7 /* iconNotes@2x.png */,
+				842B8C9619719D2B00BECFD7 /* iconSelNotes@2x.png */,
 				84DF774D1969240000A11C2F /* imageLogo@2x.png */,
 				84DF774E1969240000A11C2F /* location@2x.png */,
 				84DF774F1969240000A11C2F /* magentaButton@2x.png */,
@@ -604,21 +620,25 @@
 				84DF77541969240000A11C2F /* pinkButton@2x.png */,
 				84DF77551969240000A11C2F /* placeholder@2x.png */,
 				84DF77561969240000A11C2F /* purpleButton@2x.png */,
+				842B8C91197199C200BECFD7 /* repeat@2x.png */,
 				84DF77571969240000A11C2F /* roundImageEffect@2x.png */,
 				84DF77581969240000A11C2F /* selCommentIcon@2x.png */,
 				84DF77591969240000A11C2F /* selFacebookIcon@2x.png */,
 				84DF775A1969240000A11C2F /* selImg@2x.png */,
+				842B8C92197199C200BECFD7 /* selRepeat@2x.png */,
+				84DF778B19693A2600A11C2F /* sharingOptions@2x.png */,
+				84DF778D1969425300A11C2F /* tableSeparator@2x.png */,
+				84DF7793196947B900A11C2F /* textViewBack@2x.png */,
 				84DF775B1969240000A11C2F /* tick@2x.png */,
 				84DF775C1969240000A11C2F /* txtFldW@2x.png */,
-				84A110A3197158A40035E181 /* cbSel@2x.png */,
-				84A110A4197158A40035E181 /* cbUnSel@2x.png */,
-				84A110A5197158A40035E181 /* whenNWhere@2x.png */,
 				84DF775D1969240000A11C2F /* txtFldY@2x.png */,
 				84DF775E1969240000A11C2F /* unselImg@2x.png */,
 				84DF775F1969240000A11C2F /* unselLocation@2x.png */,
 				84DF77601969240000A11C2F /* viewBack@2x.png */,
+				84A110A5197158A40035E181 /* whenNWhere@2x.png */,
 				84DF77611969240000A11C2F /* whiteButton@2x.png */,
 				84DF77621969240000A11C2F /* yellowButton@2x.png */,
+				84A48823196AB730006BC223 /* ReminderIcons */,
 			);
 			path = Retina;
 			sourceTree = "<group>";
@@ -626,10 +646,6 @@
 		8464A847195A066800583DE0 /* Simple */ = {
 			isa = PBXGroup;
 			children = (
-				84A4880C196AB703006BC223 /* ReminderIcons */,
-				84DF7791196947A300A11C2F /* textViewBack.png */,
-				84DF778F1969428500A11C2F /* tableSeparator.png */,
-				84DF778919693A0300A11C2F /* sharingOptions.png */,
 				84DF7703196923EE00A11C2F /* appBackground.png */,
 				84DF7704196923EE00A11C2F /* appBackground4.png */,
 				84DF7705196923EE00A11C2F /* backButton.png */,
@@ -638,8 +654,12 @@
 				84DF7708196923EE00A11C2F /* buttonBell.png */,
 				84DF7709196923EE00A11C2F /* buttonMenu.png */,
 				84DF770A196923EE00A11C2F /* cameraImage.png */,
+				84A110A9197158D60035E181 /* cbSel.png */,
+				84A110AA197158D60035E181 /* cbUnSel.png */,
 				84DF770B196923EE00A11C2F /* commentIcon.png */,
 				84DF770C196923EE00A11C2F /* facebookIcon.png */,
+				842B8C9919719D6400BECFD7 /* iconNotes.png */,
+				842B8C9A19719D6400BECFD7 /* iconSelNotes.png */,
 				84DF770D196923EE00A11C2F /* imageLogo.png */,
 				84DF770E196923EE00A11C2F /* location.png */,
 				84DF770F196923EE00A11C2F /* magentaButton.png */,
@@ -650,21 +670,25 @@
 				84DF7714196923EE00A11C2F /* pinkButton.png */,
 				84DF7715196923EE00A11C2F /* placeholder.png */,
 				84DF7716196923EE00A11C2F /* purpleButton.png */,
+				842B8C8D197199B400BECFD7 /* repeat.png */,
 				84DF7717196923EE00A11C2F /* roundImageEffect.png */,
 				84DF7718196923EE00A11C2F /* selCommentIcon.png */,
 				84DF7719196923EE00A11C2F /* selFacebookIcon.png */,
 				84DF771A196923EE00A11C2F /* selImg.png */,
+				842B8C8E197199B400BECFD7 /* selRepeat.png */,
+				84DF778919693A0300A11C2F /* sharingOptions.png */,
+				84DF778F1969428500A11C2F /* tableSeparator.png */,
+				84DF7791196947A300A11C2F /* textViewBack.png */,
 				84DF771B196923EE00A11C2F /* tick.png */,
 				84DF771C196923EE00A11C2F /* txtFldW.png */,
 				84DF771D196923EE00A11C2F /* txtFldY.png */,
 				84DF771E196923EE00A11C2F /* unselImg.png */,
 				84DF771F196923EE00A11C2F /* unselLocation.png */,
-				84A110A9197158D60035E181 /* cbSel.png */,
-				84A110AA197158D60035E181 /* cbUnSel.png */,
-				84A110AB197158D60035E181 /* whenNWhere.png */,
 				84DF7720196923EE00A11C2F /* viewBack.png */,
+				84A110AB197158D60035E181 /* whenNWhere.png */,
 				84DF7721196923EE00A11C2F /* whiteButton.png */,
 				84DF7722196923EE00A11C2F /* yellowButton.png */,
+				84A4880C196AB703006BC223 /* ReminderIcons */,
 			);
 			path = Simple;
 			sourceTree = "<group>";
@@ -988,6 +1012,7 @@
 				8464A8A3195A066800583DE0 /* LoginViewController.xib in Resources */,
 				84DF7731196923EE00A11C2F /* nextButton.png in Resources */,
 				84DF776D1969240000A11C2F /* imageLogo@2x.png in Resources */,
+				842B8C9C19719D6400BECFD7 /* iconSelNotes.png in Resources */,
 				842715D81960128200DBEA6E /* NotificationCell.xib in Resources */,
 				84DF7732196923EE00A11C2F /* notifTop.png in Resources */,
 				84DF773E196923EE00A11C2F /* unselImg.png in Resources */,
@@ -1009,6 +1034,7 @@
 				84A48836196AB730006BC223 /* selFriendsIcon@2x.png in Resources */,
 				84DF772C196923EE00A11C2F /* facebookIcon.png in Resources */,
 				8464A8AD195A066800583DE0 /* UploadPhotoViewController.xib in Resources */,
+				842B8C9819719D2B00BECFD7 /* iconSelNotes@2x.png in Resources */,
 				84DF7727196923EE00A11C2F /* blueButton.png in Resources */,
 				8464A8AB195A066800583DE0 /* SplashScreenViewController.xib in Resources */,
 				84DF777A1969240000A11C2F /* selImg@2x.png in Resources */,
@@ -1044,6 +1070,7 @@
 				84DF7792196947A300A11C2F /* textViewBack.png in Resources */,
 				84DF77741969240000A11C2F /* pinkButton@2x.png in Resources */,
 				84DF77691969240000A11C2F /* buttonMenu@2x.png in Resources */,
+				842B8C9719719D2B00BECFD7 /* iconNotes@2x.png in Resources */,
 				8464A87C195A066800583DE0 /* InfoPlist.strings in Resources */,
 				84DF7734196923EE00A11C2F /* pinkButton.png in Resources */,
 				84DF7728196923EE00A11C2F /* buttonBell.png in Resources */,
@@ -1056,15 +1083,18 @@
 				84DF777E1969240000A11C2F /* unselImg@2x.png in Resources */,
 				84DF777D1969240000A11C2F /* txtFldY@2x.png in Resources */,
 				84A4881B196AB703006BC223 /* nightIcon.png in Resources */,
+				842B8C90197199B400BECFD7 /* selRepeat.png in Resources */,
 				84DF777C1969240000A11C2F /* txtFldW@2x.png in Resources */,
 				84DF77711969240000A11C2F /* nextButton@2x.png in Resources */,
 				84A110AC197158D60035E181 /* cbSel.png in Resources */,
 				84DF77701969240000A11C2F /* mottoBack@2x.png in Resources */,
+				842B8C94197199C200BECFD7 /* selRepeat@2x.png in Resources */,
 				8464A8A7195A066800583DE0 /* ProfileViewController.xib in Resources */,
 				84DF778A19693A0300A11C2F /* sharingOptions.png in Resources */,
 				84DF77781969240000A11C2F /* selCommentIcon@2x.png in Resources */,
 				84A110A6197158A40035E181 /* cbSel@2x.png in Resources */,
 				84DF77751969240000A11C2F /* placeholder@2x.png in Resources */,
+				842B8C8F197199B400BECFD7 /* repeat.png in Resources */,
 				84DF7742196923EE00A11C2F /* yellowButton.png in Resources */,
 				84A48833196AB730006BC223 /* personalIcon@2x.png in Resources */,
 				CE9D3773195F0C0F001F05D9 /* ProfileViewController4.xib in Resources */,
@@ -1076,10 +1106,12 @@
 				84DF7725196923EE00A11C2F /* backButton.png in Resources */,
 				8464A8A9195A066800583DE0 /* RegisterViewController.xib in Resources */,
 				84DF77651969240000A11C2F /* backButton@2x.png in Resources */,
+				842B8C9B19719D6400BECFD7 /* iconNotes.png in Resources */,
 				8491FCD4195EB75B00FDC63F /* LoginViewController4.xib in Resources */,
 				84A48835196AB730006BC223 /* selFoodDrinkIcon@2x.png in Resources */,
 				84A110A7197158A40035E181 /* cbUnSel@2x.png in Resources */,
 				84DF778E1969425300A11C2F /* tableSeparator@2x.png in Resources */,
+				842B8C93197199C200BECFD7 /* repeat@2x.png in Resources */,
 				84DF7730196923EE00A11C2F /* mottoBack.png in Resources */,
 				84DF77721969240000A11C2F /* notifTop@2x.png in Resources */,
 				84DF77791969240000A11C2F /* selFacebookIcon@2x.png in Resources */,

@@ -8,18 +8,18 @@
 
 #import "AddReminderViewController.h"
 
-@interface AddReminderViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface AddReminderViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate> {
     
     int selectedOption;
     
-    NSMutableArray *arrDates;
-    NSMutableArray *arrMonths;
-    NSMutableArray *arrYears;
+    int currentDay;
+    int currentMonth;
+    int currentYear;
     
-    NSMutableArray *arrHours;
-    NSMutableArray *arrMinutes;
+    BOOL repeatSelected;
+    BOOL notesSelected;
     
-    NSMutableArray *arrSeconds;
+    NSArray *arrReminderOptions;
 }
 
 @end
@@ -40,7 +40,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self initDefaults];
-    [self setArrays];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,6 +53,26 @@
 
 - (void)initDefaults {
     selectedOption = 0;
+    
+    repeatSelected = false;
+    notesSelected = false;
+    
+    arrReminderOptions = [[NSArray alloc] initWithObjects:
+                          @"Tomorrow",
+                          @"Next Week",
+                          @"Everyday",
+                          @"Every Week", nil];
+    
+    NSDate *today = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    
+    NSString *strDateToday = [dateFormatter stringFromDate:today];
+    NSArray *arrComponents = [strDateToday componentsSeparatedByString:@"/"];
+    
+    currentDay = [[arrComponents objectAtIndex:0] intValue];
+    currentMonth = [[arrComponents objectAtIndex:1] intValue];
+    currentYear = [[arrComponents objectAtIndex:2] intValue];
     
     // Setting up Bar Button Items
     UIImage *imgMenuButton = [[CommonFunctions sharedObject] imageWithName:@"backButton"
@@ -69,34 +88,19 @@
     
     UIImage *imageWhenWhereBack = [[CommonFunctions sharedObject] imageWithName:@"whenNWhere"
                                                                         andType:_pPNGType];
-    
-    [viewWhenNWhere setBackgroundColor:[UIColor colorWithPatternImage:imageWhenWhereBack]];
-    
     UIImage *imageBackViewBottom = [[CommonFunctions sharedObject] imageWithName:@"viewBack"
                                                                          andType:_pPNGType];
+    
+    UIImage *resizableImage = [imageWhenWhereBack resizableImageWithCapInsets:UIEdgeInsetsMake(2, 2, 2, 2) resizingMode:UIImageResizingModeStretch];
+    
+    [viewWhenNWhere setBackgroundColor:[UIColor colorWithPatternImage:imageWhenWhereBack]];
     [viewBottom setBackgroundColor:[UIColor colorWithPatternImage:imageBackViewBottom]];
+    [imageViewBack setImage:resizableImage];
+    
+//    [tableViewReminderInfo.layer setBorderColor:[UIColor blueColor].CGColor];
+//    [tableViewReminderInfo.layer setBorderWidth:2.0f];
     
     [self setupTextView];
-}
-
-- (void)setArrays {
-    arrDates = [[NSMutableArray alloc] init];
-    arrMonths = [[NSMutableArray alloc] init];
-    arrYears = [[NSMutableArray alloc] init];
-    
-    arrHours = [[NSMutableArray alloc] init];
-    arrMinutes = [[NSMutableArray alloc] init];
-    arrSeconds = [[NSMutableArray alloc] init];
-    
-//    NSDate *dateToCompare = [NSDate date];
-//    NSDate *lastDate = [NSDate dateWithTimeInterval:365 * 24 * 60 * 60
-//                                          sinceDate:[NSDate date]];
-//    
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    [dateFormatter setDateFormat:@"dd/MM/yy"];
-    
-//    for (int i = 0; i < 31; i ++)
-    
 }
 
 #pragma mark - Setup Text View
@@ -161,19 +165,21 @@
     [button setSelected:![button isSelected]];
     
     CGRect frameWW = viewWhenNWhere.frame;
-    frameWW.origin.y += frameWW.size.height + 10;
-    
     CGRect frameAR = viewAddReminder.frame;
     
-    [viewAddReminder setFrame:CGRectMake(0, frameWW.origin.y, frameAR.size.width, frameAR.size.height)];
-    [viewAddReminder setHidden:false];
-//    [scrollView addSubview:viewAddReminder];
-    
     CGRect frameVB = viewBottom.frame;
-    frameVB.origin.y += frameAR.size.height;
+    if ([button isSelected]) {
+        frameWW.origin.y += (frameWW.size.height + 10);
+        frameVB.origin.y = CGRectGetMaxY(frameWW) + frameAR.size.height + 10;
+    }
+    else {
+        frameWW.origin.y -= (frameWW.size.height + 10);
+        frameVB.origin.y = self.view.frame.size.height - frameVB.size.height;
+    }
     
+    [viewAddReminder setFrame:CGRectMake(0, frameWW.origin.y, frameAR.size.width, frameAR.size.height)];
+    [viewAddReminder setHidden:![button isSelected]];
     [viewBottom setFrame:frameVB];
-    
     [scrollView setContentSize:CGSizeMake(scrollView.frame.size.width, CGRectGetMaxY(frameVB))];
 }
 
@@ -182,16 +188,84 @@
     [button setSelected:![button isSelected]];
 }
 
+- (void)sectionButtonTouched:(UIButton *)sender {
+    int heightIncrement = (!repeatSelected && !notesSelected) ? 120: 0;
+    if ([sender tag] == 0) {
+        repeatSelected = true;
+        notesSelected = false;
+    }
+    else {
+        repeatSelected = false;
+        notesSelected = true;
+    }
+    
+//    CGRect frameTable = tableViewReminderInfo.frame;
+//    frameTable.size.height += heightIncrement;
+//    [tableViewReminderInfo setFrame:frameTable];
+    
+    CGRect frameViewReminder = viewAddReminder.frame;
+    frameViewReminder.size.height += heightIncrement;
+    [viewAddReminder setFrame:frameViewReminder];
+    
+    CGRect frameViewBottom = viewBottom.frame;
+    frameViewBottom.origin.y += heightIncrement;
+    [viewBottom setFrame:frameViewBottom];
+    
+    CGSize contentSize = scrollView.contentSize;
+    contentSize.height += heightIncrement;
+    
+    [scrollView setContentSize:contentSize];
+    
+    
+    [tableViewReminderInfo reloadData];
+}
+
+#pragma mark - Other Methods
+
+- (UIView *)addViewInPickerComponentWithText:(NSString *)textComponent {
+    
+    UIView *viewTitle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 30)];
+    [viewTitle setBackgroundColor:[UIColor clearColor]];
+    
+    UILabel *labelTitle = [[UILabel alloc] initWithFrame:viewTitle.frame];
+    [labelTitle setFont:[UIFont fontWithName:_pFontArialMT size:12]];
+    [labelTitle setBackgroundColor:[UIColor clearColor]];
+    [labelTitle setTextAlignment:NSTextAlignmentCenter];
+    [labelTitle setTextColor:[UIColor whiteColor]];
+    [labelTitle setText:textComponent];
+    
+    [viewTitle addSubview:labelTitle];
+    labelTitle = nil;
+    
+    return viewTitle;
+}
+
+#pragma mark - TextView Delegate
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    CGRect frameScrollView = scrollView.frame;
+    frameScrollView.size.height -= 216;
+    [scrollView setFrame:frameScrollView];
+    [scrollView setContentOffset:CGPointMake(0, CGRectGetMaxY(tableViewReminderInfo.frame) + 50)
+                        animated:true];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    CGRect frameScrollView = scrollView.frame;
+    frameScrollView.size.height = self.view.frame.size.height;
+    [scrollView setFrame:frameScrollView];
+}
+
 #pragma mark - Picker View Delegates & DataSource
 
 - (int)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     int components = [pickerView tag];
-    NSLog(@"Components : %d", components);
     return components;
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-    return (pickerView.frame.size.width / [pickerView tag]);
+    
+    return 15;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
@@ -204,9 +278,9 @@
     else if ( pickerViewTag == 2)
         noOfRows = component ? 60 : 24;
     else {
-        int thirdComponent = [pickerView selectedRowInComponent:2] + 1;
+        int thirdComponent = [pickerView selectedRowInComponent:2];
         int secondComponent = [pickerView selectedRowInComponent:1];
-        int selectedYear = thirdComponent + 2000;
+        int selectedYear = thirdComponent + currentYear;
         
         BOOL leapYear = false;
         if (selectedYear % 4 == 0)
@@ -223,7 +297,7 @@
                 noOfRows = 12;
                 break;
             case 2:
-                noOfRows = 2100 - (2000 + thirdComponent);
+                noOfRows = 2100 - currentYear;
                 break;
             default:
                 break;
@@ -232,31 +306,125 @@
     return noOfRows;
 }
 
-//- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-//    
-//    NSString *strValue = [NSString stringWithFormat:@"%02d", row + 1];
-//    return strValue;
-//}
-
-- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
     
     NSString *strValue = [NSString stringWithFormat:@"%02d", row + 1];
-    NSDictionary *dictAttr = [NSDictionary dictionaryWithObjectsAndKeys:
-                              [UIFont fontWithName:_pFontArialMT size:8], NSFontAttributeName,
-                              [UIColor whiteColor], NSForegroundColorAttributeName,
-                              nil];
-    
-    NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:strValue attributes:dictAttr];
-    return attrString;
+    if ([pickerView tag] == 3 && component == 2)
+        strValue = [NSString stringWithFormat:@"%02d", row + 14];
+    UIView *viewTitle = [self addViewInPickerComponentWithText:strValue];
+    return viewTitle;
 }
-
-//- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
-//    
-//}
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
     [pickerView reloadAllComponents];
+}
+
+#pragma mark - UITableView Delegate & DataSource
+
+- (int)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *viewSection = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 292, 40)];
+    [viewSection setBackgroundColor:[UIColor clearColor]];
+    
+    NSString *strImage = nil;
+    NSString *strSelImage = nil;
+    NSString *titleButton = nil;
+    
+    switch (section) {
+        case 0:
+            strImage = @"repeat";
+            strSelImage = @"selRepeat";
+            titleButton = @"  Repeat";
+            break;
+        case 1:
+            strImage = @"iconNotes";
+            strSelImage = @"iconSelNotes";
+            titleButton = @"  Notes";
+            break;
+        default:
+            break;
+    }
+    
+    UIImage *imageButtonNormal = [[CommonFunctions sharedObject] imageWithName:strImage
+                                                                       andType:_pPNGType];
+    UIImage *imageButtonSelected = [[CommonFunctions sharedObject] imageWithName:strSelImage
+                                                                         andType:_pPNGType];
+    
+    UIColor *colorSelected = [UIColor colorWithRed:234/255.0f green:178/255.0f blue:23/255.0f alpha:1.0f];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button setTitleColor:colorSelected forState:UIControlStateSelected];
+    [button setTitle:titleButton forState:UIControlStateNormal];
+    [button setImage:imageButtonNormal forState:UIControlStateNormal];
+    [button setImage:imageButtonSelected forState:UIControlStateSelected];
+    [button setFrame:viewSection.frame];
+    [button setTag:section];
+    [button addTarget:self
+               action:@selector(sectionButtonTouched:)
+     forControlEvents:UIControlEventTouchUpInside];
+    
+    if ((section == 0 && repeatSelected) || (section == 1 && notesSelected))
+        [button setSelected:true];
+    
+    [viewSection addSubview:button];
+    
+    return viewSection;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    int noOfRows = 0;
+    noOfRows = section ? (notesSelected ? 1 : 0) : (repeatSelected ? 4 : 0);
+    return noOfRows;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat rowHeight = indexPath.section == 0 ? 30 : 120;
+    return rowHeight;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *cellID = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        [cell.textLabel setFont:[UIFont fontWithName:_pFontArialRoundedMT size:12]];
+        [cell.textLabel setTextColor:[UIColor whiteColor]];
+        [cell setBackgroundColor:[UIColor clearColor]];
+        [cell.contentView setBackgroundColor:[UIColor clearColor]];
+    }
+    NSString *textCell = nil;
+    
+    if (indexPath.section == 0)
+        textCell = [arrReminderOptions objectAtIndex:indexPath.row];
+    else {
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        textCell = @"";
+        
+        UIImage *imageBack = [[CommonFunctions sharedObject] imageWithName:@"textViewBack"
+                                                                   andType:_pPNGType];
+        
+        UIImageView *imageViewTextBack = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 292, 120)];
+        [imageViewTextBack setImage:imageBack];
+        
+        UITextView *textViewCell = [[UITextView alloc] initWithFrame:CGRectMake(2, 2, 288, 116)];
+        [textViewCell setBackgroundColor:[UIColor clearColor]];
+        [textViewCell setTextColor:[UIColor whiteColor]];
+        [textViewCell setDelegate:self];
+        
+        [cell.contentView addSubview:imageViewTextBack];
+        [cell.contentView addSubview:textViewCell];
+    }
+    [cell.textLabel setText:textCell];
+    return cell;
 }
 
 @end

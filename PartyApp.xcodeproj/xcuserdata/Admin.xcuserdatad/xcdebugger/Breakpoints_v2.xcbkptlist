@@ -49,36 +49,6 @@
             endingLineNumber = "69"
             landmarkName = "-serverResponseForSignUp:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SigUpModel serverResponseForSignUp:]"
-                  moduleName = "PartyApp"
-                  urlString = "file:///Users/Admin/Projects/PartyApp/iOSCode/webfactory/PartyApp/DataStructureModel/SiginUpDataStructure/SigUpModel.m"
-                  timestampString = "426853668.095122"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "1453">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SigUpModel serverResponseForSignUp:]"
-                  moduleName = "PartyApp"
-                  urlString = "file:///Users/Admin/Projects/PartyApp/iOSCode/webfactory/PartyApp/DataStructureModel/SiginUpDataStructure/SigUpModel.m"
-                  timestampString = "426853668.095433"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "2058">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -95,6 +65,36 @@
             endingLineNumber = "321"
             landmarkName = "-signUpHandler:"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[UploadPhotoViewController signUpHandler:]"
+                  moduleName = "PartyApp"
+                  urlString = "file:///Users/Admin/Projects/PartyApp/iOSCode/webfactory/PartyApp/ViewControllers/UploadPhotoViewController/UploadPhotoViewController.m"
+                  timestampString = "426887826.73972"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "322"
+                  endingLineNumber = "322"
+                  offsetFromSymbolStart = "824">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[UploadPhotoViewController signUpHandler:]"
+                  moduleName = "PartyApp"
+                  urlString = "file:///Users/Admin/Projects/PartyApp/iOSCode/webfactory/PartyApp/ViewControllers/UploadPhotoViewController/UploadPhotoViewController.m"
+                  timestampString = "426887826.740088"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "322"
+                  endingLineNumber = "322"
+                  offsetFromSymbolStart = "954">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -119,13 +119,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PartyApp/ViewControllers/LoginViewController/LoginViewController.m"
-            timestampString = "426403914.340699"
+            filePath = "PartyApp/Models/SignUpModel/SignUpModel.m"
+            timestampString = "426864252.858812"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "334"
-            endingLineNumber = "334"
-            landmarkName = "-textFieldShouldReturn:"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "-UpdateUserWithTarget:withselector:andDetails:toShowWindowLoader:User_id:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -135,73 +135,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PartyApp/ViewControllers/LoginViewController/LoginViewController.m"
-            timestampString = "426404972.013037"
+            filePath = "PartyApp/Models/LoginModel/LoginModel.m"
+            timestampString = "426864673.612508"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "343"
-            endingLineNumber = "343"
-            landmarkName = "-serverResponseOfLogin:"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__38-[LoginViewController serverResponse:]_block_invoke"
-                  moduleName = "PartyApp"
-                  urlString = "file:///Users/Admin/Projects/PartyApp/iOSCode/webfactory/PartyApp/ViewControllers/LoginViewController/LoginViewController.m"
-                  timestampString = "426853668.097154"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "344"
-                  endingLineNumber = "344"
-                  offsetFromSymbolStart = "145">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__copy_helper_block_234"
-                  moduleName = "PartyApp"
-                  urlString = "file:///Users/Admin/Projects/PartyApp/iOSCode/webfactory/PartyApp/ViewControllers/LoginViewController/LoginViewController.m"
-                  timestampString = "426853668.097532"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "344"
-                  endingLineNumber = "344"
-                  offsetFromSymbolStart = "18">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_235"
-                  moduleName = "PartyApp"
-                  urlString = "file:///Users/Admin/Projects/PartyApp/iOSCode/webfactory/PartyApp/ViewControllers/LoginViewController/LoginViewController.m"
-                  timestampString = "426853668.097896"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "344"
-                  endingLineNumber = "344"
-                  offsetFromSymbolStart = "17">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PartyApp/ViewControllers/AddReminderViewController/AddReminderViewController.m"
-            timestampString = "426850670.333477"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "-whenButtonTouched:"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "-serverResponseForLogin:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -211,29 +151,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PartyApp/ViewControllers/AddReminderViewController/AddReminderViewController.m"
-            timestampString = "426852852.998847"
+            filePath = "PartyApp/Models/SignUpModel/SignUpModel.m"
+            timestampString = "426864791.247446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
-            landmarkName = "-numberOfComponentsInPickerView:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PartyApp/ViewControllers/AddReminderViewController/AddReminderViewController.m"
-            timestampString = "426853498.630697"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "-pickerView:numberOfRowsInComponent:"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "-serverResponseForSignUp:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

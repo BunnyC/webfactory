@@ -25,6 +25,7 @@
     //  Alarm View
     __weak IBOutlet UIView *viewAddReminder;
     __weak IBOutlet UIView *viewPickers;
+    __weak IBOutlet UIImageView *imageViewBack;
     __weak IBOutlet UIPickerView *pickerDate;
     __weak IBOutlet UIPickerView *pickerTime;
     __weak IBOutlet UIPickerView *pickerSeconds;

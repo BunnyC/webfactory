@@ -13,7 +13,7 @@
 #import "ForgotPasswordViewController.h"
 #import "ProfileViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
-#import "SigUpModel.h"
+#import "SignUpModel.h"
 @interface LoginViewController () <UITextFieldDelegate, UITextViewDelegate, QBActionStatusDelegate>
 
 @end
@@ -372,7 +372,7 @@
         
        NSDictionary *dictUser=[NSDictionary dictionaryWithObject:detail forKey:@"user"];
         
-            SigUpModel *objSignUpModel = [[SigUpModel alloc] init];
+            SignUpModel *objSignUpModel = [[SignUpModel alloc] init];
             [objSignUpModel UpdateUserWithTarget:self
                                       withselector:@selector(serverResponseOfLogin:)
                                         andDetails:dictUser

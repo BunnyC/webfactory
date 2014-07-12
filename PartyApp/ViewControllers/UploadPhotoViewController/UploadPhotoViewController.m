@@ -11,7 +11,7 @@
 #import "DataManager.h"
 #import "AppDelegate.h"
 #import "RegisterViewController.h"
-#import "SigUpModel.h"
+#import "SignUpModel.h"
 
 @interface UploadPhotoViewController ()
 
@@ -417,7 +417,7 @@
     
    
     
-    SigUpModel *objSignUpModel = [[SigUpModel alloc] init];
+    SignUpModel *objSignUpModel = [[SignUpModel alloc] init];
     [objSignUpModel registerationForTarget:self
                               withselector:@selector(serverResponseForSignUp:)
                                 andDetails:dictUser

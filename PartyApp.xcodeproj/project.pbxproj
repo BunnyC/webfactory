@@ -42,6 +42,12 @@
 		8464A8AC195A066800583DE0 /* UploadPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A875195A066800583DE0 /* UploadPhotoViewController.m */; };
 		8464A8AD195A066800583DE0 /* UploadPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8464A876195A066800583DE0 /* UploadPhotoViewController.xib */; };
 		8491FCD4195EB75B00FDC63F /* LoginViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8491FCD3195EB75B00FDC63F /* LoginViewController4.xib */; };
+		84A110A6197158A40035E181 /* cbSel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A110A3197158A40035E181 /* cbSel@2x.png */; };
+		84A110A7197158A40035E181 /* cbUnSel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A110A4197158A40035E181 /* cbUnSel@2x.png */; };
+		84A110A8197158A40035E181 /* whenNWhere@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A110A5197158A40035E181 /* whenNWhere@2x.png */; };
+		84A110AC197158D60035E181 /* cbSel.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A110A9197158D60035E181 /* cbSel.png */; };
+		84A110AD197158D60035E181 /* cbUnSel.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A110AA197158D60035E181 /* cbUnSel.png */; };
+		84A110AE197158D60035E181 /* whenNWhere.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A110AB197158D60035E181 /* whenNWhere.png */; };
 		84A14330195F5AD200DC3970 /* PATextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A1432F195F5AD200DC3970 /* PATextField.m */; };
 		84A4880A196AAAC1006BC223 /* AddReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A48808196AAAC1006BC223 /* AddReminderViewController.m */; };
 		84A4880B196AAAC1006BC223 /* AddReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A48809196AAAC1006BC223 /* AddReminderViewController.xib */; };
@@ -232,6 +238,12 @@
 		8464A876195A066800583DE0 /* UploadPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadPhotoViewController.xib; sourceTree = "<group>"; };
 		8464A8B2195B9F8C00583DE0 /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quickblox.framework; sourceTree = "<group>"; };
 		8491FCD3195EB75B00FDC63F /* LoginViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController4.xib; sourceTree = "<group>"; };
+		84A110A3197158A40035E181 /* cbSel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cbSel@2x.png"; sourceTree = "<group>"; };
+		84A110A4197158A40035E181 /* cbUnSel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cbUnSel@2x.png"; sourceTree = "<group>"; };
+		84A110A5197158A40035E181 /* whenNWhere@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whenNWhere@2x.png"; sourceTree = "<group>"; };
+		84A110A9197158D60035E181 /* cbSel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cbSel.png; sourceTree = "<group>"; };
+		84A110AA197158D60035E181 /* cbUnSel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cbUnSel.png; sourceTree = "<group>"; };
+		84A110AB197158D60035E181 /* whenNWhere.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whenNWhere.png; sourceTree = "<group>"; };
 		84A1432E195F5AD200DC3970 /* PATextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PATextField.h; path = PATextField/PATextField.h; sourceTree = "<group>"; };
 		84A1432F195F5AD200DC3970 /* PATextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PATextField.m; path = PATextField/PATextField.m; sourceTree = "<group>"; };
 		84A48807196AAAC1006BC223 /* AddReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddReminderViewController.h; path = AddReminderViewController/AddReminderViewController.h; sourceTree = "<group>"; };
@@ -633,6 +645,9 @@
 				84DF775A1969240000A11C2F /* selImg@2x.png */,
 				84DF775B1969240000A11C2F /* tick@2x.png */,
 				84DF775C1969240000A11C2F /* txtFldW@2x.png */,
+				84A110A3197158A40035E181 /* cbSel@2x.png */,
+				84A110A4197158A40035E181 /* cbUnSel@2x.png */,
+				84A110A5197158A40035E181 /* whenNWhere@2x.png */,
 				84DF775D1969240000A11C2F /* txtFldY@2x.png */,
 				84DF775E1969240000A11C2F /* unselImg@2x.png */,
 				84DF775F1969240000A11C2F /* unselLocation@2x.png */,
@@ -679,6 +694,9 @@
 				84DF771D196923EE00A11C2F /* txtFldY.png */,
 				84DF771E196923EE00A11C2F /* unselImg.png */,
 				84DF771F196923EE00A11C2F /* unselLocation.png */,
+				84A110A9197158D60035E181 /* cbSel.png */,
+				84A110AA197158D60035E181 /* cbUnSel.png */,
+				84A110AB197158D60035E181 /* whenNWhere.png */,
 				84DF7720196923EE00A11C2F /* viewBack.png */,
 				84DF7721196923EE00A11C2F /* whiteButton.png */,
 				84DF7722196923EE00A11C2F /* yellowButton.png */,
@@ -962,6 +980,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84DF77661969240000A11C2F /* barButtonTick@2x.png in Resources */,
+				84A110AD197158D60035E181 /* cbUnSel.png in Resources */,
 				84A48821196AB703006BC223 /* selTransportIcon.png in Resources */,
 				84A48834196AB730006BC223 /* selCustomIcon@2x.png in Resources */,
 				CE9D376E195E771B001F05D9 /* ForgotPasswordViewController.xib in Resources */,
@@ -994,6 +1013,7 @@
 				84DF7741196923EE00A11C2F /* whiteButton.png in Resources */,
 				84DF7723196923EE00A11C2F /* appBackground.png in Resources */,
 				84DF77901969428500A11C2F /* tableSeparator.png in Resources */,
+				84A110AE197158D60035E181 /* whenNWhere.png in Resources */,
 				84A48836196AB730006BC223 /* selFriendsIcon@2x.png in Resources */,
 				84DF772C196923EE00A11C2F /* facebookIcon.png in Resources */,
 				8464A8AD195A066800583DE0 /* UploadPhotoViewController.xib in Resources */,
@@ -1019,6 +1039,7 @@
 				84A4881D196AB703006BC223 /* selCustomIcon.png in Resources */,
 				84A48837196AB730006BC223 /* selPersonalIcon@2x.png in Resources */,
 				84DF77671969240000A11C2F /* blueButton@2x.png in Resources */,
+				84A110A8197158A40035E181 /* whenNWhere@2x.png in Resources */,
 				84A4881F196AB703006BC223 /* selFriendsIcon.png in Resources */,
 				84DF777B1969240000A11C2F /* tick@2x.png in Resources */,
 				84DF772E196923EE00A11C2F /* location.png in Resources */,
@@ -1045,10 +1066,12 @@
 				84A4881B196AB703006BC223 /* nightIcon.png in Resources */,
 				84DF777C1969240000A11C2F /* txtFldW@2x.png in Resources */,
 				84DF77711969240000A11C2F /* nextButton@2x.png in Resources */,
+				84A110AC197158D60035E181 /* cbSel.png in Resources */,
 				84DF77701969240000A11C2F /* mottoBack@2x.png in Resources */,
 				8464A8A7195A066800583DE0 /* ProfileViewController.xib in Resources */,
 				84DF778A19693A0300A11C2F /* sharingOptions.png in Resources */,
 				84DF77781969240000A11C2F /* selCommentIcon@2x.png in Resources */,
+				84A110A6197158A40035E181 /* cbSel@2x.png in Resources */,
 				84DF77751969240000A11C2F /* placeholder@2x.png in Resources */,
 				84DF7742196923EE00A11C2F /* yellowButton.png in Resources */,
 				84A48833196AB730006BC223 /* personalIcon@2x.png in Resources */,
@@ -1063,6 +1086,7 @@
 				84DF77651969240000A11C2F /* backButton@2x.png in Resources */,
 				8491FCD4195EB75B00FDC63F /* LoginViewController4.xib in Resources */,
 				84A48835196AB730006BC223 /* selFoodDrinkIcon@2x.png in Resources */,
+				84A110A7197158A40035E181 /* cbUnSel@2x.png in Resources */,
 				84DF778E1969425300A11C2F /* tableSeparator@2x.png in Resources */,
 				84DF7730196923EE00A11C2F /* mottoBack.png in Resources */,
 				84DF77721969240000A11C2F /* notifTop@2x.png in Resources */,

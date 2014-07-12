@@ -30,6 +30,13 @@ NSString *const _pudUserInfo            = @"UserInfo";
 NSString *const _pUserInfoDic           = @"UserProfileInfomation";
 NSString *const _pUserProfilePic        = @"UserProfilePic";
 
+#pragma mark - Fonts
+
+NSString *const _pFontArialRoundedMT    = @"ArialRoundedMTBold";
+NSString *const _pFontArialMT           = @"ArialMT";
+NSString *const _pFontArialBoldMT       = @"Arial-BoldMT";
+NSString *const _pFontArialItalicMT     = @"Arial-ItalicMT";
+
 #pragma mark - Message Text
 
 NSString *const _pErrUserNameAndPasswordRequired= @"Please enter password with atleast 8 characters";

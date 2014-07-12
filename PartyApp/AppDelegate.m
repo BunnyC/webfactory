@@ -17,6 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
    // Quickblox Account Setting
     
     [QBSettings setApplicationID:_pApplicationID];

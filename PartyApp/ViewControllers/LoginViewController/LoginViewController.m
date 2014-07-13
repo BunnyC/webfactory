@@ -452,24 +452,14 @@
     
             QBUUserLogInResult *res = (QBUUserLogInResult *)result;
     
-        NSLog(@"%@", res.user);
-        
-
-//            NSString *password=res.user.password;
-            [[NSUserDefaults standardUserDefaults] setObject:txtFieldPassword.text forKey:@"Password"];
-            [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
-//          [[NSUserDefaults standardUserDefaults]setObject:res.user forKey:_pudUserInfo];
-        
-            [[NSUserDefaults standardUserDefaults] synchronize];
-
-        
-        [self dismissViewControllerAnimated:true completion:^{
+            NSLog(@"%@", res.user);
+         [self updateUserInfo:res.user];
+         [self dismissViewControllerAnimated:true completion:^{
             if([_delegate respondsToSelector:@selector(updateUserInfo:)])
             {
                 [_delegate performSelector:@selector(updateUserInfo:) withObject:res.user];
             }
         }];
-
     }
     else {
         
@@ -492,6 +482,25 @@
 
 
 }
+
+#pragma -mark store User Dictionary;
+-(void)updateUserInfo:(QBUUser *)user
+{
+    NSMutableDictionary *userDetail=[[NSMutableDictionary alloc]init];
+    [userDetail setValue:user.login forKey:@"login"];
+    [userDetail setValue:user.email forKey:@"email"];
+    [userDetail setValue:user.fullName forKey:@"full_name"];
+    [userDetail setValue:user.website forKey:@"website"];
+    
+    [[NSUserDefaults standardUserDefaults]setObject:userDetail forKey:@"userDetail"];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:txtFieldPassword.text forKey:@"Password"];
+    [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
+    
+  
+    [[NSUserDefaults standardUserDefaults]synchronize];
+}
+
 #pragma mark - Tap Gesture on ScrollView
 
 - (void)resetScrollView:(UITapGestureRecognizer *)recognizer {

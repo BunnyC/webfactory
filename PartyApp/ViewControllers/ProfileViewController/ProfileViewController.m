@@ -35,6 +35,7 @@
 {
     [super viewDidLoad];
     [self setTitle:@"Party Friends"];
+   
     // Do any additional setup after loading the view from its nib.
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:_pudLoggedIn]) {
@@ -52,6 +53,11 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    NSDictionary *userInfo=[[NSUserDefaults standardUserDefaults]objectForKey:@"userDetail"];
+    lblName.text=[userInfo objectForKey:@"full_name"];
+    NSRange range=[[userInfo objectForKey:@"website"] rangeOfString:@"http://"];
+    lblMotto.text=[[userInfo objectForKey:@"website"] substringFromIndex:range.location+range.length];
+    lblActive.text=@"active";
     //    if([[NSUserDefaults standardUserDefaults]objectForKey:_pUserInfoDic])
     //    {
     //        NSDictionary *userInfo=[[NSUserDefaults standardUserDefaults]objectForKey:_pUserInfoDic];
@@ -126,6 +132,9 @@
     [imageViewProfile setImage:profileImage];
     UIPanGestureRecognizer *panGesture=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePanGesture:)];
     [viewNotifications addGestureRecognizer:panGesture];
+    
+    
+
     if(_isComeFromSignUp)
     {
         if(_dicUserInfo)
@@ -147,21 +156,9 @@
 #pragma mark - Update UserInformation
 -(void)updateUserProfileData:(NSDictionary *)userInfo
 {
-    
-//    NSRange range=[[userInfo objectForKey:@"full_name"] rangeOfString:@"&"];
-//    
-//    NSString *name=[[userInfo objectForKey:@"full_name"] substringToIndex:range.location];
-//    NSString *moto=[[userInfo objectForKey:@"full_name"] substringFromIndex:range.location+1];
 
-    lblName.text=[userInfo objectForKey:@"full_name"];
-      NSRange range=[[userInfo objectForKey:@"website"] rangeOfString:@"http://"];
-    //lblActive.text=@"QBUUserAnswer";
-    lblMotto.text=[[userInfo objectForKey:@"website"] substringFromIndex:range.location+range.length];
-    //lblMotto.text=@"Working in Progress";
-    
-    
    // lblName.text=name;
-    lblActive.text=@"active";
+   
    // lblMotto.text=moto;
     if(!objUserDetail)
     {
@@ -170,7 +167,7 @@
     objUserDetail.ID=[[userInfo objectForKey:@"id"]integerValue];
     objUserDetail.fullName=[userInfo objectForKey:@"full_name"];
     objUserDetail.email=[userInfo objectForKey:@"email"];
-    objUserDetail.login=[userInfo objectForKey:@"full_name"];
+    objUserDetail.login=[userInfo objectForKey:@"login"];
     objUserDetail.website=[userInfo objectForKey:@"website"];
 }
 
@@ -179,21 +176,7 @@
 
 -(void)updateUserInfo:(QBUUser *)objUser
 {
-//    [[NSUserDefaults standardUserDefaults]setObject:objUser forKey:_pUserInfoDic];
-//    [[NSUserDefaults standardUserDefaults]synchronize];
-    
-//    NSRange range=[objUser.fullName rangeOfString:@"&"];
-//
-//    NSString *name=[objUser.fullName substringToIndex:range.location];
-//    NSString *moto=[objUser.fullName substringFromIndex:range.location+1];
-    
-    NSRange range=[objUser.website rangeOfString:@"http://"];
-    
     objUserDetail=objUser;
-    lblName.text=objUser.fullName;
-    
-    //lblActive.text=@"QBUUserAnswer";
-    lblMotto.text=[objUser.website substringFromIndex:range.location+range.length];
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)recognizer {

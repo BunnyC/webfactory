@@ -145,7 +145,15 @@
     txtFieldPassword.text=[userDefs objectForKey:@"Password"];
     txtFieldRepeatPassword.text=[userDefs objectForKey:@"Password"];
     NSRange range=[objUser.website rangeOfString:@"http://"];
-    txtFieldMotto.text=[objUser.website substringFromIndex:range.location+range.length];
+    if(range.length!=0)
+    {
+        txtFieldMotto.text=[objUser.website substringFromIndex:range.location+range.length];
+    }
+    else
+    {
+        txtFieldMotto.text=objUser.website;
+        
+    }
     
 }
 

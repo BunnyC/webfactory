@@ -167,7 +167,17 @@
 #pragma mark - IBAction
 
 - (void)backButtonAction:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    RegisterViewController *registerView;
+    for (id obj in self.navigationController.viewControllers) {
+        if([(RegisterViewController *)obj isKindOfClass:[RegisterViewController class]])
+        {
+            registerView=(RegisterViewController *)obj;
+            break;
+        }
+    }
+    registerView.objUser=_objUser;
+    [self.navigationController popToViewController:registerView animated:YES];
 }
 
 - (IBAction)nextButtonAction:(id)sender {
@@ -623,22 +633,56 @@
     
 
     
-    ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:xibName bundle:nil];
-    objProfileView.isComeFromSignUp=true;
-
     if([[NSUserDefaults standardUserDefaults] boolForKey:_pudLoggedIn])
     {
-        objProfileView.objUserDetail=_objUser;
+        
+        
+        NSMutableDictionary *userDetail=[[NSMutableDictionary alloc]init];
+        [userDetail setValue:_objUser.login forKey:@"login"];
+        [userDetail setValue:_objUser.email forKey:@"email"];
+        [userDetail setValue:_objUser.fullName forKey:@"full_name"];
+        [userDetail setValue:_objUser.website forKey:@"website"];
+        [self updateUserInfo:userDetail];
+        ProfileViewController *profileView;
+        for (id obj in self.navigationController.viewControllers) {
+            if([(ProfileViewController *)obj isKindOfClass:[ProfileViewController class]])
+            {
+                profileView=(ProfileViewController *)obj;
+                break;
+            }
+        }
+        
+        profileView.objUserDetail=_objUser;
+        [self.navigationController popToViewController:profileView animated:YES];
     }
     else
     {
         [[NSUserDefaults standardUserDefaults]setBool:true forKey:_pudLoggedIn];
+        
+        [self updateUserInfo:dicInfo];
+        ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:xibName bundle:nil];
         objProfileView.dicUserInfo=dicInfo;
+        objProfileView.isComeFromSignUp=true;
+        [self.navigationController pushViewController:objProfileView animated:YES];
+        
     }
-    [self.navigationController pushViewController:objProfileView animated:YES];
+
 
 }
 
+
+-(void)updateUserInfo:(NSDictionary *)user
+{
+    NSMutableDictionary *userDetail=[[NSMutableDictionary alloc]init];
+    [userDetail setValue:[user valueForKey:@"login"] forKey:@"login"];
+    [userDetail setValue:[user valueForKey:@"email"] forKey:@"email"];
+    [userDetail setValue:[user valueForKey:@"full_name"] forKey:@"full_name"];
+    [userDetail setValue:[user valueForKey:@"website"] forKey:@"website"];
+    
+    [[NSUserDefaults standardUserDefaults]setObject:userDetail forKey:@"userDetail"];
+    [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+}
 #pragma mark - Delloc Method
 
 -(void)dealloc

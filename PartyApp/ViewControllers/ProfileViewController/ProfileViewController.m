@@ -41,13 +41,7 @@
     if (![[NSUserDefaults standardUserDefaults] boolForKey:_pudLoggedIn]) {
         [self showLoginView];
     }
-//    else
-//    {
-//        QBUUser *user=[[NSUserDefaults standardUserDefaults]objectForKey:_pudUserInfo];
-//        [self updateUserInfo:user];
-//    }
-    
-    [self initDefaults];
+       [self initDefaults];
     
 }
 
@@ -58,6 +52,15 @@
     NSRange range=[[userInfo objectForKey:@"website"] rangeOfString:@"http://"];
     lblMotto.text=[[userInfo objectForKey:@"website"] substringFromIndex:range.location+range.length];
     lblActive.text=@"active";
+    
+    if(!objUserDetail)
+    {
+        NSData *notesData = [[NSUserDefaults standardUserDefaults] objectForKey:@"userObj"];
+        objUserDetail = (QBUUser *)[NSKeyedUnarchiver unarchiveObjectWithData:notesData];
+    }
+    
+    
+    
     //    if([[NSUserDefaults standardUserDefaults]objectForKey:_pUserInfoDic])
     //    {
     //        NSDictionary *userInfo=[[NSUserDefaults standardUserDefaults]objectForKey:_pUserInfoDic];

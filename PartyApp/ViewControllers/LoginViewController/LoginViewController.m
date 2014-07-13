@@ -479,8 +479,6 @@
         [errorAlert show];
     }
 
-
-
 }
 
 #pragma -mark store User Dictionary;
@@ -492,7 +490,24 @@
     [userDetail setValue:user.fullName forKey:@"full_name"];
     [userDetail setValue:user.website forKey:@"website"];
     
-    [[NSUserDefaults standardUserDefaults]setObject:userDetail forKey:@"userDetail"];
+//    NSString *fbID=[user.facebookID isKindOfClass:[NSNull class]]?@"":user.facebookID;
+//    NSString *twID=[user.twitterID isKindOfClass:[NSNull class]]?@"":user.twitterID;
+//    NSString *phID=[user.phone isKindOfClass:[NSNull class]]?@"":user.phone;
+//    NSString *pwdID=[user.password isKindOfClass:[NSNull class]]?@"":user.password;
+//    NSString *oldPwdID=[user.oldPassword isKindOfClass:[NSNull class]]?@"":user.oldPassword;
+//    
+//    [userDetail setValue:fbID forKey:@"facebookID"];
+//    [userDetail setValue:twID forKey:@"twitterID"];
+//    [userDetail setValue:phID forKey:@"phone"];
+//    [userDetail setValue:pwdID forKey:@"password"];
+//    [userDetail setValue:oldPwdID forKey:@"oldPassword"];
+    
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:user];
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"userObj"];
+
+      [[NSUserDefaults standardUserDefaults]setObject:userDetail forKey:@"userDetail"];
+ 
+    
     
     [[NSUserDefaults standardUserDefaults] setObject:txtFieldPassword.text forKey:@"Password"];
     [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];

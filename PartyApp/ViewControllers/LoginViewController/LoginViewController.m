@@ -598,4 +598,12 @@
     [self resetFramesForView];
 }
 
+
+-(void)dealloc
+{
+    
+    _delegate=nil;
+    
+    
+}
 @end

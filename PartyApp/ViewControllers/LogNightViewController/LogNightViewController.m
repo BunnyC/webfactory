@@ -44,7 +44,7 @@ NSString *className = @"PALogNight";
     
     [self.navigationItem.rightBarButtonItem setEnabled:false];
     
-    [self createUserSession];
+    ///[self createUserSession];
     [self initDefaults];
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
@@ -10,6 +10,7 @@
                 <outlet property="btnNotifications" destination="wHg-YW-Wo2" id="SCu-Qg-gCY"/>
                 <outlet property="imageViewProfile" destination="s0q-ni-fFk" id="CHv-hy-g9p"/>
                 <outlet property="imgViewActive" destination="Ixp-UN-kQw" id="cjZ-XX-kIv"/>
+                <outlet property="imgViewBackNotif" destination="Otx-BT-35I" id="50p-sB-xw4"/>
                 <outlet property="lblActive" destination="eow-Rv-2K6" id="aDD-9Z-bli"/>
                 <outlet property="lblMotto" destination="xwW-3F-L4K" id="4PB-o5-B0O"/>
                 <outlet property="lblName" destination="Hls-JQ-I3F" id="jKP-cC-Rbb"/>

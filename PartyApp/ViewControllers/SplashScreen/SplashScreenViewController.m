@@ -66,7 +66,7 @@
         
         // Get all notes result
     }
-    
+    [self dismissViewControllerAnimated:false completion:nil];
     // QuickBlox application authorization result
     if([result isKindOfClass:[QBAAuthSessionCreationResult class]]){
 

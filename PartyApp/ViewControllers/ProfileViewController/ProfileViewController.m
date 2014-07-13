@@ -150,13 +150,13 @@
         [self updateUserInfo:objUserDetail];
     }
    
-//    UISwipeGestureRecognizer *swipeUp=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipPanGestureHandler:)];
-//    [swipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
-//    [viewNotifications addGestureRecognizer:swipeUp];
-//    
-//    UISwipeGestureRecognizer *swipeDown=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipPanGestureHandler:)];
-//    [swipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
-//    [viewNotifications addGestureRecognizer:swipeDown];
+    UISwipeGestureRecognizer *swipeUp=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipPanGestureHandler:)];
+    [swipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
+    [viewNotifications addGestureRecognizer:swipeUp];
+    
+    UISwipeGestureRecognizer *swipeDown=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipPanGestureHandler:)];
+    [swipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
+    [viewNotifications addGestureRecognizer:swipeDown];
     
 }
 
@@ -190,10 +190,10 @@
     
 }
 
-//- (void)swipPanGestureHandler:(UIGestureRecognizer *)recognizer
-//{
-//    [self handleRecentReminderView];
-//}
+- (void)swipPanGestureHandler:(UIGestureRecognizer *)recognizer
+{
+    [self handleRecentReminderView];
+}
 //
 //-(void)handlePanGesture:(UIPanGestureRecognizer *)recognizer
 //{

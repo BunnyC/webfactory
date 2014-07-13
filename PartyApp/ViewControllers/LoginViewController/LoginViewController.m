@@ -313,6 +313,10 @@
     //    [dic setObject:_objUser.email forKey:@"email"];
     //    [dic setObject:_objUser.password forKey:@"password"];
     
+    userInfo=dictUser;
+    dictUser=[NSDictionary dictionaryWithObject:dictUser forKey:@"user"];
+    
+    
     SignUpModel *objSignUpModel = [[SignUpModel alloc] init];
     [objSignUpModel checkUserWithFacebook:self
                               withselector:@selector(serverRespnse:)
@@ -322,16 +326,28 @@
 }
 
 
--(void)serverRespnse:(NSDictionary *)response
+-(void)serverRespnse:(Result *)response
 {
-    if([[response objectForKey:@"ErrorCode"]integerValue]==0) //user already hai
+    QBUUserLogInResult *res = (QBUUserLogInResult *)response;
+    if(!res.user)
     {
+        QBUUser *user=[[QBUUser alloc]init];
+        user.login=@"test851";//[userInfo objectForKey:@"login"];
+        user.fullName=[userInfo objectForKey:@"full_name"];
+        user.email=@"test851@gmail.com";[userInfo objectForKey:@"email"];
+        user.password=[userInfo objectForKey:@"password"];
+        user.website=[userInfo objectForKey:@"website"];
+        user.facebookID=[userInfo objectForKey:@"id"];
         
+        [QBUsers signUp:user delegate:self];
+        
+       
     }
     else
     {
-        
+        NSLog(@"%@", res.user);
     }
+
 }
 
 #pragma mark - Other Methods

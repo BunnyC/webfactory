@@ -12,6 +12,7 @@
 {
     id  _controller;
     SEL _handler;
+    NSDictionary *userDetail;
 }
 
 - (void)registerationForTarget:(id)target

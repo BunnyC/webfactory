@@ -124,8 +124,8 @@
 {
     _controller = target;
     _handler = selector;
-    
-    [QBUsers  userWithFacebookID:[accountDetails objectForKey:@"id"] delegate:self];
+    userDetail=accountDetails;
+    [QBUsers  userWithFacebookID:[[accountDetails objectForKey:@"user"] objectForKey:@"id"] delegate:self];
     
 }
 
@@ -134,5 +134,8 @@
 -(void)completedWithResult:(Result *)result
 {
     
-}
+    [_controller performSelectorOnMainThread:_handler
+                                  withObject:result
+                               waitUntilDone:YES];
+  }
 @end

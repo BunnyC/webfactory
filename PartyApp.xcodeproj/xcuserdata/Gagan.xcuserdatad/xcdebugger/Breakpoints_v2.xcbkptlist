@@ -255,8 +255,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "146"
             endingLineNumber = "146"
-            landmarkName = "-chooseImageTapped:"
-            landmarkType = "5">
+            landmarkName = "@implementation UploadPhotoViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -271,7 +271,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "104"
             endingLineNumber = "104"
-            landmarkName = "-image:isEqualTo:"
+            landmarkName = "-initDefaults"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -447,8 +447,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "274"
             endingLineNumber = "274"
-            landmarkName = "-nextButtonAction:"
-            landmarkType = "5">
+            landmarkName = "@implementation RegisterViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -463,7 +463,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "127"
             endingLineNumber = "127"
-            landmarkName = "-fillUserDetailForEdit"
+            landmarkName = "-initDefaults"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -490,11 +490,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyApp/ViewControllers/LoginViewController/LoginViewController.m"
-            timestampString = "426968240.234534"
+            timestampString = "426971791.572508"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "524"
-            endingLineNumber = "524"
+            startingLineNumber = "540"
+            endingLineNumber = "540"
             landmarkName = "-completedWithResult:"
             landmarkType = "5">
          </BreakpointContent>
@@ -559,7 +559,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "275"
             endingLineNumber = "275"
-            landmarkName = "-showSplashScreen"
+            landmarkName = "-showLoginView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -602,11 +602,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyApp/ViewControllers/LoginViewController/LoginViewController.m"
-            timestampString = "426968240.234534"
+            timestampString = "426971791.572508"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "416"
-            endingLineNumber = "416"
+            startingLineNumber = "432"
+            endingLineNumber = "432"
             landmarkName = "-serverResponseOfLogin:"
             landmarkType = "5">
          </BreakpointContent>
@@ -655,7 +655,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "183"
             endingLineNumber = "183"
-            landmarkName = "-nextButtonAction:"
+            landmarkName = "-backButtonAction:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -671,7 +671,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "253"
             endingLineNumber = "253"
-            landmarkName = "-completedWithResult:"
+            landmarkName = "-imagePickerControllerDidCancel:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -735,7 +735,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "535"
             endingLineNumber = "535"
-            landmarkName = "-updateProfilePic"
+            landmarkName = "-updateUserDetails"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -751,7 +751,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "599"
             endingLineNumber = "599"
-            landmarkName = "-uploadProfileImage"
+            landmarkName = "-createUserSession"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -778,11 +778,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyApp/ViewControllers/LoginViewController/LoginViewController.m"
-            timestampString = "426968240.234534"
+            timestampString = "426971791.572508"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "563"
-            endingLineNumber = "563"
+            startingLineNumber = "579"
+            endingLineNumber = "579"
             landmarkName = "-updateUserInfo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -831,8 +831,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "285"
             endingLineNumber = "285"
-            landmarkName = "-logNightAction:"
-            landmarkType = "5">
+            landmarkName = "@implementation ProfileViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -912,6 +912,54 @@
             startingLineNumber = "123"
             endingLineNumber = "123"
             landmarkName = "-checkUserWithFacebook:withselector:andDetails:toShowWindowLoader:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PartyApp/ViewControllers/LoginViewController/LoginViewController.m"
+            timestampString = "426971791.572508"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "403"
+            endingLineNumber = "403"
+            landmarkName = "-serverResponseOfLogin:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PartyApp/ViewControllers/LoginViewController/LoginViewController.m"
+            timestampString = "426971791.572508"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "329"
+            endingLineNumber = "329"
+            landmarkName = "-serverRespnse:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PartyApp/ViewControllers/LoginViewController/LoginViewController.m"
+            timestampString = "426971769.837694"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "511"
+            endingLineNumber = "511"
+            landmarkName = "-completedWithResult:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

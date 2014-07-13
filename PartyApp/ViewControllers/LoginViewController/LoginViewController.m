@@ -237,29 +237,31 @@
                 
                 NSLog(@"User Detail %@",user);
                 
+                [self createAccount:(NSDictionary *)user];
+                
                 if (error) {
                     NSLog(@"Couldn't get info : %@", error.localizedDescription);
                     return;
                 }
-                ProfileViewController *objProfileView;
-                for (id controller in self.navigationController
-                     
-                     
-                     .viewControllers) {
-                    
-                    if([(ProfileViewController *)controller isKindOfClass:[ProfileViewController class]])
-                    {
-                        objProfileView=(ProfileViewController *)controller;
-                        break;
-                    }
-                }
-                
-                NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-                [userDefs setBool:TRUE forKey:_pudLoggedIn];
-                [userDefs synchronize];
-                [self.navigationController dismissViewControllerAnimated:YES completion:^{
-                    //[objProfileView updateUserInfo:user];
-                }];
+//                ProfileViewController *objProfileView;
+//                for (id controller in self.navigationController
+//                     
+//                     
+//                     .viewControllers) {
+//                    
+//                    if([(ProfileViewController *)controller isKindOfClass:[ProfileViewController class]])
+//                    {
+//                        objProfileView=(ProfileViewController *)controller;
+//                        break;
+//                    }
+//                }
+//                
+//                NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+//                [userDefs setBool:TRUE forKey:_pudLoggedIn];
+//                [userDefs synchronize];
+//                [self.navigationController dismissViewControllerAnimated:YES completion:^{
+//                    //[objProfileView updateUserInfo:user];
+//                }];
             
             }];            ///////
         }];
@@ -303,7 +305,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:password forKey:@"Password"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     NSString *fullName=[NSString stringWithFormat:@"%@ %@",[dic objectForKey:@"name"],[dic objectForKey:@"last_name"]];
-    NSDictionary *dictUser = [[NSDictionary alloc ]initWithObjectsAndKeys:[dic objectForKey:@"name"],@"login",fullName,@"full_name",[dic objectForKey:@"email"],@"email",password,@"password",@"Your moto has not set.",@"website",nil];
+    NSDictionary *dictUser = [[NSDictionary alloc ]initWithObjectsAndKeys:[dic objectForKey:@"name"],@"login",fullName,@"full_name",[dic objectForKey:@"email"],@"email",password,@"password",@"Your moto has not set.",@"website",[dic objectForKey:@"id"],@"id",nil];
     //    NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
     //
     //    [dic setObject:_objUser.login forKey:@"login"];
@@ -311,15 +313,25 @@
     //    [dic setObject:_objUser.email forKey:@"email"];
     //    [dic setObject:_objUser.password forKey:@"password"];
     
+    SignUpModel *objSignUpModel = [[SignUpModel alloc] init];
+    [objSignUpModel checkUserWithFacebook:self
+                              withselector:@selector(serverRespnse:)
+                                andDetails:dictUser
+                        toShowWindowLoader:NO];
     
-    dictUser=[NSDictionary dictionaryWithObject:dictUser forKey:@"user"];
-    
-    
-   
-    
-    
-   
-    
+}
+
+
+-(void)serverRespnse:(NSDictionary *)response
+{
+    if([[response objectForKey:@"ErrorCode"]integerValue]==0) //user already hai
+    {
+        
+    }
+    else
+    {
+        
+    }
 }
 
 #pragma mark - Other Methods

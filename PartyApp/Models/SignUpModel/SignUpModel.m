@@ -120,10 +120,6 @@
     
 }
 
-
-
-
-
 -(void)checkUserWithFacebook:(id)target withselector:(SEL)selector andDetails:(NSDictionary *)accountDetails toShowWindowLoader:(BOOL)toShow
 {
     _controller = target;

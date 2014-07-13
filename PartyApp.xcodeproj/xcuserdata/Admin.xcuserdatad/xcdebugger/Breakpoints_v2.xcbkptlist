@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyApp/ViewControllers/UploadPhotoViewController/UploadPhotoViewController.m"
-            timestampString = "426404892.354596"
+            timestampString = "426968196.382684"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "298"
-            endingLineNumber = "298"
+            startingLineNumber = "305"
+            endingLineNumber = "305"
             landmarkName = "-updatingProfileDetailHandler:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyApp/ViewControllers/UploadPhotoViewController/UploadPhotoViewController.m"
-            timestampString = "426404892.354596"
+            timestampString = "426968196.382684"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "321"
-            endingLineNumber = "321"
+            startingLineNumber = "328"
+            endingLineNumber = "328"
             landmarkName = "-updatingProfileDetailHandler:"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyApp/ViewControllers/RegisterViewController/RegisterViewController.m"
-            timestampString = "426401813.03221"
+            timestampString = "426968196.382684"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "@implementation RegisterViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyApp/ViewControllers/LogNightViewController/LogNightViewController.m"
-            timestampString = "426952483.261277"
+            timestampString = "426968196.382684"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
             landmarkName = "@implementation LogNightViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -159,7 +159,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "446"
             endingLineNumber = "446"
-            landmarkName = "-completedWithResult:"
+            landmarkName = "-createUserSession"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -175,7 +175,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "338"
             endingLineNumber = "338"
-            landmarkName = "-serverResponseOfLogin:"
+            landmarkName = "-textFieldDidBeginEditing:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -186,13 +186,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyApp/ViewControllers/LogNightViewController/LogNightViewController.m"
-            timestampString = "426952483.261277"
+            timestampString = "426966022.421028"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "@implementation LogNightViewController"
-            landmarkType = "3">
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "-initDefaults"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -202,12 +202,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyApp/ViewControllers/LogNightViewController/LogNightViewController.m"
-            timestampString = "426954614.516702"
+            timestampString = "426966040.17911"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
-            landmarkName = "-backButtonAction:"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

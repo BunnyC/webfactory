@@ -113,19 +113,27 @@
 - (void)initDefaults {
     
     // Setting up Bar Button Items
-    UIImage *imgMenuButton = [[CommonFunctions sharedObject] imageWithName:@"buttonMenu"
-                                                                   andType:_pPNGType];
-    UIImage *imgNotificationButton = [[CommonFunctions sharedObject] imageWithName:@"buttonBell"
-                                                                           andType:_pPNGType];
     
-    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:imgMenuButton style:UIBarButtonItemStyleBordered target:self action:nil];
+    CommonFunctions *commFunc = [CommonFunctions sharedObject];
+    
+    UIImage *imgMenuButton = [commFunc imageWithName:@"buttonMenu" andType:_pPNGType];
+    UIImage *imgNotificationButton = [commFunc imageWithName:@"buttonBell" andType:_pPNGType];
+    
+    UIButton *leftBarButton = [commFunc buttonNavigationItemWithImage:imgMenuButton
+                                                            forTarget:self
+                                                          andSelector:nil];
+    
+    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButton];
     [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
     
-    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:imgNotificationButton style:UIBarButtonItemStyleBordered target:self action:nil];
+    UIButton *rightBarButton = [commFunc buttonNavigationItemWithImage:imgNotificationButton
+                                                             forTarget:self
+                                                           andSelector:nil];
+    
+    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButton];
     [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
     
-    UIImage *imgViewNotif = [[CommonFunctions sharedObject] imageWithName:@"notifTop"
-                                                                  andType:_pPNGType];
+    UIImage *imgViewNotif = [commFunc imageWithName:@"notifTop" andType:_pPNGType];
     UIImage *imgResized = [imgViewNotif resizableImageWithCapInsets:UIEdgeInsetsMake(40, 0, 0, 0) resizingMode:UIImageResizingModeStretch];
     [imgViewBackNotif setImage:imgResized];
     
@@ -134,14 +142,11 @@
     
     [tableViewNotifications.layer setCornerRadius:2];
     [imageViewProfile.layer setCornerRadius:imageViewProfile.frame.size.width / 2];
-    UIImage *profileImage = [[CommonFunctions sharedObject] imageWithName:@"placeholder"
-                                                                  andType:_pPNGType];
+    UIImage *profileImage = [commFunc imageWithName:@"placeholder" andType:_pPNGType];
     [imageViewProfile setImage:profileImage];
     UIPanGestureRecognizer *panGesture=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePanGesture:)];
     [viewNotifications addGestureRecognizer:panGesture];
     
-    
-
     if(_isComeFromSignUp)
     {
         if(_dicUserInfo)

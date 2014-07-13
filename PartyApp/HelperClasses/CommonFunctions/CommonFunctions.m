@@ -201,4 +201,19 @@
     
 }
 
+#pragma mark - Button with Image & Selector
+
+- (UIButton *)buttonNavigationItemWithImage:(UIImage *)image
+                                  forTarget:(id)controller
+                                andSelector:(SEL)selector {
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setFrame:CGRectMake(0, 0, 24, 21)];
+    [button setImage:image forState:UIControlStateNormal];
+    [button addTarget:controller
+               action:selector
+     forControlEvents:UIControlEventTouchUpInside];
+    return button;
+}
+
 @end

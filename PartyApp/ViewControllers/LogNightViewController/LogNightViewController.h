@@ -14,7 +14,6 @@
     
     __weak IBOutlet UIView *viewRatings;
     __weak IBOutlet UITextView *txtViewNotes;
-    __weak IBOutlet UIView *viewSharingOptions;
     __weak IBOutlet UITableView *tableViewOptions;
 }
 

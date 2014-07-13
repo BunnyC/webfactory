@@ -56,8 +56,10 @@
     
     UIImage *imgBackButton = [[CommonFunctions sharedObject] imageWithName:@"backButton"
                                                                    andType:_pPNGType];
+
+    UIButton *leftBarButton = [[CommonFunctions sharedObject] buttonNavigationItemWithImage:imgBackButton forTarget:self andSelector:@selector(backButtonAction:)];
     
-    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:imgBackButton style:UIBarButtonItemStyleBordered target:self action:@selector(backButtonAction:)];
+    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButton];
     [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
     
     [self setTextFieldBackgroundsWithTextField:nil];

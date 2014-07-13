@@ -48,7 +48,9 @@
 
 - (void)initDefaults {
     
-    if (![[CommonFunctions sharedObject] isDeviceiPhone5]) {
+    CommonFunctions *commFunc = [CommonFunctions sharedObject];
+    
+    if (![commFunc isDeviceiPhone5]) {
         for (UITextField *textField in scrollView.subviews) {
             if ([textField isKindOfClass:[UITextField class]]) {
                 CGRect frameTextField = [textField frame];
@@ -64,15 +66,20 @@
     [scrollView addGestureRecognizer:tapOnScrollView];
 
     // Setting up Bar Button Items
-    UIImage *imgBackButton = [[CommonFunctions sharedObject] imageWithName:@"backButton"
-                                                                   andType:_pPNGType];
-    UIImage *nextButtonImage = [[CommonFunctions sharedObject] imageWithName:@"nextButton"
-                                                                     andType:_pPNGType];
+    UIImage *imgBackButton = [commFunc imageWithName:@"backButton" andType:_pPNGType];
+    UIImage *imgNextButton = [commFunc imageWithName:@"nextButton" andType:_pPNGType];
     
-    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:imgBackButton style:UIBarButtonItemStyleBordered target:self action:@selector(backButtonAction:)];
+    UIButton *leftBarButton = [commFunc buttonNavigationItemWithImage:imgBackButton
+                                                            forTarget:self
+                                                          andSelector:@selector(backButtonAction:)];
+    UIButton *rightBarButton = [commFunc buttonNavigationItemWithImage:imgNextButton
+                                                             forTarget:self
+                                                           andSelector:@selector(nextButtonAction:)];
+    
+    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButton];
     [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
     
-    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:nextButtonImage style:UIBarButtonItemStyleBordered target:self action:@selector(nextButtonAction:)];
+    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButton];
     [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
     
     // Setting Text View to show attributed text
@@ -108,7 +115,7 @@
     
     [self setTextFieldBackgroundsWithTextField:nil];
     
-    UIImage *backImage = [[CommonFunctions sharedObject] imageWithName:@"viewBack" andType:_pPNGType];
+    UIImage *backImage = [commFunc imageWithName:@"viewBack" andType:_pPNGType];
     UIColor *backColor = [UIColor colorWithPatternImage:backImage];
     [viewBottom setBackgroundColor:backColor];
     

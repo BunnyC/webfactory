@@ -14,6 +14,8 @@ NSString *className = @"PALogNight";
 //NSString *className = @"TempClass";
 
 @interface LogNightViewController () <UITableViewDataSource, UITableViewDelegate, QBActionStatusDelegate> {
+    
+    BOOL locationErrorShown;
     int finalRatingValue;
     CLLocationManager *locationManager;
     CLLocation *thisLocation;
@@ -41,8 +43,13 @@ NSString *className = @"PALogNight";
     
     [self.navigationItem.rightBarButtonItem setEnabled:false];
     
-//    [self createUserSession];
+    //    [self createUserSession];
     [self initDefaults];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self fetchCurrentLocation];
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,28 +76,27 @@ NSString *className = @"PALogNight";
 - (void)initDefaults {
     
     [self setTitle:@"Log Your Night"];
-    
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate=self;
-    locationManager.desiredAccuracy=kCLLocationAccuracyBest;
-    locationManager.distanceFilter=kCLDistanceFilterNone;
-    if ([CLLocationManager locationServicesEnabled]) {
-        [locationManager startUpdatingLocation];
-    }
-    
-    
+    locationErrorShown = false;
     [self setupRatingViewWithValue:0];
     
     //  Setting up Navigation Item
-    UIImage *imgBackButton = [[CommonFunctions sharedObject] imageWithName:@"backButton"
-                                                                   andType:_pPNGType];
-    UIImage *nextButtonImage = [[CommonFunctions sharedObject] imageWithName:@"barButtonTick"
-                                                                     andType:_pPNGType];
     
-    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:imgBackButton style:UIBarButtonItemStyleBordered target:self action:@selector(backButtonAction:)];
+    CommonFunctions *commFunc = [CommonFunctions sharedObject];
+    
+    UIImage *imgBackButton = [commFunc imageWithName:@"backButton" andType:_pPNGType];
+    UIImage *imgNextButton = [commFunc imageWithName:@"barButtonTick" andType:_pPNGType];
+    
+    UIButton *leftBarButton = [commFunc buttonNavigationItemWithImage:imgBackButton
+                                                            forTarget:self
+                                                          andSelector:@selector(backButtonAction:)];
+    UIButton *rightBarButton = [commFunc buttonNavigationItemWithImage:imgNextButton
+                                                             forTarget:self
+                                                           andSelector:@selector(logThisNightAction:)];
+    
+    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButton];
     [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
     
-    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:nextButtonImage style:UIBarButtonItemStyleBordered target:self action:@selector(logThisNightAction:)];
+    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButton];
     [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
     
     NSNumber *numberValue = [NSNumber numberWithInt:0];
@@ -118,6 +124,22 @@ NSString *className = @"PALogNight";
 
 #pragma mark - Location Manager Methods
 
+- (void)fetchCurrentLocation {
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate=self;
+    locationManager.desiredAccuracy=kCLLocationAccuracyBest;
+    locationManager.distanceFilter=kCLDistanceFilterNone;
+    if ([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] != kCLAuthorizationStatusDenied) {
+        [locationManager startUpdatingLocation];
+    }
+    else{
+        if (!locationErrorShown) {
+            [self showLocationDisabledAlert];
+            locationErrorShown = true;
+        }
+    }
+}
+
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation {
@@ -129,6 +151,18 @@ NSString *className = @"PALogNight";
        didFailWithError:(NSError *)error {
     
     NSLog(@"Error Desc : %@", error.description);
+}
+
+- (void)showLocationDisabledAlert {
+    
+    NSString *locationDisabledMsg = @"Location Services are disabled for this app, you can turn it on from Settings -> Privacy -> Location -> PartyApp";
+    
+    UIAlertView *errorAlertLocation= [[UIAlertView alloc] initWithTitle:@"Location Disabled"
+                                                                message:locationDisabledMsg
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil, nil];
+    [errorAlertLocation show];
 }
 
 #pragma mark - Setup Rating View
@@ -168,26 +202,57 @@ NSString *className = @"PALogNight";
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - Logging Night
+
+- (NSString *)checkFields {
+    NSString *errorMsg = nil;
+    if (!finalRatingValue)
+        errorMsg = @"Add Rating";
+    
+    if (![txtViewNotes.text length]) {
+        if (errorMsg)
+            errorMsg = [NSString stringWithFormat:@"%@ and a Note", errorMsg];
+        else
+            errorMsg = @"Add a note";
+    }
+    return errorMsg;
+}
+
 - (void)logThisNightAction:(id)sender {
-    NSLog(@"Hahahahahaha");
     
-    /*
-     [object.fields setObject:self.noteTextField.text forKey:@"note"];
-     [object.fields setObject:self.commentTextField.text forKey:@"comment"];
-     [object.fields setObject:@"New" forKey:@"status"];
-     
-     [QBCustomObjects createObject:object delegate:self];
-     */
+    NSString *errorMsg = [self checkFields];
     
-    
-    QBCOCustomObject *objectLogNight = [QBCOCustomObject customObject];
-    [objectLogNight setClassName:className];
-    [objectLogNight.fields setObject:[NSNumber numberWithInt:4] forKey:@"LN_Rating"];
-    [objectLogNight.fields setObject:@"Hello Gagan" forKey:@"LN_Notes"];
-    [objectLogNight.fields setObject:[NSNumber numberWithBool:true] forKey:@"LN_NotifyFriends"];
-    [objectLogNight.fields setObject:[NSNumber numberWithBool:true] forKey:@"LN_PostFacebook"];
-    [objectLogNight.fields setObject:thisLocation forKey:@"LN_Location"];
-    [QBCustomObjects createObject:objectLogNight delegate:self];
+    if (!errorMsg) {
+        
+        BOOL location = [[[self.dictOptions objectForKey:@"1. Allow Location"] objectForKey:@"Selected"] intValue];
+        BOOL notifyFriends = [[[self.dictOptions objectForKey:@"2. Notify Friends"] objectForKey:@"Selected"] intValue];
+        BOOL facebookPost = [[[self.dictOptions objectForKey:@"3. Post on Facebook"] objectForKey:@"Selected"] intValue];
+        
+        id forLocation = location ? thisLocation : @"";
+        
+        QBCOCustomObject *objectLogNight = [QBCOCustomObject customObject];
+        [objectLogNight setClassName:className];
+        [objectLogNight.fields setObject:[NSNumber numberWithInt:finalRatingValue]
+                                  forKey:@"LN_Rating"];
+        [objectLogNight.fields setObject:txtViewNotes.text
+                                  forKey:@"LN_Notes"];
+        [objectLogNight.fields setObject:[NSNumber numberWithBool:notifyFriends]
+                                  forKey:@"LN_NotifyFriends"];
+        [objectLogNight.fields setObject:[NSNumber numberWithBool:facebookPost]
+                                  forKey:@"LN_PostFacebook"];
+        [objectLogNight.fields setObject:forLocation
+                                  forKey:@"LN_Location"];
+        [QBCustomObjects createObject:objectLogNight delegate:self];
+    }
+    else {
+        NSString *fullMsg = [NSString stringWithFormat:@"You forgot to %@ for the night.", errorMsg];
+        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                             message:fullMsg
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"OK"
+                                                   otherButtonTitles:nil, nil];
+        [errorAlert show];
+    }
 }
 
 #pragma mark -
@@ -216,10 +281,10 @@ NSString *className = @"PALogNight";
             NSLog(@"new obj: %@", res.object);
             
             // add note to storage
-//            [[[DataManager shared] notes] addObject:res.object];
+            //            [[[DataManager shared] notes] addObject:res.object];
             
             // hide screen
-//            [self dismissModalViewControllerAnimated:YES];
+            //            [self dismissModalViewControllerAnimated:YES];
         }
     }
 }
@@ -293,7 +358,7 @@ NSString *className = @"PALogNight";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellID = @"Cell";
     LogNightCell *cell = (LogNightCell *)[tableView dequeueReusableCellWithIdentifier:cellID];
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
         
         NSArray *arrXib = [[NSBundle mainBundle] loadNibNamed:@"LogNightCell"
@@ -322,7 +387,7 @@ NSString *className = @"PALogNight";
     
     UIView *viewSelected = [[UIView alloc] initWithFrame:cell.frame];
     [viewSelected setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.5]];
-     [cell setSelectedBackgroundView:viewSelected];
+    [cell setSelectedBackgroundView:viewSelected];
     
     NSString *keyName = selected ? @"SelImage" : @"UnSelImage";
     NSString *imageName = [dictAtIndex objectForKey:keyName];
@@ -346,9 +411,9 @@ NSString *className = @"PALogNight";
     
     NSNumber *newVal = [NSNumber numberWithInt:((currentValue + 1) % 2)];
     [dictAtIndex setObject:newVal forKey:@"Selected"];
-
-//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//    [tableView reloadData];
+    
+    //    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    //    [tableView reloadData];
     [tableView performSelector:@selector(reloadData)
                     withObject:nil
                     afterDelay:0.15];

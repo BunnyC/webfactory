@@ -52,6 +52,9 @@
 #pragma mark - Init Methods
 
 - (void)initDefaults {
+    
+    CommonFunctions *commFunc = [CommonFunctions sharedObject];
+    
     selectedOption = 0;
     
     repeatSelected = false;
@@ -75,21 +78,24 @@
     currentYear = [[arrComponents objectAtIndex:2] intValue];
     
     // Setting up Bar Button Items
-    UIImage *imgMenuButton = [[CommonFunctions sharedObject] imageWithName:@"backButton"
-                                                                   andType:_pPNGType];
-    UIImage *imgNotificationButton = [[CommonFunctions sharedObject] imageWithName:@"barButtonTick"
-                                                                           andType:_pPNGType];
+    UIImage *imgBackButton = [commFunc imageWithName:@"backButton" andType:_pPNGType];
+    UIImage *imgNotificationButton = [commFunc imageWithName:@"barButtonTick" andType:_pPNGType];
     
-    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:imgMenuButton style:UIBarButtonItemStyleBordered target:self action:nil];
+    UIButton *leftBarButton = [commFunc buttonNavigationItemWithImage:imgBackButton
+                                                            forTarget:self
+                                                          andSelector:@selector(backButtonAction:)];
+    UIButton *rightBarButton = [commFunc buttonNavigationItemWithImage:imgNotificationButton
+                                                             forTarget:self
+                                                           andSelector:nil];
+    
+    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButton];
     [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
     
-    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:imgNotificationButton style:UIBarButtonItemStyleBordered target:self action:nil];
+    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButton];
     [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
     
-    UIImage *imageWhenWhereBack = [[CommonFunctions sharedObject] imageWithName:@"whenNWhere"
-                                                                        andType:_pPNGType];
-    UIImage *imageBackViewBottom = [[CommonFunctions sharedObject] imageWithName:@"viewBack"
-                                                                         andType:_pPNGType];
+    UIImage *imageWhenWhereBack = [commFunc imageWithName:@"whenNWhere" andType:_pPNGType];
+    UIImage *imageBackViewBottom = [commFunc imageWithName:@"viewBack" andType:_pPNGType];
     
     UIImage *resizableImage = [imageWhenWhereBack resizableImageWithCapInsets:UIEdgeInsetsMake(2, 2, 2, 2) resizingMode:UIImageResizingModeStretch];
     
@@ -101,6 +107,12 @@
 //    [tableViewReminderInfo.layer setBorderWidth:2.0f];
     
     [self setupTextView];
+}
+
+#pragma mark - Navigation Bar Methods
+
+- (void)backButtonAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Setup Text View

@@ -35,4 +35,8 @@
 
 - (UIColor *)colorWithHexString:(NSString *)hexString;
 
+- (UIButton *)buttonNavigationItemWithImage:(UIImage *)image
+                                  forTarget:(id)controller
+                                andSelector:(SEL)selector;
+
 @end

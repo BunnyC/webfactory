@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SignUpModel : NSObject
+@interface SignUpModel : NSObject<QBActionStatusDelegate>
 {
     id  _controller;
     SEL _handler;
@@ -24,4 +24,9 @@
                   withselector:(SEL)selector
                     andDetails:(NSDictionary *)accountDetails
           toShowWindowLoader:(BOOL)toShow User_id:(NSString *)userid;
+
+- (void)checkUserWithFacebook:(id)target
+                  withselector:(SEL)selector
+                    andDetails:(NSDictionary *)accountDetails
+            toShowWindowLoader:(BOOL)toShow;
 @end

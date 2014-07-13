@@ -97,7 +97,7 @@
     AppDelegate *appDelegate =(AppDelegate *) [[UIApplication sharedApplication]delegate];
     if (!appDelegate.session.isOpen) {
         // create a fresh session object
-        appDelegate.session = [[FBSession alloc] init];
+        appDelegate.session = [[FBSession alloc] initWithPermissions:[NSArray arrayWithObjects:@"email", nil]];
         
         // if we don't have a cached token, a call to open here would cause UX for login to
         // occur; we don't want that to happen unless the user clicks the login button, and so
@@ -235,7 +235,7 @@
                                              NSError *error) {
                 
                 
-                NSLog(@"User Detail %@",[user objectForKey:@"email"]);
+                NSLog(@"User Detail %@",user);
                 
                 if (error) {
                     NSLog(@"Couldn't get info : %@", error.localizedDescription);
@@ -291,6 +291,34 @@
          }];
     }
      */
+    
+}
+
+
+-(void)createAccount:(NSDictionary *)dic
+{
+    loadingView = [[CommonFunctions sharedObject] showLoadingView];
+    
+    NSString *password = @"123456789";
+    [[NSUserDefaults standardUserDefaults] setObject:password forKey:@"Password"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSString *fullName=[NSString stringWithFormat:@"%@ %@",[dic objectForKey:@"name"],[dic objectForKey:@"last_name"]];
+    NSDictionary *dictUser = [[NSDictionary alloc ]initWithObjectsAndKeys:[dic objectForKey:@"name"],@"login",fullName,@"full_name",[dic objectForKey:@"email"],@"email",password,@"password",@"Your moto has not set.",@"website",nil];
+    //    NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
+    //
+    //    [dic setObject:_objUser.login forKey:@"login"];
+    //    [dic setObject:_objUser.fullName forKey:@"full_name"];
+    //    [dic setObject:_objUser.email forKey:@"email"];
+    //    [dic setObject:_objUser.password forKey:@"password"];
+    
+    
+    dictUser=[NSDictionary dictionaryWithObject:dictUser forKey:@"user"];
+    
+    
+   
+    
+    
+   
     
 }
 

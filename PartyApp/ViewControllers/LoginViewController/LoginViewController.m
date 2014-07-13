@@ -104,6 +104,10 @@
         // we check here to make sure we have a token before calling open
         if (appDelegate.session.state == FBSessionStateCreatedTokenLoaded) {
             // even though we had a cached token, we need to login to make the session usable
+            
+            
+            
+
             [appDelegate.session openWithCompletionHandler:^(FBSession *session,
                                                              FBSessionState status,
                                                              NSError *error) {
@@ -217,16 +221,21 @@
             //[self updateView];
            // [appDelegate getUserInformation];
             
-        
+            
             ///////
             FBRequest *me = [[FBRequest alloc] initWithSession:session
                                                      graphPath:@"me"];
+            
+            
             [me startWithCompletionHandler:^(FBRequestConnection *connection,
                                              // we expect a user as a result, and so are using FBGraphUser protocol
                                              // as our result type; in order to allow us to access first_name and
                                              // birthday with property syntax
                                              NSDictionary<FBGraphUser> *user,
                                              NSError *error) {
+                
+                
+                NSLog(@"User Detail %@",[user objectForKey:@"email"]);
                 
                 if (error) {
                     NSLog(@"Couldn't get info : %@", error.localizedDescription);

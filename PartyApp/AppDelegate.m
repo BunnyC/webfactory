@@ -65,7 +65,10 @@
     self.navController = [[UINavigationController alloc] initWithRootViewController:objProfileView];
     [self.navController.navigationBar setTranslucent:false];
     
-    /*
+  
+    
+    
+    
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
         NSLog(@"Found a cached session");
         // If there's one, just open the session silently, without showing the user the login UI
@@ -75,12 +78,12 @@
                                           // Handler for session state changes
                                           // This method will be called EACH time the session state changes,
                                           // also for intermediate states and NOT just when the session open
-                                          [self sessionStateChanged:session state:state error:error];
+                                         
                                       }];
         
         // If there's no cached session, we will show a login button
     }
-    */
+    
     [self.window setRootViewController:self.navController];
     self.window.backgroundColor = [UIColor blackColor];
     [self.window makeKeyAndVisible];

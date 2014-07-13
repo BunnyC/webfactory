@@ -182,8 +182,8 @@ NSString *className = @"PALogNight";
     
     QBCOCustomObject *objectLogNight = [QBCOCustomObject customObject];
     [objectLogNight setClassName:className];
-    [objectLogNight.fields setObject:[NSNumber numberWithInt:5] forKey:@"LN_Rating"];
-    [objectLogNight.fields setObject:@"Hello text" forKey:@"LN_Notes"];
+    [objectLogNight.fields setObject:[NSNumber numberWithInt:4] forKey:@"LN_Rating"];
+    [objectLogNight.fields setObject:@"Hello Gagan" forKey:@"LN_Notes"];
     [objectLogNight.fields setObject:[NSNumber numberWithBool:true] forKey:@"LN_NotifyFriends"];
     [objectLogNight.fields setObject:[NSNumber numberWithBool:true] forKey:@"LN_PostFacebook"];
     [objectLogNight.fields setObject:thisLocation forKey:@"LN_Location"];

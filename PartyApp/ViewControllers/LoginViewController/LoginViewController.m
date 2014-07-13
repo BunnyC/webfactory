@@ -394,7 +394,8 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
+//    [textField resignFirstResponder];
+    [self resetFramesForView];
     return YES;
 }
 

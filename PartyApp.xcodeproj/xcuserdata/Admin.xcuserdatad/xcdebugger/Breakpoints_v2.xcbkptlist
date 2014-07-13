@@ -138,13 +138,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyApp/ViewControllers/LogNightViewController/LogNightViewController.m"
-            timestampString = "426968196.382684"
+            timestampString = "426976907.288802"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
-            landmarkName = "@implementation LogNightViewController"
-            landmarkType = "3">
+            startingLineNumber = "265"
+            endingLineNumber = "265"
+            landmarkName = "-completedWithResult:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyApp/ViewControllers/LogNightViewController/LogNightViewController.m"
-            timestampString = "426966022.421028"
+            timestampString = "426976837.609402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "-initDefaults"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyApp/ViewControllers/LogNightViewController/LogNightViewController.m"
-            timestampString = "426966040.17911"
+            timestampString = "426976837.609402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>

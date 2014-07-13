@@ -19,6 +19,7 @@ NSString *className = @"PALogNight";
     int finalRatingValue;
     CLLocationManager *locationManager;
     CLLocation *thisLocation;
+    UIView *loadingView;
 }
 
 @property (strong, nonatomic) NSMutableDictionary *dictOptions;
@@ -43,7 +44,7 @@ NSString *className = @"PALogNight";
     
     [self.navigationItem.rightBarButtonItem setEnabled:false];
     
-    //    [self createUserSession];
+    [self createUserSession];
     [self initDefaults];
 }
 
@@ -243,6 +244,8 @@ NSString *className = @"PALogNight";
         [objectLogNight.fields setObject:forLocation
                                   forKey:@"LN_Location"];
         [QBCustomObjects createObject:objectLogNight delegate:self];
+        
+        loadingView = [[CommonFunctions sharedObject] showLoadingView];
     }
     else {
         NSString *fullMsg = [NSString stringWithFormat:@"You forgot to %@ for the night.", errorMsg];
@@ -276,6 +279,14 @@ NSString *className = @"PALogNight";
         
         // Success result
         if(result.success){
+            
+            UIAlertView *alertAdded = [[UIAlertView alloc] initWithTitle:@"Night Added"
+                                                                 message:@"Your night is successfully added"
+                                                                delegate:nil
+                                                       cancelButtonTitle:@"OK"
+                                                       otherButtonTitles:nil, nil];
+            [alertAdded show];
+            
             QBCOCustomObjectResult *res = (QBCOCustomObjectResult *)result;
             
             NSLog(@"new obj: %@", res.object);
@@ -285,7 +296,9 @@ NSString *className = @"PALogNight";
             
             // hide screen
             //            [self dismissModalViewControllerAnimated:YES];
+            [self.navigationController popViewControllerAnimated:YES];
         }
+        [[CommonFunctions sharedObject] hideLoadingView:loadingView];
     }
 }
 

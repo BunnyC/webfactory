@@ -89,7 +89,8 @@
     PagedRequest *pagedRequest = [[PagedRequest alloc] init];
     [pagedRequest setPerPage:20];
     [QBContent blobsWithPagedRequest:pagedRequest delegate:self];
-    
+    [spinnerImageView setHidden:false];
+    [spinnerImageView startAnimating];
 }
 -(void)downloadFile{
     
@@ -103,6 +104,8 @@
     }
     else
     {
+        [spinnerImageView stopAnimating];
+        [spinnerImageView setHidden:true];
         UIImage *profileImage = [[CommonFunctions sharedObject] imageWithName:@"placeholder"
                                                                       andType:_pPNGType];
         [imageViewProfile setImage:profileImage];
@@ -337,6 +340,8 @@
 -(void)completedWithResult:(Result *)result{
     // Download file result
     if ([result isKindOfClass:QBCFileDownloadTaskResult.class]) {
+        [spinnerImageView stopAnimating];
+        [spinnerImageView setHidden:true];
         // Success result
         if (result.success) {
             QBCFileDownloadTaskResult *res = (QBCFileDownloadTaskResult *)result;

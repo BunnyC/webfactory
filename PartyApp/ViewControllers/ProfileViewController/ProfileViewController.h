@@ -15,6 +15,7 @@
     __weak IBOutlet UIView *viewActive;
     __weak IBOutlet UILabel *lblActive;
     __weak IBOutlet UIImageView *imgViewActive;
+    __weak IBOutlet UIActivityIndicatorView *spinnerImageView;
     __weak IBOutlet UIView *viewNotifications;
     __weak IBOutlet UIButton *btnNotifications;
     __weak IBOutlet UITableView *tableViewNotifications;

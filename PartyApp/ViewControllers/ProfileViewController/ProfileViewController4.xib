@@ -14,6 +14,7 @@
                 <outlet property="lblActive" destination="eow-Rv-2K6" id="aDD-9Z-bli"/>
                 <outlet property="lblMotto" destination="xwW-3F-L4K" id="4PB-o5-B0O"/>
                 <outlet property="lblName" destination="Hls-JQ-I3F" id="jKP-cC-Rbb"/>
+                <outlet property="spinnerImageView" destination="Pi4-uM-5tE" id="eSk-Vj-Fh1"/>
                 <outlet property="tableViewNotifications" destination="DcJ-TT-rxA" id="wQN-GU-JTU"/>
                 <outlet property="view" destination="8hj-6J-aDL" id="lF7-sF-Lf0"/>
                 <outlet property="viewActive" destination="KHp-TX-oUt" id="mfi-Tu-3zy"/>
@@ -141,6 +142,10 @@
                     </subviews>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="Pi4-uM-5tE">
+                    <rect key="frame" x="150" y="50" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

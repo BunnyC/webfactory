@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyApp/ViewControllers/LoginViewController/LoginViewController.m"
-            timestampString = "426971427.140816"
+            timestampString = "426973016.846813"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "447"
-            endingLineNumber = "447"
+            startingLineNumber = "448"
+            endingLineNumber = "448"
             landmarkName = "-serverResponseOfLogin:"
             landmarkType = "5">
          </BreakpointContent>
@@ -208,6 +208,38 @@
             startingLineNumber = "123"
             endingLineNumber = "123"
             landmarkName = "-textView:shouldInteractWithURL:inRange:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PartyApp/ViewControllers/ProfileViewController/ProfileViewController.m"
+            timestampString = "426973808.485039"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "340"
+            endingLineNumber = "340"
+            landmarkName = "-completedWithResult:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PartyApp/ViewControllers/ProfileViewController/ProfileViewController.m"
+            timestampString = "426973704.670982"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "-downloadFile"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

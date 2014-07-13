@@ -38,8 +38,11 @@
 - (IBAction)btnForgotPasswordAction:(id)sender {
     
     BOOL validEmail = [[CommonFunctions sharedObject] validateEmailID:self.txtEmail.text];
-    if (validEmail)
+    if (validEmail) {
+        
         [QBUsers resetUserPasswordWithEmail:self.txtEmail.text delegate:self];
+        [self resetFramesForView];
+    }
     else {
         UIAlertView *newAlertView = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"Email ID entered is not valid." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [newAlertView show];
@@ -56,7 +59,7 @@
     
     UIImage *imgBackButton = [[CommonFunctions sharedObject] imageWithName:@"backButton"
                                                                    andType:_pPNGType];
-
+    
     UIButton *leftBarButton = [[CommonFunctions sharedObject] buttonNavigationItemWithImage:imgBackButton forTarget:self andSelector:@selector(backButtonAction:)];
     
     UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButton];
@@ -93,14 +96,18 @@
     [scrollView setContentOffset:CGPointMake(0, isiPhone5 ? 0 : 100)];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self resetFramesForView];
+    return true;
+}
+
 #pragma mark -
 #pragma mark QBActionStatusDelegate
 
 - (void)completedWithResult:(Result *)result{
     if(result.success && [result isKindOfClass:Result.class]){
-        
-    [self showMessage:_pResetPasswordMgs withTitle:@"Forgot Password"];
-    
+        [self.txtEmail setText:@""];
+        [self showMessage:_pResetPasswordMgs withTitle:@"Forgot Password"];
         NSLog(@"Reset password OK");
     }else{
         NSLog(@"Errors=%@", result.errors);
@@ -126,6 +133,10 @@
 #pragma mark - Tap Gesture on ScrollView
 
 - (void)resetScrollView:(UITapGestureRecognizer *)recognizer {
+    [self resetFramesForView];
+}
+
+- (void)resetFramesForView {
     [self.txtEmail resignFirstResponder];
     [scrollView setContentOffset:CGPointMake(0, 0)];
     [self setTextFieldBackgroundsWithTextField:nil];

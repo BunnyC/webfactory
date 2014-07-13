@@ -11,6 +11,8 @@
 
 NSString *className = @"PALogNight";
 
+//NSString *className = @"TempClass";
+
 @interface LogNightViewController () <UITableViewDataSource, UITableViewDelegate, QBActionStatusDelegate> {
     int finalRatingValue;
     CLLocationManager *locationManager;
@@ -54,11 +56,11 @@ NSString *className = @"PALogNight";
 -(void)createUserSession {
     
     NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *userInfo = [userDefs objectForKey:@"userDetail"];
+    NSMutableDictionary *userInfo = [userDefs objectForKey:_pudUserInfo];
     
     QBASessionCreationRequest *extendedAuthRequest = [QBASessionCreationRequest request];
     extendedAuthRequest.userLogin = [userInfo objectForKey:@"login"]; // ID: 218651
-    extendedAuthRequest.userPassword = [userDefs objectForKey:@"Password"];
+    extendedAuthRequest.userPassword =[userDefs objectForKey:@"Password"];
     [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
 }
 

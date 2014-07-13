@@ -86,7 +86,6 @@
 		84AD392C1957FC3C0004915B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0941956A72D009DA53D /* MobileCoreServices.framework */; };
 		84AD392D1957FC3C0004915B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0961956A734009DA53D /* SystemConfiguration.framework */; };
 		84B2D3B91972A15E00D113A5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B2D3B81972A15E00D113A5 /* MapKit.framework */; };
-		84B2D3BB1972C8CF00D113A5 /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B2D3BA1972C8CF00D113A5 /* Quickblox.framework */; };
 		84DF7723196923EE00A11C2F /* appBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7703196923EE00A11C2F /* appBackground.png */; };
 		84DF7724196923EE00A11C2F /* appBackground4.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7704196923EE00A11C2F /* appBackground4.png */; };
 		84DF7725196923EE00A11C2F /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7705196923EE00A11C2F /* backButton.png */; };
@@ -161,6 +160,7 @@
 		84DF7794196947B900A11C2F /* textViewBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7793196947B900A11C2F /* textViewBack@2x.png */; };
 		84DF77961969A4BF00A11C2F /* LogNightViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DF77951969A4BF00A11C2F /* LogNightViewController4.xib */; };
 		84DF779A1969AC1F00A11C2F /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DF77991969AC1F00A11C2F /* FXBlurView.m */; };
+		CE1A37A91972D0CD00BE12F0 /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1A37A81972D0CD00BE12F0 /* Quickblox.framework */; };
 		CE35F07F1956A670009DA53D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F07E1956A66F009DA53D /* Security.framework */; };
 		CE35F0811956A68B009DA53D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0801956A68B009DA53D /* QuartzCore.framework */; };
 		CE35F0831956A693009DA53D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0821956A693009DA53D /* AudioToolbox.framework */; };
@@ -291,7 +291,6 @@
 		84A4882E196AB730006BC223 /* transportIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transportIcon@2x.png"; sourceTree = "<group>"; };
 		84AD39281957D3AA0004915B /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		84B2D3B81972A15E00D113A5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		84B2D3BA1972C8CF00D113A5 /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quickblox.framework; sourceTree = "<group>"; };
 		84DF77021968793400A11C2F /* WebService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebService.h; sourceTree = "<group>"; };
 		84DF7703196923EE00A11C2F /* appBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appBackground.png; sourceTree = "<group>"; };
 		84DF7704196923EE00A11C2F /* appBackground4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appBackground4.png; sourceTree = "<group>"; };
@@ -369,6 +368,7 @@
 		84DF77951969A4BF00A11C2F /* LogNightViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogNightViewController4.xib; sourceTree = "<group>"; };
 		84DF77981969AC1F00A11C2F /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		84DF77991969AC1F00A11C2F /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
+		CE1A37A81972D0CD00BE12F0 /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quickblox.framework; sourceTree = "<group>"; };
 		CE35F07E1956A66F009DA53D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CE35F0801956A68B009DA53D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CE35F0821956A693009DA53D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -395,8 +395,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1A37A91972D0CD00BE12F0 /* Quickblox.framework in Frameworks */,
 				84B2D3B91972A15E00D113A5 /* MapKit.framework in Frameworks */,
-				84B2D3BB1972C8CF00D113A5 /* Quickblox.framework in Frameworks */,
 				84AD392C1957FC3C0004915B /* MobileCoreServices.framework in Frameworks */,
 				84AD392D1957FC3C0004915B /* SystemConfiguration.framework in Frameworks */,
 				CE35F0991956A73C009DA53D /* CFNetwork.framework in Frameworks */,
@@ -453,7 +453,7 @@
 		8425AF5D194C3E7800E8CCF3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				84B2D3BA1972C8CF00D113A5 /* Quickblox.framework */,
+				CE1A37A81972D0CD00BE12F0 /* Quickblox.framework */,
 				84B2D3B81972A15E00D113A5 /* MapKit.framework */,
 				84AD39281957D3AA0004915B /* FacebookSDK.framework */,
 				CE35F0981956A73C009DA53D /* CFNetwork.framework */,
@@ -1296,6 +1296,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Admin/Projects/PartyApp/iOSCode/webfactory,
+					"/Users/Gagan/Documents/Gagan\\ Important\\ Doc/Home\\ Project/\\ PartyApp\\ Project/webfactory",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PartyApp/PartyApp-Prefix.pch";
@@ -1321,6 +1322,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Admin/Projects/PartyApp/iOSCode/webfactory,
+					"/Users/Gagan/Documents/Gagan\\ Important\\ Doc/Home\\ Project/\\ PartyApp\\ Project/webfactory",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PartyApp/PartyApp-Prefix.pch";

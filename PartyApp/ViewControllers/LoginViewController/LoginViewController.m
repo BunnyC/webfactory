@@ -345,7 +345,16 @@
     }
     else
     {
+        [[CommonFunctions sharedObject] hideLoadingView:loadingView];
+        
         NSLog(@"%@", res.user);
+        [self updateUserInfo:res.user];
+        [self dismissViewControllerAnimated:true completion:^{
+            if([_delegate respondsToSelector:@selector(updateUserInfo:)])
+            {
+                [_delegate performSelector:@selector(updateUserInfo:) withObject:res.user];
+            }
+        }];
     }
 
 }

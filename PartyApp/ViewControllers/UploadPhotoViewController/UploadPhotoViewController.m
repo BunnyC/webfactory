@@ -92,11 +92,20 @@
     [txtViewUploadLater setAttributedText:attrTextLater];
     [txtViewUploadLater setTextAlignment:NSTextAlignmentCenter];
     
-    if(imgProfilePic)
+    NSUserDefaults *userDefaluts=[NSUserDefaults standardUserDefaults];
+    if([userDefaluts boolForKey:_pudLoggedIn])
     {
-        [imageViewProfile setImage:imgProfilePic];
-        imageUploadStatus=KImageUploadNow;
+        [self downloadFile];
     }
+}
+
+
+- (BOOL)image:(UIImage *)image1 isEqualTo:(UIImage *)image2
+{
+    NSData *data1 = UIImagePNGRepresentation(image1);
+    NSData *data2 = UIImagePNGRepresentation(image2);
+    
+    return [data1 isEqual:data2];
 }
 
 #pragma mark - UITextView Delegates
@@ -106,11 +115,17 @@
     
     if ([URL.absoluteString isEqualToString:@"later"]) {
         imageUploadStatus=KImageUploadLater;
-
         NSUserDefaults *userDefaluts=[NSUserDefaults standardUserDefaults];
         if([userDefaluts boolForKey:_pudLoggedIn])
         {
-            [self updateUserDetails];
+            if(resultType== KSignUpCompletionDone || resultType==KUpdateUserSuccess)
+            {
+                [self showProfileView];
+            }
+            else
+                [self createUserSession];
+
+
         }
         else
         {
@@ -122,7 +137,7 @@
     return shouldInteract;
 }
 
-#pragma mark - Choose Image
+#pragma mark -  Image Methods
 
 - (void)chooseImageTapped:(UITapGestureRecognizer *)recognizer {
     
@@ -130,9 +145,24 @@
     self.imagePicker.allowsEditing = NO;
     self.imagePicker.delegate = self;
     self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    
+     imageUploadStatus=KImageUploadNow;
     [self presentViewController:self.imagePicker animated:YES completion:nil];
 }
+
+#pragma Download Profile Image
+
+-(void)downloadFile{
+    
+    int fileID = [(QBCBlob *)[[[DataManager instance] fileList] lastObject] ID];
+    
+    if(fileID > 0){
+        
+        // Download file from QuickBlox server
+        [[NSUserDefaults standardUserDefaults]setInteger:fileID forKey:_pUserProfilePic];
+        [QBContent TDownloadFileWithBlobID:fileID delegate:self];
+    }
+}
+
 
 #pragma mark - IBAction
 
@@ -143,6 +173,10 @@
 - (IBAction)nextButtonAction:(id)sender {
     
     
+    NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
+    
+    if(![userDefaults boolForKey:_pudLoggedIn])
+    {
     switch (resultType) {
         case KSignUpResultNone:
             [self createUser];
@@ -168,6 +202,17 @@
         default:
             break;
     }
+    }
+    
+    else
+    {
+        if(resultType== KSignUpCompletionDone || resultType==KUpdateUserSuccess)
+        {
+           [self showProfileView];
+        }
+        else
+         [self createUserSession];
+    }
     
 }
 
@@ -186,7 +231,7 @@
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    
+     imageUploadStatus=KImageUploadLater;
     [self.view setUserInteractionEnabled:YES];
     [self.imagePicker dismissViewControllerAnimated:NO completion:nil];
     
@@ -197,17 +242,48 @@
 
 -(void)completedWithResult:(Result *)result{
 
-    NSUserDefaults *userDefls=[NSUserDefaults standardUserDefaults];
+
+     NSUserDefaults *userDefls=[NSUserDefaults standardUserDefaults];
+   
     if([userDefls boolForKey:_pudLoggedIn])
     {
-        [self updatingProfileDetailHandler:result];
+        if([result isKindOfClass:QBAAuthSessionCreationResult.class])
+        {
+            [self updateUserDetails];
+          
+        }
+        else if ([result isKindOfClass:QBCFileDownloadTaskResult.class]) {
+            // Success result
+            if (result.success) {
+                QBCFileDownloadTaskResult *res = (QBCFileDownloadTaskResult *)result;
+                if ([res file]) {
+                    // Add image to gallery
+                    [[DataManager instance] savePicture:[UIImage imageWithData:[res file]]];
+                    UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[res file]]];
+                    imageView.contentMode = UIViewContentModeScaleAspectFit;
+                    imageViewProfile.image=imageView.image;
+                    // [[[DataManager instance] fileList] removeLastObject];
+                }
+            }
+        }
+        else
+        {
+            [self updatingProfileDetailHandler:result];
+        }
     }
     else
     {
         [self signUpHandler:result];
     }
+    
+    
+    
+    
+    // Download file result
+    
 
 }
+
 
 -(void)updatingProfileDetailHandler:(Result *)result
 {
@@ -221,6 +297,7 @@
         
         if(result.success){
             resultType=KUpdateUserSuccess;
+            
             for (id view in self.navigationController.viewControllers) {
                 if([(RegisterViewController *)view isKindOfClass:[RegisterViewController class]])
                 {
@@ -229,14 +306,14 @@
                 }
             }
             
+            QBUUserLogInResult *res = (QBUUserLogInResult *)result;
+            _objUser=res.user;
             [progressViewImageUpload setHidden:false];
             [self.view setUserInteractionEnabled:NO];
+
             
-              if(imgProfilePic)
-              imageUploadStatus=KImageUploadNow;
-            
-            [self uploadProfileImage];
-            //[self createUserSession];
+            [self updateProfilePic];
+           
             
         }else{
             
@@ -282,10 +359,10 @@
         {
             [[CommonFunctions sharedObject] hideLoadingView:loadingView];
             alert.title=@"";
-            resultType=KUpdateCompletionDone;
+            resultType=KUpdateUserSuccess;
             [buttonNext setEnabled:TRUE];
             [self.view setUserInteractionEnabled:YES];
-            alert.message=_pUpdateProfileSuccess;
+            alert.message=_pSignUpSuccess;
             [alert show];
         }
         else
@@ -450,7 +527,24 @@
     if(imageUploadStatus==KImageUploadNow)
     {
         NSData *data=UIImagePNGRepresentation(imageViewProfile.image);
-        //[QBContent TUpdateFileWithData:data file:_objUser.blobID delegate:self];
+        
+        QBCBlob *file =(QBCBlob *)[[[DataManager instance] fileList] lastObject];
+        
+        [QBContent TUpdateFileWithData:data file:file delegate:self];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                        message:@""
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil, nil];
+        [[CommonFunctions sharedObject] hideLoadingView:loadingView];
+        resultType=KUpdateUserSuccess;
+        [buttonNext setEnabled:TRUE];
+        [self.view setUserInteractionEnabled:YES];
+        alert.message=_pUpdateProfileSuccess;
+        [alert show];
     }
 
 }
@@ -495,6 +589,7 @@
 -(void)uploadProfileImage
 {
     if(imageUploadStatus==KImageUploadNow)
+
     {
         NSData *data=UIImagePNGRepresentation(imageViewProfile.image);
         [QBContent TUploadFile:data fileName:@"ProfileImage" contentType:@"image/png" isPublic:YES delegate:self];
@@ -526,11 +621,20 @@
     if (!isiPhone5)
         xibName = [NSString stringWithFormat:@"%@4", xibName];
     
-    [[NSUserDefaults standardUserDefaults]setBool:true forKey:_pudLoggedIn];
+
     
     ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:xibName bundle:nil];
     objProfileView.isComeFromSignUp=true;
-    objProfileView.dicUserInfo=dicInfo;
+
+    if([[NSUserDefaults standardUserDefaults] boolForKey:_pudLoggedIn])
+    {
+        objProfileView.objUserDetail=_objUser;
+    }
+    else
+    {
+        [[NSUserDefaults standardUserDefaults]setBool:true forKey:_pudLoggedIn];
+        objProfileView.dicUserInfo=dicInfo;
+    }
     [self.navigationController pushViewController:objProfileView animated:YES];
 
 }

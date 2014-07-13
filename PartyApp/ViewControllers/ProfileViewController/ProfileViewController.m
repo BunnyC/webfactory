@@ -13,6 +13,7 @@
 #import "NotificationCell.h"
 #import "RegisterViewController.h"
 #import "AddReminderViewController.h"
+#import "SplashScreenViewController.h"
 
 #import <FacebookSDK/FacebookSDK.h>
 
@@ -40,6 +41,9 @@
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:_pudLoggedIn]) {
         [self showLoginView];
+    }
+    else {
+        [self showSplashScreen];
     }
        [self initDefaults];
     
@@ -264,6 +268,14 @@
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:objLoginView];
     [navigationController.navigationBar setTranslucent:false];
     [self presentViewController:navigationController animated:NO completion:nil];
+}
+
+#pragma mark - Show Splash Screen
+
+- (void)showSplashScreen {
+    SplashScreenViewController *splashView = [[SplashScreenViewController alloc] initWithNibName:@"SplashScreenViewController"
+                                                                                          bundle:nil];
+    [self.navigationController presentViewController:splashView animated:false completion:nil];
 }
 
 #pragma mark - IBActions

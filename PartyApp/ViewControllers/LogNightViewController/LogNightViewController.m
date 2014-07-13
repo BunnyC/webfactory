@@ -9,8 +9,12 @@
 #import "LogNightViewController.h"
 #import "LogNightCell.h"
 
-@interface LogNightViewController () <UITableViewDataSource, UITableViewDelegate> {
+NSString *className = @"PALogNight";
+
+@interface LogNightViewController () <UITableViewDataSource, UITableViewDelegate, QBActionStatusDelegate> {
     int finalRatingValue;
+    CLLocationManager *locationManager;
+    CLLocation *thisLocation;
 }
 
 @property (strong, nonatomic) NSMutableDictionary *dictOptions;
@@ -32,6 +36,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [self.navigationItem.rightBarButtonItem setEnabled:false];
+    
+//    [self createUserSession];
     [self initDefaults];
 }
 
@@ -41,11 +49,33 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Creating Session
+
+-(void)createUserSession {
+    
+    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *userInfo = [userDefs objectForKey:@"userDetail"];
+    
+    QBASessionCreationRequest *extendedAuthRequest = [QBASessionCreationRequest request];
+    extendedAuthRequest.userLogin = [userInfo objectForKey:@"login"]; // ID: 218651
+    extendedAuthRequest.userPassword = [userDefs objectForKey:@"Password"];
+    [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
+}
+
 #pragma mark - Init Defaults
 
 - (void)initDefaults {
     
     [self setTitle:@"Log Your Night"];
+    
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate=self;
+    locationManager.desiredAccuracy=kCLLocationAccuracyBest;
+    locationManager.distanceFilter=kCLDistanceFilterNone;
+    if ([CLLocationManager locationServicesEnabled]) {
+        [locationManager startUpdatingLocation];
+    }
+    
     
     [self setupRatingViewWithValue:0];
     
@@ -82,6 +112,21 @@
                         dictLocation, @"1. Allow Location",
                         dictNotify, @"2. Notify Friends",
                         dictFacebook, @"3. Post on Facebook", nil];
+}
+
+#pragma mark - Location Manager Methods
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation {
+    
+    thisLocation = newLocation;
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error {
+    
+    NSLog(@"Error Desc : %@", error.description);
 }
 
 #pragma mark - Setup Rating View
@@ -123,7 +168,60 @@
 
 - (void)logThisNightAction:(id)sender {
     NSLog(@"Hahahahahaha");
+    
+    /*
+     [object.fields setObject:self.noteTextField.text forKey:@"note"];
+     [object.fields setObject:self.commentTextField.text forKey:@"comment"];
+     [object.fields setObject:@"New" forKey:@"status"];
+     
+     [QBCustomObjects createObject:object delegate:self];
+     */
+    
+    
+    QBCOCustomObject *objectLogNight = [QBCOCustomObject customObject];
+    [objectLogNight setClassName:className];
+    [objectLogNight.fields setObject:[NSNumber numberWithInt:5] forKey:@"LN_Rating"];
+    [objectLogNight.fields setObject:@"Hello text" forKey:@"LN_Notes"];
+    [objectLogNight.fields setObject:[NSNumber numberWithBool:true] forKey:@"LN_NotifyFriends"];
+    [objectLogNight.fields setObject:[NSNumber numberWithBool:true] forKey:@"LN_PostFacebook"];
+    [objectLogNight.fields setObject:thisLocation forKey:@"LN_Location"];
+    [QBCustomObjects createObject:objectLogNight delegate:self];
 }
+
+#pragma mark -
+#pragma mark QBActionStatusDelegate
+
+// QuickBlox API queries delegate
+-(void)completedWithResult:(Result*)result{
+    
+    NSUserDefaults *userDefls=[NSUserDefaults standardUserDefaults];
+    
+    if([userDefls boolForKey:_pudLoggedIn])
+    {
+        if([result isKindOfClass:QBAAuthSessionCreationResult.class])
+        {
+            [self.navigationItem.rightBarButtonItem setEnabled:true];
+        }
+    }
+    
+    // Create custom object result
+    if([result isKindOfClass:QBCOCustomObjectResult.class]){
+        
+        // Success result
+        if(result.success){
+            QBCOCustomObjectResult *res = (QBCOCustomObjectResult *)result;
+            
+            NSLog(@"new obj: %@", res.object);
+            
+            // add note to storage
+//            [[[DataManager shared] notes] addObject:res.object];
+            
+            // hide screen
+//            [self dismissModalViewControllerAnimated:YES];
+        }
+    }
+}
+
 
 #pragma mark - Tapped On Image Action
 

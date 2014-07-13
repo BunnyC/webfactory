@@ -29,8 +29,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-     [QBAuth createSessionWithDelegate:self];
     // Do any additional setup after loading the view from its nib.
+    
+    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *userInfo = [userDefs objectForKey:@"userDetail"];
+    
+    NSString *userName = [userInfo objectForKey:@"login"];
+    NSString *password = [userDefs objectForKey:@"Password"];
+    
+    // QuickBlox application authorization
+    QBASessionCreationRequest *extendedAuthRequest = [[QBASessionCreationRequest alloc] init];
+    extendedAuthRequest.userLogin = userName;
+    extendedAuthRequest.userPassword = password;
+    
+    [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,6 +53,19 @@
 
 #pragma mark - Secure Session Response
 - (void)completedWithResult:(Result *)result{
+    
+    if([result isKindOfClass:[QBAAuthSessionCreationResult class]]){
+        
+        // Success result
+        if(result.success){
+            
+            // Get all notes
+//            [QBCustomObjects objectsWithClassName:customClassName delegate:self];
+            [self dismissViewControllerAnimated:false completion:nil];
+        }
+        
+        // Get all notes result
+    }
     
     // QuickBlox application authorization result
     if([result isKindOfClass:[QBAAuthSessionCreationResult class]]){

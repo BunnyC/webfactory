@@ -85,6 +85,8 @@
 		84AD392A1957D3AA0004915B /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84AD39281957D3AA0004915B /* FacebookSDK.framework */; };
 		84AD392C1957FC3C0004915B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0941956A72D009DA53D /* MobileCoreServices.framework */; };
 		84AD392D1957FC3C0004915B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0961956A734009DA53D /* SystemConfiguration.framework */; };
+		84B2D3B91972A15E00D113A5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B2D3B81972A15E00D113A5 /* MapKit.framework */; };
+		84B2D3BB1972C8CF00D113A5 /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B2D3BA1972C8CF00D113A5 /* Quickblox.framework */; };
 		84DF7723196923EE00A11C2F /* appBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7703196923EE00A11C2F /* appBackground.png */; };
 		84DF7724196923EE00A11C2F /* appBackground4.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7704196923EE00A11C2F /* appBackground4.png */; };
 		84DF7725196923EE00A11C2F /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DF7705196923EE00A11C2F /* backButton.png */; };
@@ -171,7 +173,6 @@
 		CE35F0911956A71A009DA53D /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0901956A71A009DA53D /* libresolv.dylib */; };
 		CE35F0931956A722009DA53D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0921956A722009DA53D /* CoreLocation.framework */; };
 		CE35F0991956A73C009DA53D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0981956A73C009DA53D /* CFNetwork.framework */; };
-		CE8BEBD6196C554D008A77C8 /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8464A8B2195B9F8C00583DE0 /* Quickblox.framework */; };
 		CE9D376C195E771B001F05D9 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9D376A195E771B001F05D9 /* ForgotPasswordViewController.m */; };
 		CE9D376D195E771B001F05D9 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9D376A195E771B001F05D9 /* ForgotPasswordViewController.m */; };
 		CE9D376E195E771B001F05D9 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9D376B195E771B001F05D9 /* ForgotPasswordViewController.xib */; };
@@ -248,7 +249,6 @@
 		8464A874195A066800583DE0 /* UploadPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadPhotoViewController.h; sourceTree = "<group>"; };
 		8464A875195A066800583DE0 /* UploadPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadPhotoViewController.m; sourceTree = "<group>"; };
 		8464A876195A066800583DE0 /* UploadPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadPhotoViewController.xib; sourceTree = "<group>"; };
-		8464A8B2195B9F8C00583DE0 /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quickblox.framework; sourceTree = "<group>"; };
 		8491FCD3195EB75B00FDC63F /* LoginViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController4.xib; sourceTree = "<group>"; };
 		84A110A3197158A40035E181 /* cbSel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cbSel@2x.png"; sourceTree = "<group>"; };
 		84A110A4197158A40035E181 /* cbUnSel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cbUnSel@2x.png"; sourceTree = "<group>"; };
@@ -290,6 +290,8 @@
 		84A4882D196AB730006BC223 /* selTransportIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selTransportIcon@2x.png"; sourceTree = "<group>"; };
 		84A4882E196AB730006BC223 /* transportIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transportIcon@2x.png"; sourceTree = "<group>"; };
 		84AD39281957D3AA0004915B /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		84B2D3B81972A15E00D113A5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		84B2D3BA1972C8CF00D113A5 /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quickblox.framework; sourceTree = "<group>"; };
 		84DF77021968793400A11C2F /* WebService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebService.h; sourceTree = "<group>"; };
 		84DF7703196923EE00A11C2F /* appBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appBackground.png; sourceTree = "<group>"; };
 		84DF7704196923EE00A11C2F /* appBackground4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appBackground4.png; sourceTree = "<group>"; };
@@ -393,7 +395,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE8BEBD6196C554D008A77C8 /* Quickblox.framework in Frameworks */,
+				84B2D3B91972A15E00D113A5 /* MapKit.framework in Frameworks */,
+				84B2D3BB1972C8CF00D113A5 /* Quickblox.framework in Frameworks */,
 				84AD392C1957FC3C0004915B /* MobileCoreServices.framework in Frameworks */,
 				84AD392D1957FC3C0004915B /* SystemConfiguration.framework in Frameworks */,
 				CE35F0991956A73C009DA53D /* CFNetwork.framework in Frameworks */,
@@ -450,7 +453,8 @@
 		8425AF5D194C3E7800E8CCF3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8464A8B2195B9F8C00583DE0 /* Quickblox.framework */,
+				84B2D3BA1972C8CF00D113A5 /* Quickblox.framework */,
+				84B2D3B81972A15E00D113A5 /* MapKit.framework */,
 				84AD39281957D3AA0004915B /* FacebookSDK.framework */,
 				CE35F0981956A73C009DA53D /* CFNetwork.framework */,
 				CE35F0961956A734009DA53D /* SystemConfiguration.framework */,
@@ -966,6 +970,11 @@
 				TargetAttributes = {
 					8425AF5A194C3E7800E8CCF3 = {
 						DevelopmentTeam = R93P9VBD4Y;
+						SystemCapabilities = {
+							com.apple.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					8425AF75194C3E7800E8CCF3 = {
 						TestTargetID = 8425AF5A194C3E7800E8CCF3;
@@ -1287,7 +1296,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Admin/Projects/PartyApp/iOSCode/webfactory,
-					"/Users/Gagan/Documents/Gagan\\ Important\\ Doc/Home\\ Project/\\ PartyApp\\ Project/webfactory",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PartyApp/PartyApp-Prefix.pch";
@@ -1313,7 +1321,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Admin/Projects/PartyApp/iOSCode/webfactory,
-					"/Users/Gagan/Documents/Gagan\\ Important\\ Doc/Home\\ Project/\\ PartyApp\\ Project/webfactory",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PartyApp/PartyApp-Prefix.pch";

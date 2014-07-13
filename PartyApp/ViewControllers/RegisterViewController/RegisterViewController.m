@@ -285,7 +285,7 @@
         [objUser setEmail:txtFieldEmail.text];
         [objUser setPassword:txtFieldPassword.text];
         [objUser setOldPassword:[userDefs objectForKey:@"Password"]];
-        //[objUser setFullName:[NSString stringWithFormat:@"%@",txtFieldUsername.text]];
+        [objUser setFullName:[NSString stringWithFormat:@"%@",txtFieldUsername.text]];
         [objUser setWebsite:[NSString stringWithFormat:@"%@",txtFieldMotto.text]];
 
         //[objUser setTags:[NSMutableArray arrayWithObjects:motoData, nil]];

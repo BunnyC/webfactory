@@ -21,6 +21,7 @@
     __weak IBOutlet UIButton *btnLogNight;
     __weak IBOutlet UIImageView *imgViewBackNotif;
     
+    UIImage *profilePic;
     QBUUser *objUserDetail;
 
 }

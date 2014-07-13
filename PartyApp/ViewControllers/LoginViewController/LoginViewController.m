@@ -179,21 +179,21 @@
                           otherButtonTitles:nil, nil] show];
     }
     else {
-        loadingView=[[CommonFunctions sharedObject]showLoadingView];
+//        loadingView=[[CommonFunctions sharedObject]showLoadingView];
+//        
+//        NSMutableDictionary *dictLoginDetail=[[NSMutableDictionary alloc]init];
+//        [dictLoginDetail setValue:txtFieldUsername.text forKey:@"login"];
+//        [dictLoginDetail setValue:txtFieldPassword.text forKey:@"password"];
+//
+//        LoginModel *objLoginModel=[[LoginModel alloc]init];
+//        [objLoginModel loginWithTarget:self
+//                              selector:@selector(serverResponseOfLogin:)
+//                             andDetail:dictLoginDetail
+//                    toShowWindowLoader:true];
+//        
+//        [self resetFramesForView];
         
-        NSMutableDictionary *dictLoginDetail=[[NSMutableDictionary alloc]init];
-        [dictLoginDetail setValue:txtFieldUsername.text forKey:@"login"];
-        [dictLoginDetail setValue:txtFieldPassword.text forKey:@"password"];
-
-        LoginModel *objLoginModel=[[LoginModel alloc]init];
-        [objLoginModel loginWithTarget:self
-                              selector:@selector(serverResponseOfLogin:)
-                             andDetail:dictLoginDetail
-                    toShowWindowLoader:true];
-        
-        [self resetFramesForView];
-         
-      //  [QBUsers logInWithUserLogin:txtFieldUsername.text password:txtFieldPassword.text delegate:self];
+        [QBUsers logInWithUserLogin:txtFieldUsername.text password:txtFieldPassword.text delegate:self];
     }
 }
 
@@ -458,6 +458,8 @@
 //            NSString *password=res.user.password;
             [[NSUserDefaults standardUserDefaults] setObject:txtFieldPassword.text forKey:@"Password"];
             [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
+//          [[NSUserDefaults standardUserDefaults]setObject:res.user forKey:_pudUserInfo];
+        
             [[NSUserDefaults standardUserDefaults] synchronize];
 
         

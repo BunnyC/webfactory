@@ -37,8 +37,13 @@
     [self setTitle:@"Party Friends"];
     // Do any additional setup after loading the view from its nib.
     
-//    if (![[NSUserDefaults standardUserDefaults] boolForKey:_pudLoggedIn]) {
-//        [self showLoginView];
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:_pudLoggedIn]) {
+        [self showLoginView];
+    }
+//    else
+//    {
+//        QBUUser *user=[[NSUserDefaults standardUserDefaults]objectForKey:_pudUserInfo];
+//        [self updateUserInfo:user];
 //    }
     
     [self initDefaults];
@@ -123,8 +128,12 @@
     [viewNotifications addGestureRecognizer:panGesture];
     if(_isComeFromSignUp)
     {
+        if(_dicUserInfo)
         [self updateUserProfileData:_dicUserInfo];
+        else
+        [self updateUserInfo:objUserDetail];
     }
+   
 //    UISwipeGestureRecognizer *swipeUp=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipPanGestureHandler:)];
 //    [swipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
 //    [viewNotifications addGestureRecognizer:swipeUp];
@@ -148,7 +157,7 @@
       NSRange range=[[userInfo objectForKey:@"website"] rangeOfString:@"http://"];
     //lblActive.text=@"QBUUserAnswer";
     lblMotto.text=[[userInfo objectForKey:@"website"] substringFromIndex:range.location+range.length];
-    
+    //lblMotto.text=@"Working in Progress";
     
     
    // lblName.text=name;
@@ -162,6 +171,7 @@
     objUserDetail.fullName=[userInfo objectForKey:@"full_name"];
     objUserDetail.email=[userInfo objectForKey:@"email"];
     objUserDetail.login=[userInfo objectForKey:@"full_name"];
+    objUserDetail.website=[userInfo objectForKey:@"website"];
 }
 
 
@@ -289,6 +299,7 @@
 - (IBAction)editAccountAction:(id)sender {
     
     RegisterViewController *objRegisterView=[[RegisterViewController alloc]initWithNibName:@"RegisterViewController" bundle:nil];
+    
     objRegisterView.objUser=objUserDetail;
     objRegisterView.imgProfilePic=imageViewProfile.image;
     [self.navigationController pushViewController:objRegisterView animated:YES];

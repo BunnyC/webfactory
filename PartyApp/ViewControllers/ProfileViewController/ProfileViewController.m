@@ -17,12 +17,16 @@
 
 #import <FacebookSDK/FacebookSDK.h>
 
-@interface ProfileViewController () <QBActionStatusDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface ProfileViewController () <QBActionStatusDelegate, UITableViewDataSource, UITableViewDelegate> {
+    CommonFunctions *commFunc;
+}
 
 @end
 
 @implementation ProfileViewController
-@synthesize objUserDetail;
+
+#pragma mark - View Methods
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -36,74 +40,63 @@
 {
     [super viewDidLoad];
     [self setTitle:@"Party Friends"];
-   
+    
+//    [self showSplashScreen];
+    
     // Do any additional setup after loading the view from its nib.
-    
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:_pudLoggedIn]) {
-        [self showLoginView];
-    }
-    else {
-        [self showSplashScreen];
-    }
-       [self initDefaults];
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:_pudLoggedIn])
+        [self showLoginView];
+    
+    [self initDefaults];
+    
     NSDictionary *userInfo=[[NSUserDefaults standardUserDefaults]objectForKey:@"userDetail"];
     lblName.text=[userInfo objectForKey:@"full_name"];
     NSRange range=[[userInfo objectForKey:@"website"] rangeOfString:@"http://"];
     lblMotto.text=[[userInfo objectForKey:@"website"] substringFromIndex:range.location+range.length];
     lblActive.text=@"active";
     
-    if(!objUserDetail)
-    {
+    if(!objUserDetail){
         NSData *notesData = [[NSUserDefaults standardUserDefaults] objectForKey:@"userObj"];
         objUserDetail = (QBUUser *)[NSKeyedUnarchiver unarchiveObjectWithData:notesData];
     }
-    
-    
-    
-    //    if([[NSUserDefaults standardUserDefaults]objectForKey:_pUserInfoDic])
-    //    {
-    //        NSDictionary *userInfo=[[NSUserDefaults standardUserDefaults]objectForKey:_pUserInfoDic];
-    //        [self updateUserInfo:userInfo];
-    //    }
-    
-   // NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-   // NSDictionary *userInfo = [userDefs objectForKey:_pudUserInfo];
-    //[lblName setText:[userInfo objectForKey:@"username"]];
-    //[lblMotto setText:[userInfo objectForKey:@"custom_object"]];
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
+-(void)viewDidAppear:(BOOL)animated {
+
     [self sendPageRequest];
     // [self downloadFile];
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
--(void)sendPageRequest
-{
+#pragma mark - QB Methods
+
+-(void)sendPageRequest {
+    
     PagedRequest *pagedRequest = [[PagedRequest alloc] init];
     [pagedRequest setPerPage:20];
     [QBContent blobsWithPagedRequest:pagedRequest delegate:self];
     [spinnerImageView setHidden:false];
     [spinnerImageView startAnimating];
 }
+
 -(void)downloadFile{
     
     int fileID = [(QBCBlob *)[[[DataManager instance] fileList] lastObject] ID];
-    
     if(fileID > 0){
-        
         // Download file from QuickBlox server
         [[NSUserDefaults standardUserDefaults]setInteger:fileID forKey:_pUserProfilePic];
         [QBContent TDownloadFileWithBlobID:fileID delegate:self];
     }
-    else
-    {
+    else {
         [spinnerImageView stopAnimating];
         [spinnerImageView setHidden:true];
         UIImage *profileImage = [[CommonFunctions sharedObject] imageWithName:@"placeholder"
@@ -113,11 +106,9 @@
     }
 }
 
-- (void)initDefaults {
-    
-    // Setting up Bar Button Items
-    
-    CommonFunctions *commFunc = [CommonFunctions sharedObject];
+#pragma mark - Other Methods
+
+- (void)setupNavigationBar {
     
     UIImage *imgMenuButton = [commFunc imageWithName:@"buttonMenu" andType:_pPNGType];
     UIImage *imgNotificationButton = [commFunc imageWithName:@"buttonBell" andType:_pPNGType];
@@ -135,6 +126,15 @@
     
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButton];
     [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
+}
+
+- (void)initDefaults {
+    
+    // Setting up Bar Button Items
+    
+    commFunc = [CommonFunctions sharedObject];
+    
+    [self setupNavigationBar];
     
     UIImage *imgViewNotif = [commFunc imageWithName:@"notifTop" andType:_pPNGType];
     UIImage *imgResized = [imgViewNotif resizableImageWithCapInsets:UIEdgeInsetsMake(40, 0, 0, 0) resizingMode:UIImageResizingModeStretch];
@@ -147,122 +147,22 @@
     [imageViewProfile.layer setCornerRadius:imageViewProfile.frame.size.width / 2];
     UIImage *profileImage = [commFunc imageWithName:@"placeholder" andType:_pPNGType];
     [imageViewProfile setImage:profileImage];
-    UIPanGestureRecognizer *panGesture=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePanGesture:)];
-    [viewNotifications addGestureRecognizer:panGesture];
     
-    if(_isComeFromSignUp)
-    {
+    if(_isComeFromSignUp) {
         if(_dicUserInfo)
-        [self updateUserProfileData:_dicUserInfo];
+            [self updateUserProfileData:_dicUserInfo];
         else
-        [self updateUserInfo:objUserDetail];
+            [self updateUserInfo:objUserDetail];
     }
-   
-    UISwipeGestureRecognizer *swipeUp=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipPanGestureHandler:)];
-    [swipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
-    [viewNotifications addGestureRecognizer:swipeUp];
     
-    UISwipeGestureRecognizer *swipeDown=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipPanGestureHandler:)];
-    [swipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
-    [viewNotifications addGestureRecognizer:swipeDown];
+    UIPanGestureRecognizer *panViewBottom = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panBottomView:)];
+    [panViewBottom setMinimumNumberOfTouches:1];
+    [panViewBottom setMaximumNumberOfTouches:1];
+    [viewNotifications addGestureRecognizer:panViewBottom];
     
+    [viewNotifications.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [viewNotifications.layer setBorderWidth:2];
 }
-
-#pragma mark - Update UserInformation
--(void)updateUserProfileData:(NSDictionary *)userInfo
-{
-
-   // lblName.text=name;
-   
-   // lblMotto.text=moto;
-    if(!objUserDetail)
-    {
-        objUserDetail=[[QBUUser alloc]init];
-    }
-    objUserDetail.ID=[[userInfo objectForKey:@"id"]integerValue];
-    objUserDetail.fullName=[userInfo objectForKey:@"full_name"];
-    objUserDetail.email=[userInfo objectForKey:@"email"];
-    objUserDetail.login=[userInfo objectForKey:@"login"];
-    objUserDetail.website=[userInfo objectForKey:@"website"];
-}
-
-
-#pragma mark loginView Delegate
-
--(void)updateUserInfo:(QBUUser *)objUser
-{
-    objUserDetail=objUser;
-}
-
-- (void)handlePanGesture:(UIPanGestureRecognizer *)recognizer {
-    
-}
-
-- (void)swipPanGestureHandler:(UIGestureRecognizer *)recognizer
-{
-    [self handleRecentReminderView];
-}
-//
-//-(void)handlePanGesture:(UIPanGestureRecognizer *)recognizer
-//{
-//    
-//    CGPoint translation = [recognizer translationInView:self.view];
-//    
-//    int translationValue=(int
-//                          )(recognizer.view.center.y + translation.y);
-//    
-//    if(translationValue>btnLogNight.frame.origin.y+btnLogNight.frame.size.height && translationValue<self.view.frame.size.height-20+recognizer.view.frame.size.height/4)
-//    {
-//        
-//        
-//        recognizer.view.center = CGPointMake(recognizer.view.center.x,
-//                                             recognizer.view.center.y + translation.y);
-//        
-//        
-//        [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
-//        
-//        
-//    }
-//    
-//    
-//    if (recognizer.state == UIGestureRecognizerStateEnded) {
-//        
-//        CGPoint velocity = [recognizer velocityInView:self.view];
-//        CGFloat magnitude = sqrtf((velocity.x * velocity.x) + (velocity.y * velocity.y));
-//        CGFloat slideMult = magnitude / 200;
-//        
-//        
-//        NSLog(@"magnitude: %f, slideMult: %f", magnitude, slideMult);
-//        
-//        float slideFactor = 0.1 * slideMult; // Increase for more of a slide
-//        
-//        CGPoint finalPoint = CGPointMake(recognizer.view.center.x,
-//                                         recognizer.view.center.y + (velocity.y * slideFactor));
-//        
-//        finalPoint.y = MIN(MAX(finalPoint.y, btnLogNight.frame.origin.y+btnLogNight.frame.size.height), (self.view.bounds.size.height-25)+recognizer.view.frame.size.height/4);
-//        
-//        NSLog(@"%f",finalPoint.y);
-//        
-//        
-//        [UIView animateWithDuration:slideFactor/2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-//            
-//            
-//            recognizer.view.center = finalPoint;
-//            
-//            
-//        } completion:nil];
-//        
-//    }
-//    
-//}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Login View
 
 - (void)showLoginView {
     
@@ -275,18 +175,106 @@
     objLoginView.delegate=self;
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:objLoginView];
     [navigationController.navigationBar setTranslucent:false];
-    [self presentViewController:navigationController animated:NO completion:nil];
+    [self.navigationController presentViewController:navigationController animated:NO completion:nil];
 }
 
-#pragma mark - Show Splash Screen
+-(void)handleRecentReminderViewForRecognizer:(BOOL)forRecognizer {
+    
+    CGRect frameView = self.view.frame;
+    CGRect newFrameForNotifView = viewNotifications.frame;
+    CGRect frameTable = tableViewNotifications.frame;
+    frameTable.origin.y = 52;
+    
+    int offsetAsPer3Rows = (65 * 3) + 14 + 52;
+    
+    BOOL toMoveUp = FALSE;
+    if (forRecognizer)
+        toMoveUp = (self.view.frame.size.height - viewNotifications.frame.origin.y > 160);
+    else
+        toMoveUp = (newFrameForNotifView.origin.y >= frameView.size.height - 52);
+    
+    if (toMoveUp) {
+        newFrameForNotifView.origin.y = self.view.frame.size.height - offsetAsPer3Rows;
+        newFrameForNotifView.size.height = offsetAsPer3Rows;
+        frameTable.size.height = 65 * 3;
+        [self.view bringSubviewToFront:viewNotifications];
+    }
+    else {
+        newFrameForNotifView.origin.y = self.view.frame.size.height - 52;
+        newFrameForNotifView.size.height = 52;
+        frameTable.size.height = 0;
+        [self.view sendSubviewToBack:viewNotifications];
+    }
+    
+    [UIView animateWithDuration:0.25f
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^ {
+                         [viewNotifications setFrame:newFrameForNotifView];
+                         [tableViewNotifications setFrame:frameTable];
+                     }
+                     completion:nil];
+}
 
-- (void)showSplashScreen {
-    SplashScreenViewController *splashView = [[SplashScreenViewController alloc] initWithNibName:@"SplashScreenViewController"
-                                                                                          bundle:nil];
-    [self.navigationController presentViewController:splashView animated:false completion:nil];
+- (void)panBottomView:(UIPanGestureRecognizer *)recognizer {
+    CGPoint translation = [recognizer translationInView:self.view];
+
+    int offsetAsPer3Rows = (65 * 3) + 14 + 52;
+    
+    CGRect frameBoundary = CGRectMake(0,
+                                      (self.view.frame.size.height - offsetAsPer3Rows),
+                                      viewNotifications.frame.size.width,
+                                      254);
+    
+    CGPoint pointTranslated = CGPointMake(recognizer.view.frame.origin.x, recognizer.view.frame.origin.y + translation.y);
+
+    if (CGRectContainsPoint(frameBoundary, pointTranslated)) {
+        recognizer.view.center = CGPointMake(recognizer.view.center.x,
+                                             recognizer.view.center.y + translation.y);
+        
+        [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
+        
+        UIView *panView = recognizer.view;
+        
+        CGRect framePanView = panView.frame;
+        framePanView.size.height = self.view.frame.size.height - framePanView.origin.y;
+        [panView setFrame:framePanView];
+        
+        CGRect frameTableView = tableViewNotifications.frame;
+        frameTableView.origin.y = 52;
+        frameTableView.size.height = (framePanView.size.height - 66) > 0 ? framePanView.size.height - 66 : 0;
+        [tableViewNotifications setFrame:frameTableView];
+        
+        [self.view bringSubviewToFront:viewNotifications];
+    }
+    
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        [self handleRecentReminderViewForRecognizer:TRUE];
+    }
+}
+
+#pragma mark - Update UserInformation
+
+-(void)updateUserProfileData:(NSDictionary *)userInfo {
+
+    if(!objUserDetail)
+        objUserDetail=[[QBUUser alloc]init];
+    
+    objUserDetail.ID=[[userInfo objectForKey:@"id"]integerValue];
+    objUserDetail.fullName=[userInfo objectForKey:@"full_name"];
+    objUserDetail.email=[userInfo objectForKey:@"email"];
+    objUserDetail.login=[userInfo objectForKey:@"login"];
+    objUserDetail.website=[userInfo objectForKey:@"website"];
+}
+
+#pragma mark loginView Delegate
+
+-(void)updateUserInfo:(QBUUser *)objUser {
+    objUserDetail=objUser;
 }
 
 #pragma mark - IBActions
+
 - (IBAction)logNightAction:(id)sender {
     
     NSString *xibName = NSStringFromClass([LogNightViewController class]);
@@ -298,10 +286,12 @@
     
     [self.navigationController pushViewController:objLogNight animated:YES];
 }
+
 - (IBAction)setReminderAction:(id)sender {
     AddReminderViewController *objAddReminderView = [[AddReminderViewController alloc] initWithNibName:@"AddReminderViewController" bundle:nil];
     [self.navigationController pushViewController:objAddReminderView animated:YES];
 }
+
 - (IBAction)editAccountAction:(id)sender {
     
     RegisterViewController *objRegisterView=[[RegisterViewController alloc]initWithNibName:@"RegisterViewController" bundle:nil];
@@ -310,6 +300,7 @@
     objRegisterView.imgProfilePic=imageViewProfile.image;
     [self.navigationController pushViewController:objRegisterView animated:YES];
 }
+
 - (IBAction)logoutAction:(id)sender {
     
     
@@ -332,10 +323,13 @@
     
     [self showLoginView];
 }
+
 - (IBAction)notificationsAction:(id)sender {
-    [self handleRecentReminderView];
+    [self handleRecentReminderViewForRecognizer:FALSE];
     
 }
+
+#pragma mark - QB Delegate Method
 
 -(void)completedWithResult:(Result *)result{
     // Download file result
@@ -377,38 +371,6 @@
     NSLog(@"progress: %f", progress);
 }
 
--(void)handleRecentReminderView
-{
-    CGRect frameView = self.view.frame;
-    CGRect newFrameForNotifView = viewNotifications.frame;
-    CGRect frameTable = tableViewNotifications.frame;
-    frameTable.origin.y = 52;
-    
-    int offsetAsPer3Rows = (65 * 3) + 14;
-    
-    if (newFrameForNotifView.origin.y >= frameView.size.height - 52) {
-        newFrameForNotifView.origin.y = newFrameForNotifView.origin.y - offsetAsPer3Rows;
-        newFrameForNotifView.size.height = newFrameForNotifView.size.height + offsetAsPer3Rows;
-        frameTable.size.height = 65 * 3;
-        [self.view bringSubviewToFront:viewNotifications];
-    }
-    else {
-        [self.view sendSubviewToBack:viewNotifications];
-        newFrameForNotifView.origin.y = self.view.frame.size.height - 52;
-        newFrameForNotifView.size.height = 52;
-        frameTable.size.height = 0;
-        
-    }
-    
-    [UIView animateWithDuration:0.25f
-                          delay:0.0f
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^ {
-                         [viewNotifications setFrame:newFrameForNotifView];
-                         [tableViewNotifications setFrame:frameTable];
-                     }
-                     completion:nil];
-}
 #pragma mark - UITableView Delegate & DataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

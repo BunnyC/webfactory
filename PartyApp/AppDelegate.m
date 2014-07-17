@@ -37,8 +37,6 @@
     if (![userDefs objectForKey:_pudSessionExpiryDate])
         [userDefs setObject:[NSDate date] forKey:_pudSessionExpiryDate];
     [userDefs synchronize];
-    
-//    [self refreshQBSession];
 
     //  Navigation Bar Setup
     UIColor *colorNavTitleText = [[CommonFunctions sharedObject] colorWithHexString:@"5f4b5e"];

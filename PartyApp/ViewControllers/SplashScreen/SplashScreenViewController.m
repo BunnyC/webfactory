@@ -22,7 +22,7 @@
         // Custom initialization
     }
     
-
+    
     return self;
 }
 
@@ -31,18 +31,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    [QBAuth createSessionWithDelegate:self];
+}
+
+- (void)loginUser {
     NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *userInfo = [userDefs objectForKey:@"userDetail"];
     
-    NSString *userName = [userInfo objectForKey:@"login"];
-    NSString *password = [userDefs objectForKey:@"Password"];
-    
-    // QuickBlox application authorization
-    QBASessionCreationRequest *extendedAuthRequest = [[QBASessionCreationRequest alloc] init];
-    extendedAuthRequest.userLogin = userName;
-    extendedAuthRequest.userPassword = password;
-    
-    [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
+    [QBUsers logInWithUserLogin:[userDefs objectForKey:@"login"]
+                       password:[userDefs objectForKey:@"password"]
+                       delegate:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,36 +48,69 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Secure Session Response
-- (void)completedWithResult:(Result *)result{
+- (void)showLoginView {
     
-    if([result isKindOfClass:[QBAAuthSessionCreationResult class]]){
-        
-        // Success result
-        if(result.success){
-            
-            // Get all notes
-//            [QBCustomObjects objectsWithClassName:customClassName delegate:self];
-            [self dismissViewControllerAnimated:false completion:nil];
+    NSString *xibName = NSStringFromClass([LoginViewController class]);
+    BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
+    if (!isiPhone5)
+        xibName = [NSString stringWithFormat:@"%@4", xibName];
+    
+    LoginViewController *objLoginView = [[LoginViewController alloc] initWithNibName:xibName bundle:nil];
+//    objLoginView.delegate=self;
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:objLoginView];
+    [navigationController.navigationBar setTranslucent:false];
+    [self.navigationController presentViewController:navigationController animated:NO completion:nil];
+}
+
+#pragma mark - QBDelegate Methods
+
+- (void)completedWithResult:(Result *)result {
+    BOOL error = FALSE;
+    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+    
+    if ([result isKindOfClass:[QBAAuthSessionCreationResult class]]) {
+        if (result.success) {
+            NSLog(@"Session created successfully");
+            if ([userDefs boolForKey:_pudLoggedIn])
+                [self loginUser];
+            else
+                [self dismissViewControllerAnimated:true completion:nil];
         }
-        
-        // Get all notes result
+        else {
+            error = TRUE;
+        }
     }
-    [self dismissViewControllerAnimated:false completion:nil];
-    // QuickBlox application authorization result
-    if([result isKindOfClass:[QBAAuthSessionCreationResult class]]){
-
-        // Success result
-        if(result.success){
-
-            NSDate *sessionExpDate = [[QBBaseModule sharedModule] tokenExpirationDate];
-            [[NSUserDefaults standardUserDefaults] setObject:sessionExpDate
-                                                      forKey:_pudSessionExpiryDate];
-    
-        }
-        else{
+    else if ([result isKindOfClass:[QBUUserLogInResult class]]) {
+        if (result.success) {
+            QBUUserLogInResult *loginResult = (QBUUserLogInResult *)result;
+            QBUUser *userInfo = [loginResult user];
             
+            id null = (id)[NSNull null];
+            
+            userInfo.facebookID = (userInfo.facebookID == null) ? @"" : userInfo.facebookID;
+            userInfo.twitterID = (userInfo.twitterID == null) ? @"" : userInfo.twitterID;
+            userInfo.fullName = (userInfo.fullName == null) ? @"" : userInfo.fullName;
+            userInfo.email = (userInfo.email == null) ? @"" : userInfo.email;
+            userInfo.login = (userInfo.login == null) ? @"" : userInfo.login;
+            userInfo.phone = (userInfo.phone == null) ? @"" : userInfo.phone;
+            userInfo.website = (userInfo.website == null) ? @"" : userInfo.website;
+            
+            NSLog(@"User Info : %@", userInfo);
+            [userDefs setObject:userInfo forKey:@"userInfo"];
+            [self dismissViewControllerAnimated:NO completion:nil];
         }
+        else {
+            error = TRUE;
+        }
+    }
+    if (error) {
+        [[[UIAlertView alloc] initWithTitle:@"Session Problem"
+                                    message:@"Sorry can't create your session right now"
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil, nil] show];
+        [self dismissViewControllerAnimated:true completion:nil];
     }
 }
+
 @end

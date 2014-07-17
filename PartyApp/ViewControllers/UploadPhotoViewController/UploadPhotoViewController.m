@@ -11,7 +11,7 @@
 #import "DataManager.h"
 #import "AppDelegate.h"
 #import "RegisterViewController.h"
-#import "SignUpModel.h"
+//#import "SignUpModel.h"
 
 @interface UploadPhotoViewController ()
 
@@ -259,7 +259,14 @@
 
 -(void)completedWithResult:(Result *)result{
 
-
+    if (result.success && [result isKindOfClass:[QBUUserResult class]]) {
+//        [spinner stopAnimating];
+        QBUUserResult *userResult = (QBUUserResult *)result;
+        NSLog(@"userResult : %@", userResult.user);
+//        [labelStatus setText:@"Login Successful\nGoing back in 2 seconds"];
+    }
+    
+    
      NSUserDefaults *userDefls=[NSUserDefaults standardUserDefaults];
    
     if([userDefls boolForKey:_pudLoggedIn])
@@ -496,7 +503,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:password forKey:@"Password"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    NSDictionary *dictUser = [[NSDictionary alloc ]initWithObjectsAndKeys:_objUser.login,@"login",_objUser.fullName,@"full_name",_objUser.email,@"email",password,@"password",_objUser.website,@"website",nil];
+//    NSDictionary *dictUser = [[NSDictionary alloc ]initWithObjectsAndKeys:_objUser.login,@"login",_objUser.fullName,@"full_name",_objUser.email,@"email",password,@"password",_objUser.website,@"website",nil];
 //    NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
 //    
 //    [dic setObject:_objUser.login forKey:@"login"];
@@ -505,17 +512,23 @@
 //    [dic setObject:_objUser.password forKey:@"password"];
     
     
-    dictUser=[NSDictionary dictionaryWithObject:dictUser forKey:@"user"];
+//    dictUser=[NSDictionary dictionaryWithObject:dictUser forKey:@"user"];
     
+    QBUUser *user = [QBUUser user];
+    user.login = _objUser.login;
+    user.password = _objUser.password;
+    user.email = _objUser.email;
+    user.website = _objUser.website;
     
+    [QBUsers signUp:user delegate:self];
     
    
     
-    SignUpModel *objSignUpModel = [[SignUpModel alloc] init];
-    [objSignUpModel registerationForTarget:self
-                              withselector:@selector(serverResponseForSignUp:)
-                                andDetails:dictUser
-                        toShowWindowLoader:NO];
+//    SignUpModel *objSignUpModel = [[SignUpModel alloc] init];
+//    [objSignUpModel registerationForTarget:self
+//                              withselector:@selector(serverResponseForSignUp:)
+//                                andDetails:dictUser
+//                        toShowWindowLoader:NO];
     
     [buttonNext setEnabled:false];
     

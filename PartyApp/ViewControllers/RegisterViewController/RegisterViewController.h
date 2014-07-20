@@ -22,7 +22,9 @@
     UIView *loadingView;
 }
 
-@property (nonatomic,strong)QBUUser *objUser;
-@property (nonatomic,weak)UIImage *imgProfilePic;
+@property (nonatomic, strong) QBUUser *objUser;
+@property (nonatomic, weak) UIImage *imgProfilePic;
+
 -(void)clearTextBoxes;
+
 @end

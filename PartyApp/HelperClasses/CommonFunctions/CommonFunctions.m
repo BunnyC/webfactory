@@ -45,9 +45,7 @@
 }
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
-    //UIGraphicsBeginImageContext(newSize);
-    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
-    // Pass 1.0 to force exact pixel size.
+
     UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
     [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -63,10 +61,6 @@
     UIColor *colorFromImage = [UIColor blackColor];
     NSString *pathForImage = [[NSBundle mainBundle] pathForResource:fileName ofType:type];
     UIImage *imageAtPath = [UIImage imageWithContentsOfFile:pathForImage];
-//    CGSize screenSize = [UIScreen mainScreen].bounds.size;
-//    UIImage *resizedImage = [self imageWithImage:imageAtPath
-//                                    scaledToSize:CGSizeMake(320, screenSize.height - 64)];
-//    colorFromImage = [UIColor colorWithPatternImage:resizedImage];
     colorFromImage = [UIColor colorWithPatternImage:imageAtPath];
     return colorFromImage;
 }
@@ -80,40 +74,6 @@
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     return [emailTest evaluateWithObject:emailID];
 }
-
-//- (UIView *)showLoadingView {
-//    
-//    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//    
-//    CGSize scrSize = [[UIScreen mainScreen] bounds].size;
-//    
-//    UIView *backView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    [backView setBackgroundColor:[UIColor clearColor]];
-//    [backView setTag:100];
-//    
-//    CGRect loadingFrame = CGRectMake(scrSize.width/2 - 65, scrSize.height/2 - 25, 130, 50);
-//    UIView *loadingView = [[UIView alloc] initWithFrame:loadingFrame];
-//    [loadingView setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.9]];
-//    
-//    UIActivityIndicatorView *loadingActivity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-//    [loadingActivity setFrame:CGRectMake(10, 15, 20, 20)];
-//    [loadingActivity setHidesWhenStopped:YES];
-//    [loadingActivity startAnimating];
-//    [loadingView addSubview:loadingActivity];
-//    
-//    UILabel *loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 15, 80, 20)];
-//    [loadingLabel setBackgroundColor:[UIColor clearColor]];
-//    [loadingLabel setTextColor:[UIColor whiteColor]];
-//    [loadingLabel setFont:[UIFont boldSystemFontOfSize:15]];
-//    [loadingLabel setText:@"Loading..."];
-//    [loadingView addSubview:loadingLabel];
-//    
-//    [loadingView.layer setCornerRadius:10.0f];
-//    [backView addSubview:loadingView];
-//    [appDelegate.window addSubview:backView];
-//    
-//    return backView;
-//}
 
 - (UIView *)showLoadingView {
     
@@ -214,6 +174,71 @@
                action:selector
      forControlEvents:UIControlEventTouchUpInside];
     return button;
+}
+
+#pragma mark - Saving User Info in NSUserDefaults
+
+- (void)saveInformationInDefaultsForUser:(QBUUser *)userInfo {
+    
+    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+    
+    NSNumber *userID        = [NSNumber numberWithInt:userInfo.ID];
+    NSNumber *extID         = [NSNumber numberWithInt:userInfo.externalUserID];
+    NSNumber *blobID        = [NSNumber numberWithInt:userInfo.blobID];
+    NSString *facebookID    = !userInfo.facebookID ? @"" : userInfo.facebookID;
+    NSString *twitterID     = !userInfo.twitterID ? @"" : userInfo.twitterID;
+    NSString *fullName      = !userInfo.fullName ? @"" : userInfo.fullName;
+    NSString *email         = !userInfo.email ? @"" : userInfo.email;
+    NSString *phone         = !userInfo.phone ? @"" : userInfo.phone;
+    NSString *website       = !userInfo.website ? @"" : userInfo.website;
+    NSMutableArray *arrTags = userInfo.tags.count == 0 ? [NSMutableArray array] : userInfo.tags;
+    
+    NSMutableDictionary *dictUserInfo = [[NSMutableDictionary alloc] init];
+    
+    [dictUserInfo setObject:userInfo.login      forKey:@"login"];
+    [dictUserInfo setObject:userInfo.createdAt  forKey:@"createdAt"];
+    [dictUserInfo setObject:userInfo.updatedAt  forKey:@"updatedAt"];
+    [dictUserInfo setObject:userID              forKey:@"ID"];
+    [dictUserInfo setObject:extID               forKey:@"externalUserID"];
+    [dictUserInfo setObject:blobID              forKey:@"blobID"];
+    [dictUserInfo setObject:fullName            forKey:@"fullName"];
+    [dictUserInfo setObject:website             forKey:@"website"];
+    [dictUserInfo setObject:phone               forKey:@"phone"];
+    [dictUserInfo setObject:facebookID          forKey:@"facebookID"];
+    [dictUserInfo setObject:twitterID           forKey:@"twitterID"];
+    [dictUserInfo setObject:email               forKey:@"email"];
+    [dictUserInfo setObject:arrTags             forKey:@"tags"];
+    
+    NSLog(@"Model Info : %@", userInfo);
+    NSLog(@"User Info : %@", dictUserInfo);
+    [userDefs setBool:true forKey:_pudLoggedIn];
+    [userDefs setObject:dictUserInfo forKey:_pudUserInfo];
+    [userDefs synchronize];
+}
+
+- (QBUUser *)getQBUserObjectFromUserDefaults {
+    
+    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+    
+    NSMutableDictionary *dictUserInfo = [[NSMutableDictionary alloc] initWithDictionary:[userDefs objectForKey:_pudUserInfo]];
+    
+    QBUUser *userLogin = [[QBUUser alloc] init];
+    userLogin.login             = [dictUserInfo objectForKey:@"login"];
+    userLogin.createdAt         = [dictUserInfo objectForKey:@"createdAt"];
+    userLogin.updatedAt         = [dictUserInfo objectForKey:@"updatedAt"];
+    userLogin.ID                = [[dictUserInfo objectForKey:@"ID"] intValue];
+    userLogin.externalUserID    = [[dictUserInfo objectForKey:@"externalUserID"] intValue];
+    userLogin.blobID            = [[dictUserInfo objectForKey:@"blobID"] intValue];
+    userLogin.fullName          = [dictUserInfo objectForKey:@"fullName"];
+    userLogin.website           = [dictUserInfo objectForKey:@"website"];
+    userLogin.phone             = [dictUserInfo objectForKey:@"phone"];
+    userLogin.facebookID        = [dictUserInfo objectForKey:@"facebookID"];
+    userLogin.twitterID         = [dictUserInfo objectForKey:@"twitterID"];
+    userLogin.email             = [dictUserInfo objectForKey:@"email"];
+    userLogin.tags              = [dictUserInfo objectForKey:@"tags"];
+    
+    dictUserInfo = nil;
+    return userLogin;
 }
 
 @end

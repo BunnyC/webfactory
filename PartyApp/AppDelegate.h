@@ -25,5 +25,5 @@
 //- (void)userLoggedIn;
 //- (void)userLoggedOut;
 - (void)getUserInformation;
-- (void)refreshQBSession;
+
 @end

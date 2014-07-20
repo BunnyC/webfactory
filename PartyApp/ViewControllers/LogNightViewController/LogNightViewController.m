@@ -20,6 +20,8 @@ NSString *className = @"PALogNight";
     CLLocationManager *locationManager;
     CLLocation *thisLocation;
     UIView *loadingView;
+    
+    CommonFunctions *commFunc;
 }
 
 @property (strong, nonatomic) NSMutableDictionary *dictOptions;
@@ -59,19 +61,6 @@ NSString *className = @"PALogNight";
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Creating Session
-
--(void)createUserSession {
-    
-    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *userInfo = [userDefs objectForKey:_pudUserInfo];
-    
-    QBASessionCreationRequest *extendedAuthRequest = [QBASessionCreationRequest request];
-    extendedAuthRequest.userLogin = [userInfo objectForKey:@"login"]; // ID: 218651
-    extendedAuthRequest.userPassword =[userDefs objectForKey:@"Password"];
-    [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
-}
-
 #pragma mark - Init Defaults
 
 - (void)initDefaults {
@@ -82,23 +71,9 @@ NSString *className = @"PALogNight";
     
     //  Setting up Navigation Item
     
-    CommonFunctions *commFunc = [CommonFunctions sharedObject];
+    commFunc = [CommonFunctions sharedObject];
     
-    UIImage *imgBackButton = [commFunc imageWithName:@"backButton" andType:_pPNGType];
-    UIImage *imgNextButton = [commFunc imageWithName:@"barButtonTick" andType:_pPNGType];
-    
-    UIButton *leftBarButton = [commFunc buttonNavigationItemWithImage:imgBackButton
-                                                            forTarget:self
-                                                          andSelector:@selector(backButtonAction:)];
-    UIButton *rightBarButton = [commFunc buttonNavigationItemWithImage:imgNextButton
-                                                             forTarget:self
-                                                           andSelector:@selector(logThisNightAction:)];
-    
-    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButton];
-    [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
-    
-    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButton];
-    [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
+    [self setupNavigationBarInLogNightView];
     
     NSNumber *numberValue = [NSNumber numberWithInt:0];
     
@@ -121,6 +96,24 @@ NSString *className = @"PALogNight";
                         dictLocation, @"1. Allow Location",
                         dictNotify, @"2. Notify Friends",
                         dictFacebook, @"3. Post on Facebook", nil];
+}
+
+- (void)setupNavigationBarInLogNightView {
+    UIImage *imgBackButton = [commFunc imageWithName:@"backButton" andType:_pPNGType];
+    UIImage *imgNextButton = [commFunc imageWithName:@"barButtonTick" andType:_pPNGType];
+    
+    UIButton *leftBarButton = [commFunc buttonNavigationItemWithImage:imgBackButton
+                                                            forTarget:self
+                                                          andSelector:@selector(backButtonAction:)];
+    UIButton *rightBarButton = [commFunc buttonNavigationItemWithImage:imgNextButton
+                                                             forTarget:self
+                                                           andSelector:@selector(logThisNightAction:)];
+    
+    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButton];
+    [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
+    
+    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButton];
+    [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
 }
 
 #pragma mark - Location Manager Methods
@@ -231,8 +224,14 @@ NSString *className = @"PALogNight";
         
         id forLocation = location ? thisLocation : @"";
         
+        NSDictionary *userInfo = [[NSUserDefaults standardUserDefaults] objectForKey:_pudUserInfo];
+        NSNumber *userID = [userInfo objectForKey:@"ID"];
+        
         QBCOCustomObject *objectLogNight = [QBCOCustomObject customObject];
         [objectLogNight setClassName:className];
+        
+//        [objectLogNight.fields setObject:userID
+//                                  forKey:@"User ID"];
         [objectLogNight.fields setObject:[NSNumber numberWithInt:finalRatingValue]
                                   forKey:@"LN_Rating"];
         [objectLogNight.fields setObject:txtViewNotes.text
@@ -264,15 +263,15 @@ NSString *className = @"PALogNight";
 // QuickBlox API queries delegate
 -(void)completedWithResult:(Result*)result{
     
-    NSUserDefaults *userDefls=[NSUserDefaults standardUserDefaults];
-    
-    if([userDefls boolForKey:_pudLoggedIn])
-    {
-        if([result isKindOfClass:QBAAuthSessionCreationResult.class])
-        {
-            [self.navigationItem.rightBarButtonItem setEnabled:true];
-        }
-    }
+//    NSUserDefaults *userDefls=[NSUserDefaults standardUserDefaults];
+//    
+//    if([userDefls boolForKey:_pudLoggedIn])
+//    {
+//        if([result isKindOfClass:QBAAuthSessionCreationResult.class])
+//        {
+//            [self.navigationItem.rightBarButtonItem setEnabled:true];
+//        }
+//    }
     
     // Create custom object result
     if([result isKindOfClass:QBCOCustomObjectResult.class]){
@@ -382,8 +381,6 @@ NSString *className = @"PALogNight";
         [cell.contentView setBackgroundColor:[UIColor clearColor]];
         [cell setBackgroundColor:[UIColor clearColor]];
     }
-    
-    CommonFunctions *commFunc = [CommonFunctions sharedObject];
     
     NSArray *arrOptions = [[self.dictOptions allKeys] sortedArrayUsingSelector: @selector(compare:)];
     NSString *keyMain = [arrOptions objectAtIndex:indexPath.row];

@@ -17,8 +17,9 @@
 
 #import <FacebookSDK/FacebookSDK.h>
 
-@interface ProfileViewController () <QBActionStatusDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface ProfileViewController () <QBActionStatusDelegate, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate> {
     CommonFunctions *commFunc;
+    NSUserDefaults *userDefs;
 }
 
 @end
@@ -39,37 +40,32 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setTitle:@"Party Friends"];
-    
-//    [self showSplashScreen];
-    
     // Do any additional setup after loading the view from its nib.
+    [self setTitle:@"Party Friends"];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:_pudLoggedIn])
         [self showLoginView];
-    
-    [self initDefaults];
-    
-    NSDictionary *userInfo=[[NSUserDefaults standardUserDefaults]objectForKey:@"userDetail"];
-    lblName.text=[userInfo objectForKey:@"full_name"];
-    NSRange range=[[userInfo objectForKey:@"website"] rangeOfString:@"http://"];
-    lblMotto.text=[[userInfo objectForKey:@"website"] substringFromIndex:range.location+range.length];
-    lblActive.text=@"active";
-    
-    if(!objUserDetail){
-        NSData *notesData = [[NSUserDefaults standardUserDefaults] objectForKey:@"userObj"];
-        objUserDetail = (QBUUser *)[NSKeyedUnarchiver unarchiveObjectWithData:notesData];
-    }
+    else
+        [self showSplashScreen];
 }
 
--(void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self initDefaults];
+}
 
-    [self sendPageRequest];
-    // [self downloadFile];
+- (void)createSession {
+    
+    NSMutableDictionary *userInfo = [userDefs objectForKey:_pudUserInfo];
+    QBASessionCreationRequest *extendedAuthRequest = [QBASessionCreationRequest request];
+    extendedAuthRequest.userLogin = [userInfo objectForKey:@"login"]; // ID: 218651
+    extendedAuthRequest.userPassword = [userDefs objectForKey:@"Password"];
+    [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,36 +73,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - QB Methods
-
--(void)sendPageRequest {
-    
-    PagedRequest *pagedRequest = [[PagedRequest alloc] init];
-    [pagedRequest setPerPage:20];
-    [QBContent blobsWithPagedRequest:pagedRequest delegate:self];
-    [spinnerImageView setHidden:false];
-    [spinnerImageView startAnimating];
-}
-
--(void)downloadFile{
-    
-    int fileID = [(QBCBlob *)[[[DataManager instance] fileList] lastObject] ID];
-    if(fileID > 0){
-        // Download file from QuickBlox server
-        [[NSUserDefaults standardUserDefaults]setInteger:fileID forKey:_pUserProfilePic];
-        [QBContent TDownloadFileWithBlobID:fileID delegate:self];
-    }
-    else {
-        [spinnerImageView stopAnimating];
-        [spinnerImageView setHidden:true];
-        UIImage *profileImage = [[CommonFunctions sharedObject] imageWithName:@"placeholder"
-                                                                      andType:_pPNGType];
-        [imageViewProfile setImage:profileImage];
-        [QBAuth createSessionWithDelegate:self];
-    }
-}
-
 #pragma mark - Other Methods
+
+- (void)showSplashScreen {
+    SplashScreenViewController *splashView = [[SplashScreenViewController alloc] initWithNibName:@"SplashScreenViewController" bundle:nil];
+    [self.navigationController presentViewController:splashView animated:false completion:nil];
+}
 
 - (void)setupNavigationBar {
     
@@ -133,6 +105,49 @@
     // Setting up Bar Button Items
     
     commFunc = [CommonFunctions sharedObject];
+    userDefs = [NSUserDefaults standardUserDefaults];
+    
+    _objUserDetail = [commFunc getQBUserObjectFromUserDefaults];
+    lblName.text=_objUserDetail.fullName;
+    NSRange range=[_objUserDetail.website rangeOfString:@"http://"];
+    lblMotto.text=[_objUserDetail.website substringFromIndex:range.location+range.length];
+    lblActive.text=@"active";
+    
+    if (_objUserDetail.blobID) {
+        [spinnerImageView setHidden:false];
+        [spinnerImageView startAnimating];
+        [QBContent TDownloadFileWithBlobID:_objUserDetail.blobID delegate:self];
+    }
+    else if (_objUserDetail.facebookID.length) {
+        
+        /* make the API call */
+        NSString *pathPicture = [NSString stringWithFormat:@"/%@/picture", _objUserDetail.facebookID];
+        
+        [FBRequestConnection startWithGraphPath:pathPicture
+                                      parameters:nil
+                                      HTTPMethod:@"GET"
+                               completionHandler:^(
+                                                   FBRequestConnection *connection,
+                                                   id result,
+                                                   NSError *error
+                                                   ) {
+                                   NSLog(@"Result : %@", result);
+                                   /* handle the result */
+                               }];
+    }
+    else {
+        [spinnerImageView stopAnimating];
+        [spinnerImageView setHidden:true];
+        UIImage *profileImage = [[CommonFunctions sharedObject] imageWithName:@"placeholder"
+                                                                      andType:_pPNGType];
+        [imageViewProfile setImage:profileImage];
+    }
+    
+    if(!_objUserDetail){
+        NSData *notesData = [[NSUserDefaults standardUserDefaults] objectForKey:@"userObj"];
+        _objUserDetail = (QBUUser *)[NSKeyedUnarchiver unarchiveObjectWithData:notesData];
+    }
+    
     
     [self setupNavigationBar];
     
@@ -152,7 +167,7 @@
         if(_dicUserInfo)
             [self updateUserProfileData:_dicUserInfo];
         else
-            [self updateUserInfo:objUserDetail];
+            [self updateUserInfo:_objUserDetail];
     }
     
     UIPanGestureRecognizer *panViewBottom = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panBottomView:)];
@@ -160,8 +175,8 @@
     [panViewBottom setMaximumNumberOfTouches:1];
     [viewNotifications addGestureRecognizer:panViewBottom];
     
-    [viewNotifications.layer setBorderColor:[UIColor whiteColor].CGColor];
-    [viewNotifications.layer setBorderWidth:2];
+    //    [viewNotifications.layer setBorderColor:[UIColor whiteColor].CGColor];
+    //    [viewNotifications.layer setBorderWidth:2];
 }
 
 - (void)showLoginView {
@@ -218,7 +233,7 @@
 
 - (void)panBottomView:(UIPanGestureRecognizer *)recognizer {
     CGPoint translation = [recognizer translationInView:self.view];
-
+    
     int offsetAsPer3Rows = (65 * 3) + 14 + 52;
     
     CGRect frameBoundary = CGRectMake(0,
@@ -227,7 +242,7 @@
                                       254);
     
     CGPoint pointTranslated = CGPointMake(recognizer.view.frame.origin.x, recognizer.view.frame.origin.y + translation.y);
-
+    
     if (CGRectContainsPoint(frameBoundary, pointTranslated)) {
         recognizer.view.center = CGPointMake(recognizer.view.center.x,
                                              recognizer.view.center.y + translation.y);
@@ -256,21 +271,21 @@
 #pragma mark - Update UserInformation
 
 -(void)updateUserProfileData:(NSDictionary *)userInfo {
-
-    if(!objUserDetail)
-        objUserDetail=[[QBUUser alloc]init];
     
-    objUserDetail.ID=[[userInfo objectForKey:@"id"]integerValue];
-    objUserDetail.fullName=[userInfo objectForKey:@"full_name"];
-    objUserDetail.email=[userInfo objectForKey:@"email"];
-    objUserDetail.login=[userInfo objectForKey:@"login"];
-    objUserDetail.website=[userInfo objectForKey:@"website"];
+    if(!_objUserDetail)
+        _objUserDetail=[[QBUUser alloc]init];
+    
+    _objUserDetail.ID       = [[userInfo objectForKey:@"id"]integerValue];
+    _objUserDetail.fullName = [userInfo objectForKey:@"full_name"];
+    _objUserDetail.email    = [userInfo objectForKey:@"email"];
+    _objUserDetail.login    = [userInfo objectForKey:@"login"];
+    _objUserDetail.website  = [userInfo objectForKey:@"website"];
 }
 
 #pragma mark loginView Delegate
 
 -(void)updateUserInfo:(QBUUser *)objUser {
-    objUserDetail=objUser;
+    _objUserDetail = objUser;
 }
 
 #pragma mark - IBActions
@@ -294,10 +309,10 @@
 
 - (IBAction)editAccountAction:(id)sender {
     
-    RegisterViewController *objRegisterView=[[RegisterViewController alloc]initWithNibName:@"RegisterViewController" bundle:nil];
+    RegisterViewController *objRegisterView = [[RegisterViewController alloc]initWithNibName:@"RegisterViewController" bundle:nil];
     
-    objRegisterView.objUser=objUserDetail;
-    objRegisterView.imgProfilePic=imageViewProfile.image;
+    objRegisterView.objUser = _objUserDetail;
+    objRegisterView.imgProfilePic = imageViewProfile.image;
     [self.navigationController pushViewController:objRegisterView animated:YES];
 }
 
@@ -317,54 +332,70 @@
     UIImage *profileImage = [[CommonFunctions sharedObject] imageWithName:@"placeholder"
                                                                   andType:_pPNGType];
     [imageViewProfile setImage:profileImage];
-    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+    
+    [userDefs removeObjectForKey:_pudUserInfo];
+    [userDefs removeObjectForKey:@"Password"];
     [userDefs setBool:false forKey:_pudLoggedIn];
     [userDefs synchronize];
     
-    [self showLoginView];
+    [QBUsers logOutWithDelegate:self];
+    
+//    [self showLoginView];
 }
 
 - (IBAction)notificationsAction:(id)sender {
     [self handleRecentReminderViewForRecognizer:FALSE];
-    
+}
+
+#pragma mark - Logout Alert 
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ([alertView tag] == 1) {
+        if (buttonIndex == 1) {
+            [QBUsers logOutWithDelegate:self];
+        }
+    }
 }
 
 #pragma mark - QB Delegate Method
 
 -(void)completedWithResult:(Result *)result{
     // Download file result
-    if ([result isKindOfClass:QBCFileDownloadTaskResult.class]) {
-        [spinnerImageView stopAnimating];
-        [spinnerImageView setHidden:true];
-        // Success result
-        if (result.success) {
-            QBCFileDownloadTaskResult *res = (QBCFileDownloadTaskResult *)result;
-            if ([res file]) {
-                // Add image to gallery
-                [[DataManager instance] savePicture:[UIImage imageWithData:[res file]]];
-                UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[res file]]];
-                imageView.contentMode = UIViewContentModeScaleAspectFit;
-                imageViewProfile.image=imageView.image;
-                // [[[DataManager instance] fileList] removeLastObject];
-            }
-        }
-    }
-    else if ([result isKindOfClass:[QBCBlobPagedResult class]]){
-        
-        // Success result
-        if(result.success){
-            QBCBlobPagedResult *res = (QBCBlobPagedResult *)result;
-            
-            // Save user's filelist
-            [DataManager instance].fileList = [res.blobs mutableCopy];
-            
-            NSLog(@"%@", [DataManager instance].fileList);
-            [self downloadFile];
-            // hid splash screen
-            
-        }
-    }
     
+    if ([result isKindOfClass:[QBAAuthSessionCreationResult class]]) {
+        if (result.success) {
+            NSLog(@"Session created successfully");
+//            [self setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+//            [self dismissViewControllerAnimated:true completion:nil];
+        }
+    }
+    else if ([result isKindOfClass:[QBCFileDownloadTaskResult class]]){
+        [spinnerImageView stopAnimating];
+        if(result.success){
+            QBCFileDownloadTaskResult *res = (QBCFileDownloadTaskResult *)result;
+            NSData *fileData = res.file;
+            
+            UIImage *imageProfile = [UIImage imageWithData:fileData];
+            [imageViewProfile setImage:imageProfile];
+        }
+    }
+    else if ([result isKindOfClass:[QBUUserLogOutResult class]]){
+		QBUUserLogOutResult *res = (QBUUserLogOutResult *)result;
+        
+		if(res.success){
+		    [self showLoginView];
+		}else{
+            UIAlertView *errorLogoutAlert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                       message:@"Cannot logout right now"
+                                                                      delegate:self
+                                                             cancelButtonTitle:@"OK"
+                                                             otherButtonTitles:@"Retry", nil];
+            [errorLogoutAlert setTag:1];
+            [errorLogoutAlert show];
+            errorLogoutAlert = nil;
+            NSLog(@"errors=%@", result.errors);
+		}
+	}
 }
 
 -(void)setProgress:(float)progress{

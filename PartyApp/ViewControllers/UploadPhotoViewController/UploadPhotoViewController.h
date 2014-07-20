@@ -37,17 +37,23 @@ typedef enum{
     __weak IBOutlet UITextView *txtViewUploadLater;
     __weak IBOutlet UIProgressView *progressViewImageUpload;
     __weak IBOutlet UIButton *buttonNext;
-      UIView *loadingView;
+    __weak IBOutlet UIActivityIndicatorView *spinnerProfileImage;
+    
+    UIView *loadingView;
+
     BOOL isSignUpSuccess;
+    BOOL toUploadImage;
+    
     signUpResultType resultType;
     ImageUploadStatus imageUploadStatus;
     NSDictionary *dicInfo;
 
 }
 
-@property (nonatomic,retain) UIImagePickerController* imagePicker;
-@property (nonatomic,retain)QBUUser *objUser;
-@property (nonatomic,weak)UIImage *imgProfilePic;
+@property (nonatomic, retain) UIImagePickerController* imagePicker;
+@property (nonatomic, retain) QBUUser *objUser;
+@property (assign, nonatomic) BOOL userInfoChanged;
+@property (nonatomic, weak) UIImage *imgProfilePic;
 
 @end
 

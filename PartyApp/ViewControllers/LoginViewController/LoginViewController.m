@@ -16,7 +16,9 @@
 #import "SignUpModel.h"
 #import "SplashScreenViewController.h"
 
-@interface LoginViewController () <UITextFieldDelegate, UITextViewDelegate, QBActionStatusDelegate>
+@interface LoginViewController () <UITextFieldDelegate, UITextViewDelegate, QBActionStatusDelegate> {
+    NSDictionary *dictUserFB;
+}
 
 @end
 
@@ -35,21 +37,27 @@
 {
     [super viewDidLoad];
     
+    [QBAuth createSessionWithDelegate:self];
+    
     // Do any additional setup after loading the view from its nib.
     [self.navigationController setNavigationBarHidden:true animated:true];
     [self setTitle:@"Login"];
     
-    [self showSplashScreen];
+//    [self showSplashScreen];
     [self initDefaults];
 }
 
-- (void)showSplashScreen {
-    SplashScreenViewController *splashView = [[SplashScreenViewController alloc] initWithNibName:@"SplashScreenViewController" bundle:nil];
-    [self.navigationController presentViewController:splashView animated:false completion:nil];
-}
+//- (void)showSplashScreen {
+//    SplashScreenViewController *splashView = [[SplashScreenViewController alloc] initWithNibName:@"SplashScreenViewController" bundle:nil];
+//    [self.navigationController presentViewController:splashView animated:false completion:nil];
+//}
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:true animated:YES];
+    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+    if (![userDefs boolForKey:_pudLoggedIn])
+        [self.navigationController setNavigationBarHidden:true animated:YES];
+    else
+        [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -69,34 +77,12 @@
 
 - (void)initDefaults {
     
+    [self setupTextViewForLoginView];
+    
     UITapGestureRecognizer *tapOnScrollView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resetScrollView:)];
     [tapOnScrollView setNumberOfTapsRequired:1];
     [tapOnScrollView setNumberOfTouchesRequired:1];
     [scrollView addGestureRecognizer:tapOnScrollView];
-    
-    NSString *forgotPasswordText = @"Forgot Password? Click HERE";
-    NSMutableAttributedString *attrTextForgotLabel = [[NSMutableAttributedString alloc] initWithString:forgotPasswordText];
-    
-    UIFont *fontTextView = [UIFont fontWithName:@"ArialMT" size:9];
-    
-    NSDictionary *dictAttrTextForgot = [NSDictionary dictionaryWithObjectsAndKeys:
-                                        [UIColor yellowColor], NSForegroundColorAttributeName,
-                                        @"forgotpassword", NSLinkAttributeName,
-                                        fontTextView, NSFontAttributeName, nil];
-    
-    NSDictionary *dictAttrTextSimple = [NSDictionary dictionaryWithObjectsAndKeys:
-                                        [UIColor whiteColor], NSForegroundColorAttributeName,
-                                        fontTextView, NSFontAttributeName, nil];
-    
-    NSRange rangeClickHere = [forgotPasswordText rangeOfString:@"Click HERE"];
-    NSRange rangeForgotPass = [forgotPasswordText rangeOfString:@"Forgot Password?"];
-    [attrTextForgotLabel addAttributes:dictAttrTextForgot range:rangeClickHere];
-    [attrTextForgotLabel addAttributes:dictAttrTextSimple range:rangeForgotPass];
-    
-    [txtViewForgotPassword setAttributedText:attrTextForgotLabel];
-    [txtViewForgotPassword setTextAlignment:NSTextAlignmentCenter];
-    
-    [self setTextFieldBackgroundsWithTextField:nil];
     
     UIImage *backImage = [[CommonFunctions sharedObject] imageWithName:@"viewBack" andType:_pPNGType];
     UIColor *backColor = [UIColor colorWithPatternImage:backImage];
@@ -120,6 +106,32 @@
         }
     }
     
+}
+
+- (void)setupTextViewForLoginView {
+    NSString *forgotPasswordText = @"Forgot Password? Click HERE";
+    NSMutableAttributedString *attrTextForgotLabel = [[NSMutableAttributedString alloc] initWithString:forgotPasswordText];
+    
+    UIFont *fontTextView = [UIFont fontWithName:@"ArialMT" size:9];
+    
+    NSDictionary *dictAttrTextForgot = [NSDictionary dictionaryWithObjectsAndKeys:
+                                        [UIColor yellowColor], NSForegroundColorAttributeName,
+                                        @"forgotpassword", NSLinkAttributeName,
+                                        fontTextView, NSFontAttributeName, nil];
+    
+    NSDictionary *dictAttrTextSimple = [NSDictionary dictionaryWithObjectsAndKeys:
+                                        [UIColor whiteColor], NSForegroundColorAttributeName,
+                                        fontTextView, NSFontAttributeName, nil];
+    
+    NSRange rangeClickHere = [forgotPasswordText rangeOfString:@"Click HERE"];
+    NSRange rangeForgotPass = [forgotPasswordText rangeOfString:@"Forgot Password?"];
+    [attrTextForgotLabel addAttributes:dictAttrTextForgot range:rangeClickHere];
+    [attrTextForgotLabel addAttributes:dictAttrTextSimple range:rangeForgotPass];
+    
+    [txtViewForgotPassword setAttributedText:attrTextForgotLabel];
+    [txtViewForgotPassword setTextAlignment:NSTextAlignmentCenter];
+    
+    [self setTextFieldBackgroundsWithTextField:nil];
 }
 
 #pragma mark - Other Methods
@@ -153,6 +165,22 @@
     }
 }
 
+#pragma mark - To Check if fb user exists
+
+- (void)checkIfUserExists {
+    PagedRequest *pagedRequest = [PagedRequest request];
+    pagedRequest.perPage = 50;
+    pagedRequest.page = 1;
+
+    NSArray *arrIDs = [NSArray arrayWithObject:[dictUserFB objectForKey:@"id"]];
+    [QBUsers usersWithFacebookIDs:arrIDs
+                     pagedRequest:pagedRequest
+                         delegate:self];
+//    [QBUsers usersWithLogins:[dictUserFB objectForKey:@"id"]
+//                pagedRequest:pagedRequest
+//                    delegate:self];
+}
+
 #pragma mark - IBActions
 
 - (IBAction)btnCreateAccountAction:(id)sender {
@@ -177,19 +205,17 @@
                            password:txtFieldPassword.text
                            delegate:self];
     }
+    [self resetFramesForView];
 }
 
 - (IBAction)btnConnectFacebookAction:(id)sender {
-    
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     [appDelegate.session closeAndClearTokenInformation];
     
     
-    if (appDelegate.session.state != FBSessionStateCreated) {
-        // Create a new, logged out session.
+    if (appDelegate.session.state != FBSessionStateCreated)
         appDelegate.session = [[FBSession alloc] init];
-    }
     
     // if the session isn't open, let's open it now and present the login UX to the user
     [appDelegate.session openWithCompletionHandler:^(FBSession *session,
@@ -197,9 +223,9 @@
                                                      NSError *error) {
         // and here we make sure to update our UX according to the new session state
         // [appDelegate getUserInformation];
+        loadingView = [[CommonFunctions sharedObject] showLoadingView];
         FBRequest *me = [[FBRequest alloc] initWithSession:session
                                                  graphPath:@"me"];
-        
         
         [me startWithCompletionHandler:^(FBRequestConnection *connection,
                                          // we expect a user as a result, and so are using FBGraphUser protocol
@@ -208,125 +234,46 @@
                                          NSDictionary<FBGraphUser> *user,
                                          NSError *error) {
             
-            
             NSLog(@"User Detail %@",user);
-            
-            [self createAccount:(NSDictionary *)user];
+            dictUserFB = [[NSDictionary alloc] initWithDictionary:user];
+//            [self createAccount:(NSDictionary *)user];
+            [self checkIfUserExists];
             
             if (error) {
+                [[CommonFunctions sharedObject] hideLoadingView:loadingView];
+                
+                NSString *errorMsgFB = @"Can't access your info right now.";
+                UIAlertView *alertFBError = [[UIAlertView alloc] initWithTitle:@"Facebook Error"
+                                                                       message:errorMsgFB
+                                                                      delegate:nil
+                                                             cancelButtonTitle:@"OK"
+                                                             otherButtonTitles:nil, nil];
+                [alertFBError show];
                 NSLog(@"Couldn't get info : %@", error.localizedDescription);
                 return;
             }
-            //                ProfileViewController *objProfileView;
-            //                for (id controller in self.navigationController
-            //
-            //
-            //                     .viewControllers) {
-            //
-            //                    if([(ProfileViewController *)controller isKindOfClass:[ProfileViewController class]])
-            //                    {
-            //                        objProfileView=(ProfileViewController *)controller;
-            //                        break;
-            //                    }
-            //                }
-            //
-            //                NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-            //                [userDefs setBool:TRUE forKey:_pudLoggedIn];
-            //                [userDefs synchronize];
-            //                [self.navigationController dismissViewControllerAnimated:YES completion:^{
-            //                    //[objProfileView updateUserInfo:user];
-            //                }];
-            
-        }];            ///////
-    }];
-    
-    
-    
-    /*
-     // If the session state is any of the two "open" states when the button is clicked
-     if (FBSession.activeSession.state == FBSessionStateOpen
-     || FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
-     
-     // Close the session and remove the access token from the cache
-     // The session state handler (in the app delegate) will be called automatically
-     [FBSession.activeSession closeAndClearTokenInformation];
-     
-     // If the session state is not any of the two "open" states when the button is clicked
-     } else {
-     // Open a session showing the user the login UI
-     // You must ALWAYS ask for public_profile permissions when opening a session
-     [FBSession openActiveSessionWithReadPermissions:@[@"public_profile"]
-     allowLoginUI:YES
-     completionHandler:
-     ^(FBSession *session, FBSessionState state, NSError *error) {
-     
-     // Retrieve the app delegate
-     AppDelegate* appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-     // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
-     [appDelegate sessionStateChanged:session state:state error:error];
-     }];
-     }
-     */
-    
-}
-
-- (void)createAccount:(NSDictionary *)dic {
-    loadingView = [[CommonFunctions sharedObject] showLoadingView];
-    
-    NSString *password = @"123456789";
-    [[NSUserDefaults standardUserDefaults] setObject:password forKey:@"Password"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    NSString *fullName=[NSString stringWithFormat:@"%@ %@",[dic objectForKey:@"name"],[dic objectForKey:@"last_name"]];
-    NSDictionary *dictUser = [[NSDictionary alloc ]initWithObjectsAndKeys:[dic objectForKey:@"name"],@"login",fullName,@"full_name",[dic objectForKey:@"email"],@"email",password,@"password",@"Your moto has not set.",@"website",[dic objectForKey:@"id"],@"id",nil];
-    //    NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
-    //
-    //    [dic setObject:_objUser.login forKey:@"login"];
-    //    [dic setObject:_objUser.fullName forKey:@"full_name"];
-    //    [dic setObject:_objUser.email forKey:@"email"];
-    //    [dic setObject:_objUser.password forKey:@"password"];
-    
-    userInfo=dictUser;
-    dictUser=[NSDictionary dictionaryWithObject:dictUser forKey:@"user"];
-    
-    
-    SignUpModel *objSignUpModel = [[SignUpModel alloc] init];
-    [objSignUpModel checkUserWithFacebook:self
-                             withselector:@selector(serverRespnse:)
-                               andDetails:dictUser
-                       toShowWindowLoader:NO];
-    
-}
-
-- (void)serverRespnse:(Result *)response {
-    QBUUserLogInResult *res = (QBUUserLogInResult *)response;
-    if(!res.user)
-    {
-        QBUUser *user=[[QBUUser alloc]init];
-        user.login=@"test851";//[userInfo objectForKey:@"login"];
-        user.fullName=[userInfo objectForKey:@"full_name"];
-        user.email=@"test851@gmail.com";[userInfo objectForKey:@"email"];
-        user.password=[userInfo objectForKey:@"password"];
-        user.website=[userInfo objectForKey:@"website"];
-        user.facebookID=[userInfo objectForKey:@"id"];
-        
-        [QBUsers signUp:user delegate:self];
-        
-        
-    }
-    else
-    {
-        [[CommonFunctions sharedObject] hideLoadingView:loadingView];
-        
-        NSLog(@"%@", res.user);
-        [self updateUserInfo:res.user];
-        [self dismissViewControllerAnimated:true completion:^{
-            if([_delegate respondsToSelector:@selector(updateUserInfo:)])
-            {
-                [_delegate performSelector:@selector(updateUserInfo:) withObject:res.user];
-            }
         }];
-    }
+    }];
+}
+
+- (void)createAccount:(NSDictionary *)dictFBUser {
     
+    NSMutableArray *arrTags = [NSMutableArray arrayWithObjects:
+                               @"PartyFriends", @"Party", @"Friends", @"Awesome", nil];
+    
+    NSString *userFBID = [dictFBUser objectForKey:@"id"];
+    [[NSUserDefaults standardUserDefaults] setObject:userFBID forKey:@"Password"];
+    
+    QBUUser *userFB = [QBUUser user];
+    userFB.login = userFBID;
+    userFB.email = [dictFBUser objectForKey:@"email"];
+    userFB.facebookID = userFBID;
+    userFB.fullName = [dictFBUser objectForKey:@"name"];
+    userFB.password = userFBID;
+    userFB.website = @"http://This is Awesome";
+    userFB.tags = arrTags;
+    
+    [QBUsers signUp:userFB delegate:self];
 }
 
 #pragma mark - Other Methods
@@ -375,64 +322,16 @@
     return shouldInteract;
 }
 
-#pragma mark - Server Response
+#pragma mark - Creating Session in Facebook Case
 
--(void)serverResponseOfLogin:(NSDictionary *)dictUserLoginResult;
-{
+- (void)createUserSession {
+    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *userLoginInfo = [userDefs objectForKey:_pudUserInfo];
     
-    if (![dictUserLoginResult objectForKey:@"errors"]) {
-        
-        NSLog(@"user dic %@",dictUserLoginResult);
-        
-        NSString *login=[[dictUserLoginResult objectForKey:@"login"]isKindOfClass:[NSNull class]]?@"":[dictUserLoginResult objectForKey:@"login"];
-        
-        NSString *password=txtFieldPassword.text;
-        
-        NSString *email=[[dictUserLoginResult objectForKey:@"email"]isKindOfClass:[NSNull class]]?@"":[dictUserLoginResult objectForKey:@"email"];
-        
-        NSString *blog_id=[[dictUserLoginResult objectForKey:@"blob_id"]isKindOfClass:[NSNull class]]?@"":[dictUserLoginResult objectForKey:@"blob_id"];
-        
-        NSString *externalId=[[dictUserLoginResult objectForKey:@"external_user_id"]isKindOfClass:[NSNull class]]?@"":[dictUserLoginResult objectForKey:@"external_user_id"];
-        
-        NSString *facebook_id=[[dictUserLoginResult objectForKey:@"facebook_id"]isKindOfClass:[NSNull class]]?@"":[dictUserLoginResult objectForKey:@"facebook_id"];
-        
-        NSString *twitter_id=[[dictUserLoginResult objectForKey:@"twitter_id"]isKindOfClass:[NSNull class]]?@"":[dictUserLoginResult objectForKey:@"twitter_id"];
-        
-        NSString *full_name=[[dictUserLoginResult objectForKey:@"full_name"]isKindOfClass:[NSNull class]]?@"":[dictUserLoginResult objectForKey:@"full_name"];
-        
-        
-        NSString *phone=[[dictUserLoginResult objectForKey:@"phone"]isKindOfClass:[NSNull class]]?@"":[dictUserLoginResult objectForKey:@"phone"];
-        
-        NSString *website=[[dictUserLoginResult objectForKey:@"website"]isKindOfClass:[NSNull class]]?@"":[dictUserLoginResult objectForKey:@"website"];
-        
-        NSString *customdata=[[dictUserLoginResult objectForKey:@"custom_data"]isKindOfClass:[NSNull class]]?@"":[dictUserLoginResult objectForKey:@"custom_data"];
-        
-        NSString *tag=[[dictUserLoginResult objectForKey:@"user_tags"]isKindOfClass:[NSNull class]]?@"":[dictUserLoginResult objectForKey:@"user_tags"];
-        
-        NSDictionary *detail=[[NSDictionary alloc]initWithObjectsAndKeys:login,@"login",password,@"password",email,@"email",blog_id,@"blog_id",externalId,@"external_user_id",facebook_id,@"facebook_id",twitter_id,@"twitter_id",full_name,@"full_name",phone,@"phone",website,@"website",customdata,@"custom_data",tag,@"user_tags", nil];
-        
-        
-        NSDictionary *dictUser=[NSDictionary dictionaryWithObject:detail forKey:@"user"];
-        
-        SignUpModel *objSignUpModel = [[SignUpModel alloc] init];
-        [objSignUpModel UpdateUserWithTarget:self
-                                withselector:@selector(serverResponseOfLogin:)
-                                  andDetails:dictUser
-                          toShowWindowLoader:NO User_id:[dictUserLoginResult objectForKey:@"id"]];
-    }
-    else {
-        NSArray *arrErrors = [dictUserLoginResult objectForKey:@"errors"];
-        NSString *strErrors = [arrErrors componentsJoinedByString:@", "];
-        
-        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                             message:strErrors
-                                                            delegate:nil
-                                                   cancelButtonTitle:@"OK"
-                                                   otherButtonTitles:nil, nil];
-        [errorAlert show];
-    }
-    
-    NSLog(@"Result : %@", dictUserLoginResult);
+    QBASessionCreationRequest *extendedAuthRequest = [QBASessionCreationRequest request];
+    extendedAuthRequest.userLogin = [userLoginInfo objectForKey:@"login"]; // ID: 218651
+    extendedAuthRequest.userPassword = [userDefs objectForKey:@"Password"];
+    [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
 }
 
 #pragma mark - QBSession Delegate Method
@@ -445,46 +344,14 @@
     if ([result isKindOfClass:[QBUUserLogInResult class]]) {
         if (result.success) {
             
-            NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-            
             QBUUserLogInResult *loginResult = (QBUUserLogInResult *)result;
             QBUUser *loginInfo = [loginResult user];
             
-            id null = (id)[NSNull null];
-            
-            NSNumber *userID = [NSNumber numberWithInt:loginInfo.ID];
-            NSNumber *extID = [NSNumber numberWithInt:loginInfo.externalUserID];
-            NSNumber *blobID = [NSNumber numberWithInt:loginInfo.blobID];
-            NSString *fID = !loginInfo.facebookID ? @"" : loginInfo.facebookID;
-            NSString *tID = !loginInfo.twitterID ? @"" : loginInfo.twitterID;
-            NSString *fullName = (loginInfo.fullName == null) ? @"" : loginInfo.fullName;
-            NSString *email = (loginInfo.email == null) ? @"" : loginInfo.email;
-            NSString *phone = !loginInfo.phone ? @"" : loginInfo.phone;
-            NSString *website = (loginInfo.website == null) ? @"" : loginInfo.website;
-            
-            NSMutableDictionary *dictUserInfo = [[NSMutableDictionary alloc] init];
-            [dictUserInfo setObject:userID              forKey:@"ID"];
-            [dictUserInfo setObject:loginInfo.createdAt forKey:@"createdAt"];
-            [dictUserInfo setObject:loginInfo.updatedAt forKey:@"updatedAt"];
-            [dictUserInfo setObject:extID               forKey:@"externalUserID"];
-            [dictUserInfo setObject:blobID              forKey:@"blobID"];
-            [dictUserInfo setObject:loginInfo.login     forKey:@"login"];
-            [dictUserInfo setObject:fullName            forKey:@"fullName"];
-            [dictUserInfo setObject:website             forKey:@"website"];
-            [dictUserInfo setObject:phone               forKey:@"phone"];
-            [dictUserInfo setObject:fID                 forKey:@"facebookID"];
-            [dictUserInfo setObject:tID                 forKey:@"twitterID"];
-            [dictUserInfo setObject:email               forKey:@"email"];
-            [dictUserInfo setObject:[NSArray array]     forKey:@"tags"];
-            
-            NSLog(@"Model Info : %@", loginInfo);
-            NSLog(@"User Info : %@", dictUserInfo);
-            [userDefs setObject:dictUserInfo forKey:@"userInfo"];
+            [[CommonFunctions sharedObject] saveInformationInDefaultsForUser:loginInfo];
             [self dismissViewControllerAnimated:true completion:nil];
         }
-        else {
+        else
             error = TRUE;
-        }
         
         if (error)
             [[[UIAlertView alloc] initWithTitle:@"Session Problem"
@@ -492,46 +359,96 @@
                                        delegate:nil
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil, nil] show];
-        else {
+        else
             [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else if ([result isKindOfClass:[QBUUserResult class]]) {
+        if (result.success) {
+            //        [spinner stopAnimating];
+            QBUUserResult *userResult = (QBUUserResult *)result;
+            NSLog(@"userResult : %@", userResult.user);
+            [[CommonFunctions sharedObject] saveInformationInDefaultsForUser:userResult.user];
+//            [self createUserSession];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }
+    else if([result isKindOfClass:[QBUUserPagedResult class]]){
+        if(result.success) {
+            QBUUserPagedResult *usersResult = (QBUUserPagedResult *)result;
+            NSArray *arrUsers = usersResult.users;
+            if (arrUsers.count) {
+                NSString *fbAccessToken = [[[FBSession activeSession] accessTokenData] accessToken];
+                [QBUsers logInWithSocialProvider:@"facebook"
+                                     accessToken:fbAccessToken
+                               accessTokenSecret:nil
+                                        delegate:self];
+            }
+            else
+                [self createAccount:dictUserFB];
+
+//            QBUUser *userLogin = (QBUUser *)[usersResult.users objectAtIndex:0];
+//            [[CommonFunctions sharedObject] saveInformationInDefaultsForUser:userLogin];
+//            NSLog(@"Page parameters: currentPage %d, totalPages %d, perPage %d, totalEntries %d",
+//                  usersResult.currentPage, usersResult.totalPages, usersResult.perPage, usersResult.totalEntries);
+        }
+        else{
+            NSLog(@"errors=%@", result.errors);
+        }
+    }
+    if ([result isKindOfClass:[QBAAuthSessionCreationResult class]]) {
+        if (result.success) {
+//            [self dismissViewControllerAnimated:true completion:nil];
+            NSLog(@"Created");
+        }
+        else {
+            NSString *errorMessage = @"Unable to create session for user, please try after sometime";
+            UIAlertView *alertSessionAlert = [[UIAlertView alloc] initWithTitle:@"Session"
+                                                                        message:errorMessage
+                                                                       delegate:nil
+                                                              cancelButtonTitle:@"OK"
+                                                              otherButtonTitles:nil, nil];
+            [alertSessionAlert show];
+            [[NSUserDefaults standardUserDefaults] setBool:false forKey:_pudLoggedIn];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }
     }
 }
 
-#pragma -mark store User Dictionary;
--(void)updateUserInfo:(QBUUser *)user
-{
-    NSMutableDictionary *userDetail=[[NSMutableDictionary alloc]init];
-    [userDetail setValue:user.login forKey:@"login"];
-    [userDetail setValue:user.email forKey:@"email"];
-    [userDetail setValue:user.fullName forKey:@"full_name"];
-    [userDetail setValue:user.website forKey:@"website"];
-    
-    //    NSString *fbID=[user.facebookID isKindOfClass:[NSNull class]]?@"":user.facebookID;
-    //    NSString *twID=[user.twitterID isKindOfClass:[NSNull class]]?@"":user.twitterID;
-    //    NSString *phID=[user.phone isKindOfClass:[NSNull class]]?@"":user.phone;
-    //    NSString *pwdID=[user.password isKindOfClass:[NSNull class]]?@"":user.password;
-    //    NSString *oldPwdID=[user.oldPassword isKindOfClass:[NSNull class]]?@"":user.oldPassword;
-    //
-    //    [userDetail setValue:fbID forKey:@"facebookID"];
-    //    [userDetail setValue:twID forKey:@"twitterID"];
-    //    [userDetail setValue:phID forKey:@"phone"];
-    //    [userDetail setValue:pwdID forKey:@"password"];
-    //    [userDetail setValue:oldPwdID forKey:@"oldPassword"];
-    
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:user];
-    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"userObj"];
-    
-    [[NSUserDefaults standardUserDefaults]setObject:userDetail forKey:@"userDetail"];
-    
-    
-    
-    [[NSUserDefaults standardUserDefaults] setObject:txtFieldPassword.text forKey:@"Password"];
-    [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
-    
-    
-    [[NSUserDefaults standardUserDefaults]synchronize];
-}
+#pragma -mark store User Dictionary
+
+//-(void)updateUserInfo:(QBUUser *)user {
+//    
+//    NSMutableDictionary *userDetail=[[NSMutableDictionary alloc]init];
+//    [userDetail setValue:user.login forKey:@"login"];
+//    [userDetail setValue:user.email forKey:@"email"];
+//    [userDetail setValue:user.fullName forKey:@"full_name"];
+//    [userDetail setValue:user.website forKey:@"website"];
+//    
+//    //    NSString *fbID=[user.facebookID isKindOfClass:[NSNull class]]?@"":user.facebookID;
+//    //    NSString *twID=[user.twitterID isKindOfClass:[NSNull class]]?@"":user.twitterID;
+//    //    NSString *phID=[user.phone isKindOfClass:[NSNull class]]?@"":user.phone;
+//    //    NSString *pwdID=[user.password isKindOfClass:[NSNull class]]?@"":user.password;
+//    //    NSString *oldPwdID=[user.oldPassword isKindOfClass:[NSNull class]]?@"":user.oldPassword;
+//    //
+//    //    [userDetail setValue:fbID forKey:@"facebookID"];
+//    //    [userDetail setValue:twID forKey:@"twitterID"];
+//    //    [userDetail setValue:phID forKey:@"phone"];
+//    //    [userDetail setValue:pwdID forKey:@"password"];
+//    //    [userDetail setValue:oldPwdID forKey:@"oldPassword"];
+//    
+//    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:user];
+//    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"userObj"];
+//    
+//    [[NSUserDefaults standardUserDefaults]setObject:userDetail forKey:@"userDetail"];
+//    
+//    
+//    
+//    [[NSUserDefaults standardUserDefaults] setObject:txtFieldPassword.text forKey:@"Password"];
+//    [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
+//    
+//    
+//    [[NSUserDefaults standardUserDefaults]synchronize];
+//}
 
 #pragma mark - Tap Gesture on ScrollView
 

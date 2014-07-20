@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
@@ -11,6 +11,7 @@
                 <outlet property="lblAllYouNeed" destination="fXk-HK-8dE" id="sUd-hi-sTe"/>
                 <outlet property="lblAlmostDone" destination="8cu-yD-CDb" id="d93-Ef-8VA"/>
                 <outlet property="progressViewImageUpload" destination="7c5-QN-ezq" id="RQq-1w-cz9"/>
+                <outlet property="spinnerProfileImage" destination="KKI-sc-Y14" id="V0M-qi-uQ8"/>
                 <outlet property="txtViewUploadLater" destination="FTK-oU-aXd" id="73S-bJ-DuL"/>
                 <outlet property="view" destination="Fr5-5H-xm2" id="vfA-Nn-nHz"/>
             </connections>
@@ -20,7 +21,7 @@
             <rect key="frame" x="0.0" y="64" width="320" height="416"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="D5n-xP-sQP">
+                <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cameraImage.png" id="D5n-xP-sQP">
                     <rect key="frame" x="69" y="40" width="183" height="156"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -54,19 +55,12 @@
                                 <action selector="nextButtonAction:" destination="-1" eventType="touchUpInside" id="MU9-cq-M9q"/>
                             </connections>
                         </button>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" delaysContentTouches="NO" editable="NO" usesAttributedText="YES" id="FTK-oU-aXd">
-                            <rect key="frame" x="29" y="68" width="271" height="50"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" delaysContentTouches="NO" editable="NO" text="By Signing up you accept our Terms of Use and Privacy Policy" textAlignment="center" id="FTK-oU-aXd">
+                            <rect key="frame" x="25" y="68" width="271" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <color key="tintColor" red="0.91764705879999997" green="0.69803921570000005" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
-                            <attributedString key="attributedText">
-                                <fragment content="By Signing up you accept our Terms of Use and Privacy Policy">
-                                    <attributes>
-                                        <font key="NSFont" size="8" name="HelveticaNeue"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="8"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             <dataDetectorType key="dataDetectorTypes" link="YES" address="YES"/>
                             <connections>
@@ -82,6 +76,10 @@
                     <color key="progressTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="trackTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </progressView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="KKI-sc-Y14">
+                    <rect key="frame" x="145" y="104" width="37" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -90,6 +88,7 @@
         </view>
     </objects>
     <resources>
+        <image name="cameraImage.png" width="183" height="156"/>
         <image name="purpleButton.png" width="183" height="36"/>
     </resources>
 </document>

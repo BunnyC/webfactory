@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class QBUUser;
+
 @interface CommonFunctions : NSObject
 
 #pragma mark - Shared Object
@@ -38,5 +40,10 @@
 - (UIButton *)buttonNavigationItemWithImage:(UIImage *)image
                                   forTarget:(id)controller
                                 andSelector:(SEL)selector;
+
+#pragma mark - Saving/Fetching UserInfo in/from UserDefaults
+
+- (void)saveInformationInDefaultsForUser:(QBUUser *)userInfo;
+- (QBUUser *)getQBUserObjectFromUserDefaults;
 
 @end

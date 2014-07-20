@@ -15,11 +15,9 @@
 
 #pragma mark - AppDelegate Methods
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-   // Quickblox Account Setting
-    
+    // Quickblox Account Setting
     [QBSettings setApplicationID:_pApplicationID];
     [QBSettings setAuthorizationKey:_pAuthorizationKey];
     [QBSettings setAuthorizationSecret:_pAuthorizationSecret];
@@ -44,8 +42,7 @@
     
     NSDictionary *dictNavTitleAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                             colorNavTitleText, NSForegroundColorAttributeName,
-                                            fontNavTitleText, NSFontAttributeName,
-                                            nil];
+                                            fontNavTitleText, NSFontAttributeName, nil];
     
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
@@ -59,14 +56,10 @@
         xibName = [NSString stringWithFormat:@"%@4", xibName];
    
     ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:xibName bundle:nil];
-    objProfileView.isComeFromSignUp=FALSE;
+    objProfileView.isComeFromSignUp = FALSE;
     self.navController = [[UINavigationController alloc] initWithRootViewController:objProfileView];
     [self.navController.navigationBar setTranslucent:false];
-    
-  
-    
-    
-    
+
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
         NSLog(@"Found a cached session");
         // If there's one, just open the session silently, without showing the user the login UI

@@ -23,13 +23,13 @@
     __weak IBOutlet UIImageView *imgViewBackNotif;
     
     UIImage *profilePic;
-    QBUUser *objUserDetail;
-
 }
 
 @property (nonatomic,retain) NSDictionary *dicUserInfo;
 @property (nonatomic,assign)BOOL isComeFromSignUp;
 @property (nonatomic,retain)QBUUser *objUserDetail;
--(void)updateUserInfo:(QBUUser *)objUser;
+
+- (void)updateUserInfo:(QBUUser *)objUser;
+
 @end
 

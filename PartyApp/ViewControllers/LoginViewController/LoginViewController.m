@@ -204,6 +204,8 @@
         [QBUsers logInWithUserLogin:txtFieldUsername.text
                            password:txtFieldPassword.text
                            delegate:self];
+        [[NSUserDefaults standardUserDefaults] setObject:txtFieldPassword.text
+                                                  forKey:@"Password"];
     }
     [self resetFramesForView];
 }

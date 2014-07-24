@@ -50,13 +50,20 @@
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:_pudLoggedIn])
         [self showLoginView];
-    else
-        [self showSplashScreen];
+    //    else
+    //        [self createSession];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self initDefaults];
+    
+    NSDate *sessionExpiratioDate = [QBBaseModule sharedModule].tokenExpirationDate;
+    NSDate *currentDate = [NSDate date];
+    NSTimeInterval interval = [currentDate timeIntervalSinceDate:sessionExpiratioDate];
+    if(interval > 0 || !sessionExpiratioDate)
+        [self createSession];
+    else
+        [self initDefaults];
 }
 
 - (void)createSession {
@@ -114,9 +121,11 @@
     lblActive.text=@"active";
     
     if (_objUserDetail.blobID) {
-        [spinnerImageView setHidden:false];
-        [spinnerImageView startAnimating];
-        [QBContent TDownloadFileWithBlobID:_objUserDetail.blobID delegate:self];
+        if (_objUserDetail.blobID != [[userDefs objectForKey:_pudUserAvatar] intValue]) {
+            [spinnerImageView setHidden:false];
+            [spinnerImageView startAnimating];
+            [QBContent TDownloadFileWithBlobID:_objUserDetail.blobID delegate:self];
+        }
     }
     else if (_objUserDetail.facebookID.length) {
         
@@ -124,16 +133,16 @@
         NSString *pathPicture = [NSString stringWithFormat:@"/%@/picture", _objUserDetail.facebookID];
         
         [FBRequestConnection startWithGraphPath:pathPicture
-                                      parameters:nil
-                                      HTTPMethod:@"GET"
-                               completionHandler:^(
-                                                   FBRequestConnection *connection,
-                                                   id result,
-                                                   NSError *error
-                                                   ) {
-                                   NSLog(@"Result : %@", result);
-                                   /* handle the result */
-                               }];
+                                     parameters:nil
+                                     HTTPMethod:@"GET"
+                              completionHandler:^(
+                                                  FBRequestConnection *connection,
+                                                  id result,
+                                                  NSError *error
+                                                  ) {
+                                  NSLog(@"Result : %@", result);
+                                  /* handle the result */
+                              }];
     }
     else {
         [spinnerImageView stopAnimating];
@@ -340,14 +349,14 @@
     
     [QBUsers logOutWithDelegate:self];
     
-//    [self showLoginView];
+    //    [self showLoginView];
 }
 
 - (IBAction)notificationsAction:(id)sender {
     [self handleRecentReminderViewForRecognizer:FALSE];
 }
 
-#pragma mark - Logout Alert 
+#pragma mark - Logout Alert
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([alertView tag] == 1) {
@@ -365,8 +374,8 @@
     if ([result isKindOfClass:[QBAAuthSessionCreationResult class]]) {
         if (result.success) {
             NSLog(@"Session created successfully");
-//            [self setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-//            [self dismissViewControllerAnimated:true completion:nil];
+            //            [self setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+            //            [self dismissViewControllerAnimated:true completion:nil];
         }
     }
     else if ([result isKindOfClass:[QBCFileDownloadTaskResult class]]){

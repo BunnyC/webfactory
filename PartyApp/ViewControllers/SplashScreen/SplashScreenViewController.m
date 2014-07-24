@@ -39,7 +39,7 @@
         
         NSLog(@"Password : %@", [userDefs objectForKey:@"Password"]);
         
-        QBASessionCreationRequest *extendedAuthRequest = [QBASessionCreationRequest request];
+        QBASessionCreationRequest *extendedAuthRequest = [[QBASessionCreationRequest alloc] init];
         extendedAuthRequest.userLogin = [userInfo objectForKey:@"login"]; // ID: 218651
         extendedAuthRequest.userPassword = [userDefs objectForKey:@"Password"];
         [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];

@@ -26,7 +26,7 @@ FOUNDATION_EXPORT NSString *const _pudSessionExpiryDate;
 FOUNDATION_EXPORT NSString *const _pudSessionToken;
 FOUNDATION_EXPORT NSString *const _pudUserInfo;
 FOUNDATION_EXPORT NSString *const _pUserInfoDic;
-FOUNDATION_EXPORT NSString *const _pUserProfilePic;
+FOUNDATION_EXPORT NSString *const _pudUserAvatar;
 FOUNDATION_EXPORT NSString *const _pUpdateProfileSuccess;
 
 FOUNDATION_EXPORT NSString *const _pErrUserNameAndPasswordRequired;

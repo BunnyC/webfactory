@@ -1295,8 +1295,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amandeep Mukar (R93P9VBD4Y)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/Admin/Projects/PartyApp/iOSCode/webfactory,
-					"/Users/Gagan/Documents/Gagan\\ Important\\ Doc/Home\\ Project/\\ PartyApp\\ Project/webfactory",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PartyApp/PartyApp-Prefix.pch";
@@ -1321,8 +1320,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amandeep Mukar (R93P9VBD4Y)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/Admin/Projects/PartyApp/iOSCode/webfactory,
-					"/Users/Gagan/Documents/Gagan\\ Important\\ Doc/Home\\ Project/\\ PartyApp\\ Project/webfactory",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PartyApp/PartyApp-Prefix.pch";

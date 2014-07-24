@@ -26,29 +26,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent
-                                                animated:true];
-    
-    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-    if (![userDefs objectForKey:_pudLoggedIn])
-        [userDefs setBool:false forKey:_pudLoggedIn];
-    if (![userDefs objectForKey:_pudSessionExpiryDate])
-        [userDefs setObject:[NSDate date] forKey:_pudSessionExpiryDate];
-    [userDefs synchronize];
-
-    //  Navigation Bar Setup
-    UIColor *colorNavTitleText = [[CommonFunctions sharedObject] colorWithHexString:@"5f4b5e"];
-    UIFont *fontNavTitleText = [UIFont fontWithName:@"ArialMT" size:14];
-    
-    NSDictionary *dictNavTitleAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                            colorNavTitleText, NSForegroundColorAttributeName,
-                                            fontNavTitleText, NSFontAttributeName, nil];
-    
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
-    [[UINavigationBar appearance] setTitleTextAttributes:dictNavTitleAttributes];
-    
-    [[UITextField appearance] setTintColor:[UIColor whiteColor]];
+    [self setApplicationDefaults];
     
     NSString *xibName = NSStringFromClass([ProfileViewController class]);
     BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
@@ -63,7 +41,7 @@
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
         NSLog(@"Found a cached session");
         // If there's one, just open the session silently, without showing the user the login UI
-        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile"]
+        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"profile_picture"]
                                            allowLoginUI:NO
                                       completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                           // Handler for session state changes
@@ -82,6 +60,35 @@
     return YES;
 }
 
+
+- (void)setApplicationDefaults {
+    
+    [QBAuth createSessionWithDelegate:self];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent
+                                                animated:true];
+    
+    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+    if (![userDefs objectForKey:_pudLoggedIn])
+        [userDefs setBool:false forKey:_pudLoggedIn];
+    if (![userDefs objectForKey:_pudSessionExpiryDate])
+        [userDefs setObject:[NSDate date] forKey:_pudSessionExpiryDate];
+    [userDefs synchronize];
+    
+    //  Navigation Bar Setup
+    UIColor *colorNavTitleText = [[CommonFunctions sharedObject] colorWithHexString:@"5f4b5e"];
+    UIFont *fontNavTitleText = [UIFont fontWithName:@"ArialMT" size:14];
+    
+    NSDictionary *dictNavTitleAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                            colorNavTitleText, NSForegroundColorAttributeName,
+                                            fontNavTitleText, NSFontAttributeName, nil];
+    
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:dictNavTitleAttributes];
+    
+    [[UITextField appearance] setTintColor:[UIColor whiteColor]];
+}
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url

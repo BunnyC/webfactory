@@ -28,7 +28,7 @@ NSString *const _pudSessionExpiryDate   = @"SessionExpiryDate";
 NSString *const _pudSessionToken        = @"SessionToken";
 NSString *const _pudUserInfo            = @"UserInfo";
 NSString *const _pUserInfoDic           = @"UserProfileInfomation";
-NSString *const _pUserProfilePic        = @"UserProfilePic";
+NSString *const _pudUserAvatar          = @"UserAvatar";
 
 #pragma mark - Fonts
 

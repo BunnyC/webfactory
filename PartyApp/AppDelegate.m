@@ -37,7 +37,15 @@
     objProfileView.isComeFromSignUp = FALSE;
     self.navController = [[UINavigationController alloc] initWithRootViewController:objProfileView];
     [self.navController.navigationBar setTranslucent:false];
-
+    [self.window setRootViewController:self.navController];
+    self.window.backgroundColor = [UIColor blackColor];
+    [self.window makeKeyAndVisible];
+    
+    SplashScreenViewController *objSplashView = [[SplashScreenViewController alloc] initWithNibName:@"SplashScreenViewController" bundle:nil];
+    UINavigationController *navContSplash = [[UINavigationController alloc] initWithRootViewController:objSplashView];
+    [navContSplash.navigationBar setTranslucent:FALSE];
+    [_navController presentViewController:navContSplash animated:NO completion:nil];
+    
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
         NSLog(@"Found a cached session");
         // If there's one, just open the session silently, without showing the user the login UI
@@ -47,23 +55,17 @@
                                           // Handler for session state changes
                                           // This method will be called EACH time the session state changes,
                                           // also for intermediate states and NOT just when the session open
-                                         
+                                          
                                       }];
         
         // If there's no cached session, we will show a login button
     }
-    
-    [self.window setRootViewController:self.navController];
-    self.window.backgroundColor = [UIColor blackColor];
-    [self.window makeKeyAndVisible];
     
     return YES;
 }
 
 
 - (void)setApplicationDefaults {
-    
-    [QBAuth createSessionWithDelegate:self];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent
                                                 animated:true];
@@ -121,7 +123,6 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = YES;
-    [QBAuth createSessionWithDelegate:self];
     [FBAppEvents activateApp];
   
     [FBAppCall handleDidBecomeActiveWithSession:self.session];
@@ -140,41 +141,6 @@
 //{
 //    return [FBSession.activeSession handleOpenURL:url];
 //}
-
-#pragma mark - QBSession Delegate
-
-- (void)completedWithResult:(Result *)result{
-    
-    UIApplication* app = [UIApplication sharedApplication];
-    app.networkActivityIndicatorVisible = nil;
-    // QuickBlox application authorization result
-    if([result isKindOfClass:[QBAAuthSessionCreationResult class]]){
-        // Success result
-        if(result.success){
-            
-            for (UIView *view in self.window.subviews) {
-                if ([view isKindOfClass:[FXBlurView class]]) {
-                    for (UIView *subView in view.subviews)
-                        [subView removeFromSuperview];
-                    [view removeFromSuperview];
-                }
-            }
-            
-            NSDate *sessionExpDate = [[QBBaseModule sharedModule] tokenExpirationDate];
-            NSString *sessionToken = [[QBBaseModule sharedModule] token];
-            
-            NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-            [userDefs setObject:sessionExpDate  forKey:_pudSessionExpiryDate];
-            [userDefs setObject:sessionToken    forKey:_pudSessionToken];
-            [userDefs synchronize];
-            refreshingSession = false;
-        }
-        else
-            [self showMessage:@"Unable to make connection this time."
-                    withTitle:@"No Connectivity"];
-    }
-}
-
 
 #pragma mark - Facebook Specific Methods
 

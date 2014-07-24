@@ -263,17 +263,6 @@ NSString *className = @"PALogNight";
 // QuickBlox API queries delegate
 -(void)completedWithResult:(Result*)result{
     
-//    NSUserDefaults *userDefls=[NSUserDefaults standardUserDefaults];
-//    
-//    if([userDefls boolForKey:_pudLoggedIn])
-//    {
-//        if([result isKindOfClass:QBAAuthSessionCreationResult.class])
-//        {
-//            [self.navigationItem.rightBarButtonItem setEnabled:true];
-//        }
-//    }
-    
-    // Create custom object result
     if([result isKindOfClass:QBCOCustomObjectResult.class]){
         
         // Success result
@@ -289,12 +278,6 @@ NSString *className = @"PALogNight";
             QBCOCustomObjectResult *res = (QBCOCustomObjectResult *)result;
             
             NSLog(@"new obj: %@", res.object);
-            
-            // add note to storage
-            //            [[[DataManager shared] notes] addObject:res.object];
-            
-            // hide screen
-            //            [self dismissModalViewControllerAnimated:YES];
             [self.navigationController popViewControllerAnimated:YES];
         }
         [[CommonFunctions sharedObject] hideLoadingView:loadingView];

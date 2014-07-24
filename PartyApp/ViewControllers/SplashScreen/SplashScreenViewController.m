@@ -9,7 +9,9 @@
 #import "SplashScreenViewController.h"
 #import "ProfileViewController.h"
 
-@interface SplashScreenViewController ()
+@interface SplashScreenViewController () {
+    NSUserDefaults *userDefs;
+}
 
 @end
 
@@ -31,10 +33,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-//    if (![[NSUserDefaults standardUserDefaults] boolForKey:_pudLoggedIn])
-//        [QBAuth createSessionWithDelegate:self];
-//    else {
-        NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+    userDefs = [NSUserDefaults standardUserDefaults];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:TRUE];
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:_pudLoggedIn])
+        [QBAuth createSessionWithDelegate:self];
+    else {
+        
         NSMutableDictionary *userInfo = [userDefs objectForKey:_pudUserInfo];
         
         NSLog(@"Password : %@", [userDefs objectForKey:@"Password"]);
@@ -43,13 +52,36 @@
         extendedAuthRequest.userLogin = [userInfo objectForKey:@"login"]; // ID: 218651
         extendedAuthRequest.userPassword = [userDefs objectForKey:@"Password"];
         [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
-//    }
+    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Showing Login View
+
+- (void)addNavigationAnimation {
+    CATransition* transition = [CATransition animation];
+    transition.duration = 0.2;
+    transition.type = kCATransitionFade;
+    transition.subtype = kCATransitionFromTop;
+    
+    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+}
+
+- (void)showLoginView {
+    
+    NSString *xibName = NSStringFromClass([LoginViewController class]);
+    BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
+    if (!isiPhone5)
+        xibName = [NSString stringWithFormat:@"%@4", xibName];
+    
+    LoginViewController *objLoginView = [[LoginViewController alloc] initWithNibName:xibName bundle:nil];
+    [self addNavigationAnimation];
+    [self.navigationController pushViewController:objLoginView animated:NO];
 }
 
 #pragma mark - QBDelegate Methods
@@ -61,8 +93,14 @@
     if ([result isKindOfClass:[QBAAuthSessionCreationResult class]]) {
         if (result.success) {
             NSLog(@"Session created successfully");
-            [self setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-            [self dismissViewControllerAnimated:true completion:nil];
+            
+            if ([userDefs boolForKey:_pudLoggedIn]) {
+                [self setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+                [self dismissViewControllerAnimated:true completion:nil];
+            }
+            else {
+                [self showLoginView];
+            }
         }
         else {
             error = TRUE;

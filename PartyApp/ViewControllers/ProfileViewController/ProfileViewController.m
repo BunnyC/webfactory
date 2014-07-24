@@ -44,35 +44,9 @@
     [self setTitle:@"Party Friends"];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:_pudLoggedIn])
-        [self showLoginView];
-    //    else
-    //        [self createSession];
-}
-
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    NSDate *sessionExpiratioDate = [QBBaseModule sharedModule].tokenExpirationDate;
-    NSDate *currentDate = [NSDate date];
-    NSTimeInterval interval = [currentDate timeIntervalSinceDate:sessionExpiratioDate];
-    if(interval > 0 || !sessionExpiratioDate)
-        [self createSession];
-    else
-        [self initDefaults];
-}
-
-- (void)createSession {
-    
-    NSMutableDictionary *userInfo = [userDefs objectForKey:_pudUserInfo];
-    QBASessionCreationRequest *extendedAuthRequest = [QBASessionCreationRequest request];
-    extendedAuthRequest.userLogin = [userInfo objectForKey:@"login"]; // ID: 218651
-    extendedAuthRequest.userPassword = [userDefs objectForKey:@"Password"];
-    [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
+    [self initDefaults];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -81,11 +55,6 @@
 }
 
 #pragma mark - Other Methods
-
-- (void)showSplashScreen {
-    SplashScreenViewController *splashView = [[SplashScreenViewController alloc] initWithNibName:@"SplashScreenViewController" bundle:nil];
-    [self.navigationController presentViewController:splashView animated:false completion:nil];
-}
 
 - (void)setupNavigationBar {
     
@@ -120,11 +89,22 @@
     lblMotto.text=[_objUserDetail.website substringFromIndex:range.location+range.length];
     lblActive.text=@"active";
     
+    [imageViewProfile.layer setCornerRadius:imageViewProfile.frame.size.width / 2];
+    UIImage *profileImage = [commFunc imageWithName:@"placeholder" andType:_pPNGType];
+    [imageViewProfile setImage:profileImage];
+    
     if (_objUserDetail.blobID) {
-        if (_objUserDetail.blobID != [[userDefs objectForKey:_pudUserAvatar] intValue]) {
+        NSString *avatarID = [userDefs objectForKey:_pudUserAvatar];
+        if (_objUserDetail.blobID != avatarID.intValue || ![userDefs objectForKey:avatarID]) {
             [spinnerImageView setHidden:false];
             [spinnerImageView startAnimating];
             [QBContent TDownloadFileWithBlobID:_objUserDetail.blobID delegate:self];
+        }
+        else {
+            NSString *avatarID = [userDefs objectForKey:_pudUserAvatar];
+            NSString *imgPath = [userDefs objectForKey:avatarID];
+            UIImage *imageProfile = [UIImage imageWithContentsOfFile:imgPath];
+            [imageViewProfile setImage:imageProfile];
         }
     }
     else if (_objUserDetail.facebookID.length) {
@@ -168,9 +148,6 @@
     [self.view sendSubviewToBack:viewNotifications];
     
     [tableViewNotifications.layer setCornerRadius:2];
-    [imageViewProfile.layer setCornerRadius:imageViewProfile.frame.size.width / 2];
-    UIImage *profileImage = [commFunc imageWithName:@"placeholder" andType:_pPNGType];
-    [imageViewProfile setImage:profileImage];
     
     if(_isComeFromSignUp) {
         if(_dicUserInfo)
@@ -196,7 +173,6 @@
         xibName = [NSString stringWithFormat:@"%@4", xibName];
     
     LoginViewController *objLoginView = [[LoginViewController alloc] initWithNibName:xibName bundle:nil];
-    objLoginView.delegate=self;
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:objLoginView];
     [navigationController.navigationBar setTranslucent:false];
     [self.navigationController presentViewController:navigationController animated:NO completion:nil];
@@ -371,14 +347,7 @@
 -(void)completedWithResult:(Result *)result{
     // Download file result
     
-    if ([result isKindOfClass:[QBAAuthSessionCreationResult class]]) {
-        if (result.success) {
-            NSLog(@"Session created successfully");
-            //            [self setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-            //            [self dismissViewControllerAnimated:true completion:nil];
-        }
-    }
-    else if ([result isKindOfClass:[QBCFileDownloadTaskResult class]]){
+    if ([result isKindOfClass:[QBCFileDownloadTaskResult class]]){
         [spinnerImageView stopAnimating];
         if(result.success){
             QBCFileDownloadTaskResult *res = (QBCFileDownloadTaskResult *)result;
@@ -386,6 +355,16 @@
             
             UIImage *imageProfile = [UIImage imageWithData:fileData];
             [imageViewProfile setImage:imageProfile];
+            
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:@"avatar.png"];
+            [fileData writeToFile:savedImagePath atomically:NO];
+            
+            NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"avatar.png"];
+            
+            [userDefs setObject:imagePath forKey:[userDefs objectForKey:_pudUserAvatar]];
+            [userDefs synchronize];
         }
     }
     else if ([result isKindOfClass:[QBUUserLogOutResult class]]){

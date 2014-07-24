@@ -213,7 +213,7 @@
     NSLog(@"User Info : %@", dictUserInfo);
     
     [userDefs setObject:blobID forKey:_pudUserAvatar];
-    [userDefs setBool:true forKey:_pudLoggedIn];
+    [userDefs setBool:YES forKey:_pudLoggedIn];
     [userDefs setObject:dictUserInfo forKey:_pudUserInfo];
     [userDefs synchronize];
 }

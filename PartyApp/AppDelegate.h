@@ -11,10 +11,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import "LoginViewController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, QBActionStatusDelegate> {
-    BOOL refreshingSession;
-    
-}
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
+
 @property (nonatomic,retain) NSDictionary *userInfo;
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController *navController;

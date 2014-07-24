@@ -36,36 +36,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [QBAuth createSessionWithDelegate:self];
-    
     // Do any additional setup after loading the view from its nib.
     [self.navigationController setNavigationBarHidden:true animated:true];
     [self setTitle:@"Login"];
-    
-//    [self showSplashScreen];
     [self initDefaults];
 }
-
-//- (void)showSplashScreen {
-//    SplashScreenViewController *splashView = [[SplashScreenViewController alloc] initWithNibName:@"SplashScreenViewController" bundle:nil];
-//    [self.navigationController presentViewController:splashView animated:false completion:nil];
-//}
 
 - (void)viewWillAppear:(BOOL)animated {
     NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
     if (![userDefs boolForKey:_pudLoggedIn])
         [self.navigationController setNavigationBarHidden:true animated:YES];
-    else
-        [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:false animated:YES];
-}
-
--(void)dealloc {
-    _delegate=nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -84,7 +68,8 @@
     [tapOnScrollView setNumberOfTouchesRequired:1];
     [scrollView addGestureRecognizer:tapOnScrollView];
     
-    UIImage *backImage = [[CommonFunctions sharedObject] imageWithName:@"viewBack" andType:_pPNGType];
+    UIImage *backImage = [[CommonFunctions sharedObject] imageWithName:@"viewBack"
+                                                               andType:_pPNGType];
     UIColor *backColor = [UIColor colorWithPatternImage:backImage];
     [viewBottom setBackgroundColor:backColor];
     
@@ -326,15 +311,15 @@
 
 #pragma mark - Creating Session in Facebook Case
 
-- (void)createUserSession {
-    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *userLoginInfo = [userDefs objectForKey:_pudUserInfo];
-    
-    QBASessionCreationRequest *extendedAuthRequest = [QBASessionCreationRequest request];
-    extendedAuthRequest.userLogin = [userLoginInfo objectForKey:@"login"]; // ID: 218651
-    extendedAuthRequest.userPassword = [userDefs objectForKey:@"Password"];
-    [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
-}
+//- (void)createUserSession {
+//    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+//    NSMutableDictionary *userLoginInfo = [userDefs objectForKey:_pudUserInfo];
+//    
+//    QBASessionCreationRequest *extendedAuthRequest = [QBASessionCreationRequest request];
+//    extendedAuthRequest.userLogin = [userLoginInfo objectForKey:@"login"]; // ID: 218651
+//    extendedAuthRequest.userPassword = [userDefs objectForKey:@"Password"];
+//    [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
+//}
 
 #pragma mark - QBSession Delegate Method
 
@@ -415,42 +400,6 @@
         }
     }
 }
-
-#pragma -mark store User Dictionary
-
-//-(void)updateUserInfo:(QBUUser *)user {
-//    
-//    NSMutableDictionary *userDetail=[[NSMutableDictionary alloc]init];
-//    [userDetail setValue:user.login forKey:@"login"];
-//    [userDetail setValue:user.email forKey:@"email"];
-//    [userDetail setValue:user.fullName forKey:@"full_name"];
-//    [userDetail setValue:user.website forKey:@"website"];
-//    
-//    //    NSString *fbID=[user.facebookID isKindOfClass:[NSNull class]]?@"":user.facebookID;
-//    //    NSString *twID=[user.twitterID isKindOfClass:[NSNull class]]?@"":user.twitterID;
-//    //    NSString *phID=[user.phone isKindOfClass:[NSNull class]]?@"":user.phone;
-//    //    NSString *pwdID=[user.password isKindOfClass:[NSNull class]]?@"":user.password;
-//    //    NSString *oldPwdID=[user.oldPassword isKindOfClass:[NSNull class]]?@"":user.oldPassword;
-//    //
-//    //    [userDetail setValue:fbID forKey:@"facebookID"];
-//    //    [userDetail setValue:twID forKey:@"twitterID"];
-//    //    [userDetail setValue:phID forKey:@"phone"];
-//    //    [userDetail setValue:pwdID forKey:@"password"];
-//    //    [userDetail setValue:oldPwdID forKey:@"oldPassword"];
-//    
-//    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:user];
-//    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"userObj"];
-//    
-//    [[NSUserDefaults standardUserDefaults]setObject:userDetail forKey:@"userDetail"];
-//    
-//    
-//    
-//    [[NSUserDefaults standardUserDefaults] setObject:txtFieldPassword.text forKey:@"Password"];
-//    [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
-//    
-//    
-//    [[NSUserDefaults standardUserDefaults]synchronize];
-//}
 
 #pragma mark - Tap Gesture on ScrollView
 

@@ -8,12 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol LoginViewDelegate <NSObject>
-
-@optional
--(void)updateUserInfo:(NSDictionary *)dic;
-
-@end
 @interface LoginViewController : BaseViewController<UITextFieldDelegate,QBActionStatusDelegate> {
     __weak IBOutlet PATextField *txtFieldUsername;
     __weak IBOutlet PATextField *txtFieldPassword;
@@ -23,9 +17,6 @@
     
     NSDictionary *userInfo;
     UIView *loadingView;
-    
 }
-
-@property (nonatomic,strong) id<LoginViewDelegate> delegate;
 
 @end

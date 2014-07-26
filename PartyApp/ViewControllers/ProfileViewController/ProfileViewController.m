@@ -20,6 +20,7 @@
 @interface ProfileViewController () <QBActionStatusDelegate, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate> {
     CommonFunctions *commFunc;
     NSUserDefaults *userDefs;
+    UIView *loadingView;
 }
 
 @end
@@ -325,8 +326,7 @@
     [userDefs synchronize];
     
     [QBUsers logOutWithDelegate:self];
-    
-    //    [self showLoginView];
+    loadingView = [commFunc showLoadingView];
 }
 
 - (IBAction)notificationsAction:(id)sender {
@@ -369,6 +369,7 @@
         }
     }
     else if ([result isKindOfClass:[QBUUserLogOutResult class]]){
+        [commFunc hideLoadingView:loadingView];
 		QBUUserLogOutResult *res = (QBUUserLogOutResult *)result;
         
 		if(res.success){

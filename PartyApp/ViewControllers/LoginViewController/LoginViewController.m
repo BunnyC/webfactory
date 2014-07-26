@@ -335,15 +335,16 @@
             QBUUser *loginInfo = [loginResult user];
             
             [[CommonFunctions sharedObject] saveInformationInDefaultsForUser:loginInfo];
-            [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
-            [self dismissViewControllerAnimated:true completion:nil];
+            [self.navigationController popToRootViewControllerAnimated:NO];
+//            [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
+//            [self dismissViewControllerAnimated:true completion:nil];
         }
         else
             error = TRUE;
         
         if (error)
-            [[[UIAlertView alloc] initWithTitle:@"Session Problem"
-                                        message:@"Sorry can't create your session right now"
+            [[[UIAlertView alloc] initWithTitle:@"Login Problem"
+                                        message:@"Please check your username and password"
                                        delegate:nil
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil, nil] show];
@@ -354,8 +355,9 @@
             QBUUserResult *userResult = (QBUUserResult *)result;
             NSLog(@"userResult : %@", userResult.user);
             [[CommonFunctions sharedObject] saveInformationInDefaultsForUser:userResult.user];
+            [self.navigationController popToRootViewControllerAnimated:NO];
 //            [self createUserSession];
-            [self dismissViewControllerAnimated:YES completion:nil];
+//            [self dismissViewControllerAnimated:YES completion:nil];
         }
     }
     else if([result isKindOfClass:[QBUUserPagedResult class]]){
@@ -371,11 +373,6 @@
             }
             else
                 [self createAccount:dictUserFB];
-
-//            QBUUser *userLogin = (QBUUser *)[usersResult.users objectAtIndex:0];
-//            [[CommonFunctions sharedObject] saveInformationInDefaultsForUser:userLogin];
-//            NSLog(@"Page parameters: currentPage %d, totalPages %d, perPage %d, totalEntries %d",
-//                  usersResult.currentPage, usersResult.totalPages, usersResult.perPage, usersResult.totalEntries);
         }
         else{
             NSLog(@"errors=%@", result.errors);
@@ -383,7 +380,6 @@
     }
     if ([result isKindOfClass:[QBAAuthSessionCreationResult class]]) {
         if (result.success) {
-//            [self dismissViewControllerAnimated:true completion:nil];
             NSLog(@"Created");
         }
         else {
@@ -403,7 +399,6 @@
 #pragma mark - Tap Gesture on ScrollView
 
 - (void)resetScrollView:(UITapGestureRecognizer *)recognizer {
-    
     [self resetFramesForView];
 }
 

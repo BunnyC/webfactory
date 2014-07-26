@@ -18,8 +18,6 @@
     __weak IBOutlet UITextView *txtViewTAndC;
     __weak IBOutlet UIScrollView *scrollView;
     __weak IBOutlet UIView *viewBottom;
-    
-    UIView *loadingView;
 }
 
 @property (nonatomic, strong) QBUUser *objUser;

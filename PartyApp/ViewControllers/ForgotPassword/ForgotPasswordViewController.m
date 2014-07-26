@@ -8,7 +8,9 @@
 
 #import "ForgotPasswordViewController.h"
 
-@interface ForgotPasswordViewController () <UITextFieldDelegate>
+@interface ForgotPasswordViewController () <UITextFieldDelegate> {
+    UIView *loadingView;
+}
 
 @end
 
@@ -39,7 +41,7 @@
     
     BOOL validEmail = [[CommonFunctions sharedObject] validateEmailID:self.txtEmail.text];
     if (validEmail) {
-        
+        loadingView = [[CommonFunctions sharedObject] showLoadingView];
         [QBUsers resetUserPasswordWithEmail:self.txtEmail.text delegate:self];
         [self resetFramesForView];
     }
@@ -105,6 +107,7 @@
 #pragma mark QBActionStatusDelegate
 
 - (void)completedWithResult:(Result *)result{
+    [[CommonFunctions sharedObject] hideLoadingView:loadingView];
     if(result.success && [result isKindOfClass:Result.class]){
         [self.txtEmail setText:@""];
         [self showMessage:_pResetPasswordMgs withTitle:@"Forgot Password"];

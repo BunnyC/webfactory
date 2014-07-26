@@ -71,7 +71,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.26000000000000001" colorSpace="calibratedWhite"/>
                 </view>
                 <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="7c5-QN-ezq">
-                    <rect key="frame" x="69" y="197" width="183" height="2"/>
+                    <rect key="frame" x="69" y="198" width="183" height="2"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="progressTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="trackTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>

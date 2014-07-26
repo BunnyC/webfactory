@@ -95,14 +95,15 @@
     
     if (_objUserDetail.blobID) {
         NSString *avatarID = [userDefs objectForKey:_pudUserAvatar];
-        if (_objUserDetail.blobID != avatarID.intValue || ![userDefs objectForKey:avatarID]) {
+        [spinnerImageView setHidden:true];
+        [spinnerImageView stopAnimating];
+        if (_objUserDetail.blobID != avatarID.intValue || ![userDefs objectForKey:_pudAvatarPath]) {
             [spinnerImageView setHidden:false];
             [spinnerImageView startAnimating];
             [QBContent TDownloadFileWithBlobID:_objUserDetail.blobID delegate:self];
         }
         else {
-            NSString *avatarID = [userDefs objectForKey:_pudUserAvatar];
-            NSString *imgPath = [userDefs objectForKey:avatarID];
+            NSString *imgPath = [userDefs objectForKey:_pudAvatarPath];
             UIImage *imageProfile = [UIImage imageWithContentsOfFile:imgPath];
             [imageViewProfile setImage:imageProfile];
         }
@@ -363,7 +364,7 @@
             
             NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"avatar.png"];
             
-            [userDefs setObject:imagePath forKey:[userDefs objectForKey:_pudUserAvatar]];
+            [userDefs setObject:imagePath forKey:_pudAvatarPath];
             [userDefs synchronize];
         }
     }

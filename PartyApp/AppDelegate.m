@@ -71,7 +71,7 @@
                                                 animated:true];
     
     NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-    if (![userDefs objectForKey:_pudLoggedIn])
+    if (![userDefs objectForKey:_pudLoggedIn] && [userDefs boolForKey:_pudLoggedIn] == false)
         [userDefs setBool:false forKey:_pudLoggedIn];
     if (![userDefs objectForKey:_pudSessionExpiryDate])
         [userDefs setObject:[NSDate date] forKey:_pudSessionExpiryDate];
@@ -314,7 +314,7 @@
             }
             
             NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-            [userDefs setBool:TRUE forKey:_pudLoggedIn];
+            [userDefs setBool:true forKey:_pudLoggedIn];
             [userDefs synchronize];
             [self.navController dismissViewControllerAnimated:YES completion:^{
                 //[objProfileView updateUserProfileData:_userInfo];

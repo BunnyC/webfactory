@@ -335,6 +335,7 @@
             QBUUser *loginInfo = [loginResult user];
             
             [[CommonFunctions sharedObject] saveInformationInDefaultsForUser:loginInfo];
+            [[NSUserDefaults standardUserDefaults] setBool:true forKey:_pudLoggedIn];
             [self dismissViewControllerAnimated:true completion:nil];
         }
         else
@@ -346,8 +347,6 @@
                                        delegate:nil
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil, nil] show];
-        else
-            [self dismissViewControllerAnimated:YES completion:nil];
     }
     else if ([result isKindOfClass:[QBUUserResult class]]) {
         if (result.success) {

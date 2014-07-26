@@ -40,7 +40,9 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:TRUE];
     
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:_pudLoggedIn])
+    BOOL loggedIn = [userDefs boolForKey:_pudLoggedIn];
+    
+    if (![userDefs boolForKey:_pudLoggedIn])
         [QBAuth createSessionWithDelegate:self];
     else {
         

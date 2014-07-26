@@ -29,6 +29,7 @@ NSString *const _pudSessionToken        = @"SessionToken";
 NSString *const _pudUserInfo            = @"UserInfo";
 NSString *const _pUserInfoDic           = @"UserProfileInfomation";
 NSString *const _pudUserAvatar          = @"UserAvatar";
+NSString *const _pudAvatarPath          = @"UserAvatarPath";
 
 #pragma mark - Fonts
 

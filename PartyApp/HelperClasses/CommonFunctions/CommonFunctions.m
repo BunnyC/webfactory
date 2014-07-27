@@ -84,7 +84,7 @@
     UIView *loadingView = [[UIView alloc] initWithFrame:frameScreen];
     [loadingView setBackgroundColor:[UIColor clearColor]];
     
-    CGRect frameActivity = CGRectMake(frameScreen.size.width / 2 - 60 ,frameScreen.size.height / 2 - 40, 120, 80);
+    CGRect frameActivity = CGRectMake(frameScreen.size.width / 2 - 60 ,frameScreen.size.height / 2 - 100, 120, 80);
     
     UIView *viewActivity = [[UIView alloc] initWithFrame:frameActivity];
     [viewActivity setBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.9f]];

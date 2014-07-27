@@ -157,13 +157,10 @@
     pagedRequest.perPage = 50;
     pagedRequest.page = 1;
 
-    NSArray *arrIDs = [NSArray arrayWithObject:[dictUserFB objectForKey:@"id"]];
-    [QBUsers usersWithFacebookIDs:arrIDs
-                     pagedRequest:pagedRequest
-                         delegate:self];
-//    [QBUsers usersWithLogins:[dictUserFB objectForKey:@"id"]
-//                pagedRequest:pagedRequest
-//                    delegate:self];
+    NSArray *arrEmail = [NSArray arrayWithObject:[dictUserFB objectForKey:@"email"]];
+    [QBUsers usersWithEmails:arrEmail
+                pagedRequest:pagedRequest
+                    delegate:self];
 }
 
 #pragma mark - IBActions
@@ -186,6 +183,7 @@
                           otherButtonTitles:nil, nil] show];
     }
     else {
+        loadingView = [[CommonFunctions sharedObject] showLoadingView];
         [QBUsers logInWithUserLogin:txtFieldUsername.text
                            password:txtFieldPassword.text
                            delegate:self];
@@ -365,11 +363,21 @@
             QBUUserPagedResult *usersResult = (QBUUserPagedResult *)result;
             NSArray *arrUsers = usersResult.users;
             if (arrUsers.count) {
-                NSString *fbAccessToken = [[[FBSession activeSession] accessTokenData] accessToken];
-                [QBUsers logInWithSocialProvider:@"facebook"
-                                     accessToken:fbAccessToken
-                               accessTokenSecret:nil
-                                        delegate:self];
+                QBUUser *fetchedUser = (QBUUser *)[arrUsers objectAtIndex:0];
+                if ([[dictUserFB objectForKey:@"id"] intValue] == fetchedUser.facebookID.intValue) {
+                    NSString *fbAccessToken = [[[FBSession activeSession] accessTokenData] accessToken];
+                    [QBUsers logInWithSocialProvider:@"facebook"
+                                         accessToken:fbAccessToken
+                                   accessTokenSecret:nil
+                                            delegate:self];
+                }
+                else {
+                    [[[UIAlertView alloc] initWithTitle:@"Error"
+                                                message:@"The email id associated with this account is already taken."
+                                               delegate:nil
+                                      cancelButtonTitle:@"OK"
+                                      otherButtonTitles:nil, nil] show];
+                }
             }
             else
                 [self createAccount:dictUserFB];

@@ -90,10 +90,6 @@
     lblMotto.text=[_objUserDetail.website substringFromIndex:range.location+range.length];
     lblActive.text=@"active";
     
-    [imageViewProfile.layer setCornerRadius:imageViewProfile.frame.size.width / 2];
-    UIImage *profileImage = [commFunc imageWithName:@"placeholder" andType:_pPNGType];
-    [imageViewProfile setImage:profileImage];
-    
     if (_objUserDetail.blobID) {
         NSString *avatarID = [userDefs objectForKey:_pudUserAvatar];
         [spinnerImageView setHidden:true];
@@ -133,6 +129,8 @@
                                                                       andType:_pPNGType];
         [imageViewProfile setImage:profileImage];
     }
+    
+    [imageViewProfile.layer setCornerRadius:imageViewProfile.frame.size.width / 2];
     
     if(!_objUserDetail){
         NSData *notesData = [[NSUserDefaults standardUserDefaults] objectForKey:@"userObj"];
@@ -364,6 +362,8 @@
             
             NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"avatar.png"];
             
+            NSString *strAvatarID = [NSString stringWithFormat:@"%d", _objUserDetail.blobID];
+            [userDefs setObject:strAvatarID forKey:_pudUserAvatar];
             [userDefs setObject:imagePath forKey:_pudAvatarPath];
             [userDefs synchronize];
         }

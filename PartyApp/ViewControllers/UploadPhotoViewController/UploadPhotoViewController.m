@@ -336,7 +336,6 @@
             QBCBlobObjectAccess *blobAccess = (QBCBlobObjectAccess *)uploadedFile.blobObjectAccess;
             NSUInteger blobID = blobAccess.blobID;
             _objUser.blobID = blobID;
-        
             registeringNewUser = false;
             NSLog(@"User Info : %@", _objUser);
             [QBUsers updateUser:_objUser delegate:self];

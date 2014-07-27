@@ -273,12 +273,12 @@
     BOOL changed = false;
     
     NSString *mottoText = [NSString stringWithFormat:@"http://%@", txtFieldMotto.text];
-    
+    NSString *strPassword = [userDefs objectForKey:@"Password"];
     if (![_objUser.login isEqualToString:txtFieldUsername.text])
         changed = true;
     if (![_objUser.email isEqualToString:txtFieldEmail.text] && !changed)
         changed = true;
-    if (![_objUser.password isEqualToString:txtFieldPassword.text] && !changed)
+    if (![strPassword isEqualToString:txtFieldPassword.text] && !changed)
         changed = true;
     if (![_objUser.website isEqualToString:mottoText] && !changed)
         changed = true;

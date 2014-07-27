@@ -167,15 +167,22 @@
 
 - (void)showLoginView {
     
-    NSString *xibName = NSStringFromClass([LoginViewController class]);
-    BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
-    if (!isiPhone5)
-        xibName = [NSString stringWithFormat:@"%@4", xibName];
+    if (loadingView)
+        [[CommonFunctions sharedObject] hideLoadingView:loadingView];
+//    NSString *xibName = NSStringFromClass([LoginViewController class]);
+//    BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
+//    if (!isiPhone5)
+//        xibName = [NSString stringWithFormat:@"%@4", xibName];
+//    
+//    LoginViewController *objLoginView = [[LoginViewController alloc] initWithNibName:xibName bundle:nil];
+//    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:objLoginView];
+//    [navigationController.navigationBar setTranslucent:false];
+//    [self.navigationController presentViewController:navigationController animated:NO completion:nil];
     
-    LoginViewController *objLoginView = [[LoginViewController alloc] initWithNibName:xibName bundle:nil];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:objLoginView];
-    [navigationController.navigationBar setTranslucent:false];
-    [self.navigationController presentViewController:navigationController animated:NO completion:nil];
+    SplashScreenViewController *objSplashView = [[SplashScreenViewController alloc] initWithNibName:@"SplashScreenViewController" bundle:nil];
+    UINavigationController *navContSplash = [[UINavigationController alloc] initWithRootViewController:objSplashView];
+    [navContSplash.navigationBar setTranslucent:FALSE];
+    [self.navigationController presentViewController:navContSplash animated:NO completion:nil];
 }
 
 -(void)handleRecentReminderViewForRecognizer:(BOOL)forRecognizer {

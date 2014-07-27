@@ -127,6 +127,19 @@
 //    return [data1 isEqual:data2];
 //}
 
+#pragma mark - Resizing Image
+
+- (UIImage *)resizedImageWithImage:(UIImage *)image {
+
+    CGSize newSize = CGSizeMake(183, 156);
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+
 #pragma mark - UITextView Delegates
 
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
@@ -211,7 +224,8 @@
     _userInfoChanged = true;
     
     UIImage *selectedImage = [info valueForKey:UIImagePickerControllerOriginalImage];
-    NSData *imageData = UIImagePNGRepresentation(selectedImage);
+    UIImage *resizedImage = [self resizedImageWithImage:selectedImage];
+    NSData *imageData = UIImagePNGRepresentation(resizedImage);
     imageUploadStatus = KImageUploadNow;
     
     [imageViewProfile setImage:[UIImage imageWithData:imageData]];

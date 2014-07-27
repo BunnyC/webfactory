@@ -310,18 +310,6 @@
     return shouldInteract;
 }
 
-#pragma mark - Creating Session in Facebook Case
-
-//- (void)createUserSession {
-//    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-//    NSMutableDictionary *userLoginInfo = [userDefs objectForKey:_pudUserInfo];
-//    
-//    QBASessionCreationRequest *extendedAuthRequest = [QBASessionCreationRequest request];
-//    extendedAuthRequest.userLogin = [userLoginInfo objectForKey:@"login"]; // ID: 218651
-//    extendedAuthRequest.userPassword = [userDefs objectForKey:@"Password"];
-//    [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
-//}
-
 #pragma mark - QBSession Delegate Method
 
 -(void)completedWithResult:(Result *)result {

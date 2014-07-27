@@ -167,18 +167,6 @@
 
 - (void)showLoginView {
     
-    if (loadingView)
-        [[CommonFunctions sharedObject] hideLoadingView:loadingView];
-//    NSString *xibName = NSStringFromClass([LoginViewController class]);
-//    BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
-//    if (!isiPhone5)
-//        xibName = [NSString stringWithFormat:@"%@4", xibName];
-//    
-//    LoginViewController *objLoginView = [[LoginViewController alloc] initWithNibName:xibName bundle:nil];
-//    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:objLoginView];
-//    [navigationController.navigationBar setTranslucent:false];
-//    [self.navigationController presentViewController:navigationController animated:NO completion:nil];
-    
     SplashScreenViewController *objSplashView = [[SplashScreenViewController alloc] initWithNibName:@"SplashScreenViewController" bundle:nil];
     UINavigationController *navContSplash = [[UINavigationController alloc] initWithRootViewController:objSplashView];
     [navContSplash.navigationBar setTranslucent:FALSE];
@@ -321,17 +309,18 @@
         // cause the implicit cached-token login to occur on next launch of the application
         [appDelegate.session closeAndClearTokenInformation];
     }
-    UIImage *profileImage = [[CommonFunctions sharedObject] imageWithName:@"placeholder"
-                                                                  andType:_pPNGType];
-    [imageViewProfile setImage:profileImage];
+//    UIImage *profileImage = [[CommonFunctions sharedObject] imageWithName:@"placeholder"
+//                                                                  andType:_pPNGType];
+//    [imageViewProfile setImage:profileImage];
     
     [userDefs removeObjectForKey:_pudUserInfo];
     [userDefs removeObjectForKey:@"Password"];
     [userDefs setBool:false forKey:_pudLoggedIn];
     [userDefs synchronize];
     
-    [QBUsers logOutWithDelegate:self];
     loadingView = [commFunc showLoadingView];
+    
+    [QBUsers logOutWithDelegate:self];
 }
 
 - (IBAction)notificationsAction:(id)sender {
@@ -352,7 +341,7 @@
 
 -(void)completedWithResult:(Result *)result{
     // Download file result
-    
+    [commFunc hideLoadingView:loadingView];
     if ([result isKindOfClass:[QBCFileDownloadTaskResult class]]){
         [spinnerImageView stopAnimating];
         if(result.success){
@@ -376,7 +365,6 @@
         }
     }
     else if ([result isKindOfClass:[QBUUserLogOutResult class]]){
-        [commFunc hideLoadingView:loadingView];
 		QBUUserLogOutResult *res = (QBUUserLogOutResult *)result;
         
 		if(res.success){

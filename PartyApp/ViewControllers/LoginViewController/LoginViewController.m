@@ -183,18 +183,22 @@
                           otherButtonTitles:nil, nil] show];
     }
     else {
+        simpleLogin = true;
         loadingView = [[CommonFunctions sharedObject] showLoadingView];
         [QBUsers logInWithUserLogin:txtFieldUsername.text
                            password:txtFieldPassword.text
                            delegate:self];
         [[NSUserDefaults standardUserDefaults] setObject:txtFieldPassword.text
                                                   forKey:@"Password"];
+        [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"LoginWithFacebook"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     [self resetFramesForView];
 }
 
 - (IBAction)btnConnectFacebookAction:(id)sender {
     
+    simpleLogin = false;
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     [appDelegate.session closeAndClearTokenInformation];
     
@@ -258,9 +262,6 @@
     userFB.website = @"http://This is Awesome";
     userFB.tags = arrTags;
     
-    if (!loadingView)
-        loadingView = [[CommonFunctions sharedObject] showLoadingView];
-    
     [QBUsers signUp:userFB delegate:self];
 }
 
@@ -315,9 +316,9 @@
 -(void)completedWithResult:(Result *)result {
     
     BOOL error = FALSE;
-    [loadingView removeFromSuperview];
     
     if ([result isKindOfClass:[QBUUserLogInResult class]]) {
+        [[CommonFunctions sharedObject] hideLoadingView:loadingView];
         if (result.success) {
             
             QBUUserLogInResult *loginResult = (QBUUserLogInResult *)result;
@@ -331,12 +332,14 @@
         else
             error = TRUE;
         
-        if (error)
+        if (error) {
+            NSString *errorMsg = simpleLogin ? @"Please check your username and password" : @"Problem signing with your facebook account right now, try after sometime.";
             [[[UIAlertView alloc] initWithTitle:@"Login Problem"
-                                        message:@"Please check your username and password"
+                                        message:errorMsg
                                        delegate:nil
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil, nil] show];
+        }
     }
     else if ([result isKindOfClass:[QBUUserResult class]]) {
         if (result.success) {
@@ -357,6 +360,8 @@
                 QBUUser *fetchedUser = (QBUUser *)[arrUsers objectAtIndex:0];
                 if ([[dictUserFB objectForKey:@"id"] intValue] == fetchedUser.facebookID.intValue) {
                     NSString *fbAccessToken = [[[FBSession activeSession] accessTokenData] accessToken];
+                    [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"LoginWithFacebook"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
                     [QBUsers logInWithSocialProvider:@"facebook"
                                          accessToken:fbAccessToken
                                    accessTokenSecret:nil

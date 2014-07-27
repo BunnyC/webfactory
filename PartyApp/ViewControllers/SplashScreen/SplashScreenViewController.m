@@ -8,6 +8,7 @@
 
 #import "SplashScreenViewController.h"
 #import "ProfileViewController.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface SplashScreenViewController () {
     NSUserDefaults *userDefs;
@@ -40,20 +41,28 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:TRUE];
     
-    BOOL loggedIn = [userDefs boolForKey:_pudLoggedIn];
-    
     if (![userDefs boolForKey:_pudLoggedIn])
         [QBAuth createSessionWithDelegate:self];
     else {
         
         NSMutableDictionary *userInfo = [userDefs objectForKey:_pudUserInfo];
         
-        NSLog(@"Password : %@", [userDefs objectForKey:@"Password"]);
-        
-        QBASessionCreationRequest *extendedAuthRequest = [[QBASessionCreationRequest alloc] init];
-        extendedAuthRequest.userLogin = [userInfo objectForKey:@"login"]; // ID: 218651
-        extendedAuthRequest.userPassword = [userDefs objectForKey:@"Password"];
-        [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
+        if (![userDefs boolForKey:@"LoginWithFacebook"]) {
+            NSLog(@"Password : %@", [userDefs objectForKey:@"Password"]);
+            
+            QBASessionCreationRequest *extendedAuthRequest = [[QBASessionCreationRequest alloc] init];
+            extendedAuthRequest.userLogin = [userInfo objectForKey:@"login"]; // ID: 218651
+            extendedAuthRequest.userPassword = [userDefs objectForKey:@"Password"];
+            [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
+        }
+        else {
+//            NSString *fbAccessToken = [[[FBSession activeSession] accessTokenData] accessToken];
+//            [QBUsers logInWithSocialProvider:@"facebook"
+//                                 accessToken:fbAccessToken
+//                           accessTokenSecret:nil
+//                                    delegate:self];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
     }
 }
 
@@ -108,19 +117,19 @@
             error = TRUE;
         }
     }
-//    else if ([result isKindOfClass:[QBUUserLogInResult class]]) {
-//        if (result.success) {
-//            QBUUserLogInResult *loginResult = (QBUUserLogInResult *)result;
-//            QBUUser *userInfo = [loginResult user];
-//            
-//            [[CommonFunctions sharedObject] saveInformationInDefaultsForUser:userInfo];
-//            NSLog(@"User Info : %@", userInfo);
-//            [self dismissViewControllerAnimated:NO completion:nil];
-//        }
-//        else {
-//            error = TRUE;
-//        }
-//    }
+    //    else if ([result isKindOfClass:[QBUUserLogInResult class]]) {
+    //        if (result.success) {
+    //            QBUUserLogInResult *loginResult = (QBUUserLogInResult *)result;
+    //            QBUUser *userInfo = [loginResult user];
+    //
+    //            [[CommonFunctions sharedObject] saveInformationInDefaultsForUser:userInfo];
+    //            NSLog(@"User Info : %@", userInfo);
+    //            [self dismissViewControllerAnimated:NO completion:nil];
+    //        }
+    //        else {
+    //            error = TRUE;
+    //        }
+    //    }
     if (error) {
         [[[UIAlertView alloc] initWithTitle:@"Session Problem"
                                     message:@"Sorry can't create your session right now"

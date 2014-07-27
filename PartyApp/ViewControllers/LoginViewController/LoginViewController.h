@@ -17,6 +17,7 @@
     
     NSDictionary *userInfo;
     UIView *loadingView;
+    BOOL simpleLogin;
 }
 
 @end

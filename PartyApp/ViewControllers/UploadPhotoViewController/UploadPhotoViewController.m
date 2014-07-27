@@ -146,7 +146,7 @@
     BOOL shouldInteract = true;
     
     if ([URL.absoluteString isEqualToString:@"later"]) {
-        [self performSelector:@selector(nextButtonAction:)];
+        [self performSelector:@selector(nextButtonClick)];
         shouldInteract = false;
     }
     return shouldInteract;
@@ -195,7 +195,11 @@
 }
 
 - (IBAction)nextButtonAction:(id)sender {
-    
+    [self nextButtonClick];
+   }
+
+-(void)nextButtonClick
+{
     loadingView = [[CommonFunctions sharedObject] showLoadingView];
     BOOL loggedIn = [userDefs boolForKey:_pudLoggedIn];
     
@@ -213,8 +217,8 @@
         else
             [self popThisView];
     }
-}
 
+}
 
 #pragma mark - UIImagePickerControllerDelegate
 

@@ -224,14 +224,8 @@ NSString *className = @"PALogNight";
         
         id forLocation = location ? thisLocation : @"";
         
-        NSDictionary *userInfo = [[NSUserDefaults standardUserDefaults] objectForKey:_pudUserInfo];
-        NSNumber *userID = [userInfo objectForKey:@"ID"];
-        
         QBCOCustomObject *objectLogNight = [QBCOCustomObject customObject];
         [objectLogNight setClassName:className];
-        
-//        [objectLogNight.fields setObject:userID
-//                                  forKey:@"User ID"];
         [objectLogNight.fields setObject:[NSNumber numberWithInt:finalRatingValue]
                                   forKey:@"LN_Rating"];
         [objectLogNight.fields setObject:txtViewNotes.text
@@ -268,8 +262,8 @@ NSString *className = @"PALogNight";
         // Success result
         if(result.success){
             
-            UIAlertView *alertAdded = [[UIAlertView alloc] initWithTitle:@"Night Added"
-                                                                 message:@"Your night is successfully added"
+            UIAlertView *alertAdded = [[UIAlertView alloc] initWithTitle:@"Success"
+                                                                 message:@"Your night is successfully logged"
                                                                 delegate:nil
                                                        cancelButtonTitle:@"OK"
                                                        otherButtonTitles:nil, nil];
@@ -278,7 +272,15 @@ NSString *className = @"PALogNight";
             QBCOCustomObjectResult *res = (QBCOCustomObjectResult *)result;
             
             NSLog(@"new obj: %@", res.object);
-            [self.navigationController popViewControllerAnimated:YES];
+//            [self.navigationController popViewControllerAnimated:YES];
+            [self setupRatingViewWithValue:0];
+            NSArray *arrKeys = [_dictOptions allKeys];
+            for (int i = 0; i < [arrKeys count]; i ++) {
+                NSMutableDictionary *indexDict = [_dictOptions objectForKey:[arrKeys objectAtIndex:i]];
+                [indexDict setObject:[NSNumber numberWithInt:0] forKey:@"Selected"];
+            }
+            [tableViewOptions reloadData];
+            [txtViewNotes setText:@"Add a note"];
         }
         [[CommonFunctions sharedObject] hideLoadingView:loadingView];
     }

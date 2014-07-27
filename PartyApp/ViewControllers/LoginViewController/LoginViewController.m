@@ -258,6 +258,9 @@
     userFB.website = @"http://This is Awesome";
     userFB.tags = arrTags;
     
+    if (!loadingView)
+        loadingView = [[CommonFunctions sharedObject] showLoadingView];
+    
     [QBUsers signUp:userFB delegate:self];
 }
 

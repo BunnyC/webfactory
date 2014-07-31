@@ -78,7 +78,7 @@
 }
 
 - (void)initDefaults {
-    
+
     // Setting up Bar Button Items
     
     commFunc = [CommonFunctions sharedObject];

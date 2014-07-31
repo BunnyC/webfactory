@@ -90,7 +90,6 @@
             }];
         }
     }
-    
 }
 
 - (void)setupTextViewForLoginView {
@@ -347,12 +346,13 @@
             QBUUserResult *userResult = (QBUUserResult *)result;
             NSLog(@"userResult : %@", userResult.user);
             [[CommonFunctions sharedObject] saveInformationInDefaultsForUser:userResult.user];
+            [[CommonFunctions sharedObject] hideLoadingView:loadingView];
             [self.navigationController popToRootViewControllerAnimated:NO];
 //            [self createUserSession];
 //            [self dismissViewControllerAnimated:YES completion:nil];
         }
     }
-    else if([result isKindOfClass:[QBUUserPagedResult class]]){
+    else if ([result isKindOfClass:[QBUUserPagedResult class]]){
         if(result.success) {
             QBUUserPagedResult *usersResult = (QBUUserPagedResult *)result;
             NSArray *arrUsers = usersResult.users;
@@ -382,7 +382,7 @@
             NSLog(@"errors=%@", result.errors);
         }
     }
-    if ([result isKindOfClass:[QBAAuthSessionCreationResult class]]) {
+    else if ([result isKindOfClass:[QBAAuthSessionCreationResult class]]) {
         if (result.success) {
             NSLog(@"Created");
         }

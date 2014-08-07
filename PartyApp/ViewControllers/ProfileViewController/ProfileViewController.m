@@ -85,10 +85,15 @@
     userDefs = [NSUserDefaults standardUserDefaults];
     
     _objUserDetail = [commFunc getQBUserObjectFromUserDefaults];
-    lblName.text=_objUserDetail.fullName;
-    NSRange range=[_objUserDetail.website rangeOfString:@"http://"];
-    lblMotto.text=[_objUserDetail.website substringFromIndex:range.location+range.length];
-    lblActive.text=@"active";
+    lblName.text = _objUserDetail.fullName;
+    
+    NSString *mottoText = @"This app is awesome";
+    if ([_objUserDetail.website length]) {
+        NSRange range = [_objUserDetail.website rangeOfString:@"http://"];
+        mottoText = [_objUserDetail.website substringFromIndex:range.location+range.length];
+    }
+    lblMotto.text = mottoText;
+    lblActive.text = @"active";
     
     if (_objUserDetail.blobID) {
         NSString *avatarID = [userDefs objectForKey:_pudUserAvatar];
@@ -106,21 +111,12 @@
         }
     }
     else if (_objUserDetail.facebookID.length) {
-        
-        /* make the API call */
-        NSString *pathPicture = [NSString stringWithFormat:@"/%@/picture", _objUserDetail.facebookID];
-        
-        [FBRequestConnection startWithGraphPath:pathPicture
-                                     parameters:nil
-                                     HTTPMethod:@"GET"
-                              completionHandler:^(
-                                                  FBRequestConnection *connection,
-                                                  id result,
-                                                  NSError *error
-                                                  ) {
-                                  NSLog(@"Result : %@", result);
-                                  /* handle the result */
-                              }];
+        NSString *strFBImageURL = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", _objUserDetail.facebookID];
+//        NSString *strFBImageURL = [NSString stringWithFormat:@"https://graph.facebook.com/793557416/picture?type=large"];
+        NSURL *urlFBImage = [NSURL URLWithString:strFBImageURL];
+        NSData *dataImage = [NSData dataWithContentsOfURL:urlFBImage];
+        [imageViewProfile setImage:[UIImage imageWithData:dataImage]];
+        [spinnerImageView stopAnimating];
     }
     else {
         [spinnerImageView stopAnimating];
@@ -298,24 +294,24 @@
 
 - (IBAction)logoutAction:(id)sender {
     
-    
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    
-    // this button's job is to flip-flop the session from open to closed
-    if (appDelegate.session.isOpen) {
-        // if a user logs out explicitly, we delete any cached token information, and next
-        // time they run the applicaiton they will be presented with log in UX again; most
-        // users will simply close the app or switch away, without logging out; this will
-        // cause the implicit cached-token login to occur on next launch of the application
-        [appDelegate.session closeAndClearTokenInformation];
-    }
-//    UIImage *profileImage = [[CommonFunctions sharedObject] imageWithName:@"placeholder"
-//                                                                  andType:_pPNGType];
-//    [imageViewProfile setImage:profileImage];
+//    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+//    
+//    // this button's job is to flip-flop the session from open to closed
+//    if (appDelegate.session.isOpen) {
+//        // if a user logs out explicitly, we delete any cached token information, and next
+//        // time they run the applicaiton they will be presented with log in UX again; most
+//        // users will simply close the app or switch away, without logging out; this will
+//        // cause the implicit cached-token login to occur on next launch of the application
+//        [appDelegate.session closeAndClearTokenInformation];
+//    }
+////    UIImage *profileImage = [[CommonFunctions sharedObject] imageWithName:@"placeholder"
+////                                                                  andType:_pPNGType];
+////    [imageViewProfile setImage:profileImage];
     
     [userDefs removeObjectForKey:_pudUserInfo];
     [userDefs removeObjectForKey:@"Password"];
-    [userDefs setBool:false forKey:_pudLoggedIn];
+    [userDefs setBool:NO forKey:_pudLoggedIn];
+    [userDefs setBool:NO forKey:@"LoginWithFacebook"];
     [userDefs synchronize];
     
     loadingView = [commFunc showLoadingView];
@@ -358,7 +354,7 @@
             
             NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"avatar.png"];
             
-            NSString *strAvatarID = [NSString stringWithFormat:@"%d", _objUserDetail.blobID];
+            NSString *strAvatarID = [NSString stringWithFormat:@"%ld", (long)_objUserDetail.blobID];
             [userDefs setObject:strAvatarID forKey:_pudUserAvatar];
             [userDefs setObject:imagePath forKey:_pudAvatarPath];
             [userDefs synchronize];

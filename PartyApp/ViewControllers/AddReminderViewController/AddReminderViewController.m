@@ -8,18 +8,15 @@
 
 #import "AddReminderViewController.h"
 
-@interface AddReminderViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate> {
+@interface AddReminderViewController () <UITableViewDataSource, UITableViewDelegate, UITextViewDelegate> {
     
-    int selectedOption;
-    
-    int currentDay;
-    int currentMonth;
-    int currentYear;
+    NSInteger selectedOption;
     
     BOOL repeatSelected;
     BOOL notesSelected;
     
     NSArray *arrReminderOptions;
+    CommonFunctions *commFunc;
 }
 
 @end
@@ -35,47 +32,25 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    commFunc = [CommonFunctions sharedObject];
+    [self setupNavigationItems];
     [self initDefaults];
+    [self setupTextView];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
+    
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-
 #pragma mark - Init Methods
 
-- (void)initDefaults {
-    
-    CommonFunctions *commFunc = [CommonFunctions sharedObject];
-    
-    selectedOption = 0;
-    
-    repeatSelected = false;
-    notesSelected = false;
-    
-    arrReminderOptions = [[NSArray alloc] initWithObjects:
-                          @"Tomorrow",
-                          @"Next Week",
-                          @"Everyday",
-                          @"Every Week", nil];
-    
-    NSDate *today = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
-    
-    NSString *strDateToday = [dateFormatter stringFromDate:today];
-    NSArray *arrComponents = [strDateToday componentsSeparatedByString:@"/"];
-    
-    currentDay = [[arrComponents objectAtIndex:0] intValue];
-    currentMonth = [[arrComponents objectAtIndex:1] intValue];
-    currentYear = [[arrComponents objectAtIndex:2] intValue];
+- (void)setupNavigationItems {
     
     // Setting up Bar Button Items
     UIImage *imgBackButton = [commFunc imageWithName:@"backButton" andType:_pPNGType];
@@ -93,6 +68,17 @@
     
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButton];
     [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
+}
+
+- (void)initDefaults {
+    
+    selectedOption = 0;
+    
+    repeatSelected = false;
+    notesSelected = false;
+    
+    arrReminderOptions = [[NSArray alloc] initWithObjects:
+                          @"Tomorrow", @"Next Week", @"Everyday", @"Every Week", nil];
     
     UIImage *imageWhenWhereBack = [commFunc imageWithName:@"whenNWhere" andType:_pPNGType];
     UIImage *imageBackViewBottom = [commFunc imageWithName:@"viewBack" andType:_pPNGType];
@@ -102,20 +88,7 @@
     [viewWhenNWhere setBackgroundColor:[UIColor colorWithPatternImage:imageWhenWhereBack]];
     [viewBottom setBackgroundColor:[UIColor colorWithPatternImage:imageBackViewBottom]];
     [imageViewBack setImage:resizableImage];
-    
-//    [tableViewReminderInfo.layer setBorderColor:[UIColor blueColor].CGColor];
-//    [tableViewReminderInfo.layer setBorderWidth:2.0f];
-    
-    [self setupTextView];
 }
-
-#pragma mark - Navigation Bar Methods
-
-- (void)backButtonAction:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-#pragma mark - Setup Text View
 
 - (void)setupTextView {
     
@@ -148,22 +121,25 @@
     [textViewLinks setTextAlignment:NSTextAlignmentCenter];
 }
 
+#pragma mark - Navigation Bar Methods
+
+- (void)backButtonAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark - IBAction for Options
 
 - (IBAction)optionsButtonTouched:(id)sender {
     
-    int tagButton = [sender tag];
+    NSInteger tagButton = [sender tag];
     UIButton *selectedButton = (UIButton *)sender;
     
     if (tagButton != selectedOption) {
-        
         [selectedButton setSelected:true];
-        
         if (selectedOption) {
             UIButton *oldSelectedButton = (UIButton *)[viewOptions viewWithTag:selectedOption];
             [oldSelectedButton setSelected:false];
         }
-        
         selectedOption = tagButton;
     }
     else {
@@ -201,6 +177,7 @@
 }
 
 - (void)sectionButtonTouched:(UIButton *)sender {
+    
     int heightIncrement = (!repeatSelected && !notesSelected) ? 120: 0;
     if ([sender tag] == 0) {
         repeatSelected = true;
@@ -227,29 +204,7 @@
     contentSize.height += heightIncrement;
     
     [scrollView setContentSize:contentSize];
-    
-    
     [tableViewReminderInfo reloadData];
-}
-
-#pragma mark - Other Methods
-
-- (UIView *)addViewInPickerComponentWithText:(NSString *)textComponent {
-    
-    UIView *viewTitle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 30)];
-    [viewTitle setBackgroundColor:[UIColor clearColor]];
-    
-    UILabel *labelTitle = [[UILabel alloc] initWithFrame:viewTitle.frame];
-    [labelTitle setFont:[UIFont fontWithName:_pFontArialMT size:12]];
-    [labelTitle setBackgroundColor:[UIColor clearColor]];
-    [labelTitle setTextAlignment:NSTextAlignmentCenter];
-    [labelTitle setTextColor:[UIColor whiteColor]];
-    [labelTitle setText:textComponent];
-    
-    [viewTitle addSubview:labelTitle];
-    labelTitle = nil;
-    
-    return viewTitle;
 }
 
 #pragma mark - TextView Delegate
@@ -268,73 +223,9 @@
     [scrollView setFrame:frameScrollView];
 }
 
-#pragma mark - Picker View Delegates & DataSource
-
-- (int)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    int components = [pickerView tag];
-    return components;
-}
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-    
-    return 15;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    
-    int noOfRows = 0;
-    int pickerViewTag = [pickerView tag];
-    
-    if (pickerViewTag == 1)
-        noOfRows = 60;
-    else if ( pickerViewTag == 2)
-        noOfRows = component ? 60 : 24;
-    else {
-        int thirdComponent = [pickerView selectedRowInComponent:2];
-        int secondComponent = [pickerView selectedRowInComponent:1];
-        int selectedYear = thirdComponent + currentYear;
-        
-        BOOL leapYear = false;
-        if (selectedYear % 4 == 0)
-            leapYear = (selectedYear % 100 == 0) ? (selectedYear % 400 == 0) : true;
-        
-        switch (component) {
-            case 0:
-                if (secondComponent < 7)
-                    noOfRows = (secondComponent == 1) ? (leapYear ? 29 : 28) : ((secondComponent % 2) ? 30 : 31);
-                else
-                    noOfRows = (secondComponent % 2) ? 31 : 30;
-                break;
-            case 1:
-                noOfRows = 12;
-                break;
-            case 2:
-                noOfRows = 2100 - currentYear;
-                break;
-            default:
-                break;
-        }
-    }
-    return noOfRows;
-}
-
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
-    
-    NSString *strValue = [NSString stringWithFormat:@"%02d", row + 1];
-    if ([pickerView tag] == 3 && component == 2)
-        strValue = [NSString stringWithFormat:@"%02d", row + 14];
-    UIView *viewTitle = [self addViewInPickerComponentWithText:strValue];
-    return viewTitle;
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    
-    [pickerView reloadAllComponents];
-}
-
 #pragma mark - UITableView Delegate & DataSource
 
-- (int)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
 }
 

@@ -56,18 +56,26 @@
     [self setupNavigationItems];
     [self setupTextViewForUploadView];
     
-//    [spinnerProfileImage stopAnimating];
-    
     if (self.objUser.blobID) {
         [spinnerProfileImage setHidden:false];
         [spinnerProfileImage startAnimating];
         [QBContent TDownloadFileWithBlobID:self.objUser.blobID delegate:self];
     }
     
-    UIImage *imageCamera = [commFunc imageWithName:@"cameraImage" andType:_pPNGType];
-    
-    resultType=KSignUpResultNone;
-    [imageViewProfile setImage:imageCamera];
+    else if (self.objUser.facebookID.length) {
+        NSString *strFBImageURL = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", _objUser.facebookID];
+        //        NSString *strFBImageURL = [NSString stringWithFormat:@"https://graph.facebook.com/793557416/picture?type=large"];
+        NSURL *urlFBImage = [NSURL URLWithString:strFBImageURL];
+        NSData *dataImage = [NSData dataWithContentsOfURL:urlFBImage];
+        [imageViewProfile setImage:[UIImage imageWithData:dataImage]];
+        [spinnerProfileImage stopAnimating];
+    }
+    else {
+        UIImage *imageCamera = [commFunc imageWithName:@"cameraImage" andType:_pPNGType];
+        
+        resultType=KSignUpResultNone;
+        [imageViewProfile setImage:imageCamera];
+    }
     
     UITapGestureRecognizer *tapToChooseImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseImageTapped:)];
     [tapToChooseImage setNumberOfTapsRequired:1];

@@ -41,29 +41,17 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:TRUE];
     
-    if (![userDefs boolForKey:_pudLoggedIn])
+    if (![userDefs boolForKey:_pudLoggedIn] || [userDefs boolForKey:@"LoginWithFacebook"])
         [QBAuth createSessionWithDelegate:self];
     else {
         
         NSMutableDictionary *userInfo = [userDefs objectForKey:_pudUserInfo];
-        
-        if (![userDefs boolForKey:@"LoginWithFacebook"]) {
-            NSLog(@"Password : %@", [userDefs objectForKey:@"Password"]);
-            
-            QBASessionCreationRequest *extendedAuthRequest = [[QBASessionCreationRequest alloc] init];
-            extendedAuthRequest.userLogin = [userInfo objectForKey:@"login"]; // ID: 218651
-            extendedAuthRequest.userPassword = [userDefs objectForKey:@"Password"];
-            [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
-        }
-        else {
-//            NSString *fbAccessToken = [[[FBSession activeSession] accessTokenData] accessToken];
-//            [QBUsers logInWithSocialProvider:@"facebook"
-//                                 accessToken:fbAccessToken
-//                           accessTokenSecret:nil
-//                                    delegate:self];
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }
+        QBASessionCreationRequest *extendedAuthRequest = [[QBASessionCreationRequest alloc] init];
+        extendedAuthRequest.userLogin = [userInfo objectForKey:@"login"]; // ID: 218651
+        extendedAuthRequest.userPassword = [userDefs objectForKey:@"Password"];
+        [QBAuth createSessionWithExtendedRequest:extendedAuthRequest delegate:self];
     }
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -98,38 +86,49 @@
 #pragma mark - QBDelegate Methods
 
 - (void)completedWithResult:(Result *)result {
-    BOOL error = FALSE;
     
+    BOOL error = FALSE;
     
     if ([result isKindOfClass:[QBAAuthSessionCreationResult class]]) {
         if (result.success) {
             NSLog(@"Session created successfully");
             
-            if ([userDefs boolForKey:_pudLoggedIn]) {
-                [self setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-                [self dismissViewControllerAnimated:true completion:nil];
+            if ([userDefs boolForKey:@"LoginWithFacebook"]) {
+                
+                FBSession *fbSession = [FBSession activeSession];
+                FBAccessTokenData *fbAccessTokenData = [fbSession accessTokenData];
+                NSString *fbAccessToken = [fbAccessTokenData accessToken];
+                [QBUsers logInWithSocialProvider:@"facebook"
+                                     accessToken:fbAccessToken
+                               accessTokenSecret:nil
+                                        delegate:self];
             }
             else {
-                [self showLoginView];
+                if ([userDefs boolForKey:_pudLoggedIn]) {
+                    [self setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+                    [self dismissViewControllerAnimated:true completion:nil];
+                }
+                else
+                    [self showLoginView];
             }
         }
         else {
             error = TRUE;
         }
     }
-    //    else if ([result isKindOfClass:[QBUUserLogInResult class]]) {
-    //        if (result.success) {
-    //            QBUUserLogInResult *loginResult = (QBUUserLogInResult *)result;
-    //            QBUUser *userInfo = [loginResult user];
-    //
-    //            [[CommonFunctions sharedObject] saveInformationInDefaultsForUser:userInfo];
-    //            NSLog(@"User Info : %@", userInfo);
-    //            [self dismissViewControllerAnimated:NO completion:nil];
-    //        }
-    //        else {
-    //            error = TRUE;
-    //        }
-    //    }
+    else if ([result isKindOfClass:[QBUUserLogInResult class]]) {
+        if (result.success) {
+            QBUUserLogInResult *loginResult = (QBUUserLogInResult *)result;
+            QBUUser *userInfo = [loginResult user];
+            
+            [[CommonFunctions sharedObject] saveInformationInDefaultsForUser:userInfo];
+            NSLog(@"User Info : %@", userInfo);
+            [self dismissViewControllerAnimated:NO completion:nil];
+        }
+        else {
+            error = TRUE;
+        }
+    }
     if (error) {
         [[[UIAlertView alloc] initWithTitle:@"Session Problem"
                                     message:@"Sorry can't create your session right now"

@@ -291,7 +291,7 @@ NSString *className = @"PALogNight";
 
 - (void)tappedOnImage:(UITapGestureRecognizer *)recognizer {
     
-    int tagOfTappedImage = (finalRatingValue == [recognizer.view tag]) ? finalRatingValue - 1 : [recognizer.view tag];
+    int tagOfTappedImage = (finalRatingValue == [recognizer.view tag]) ? finalRatingValue - 1 : (int)[recognizer.view tag];
     finalRatingValue = tagOfTappedImage;
     
     for (UIImageView *imageView in viewRatings.subviews) {

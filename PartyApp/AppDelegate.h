@@ -13,7 +13,7 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (nonatomic,retain) NSDictionary *userInfo;
+@property (nonatomic, retain) NSDictionary *userInfo;
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController *navController;
 
@@ -22,6 +22,6 @@
 //- (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;
 //- (void)userLoggedIn;
 //- (void)userLoggedOut;
-- (void)getUserInformation;
+//- (void)getUserInformation;
 
 @end

@@ -137,7 +137,7 @@
     
     NSRange rRange = NSMakeRange(0, 2);
     NSString *rComponent = [hexString substringWithRange:rRange];
-    NSUInteger rVal = 0;
+    unsigned int rVal = 0;
     NSScanner *rScanner = [NSScanner scannerWithString:rComponent];
     [rScanner scanHexInt:&rVal];
     float rRetVal = (float)rVal / 254;
@@ -145,14 +145,14 @@
     
     NSRange gRange = NSMakeRange(2, 2);
     NSString *gComponent = [hexString substringWithRange:gRange];
-    NSUInteger gVal = 0;
+    unsigned int gVal = 0;
     NSScanner *gScanner = [NSScanner scannerWithString:gComponent];
     [gScanner scanHexInt:&gVal];
     float gRetVal = (float)gVal / 254;
     
     NSRange bRange = NSMakeRange(4, 2);
     NSString *bComponent = [hexString substringWithRange:bRange];
-    NSUInteger bVal = 0;
+    unsigned int bVal = 0;
     NSScanner *bScanner = [NSScanner scannerWithString:bComponent];
     [bScanner scanHexInt:&bVal];
     float bRetVal = (float)bVal / 254;
@@ -182,9 +182,9 @@
     
     NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
     
-    NSNumber *userID        = [NSNumber numberWithInt:userInfo.ID];
-    NSNumber *extID         = [NSNumber numberWithInt:userInfo.externalUserID];
-    NSNumber *blobID        = [NSNumber numberWithInt:userInfo.blobID];
+    NSNumber *userID        = [NSNumber numberWithInt:(int)userInfo.ID];
+    NSNumber *extID         = [NSNumber numberWithInt:(int)userInfo.externalUserID];
+    NSNumber *blobID        = [NSNumber numberWithInt:(int)userInfo.blobID];
     NSString *facebookID    = !userInfo.facebookID ? @"" : userInfo.facebookID;
     NSString *twitterID     = !userInfo.twitterID ? @"" : userInfo.twitterID;
     NSString *fullName      = !userInfo.fullName ? @"" : userInfo.fullName;

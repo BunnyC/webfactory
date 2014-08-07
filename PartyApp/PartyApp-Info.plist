@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.netscapesolutions.FalconDrivingSchool</string>
+	<string>com.yasar.taxi</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -25,14 +25,14 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb581865231910988</string>
+				<string>fb748400755219001</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>FacebookAppID</key>
-	<string>581865231910988</string>
+	<string>748400755219001</string>
 	<key>FacebookDisplayName</key>
 	<string>PartyApp</string>
 	<key>LSRequiresIPhoneOS</key>

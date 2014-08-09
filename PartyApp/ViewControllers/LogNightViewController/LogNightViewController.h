@@ -8,8 +8,6 @@
 
 #import "BaseViewController.h"
 
-#import <CoreLocation/CoreLocation.h>
-
 @interface LogNightViewController : BaseViewController <CLLocationManagerDelegate> {
     
     __weak IBOutlet UIView *viewRatings;

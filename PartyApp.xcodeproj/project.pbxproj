@@ -48,6 +48,20 @@
 		8464A8AC195A066800583DE0 /* UploadPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A875195A066800583DE0 /* UploadPhotoViewController.m */; };
 		8464A8AD195A066800583DE0 /* UploadPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8464A876195A066800583DE0 /* UploadPhotoViewController.xib */; };
 		8491FCD4195EB75B00FDC63F /* LoginViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8491FCD3195EB75B00FDC63F /* LoginViewController4.xib */; };
+		849DC10A19963BDA008988AD /* UILabel+WhiteUIDatePickerLabels.m in Sources */ = {isa = PBXBuildFile; fileRef = 849DC10919963BDA008988AD /* UILabel+WhiteUIDatePickerLabels.m */; };
+		849DC10E1996A032008988AD /* reminderCancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 849DC10B1996A031008988AD /* reminderCancel.png */; };
+		849DC10F1996A032008988AD /* reminderLocationTF.png in Resources */ = {isa = PBXBuildFile; fileRef = 849DC10C1996A032008988AD /* reminderLocationTF.png */; };
+		849DC1101996A032008988AD /* reminderSet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 849DC10D1996A032008988AD /* reminderSet@2x.png */; };
+		849DC1141996A044008988AD /* reminderCancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 849DC1111996A044008988AD /* reminderCancel@2x.png */; };
+		849DC1151996A044008988AD /* reminderLocationTF@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 849DC1121996A044008988AD /* reminderLocationTF@2x.png */; };
+		849DC1161996A044008988AD /* reminderSet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 849DC1131996A044008988AD /* reminderSet@2x.png */; };
+		849DC1181996A09E008988AD /* reminderDone.png in Resources */ = {isa = PBXBuildFile; fileRef = 849DC1171996A09E008988AD /* reminderDone.png */; };
+		849DC11A1996A0AB008988AD /* reminderDone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 849DC1191996A0AB008988AD /* reminderDone@2x.png */; };
+		849DC11F1996A445008988AD /* LocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849DC11D1996A445008988AD /* LocationCell.m */; };
+		849DC1201996A445008988AD /* LocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 849DC11E1996A445008988AD /* LocationCell.xib */; };
+		849DC1241996C039008988AD /* FetchPlaces.m in Sources */ = {isa = PBXBuildFile; fileRef = 849DC1231996C039008988AD /* FetchPlaces.m */; };
+		849DC1291996CB9D008988AD /* LocationInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849DC1271996CB9D008988AD /* LocationInfoCell.m */; };
+		849DC12A1996CB9D008988AD /* LocationInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 849DC1281996CB9D008988AD /* LocationInfoCell.xib */; };
 		84A110A6197158A40035E181 /* cbSel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A110A3197158A40035E181 /* cbSel@2x.png */; };
 		84A110A7197158A40035E181 /* cbUnSel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A110A4197158A40035E181 /* cbUnSel@2x.png */; };
 		84A110A8197158A40035E181 /* whenNWhere@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A110A5197158A40035E181 /* whenNWhere@2x.png */; };
@@ -250,6 +264,24 @@
 		8464A875195A066800583DE0 /* UploadPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadPhotoViewController.m; sourceTree = "<group>"; };
 		8464A876195A066800583DE0 /* UploadPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadPhotoViewController.xib; sourceTree = "<group>"; };
 		8491FCD3195EB75B00FDC63F /* LoginViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController4.xib; sourceTree = "<group>"; };
+		849DC10819963BDA008988AD /* UILabel+WhiteUIDatePickerLabels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+WhiteUIDatePickerLabels.h"; path = "UILabel+WhiteUIDatePickerLabels/UILabel+WhiteUIDatePickerLabels.h"; sourceTree = "<group>"; };
+		849DC10919963BDA008988AD /* UILabel+WhiteUIDatePickerLabels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+WhiteUIDatePickerLabels.m"; path = "UILabel+WhiteUIDatePickerLabels/UILabel+WhiteUIDatePickerLabels.m"; sourceTree = "<group>"; };
+		849DC10B1996A031008988AD /* reminderCancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reminderCancel.png; sourceTree = "<group>"; };
+		849DC10C1996A032008988AD /* reminderLocationTF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reminderLocationTF.png; sourceTree = "<group>"; };
+		849DC10D1996A032008988AD /* reminderSet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reminderSet@2x.png"; sourceTree = "<group>"; };
+		849DC1111996A044008988AD /* reminderCancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reminderCancel@2x.png"; sourceTree = "<group>"; };
+		849DC1121996A044008988AD /* reminderLocationTF@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reminderLocationTF@2x.png"; sourceTree = "<group>"; };
+		849DC1131996A044008988AD /* reminderSet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reminderSet@2x.png"; sourceTree = "<group>"; };
+		849DC1171996A09E008988AD /* reminderDone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reminderDone.png; sourceTree = "<group>"; };
+		849DC1191996A0AB008988AD /* reminderDone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reminderDone@2x.png"; sourceTree = "<group>"; };
+		849DC11C1996A445008988AD /* LocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationCell.h; path = AddReminderViewController/LocationCell/LocationCell.h; sourceTree = "<group>"; };
+		849DC11D1996A445008988AD /* LocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationCell.m; path = AddReminderViewController/LocationCell/LocationCell.m; sourceTree = "<group>"; };
+		849DC11E1996A445008988AD /* LocationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocationCell.xib; path = AddReminderViewController/LocationCell/LocationCell.xib; sourceTree = "<group>"; };
+		849DC1221996C039008988AD /* FetchPlaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FetchPlaces.h; path = Models/FetchPlaces/FetchPlaces.h; sourceTree = "<group>"; };
+		849DC1231996C039008988AD /* FetchPlaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FetchPlaces.m; path = Models/FetchPlaces/FetchPlaces.m; sourceTree = "<group>"; };
+		849DC1261996CB9D008988AD /* LocationInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationInfoCell.h; path = AddReminderViewController/LocationInfoCell/LocationInfoCell.h; sourceTree = "<group>"; };
+		849DC1271996CB9D008988AD /* LocationInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationInfoCell.m; path = AddReminderViewController/LocationInfoCell/LocationInfoCell.m; sourceTree = "<group>"; };
+		849DC1281996CB9D008988AD /* LocationInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocationInfoCell.xib; path = AddReminderViewController/LocationInfoCell/LocationInfoCell.xib; sourceTree = "<group>"; };
 		84A110A3197158A40035E181 /* cbSel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cbSel@2x.png"; sourceTree = "<group>"; };
 		84A110A4197158A40035E181 /* cbUnSel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cbUnSel@2x.png"; sourceTree = "<group>"; };
 		84A110A5197158A40035E181 /* whenNWhere@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whenNWhere@2x.png"; sourceTree = "<group>"; };
@@ -527,6 +559,7 @@
 		842715E91960411100DBEA6E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				849DC1211996C00E008988AD /* FetchPlaces */,
 				84A110B01971660E0035E181 /* SignUpModel */,
 				84A110AF197165FF0035E181 /* LoginModel */,
 				842715EA1960411700DBEA6E /* SessionModel */,
@@ -558,6 +591,7 @@
 		8464A82E195A066800583DE0 /* HelperClasses */ = {
 			isa = PBXGroup;
 			children = (
+				849DC10719963696008988AD /* UILabel+WhiteUIDatePickerLabels.h */,
 				84DF77971969AC1E00A11C2F /* FXBlurView */,
 				842715E11960390E00DBEA6E /* RequestBuilder */,
 				842715E21960390E00DBEA6E /* ServerConnection */,
@@ -600,6 +634,10 @@
 		8464A836195A066800583DE0 /* Retina */ = {
 			isa = PBXGroup;
 			children = (
+				849DC1191996A0AB008988AD /* reminderDone@2x.png */,
+				849DC1111996A044008988AD /* reminderCancel@2x.png */,
+				849DC1131996A044008988AD /* reminderSet@2x.png */,
+				849DC1121996A044008988AD /* reminderLocationTF@2x.png */,
 				84DF77441969240000A11C2F /* appBackground4@2x.png */,
 				84DF77431969240000A11C2F /* appBackground@2x.png */,
 				84DF77451969240000A11C2F /* backButton@2x.png */,
@@ -650,6 +688,10 @@
 		8464A847195A066800583DE0 /* Simple */ = {
 			isa = PBXGroup;
 			children = (
+				849DC1171996A09E008988AD /* reminderDone.png */,
+				849DC10B1996A031008988AD /* reminderCancel.png */,
+				849DC10C1996A032008988AD /* reminderLocationTF.png */,
+				849DC10D1996A032008988AD /* reminderSet@2x.png */,
 				84DF7703196923EE00A11C2F /* appBackground.png */,
 				84DF7704196923EE00A11C2F /* appBackground4.png */,
 				84DF7705196923EE00A11C2F /* backButton.png */,
@@ -810,6 +852,44 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		849DC10719963696008988AD /* UILabel+WhiteUIDatePickerLabels.h */ = {
+			isa = PBXGroup;
+			children = (
+				849DC10819963BDA008988AD /* UILabel+WhiteUIDatePickerLabels.h */,
+				849DC10919963BDA008988AD /* UILabel+WhiteUIDatePickerLabels.m */,
+			);
+			name = "UILabel+WhiteUIDatePickerLabels.h";
+			sourceTree = "<group>";
+		};
+		849DC11B1996A40C008988AD /* LocationCell */ = {
+			isa = PBXGroup;
+			children = (
+				849DC11C1996A445008988AD /* LocationCell.h */,
+				849DC11D1996A445008988AD /* LocationCell.m */,
+				849DC11E1996A445008988AD /* LocationCell.xib */,
+			);
+			name = LocationCell;
+			sourceTree = "<group>";
+		};
+		849DC1211996C00E008988AD /* FetchPlaces */ = {
+			isa = PBXGroup;
+			children = (
+				849DC1221996C039008988AD /* FetchPlaces.h */,
+				849DC1231996C039008988AD /* FetchPlaces.m */,
+			);
+			name = FetchPlaces;
+			sourceTree = "<group>";
+		};
+		849DC1251996CB62008988AD /* LocationInfoCell */ = {
+			isa = PBXGroup;
+			children = (
+				849DC1261996CB9D008988AD /* LocationInfoCell.h */,
+				849DC1271996CB9D008988AD /* LocationInfoCell.m */,
+				849DC1281996CB9D008988AD /* LocationInfoCell.xib */,
+			);
+			name = LocationInfoCell;
+			sourceTree = "<group>";
+		};
 		84A110AF197165FF0035E181 /* LoginModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -849,6 +929,8 @@
 		84A48806196AAA78006BC223 /* AddReminderViewController */ = {
 			isa = PBXGroup;
 			children = (
+				849DC1251996CB62008988AD /* LocationInfoCell */,
+				849DC11B1996A40C008988AD /* LocationCell */,
 				84A48807196AAAC1006BC223 /* AddReminderViewController.h */,
 				84A48808196AAAC1006BC223 /* AddReminderViewController.m */,
 				84A48809196AAAC1006BC223 /* AddReminderViewController.xib */,
@@ -1010,8 +1092,10 @@
 				CE9D376E195E771B001F05D9 /* ForgotPasswordViewController.xib in Resources */,
 				84DF7738196923EE00A11C2F /* selCommentIcon.png in Resources */,
 				84DF776E1969240000A11C2F /* location@2x.png in Resources */,
+				849DC1151996A044008988AD /* reminderLocationTF@2x.png in Resources */,
 				84DF773C196923EE00A11C2F /* txtFldW.png in Resources */,
 				84DF7733196923EE00A11C2F /* onlineImage.png in Resources */,
+				849DC11A1996A0AB008988AD /* reminderDone@2x.png in Resources */,
 				84A4881C196AB703006BC223 /* personalIcon.png in Resources */,
 				84DF773F196923EE00A11C2F /* unselLocation.png in Resources */,
 				84DF7735196923EE00A11C2F /* placeholder.png in Resources */,
@@ -1070,13 +1154,17 @@
 				84DF777B1969240000A11C2F /* tick@2x.png in Resources */,
 				84DF772E196923EE00A11C2F /* location.png in Resources */,
 				8464A89E195A066800583DE0 /* Images.xcassets in Resources */,
+				849DC1181996A09E008988AD /* reminderDone.png in Resources */,
 				84DF778C19693A2600A11C2F /* sharingOptions@2x.png in Resources */,
 				84DF77801969240000A11C2F /* viewBack@2x.png in Resources */,
 				84DF7729196923EE00A11C2F /* buttonMenu.png in Resources */,
 				84A4881A196AB703006BC223 /* friendsIcon.png in Resources */,
+				849DC1101996A032008988AD /* reminderSet@2x.png in Resources */,
+				849DC1141996A044008988AD /* reminderCancel@2x.png in Resources */,
 				84DF77761969240000A11C2F /* purpleButton@2x.png in Resources */,
 				84DF7792196947A300A11C2F /* textViewBack.png in Resources */,
 				84DF77741969240000A11C2F /* pinkButton@2x.png in Resources */,
+				849DC10F1996A032008988AD /* reminderLocationTF.png in Resources */,
 				84DF77691969240000A11C2F /* buttonMenu@2x.png in Resources */,
 				842B8C9719719D2B00BECFD7 /* iconNotes@2x.png in Resources */,
 				8464A87C195A066800583DE0 /* InfoPlist.strings in Resources */,
@@ -1095,6 +1183,7 @@
 				84DF777C1969240000A11C2F /* txtFldW@2x.png in Resources */,
 				84DF77711969240000A11C2F /* nextButton@2x.png in Resources */,
 				84A110AC197158D60035E181 /* cbSel.png in Resources */,
+				849DC12A1996CB9D008988AD /* LocationInfoCell.xib in Resources */,
 				84DF77701969240000A11C2F /* mottoBack@2x.png in Resources */,
 				842B8C94197199C200BECFD7 /* selRepeat@2x.png in Resources */,
 				8464A8A7195A066800583DE0 /* ProfileViewController.xib in Resources */,
@@ -1106,11 +1195,14 @@
 				84DF7742196923EE00A11C2F /* yellowButton.png in Resources */,
 				84A48833196AB730006BC223 /* personalIcon@2x.png in Resources */,
 				CE9D3773195F0C0F001F05D9 /* ProfileViewController4.xib in Resources */,
+				849DC10E1996A032008988AD /* reminderCancel.png in Resources */,
+				849DC1201996A445008988AD /* LocationCell.xib in Resources */,
 				84DF77771969240000A11C2F /* roundImageEffect@2x.png in Resources */,
 				8464A8A5195A066800583DE0 /* LogNightViewController.xib in Resources */,
 				84DF7740196923EE00A11C2F /* viewBack.png in Resources */,
 				84DF776A1969240000A11C2F /* cameraImage@2x.png in Resources */,
 				84A48819196AB703006BC223 /* foodDrinkIcon.png in Resources */,
+				849DC1161996A044008988AD /* reminderSet@2x.png in Resources */,
 				84DF7725196923EE00A11C2F /* backButton.png in Resources */,
 				8464A8A9195A066800583DE0 /* RegisterViewController.xib in Resources */,
 				84DF77651969240000A11C2F /* backButton@2x.png in Resources */,
@@ -1153,8 +1245,11 @@
 				8464A8A4195A066800583DE0 /* LogNightViewController.m in Sources */,
 				84A14330195F5AD200DC3970 /* PATextField.m in Sources */,
 				842715E81960399700DBEA6E /* RequestBuilder.m in Sources */,
+				849DC10A19963BDA008988AD /* UILabel+WhiteUIDatePickerLabels.m in Sources */,
 				8464A8A2195A066800583DE0 /* LoginViewController.m in Sources */,
 				84A4880A196AAAC1006BC223 /* AddReminderViewController.m in Sources */,
+				849DC1241996C039008988AD /* FetchPlaces.m in Sources */,
+				849DC11F1996A445008988AD /* LocationCell.m in Sources */,
 				84A110BA197167840035E181 /* DataManager.m in Sources */,
 				842715D41960125100DBEA6E /* NotificationCell.m in Sources */,
 				8464A87E195A066800583DE0 /* Constants.m in Sources */,
@@ -1164,6 +1259,7 @@
 				8464A8AC195A066800583DE0 /* UploadPhotoViewController.m in Sources */,
 				842715E51960390E00DBEA6E /* ServerConnection.m in Sources */,
 				842715ED1960414800DBEA6E /* SessionModel.m in Sources */,
+				849DC1291996CB9D008988AD /* LocationInfoCell.m in Sources */,
 				CE9D376C195E771B001F05D9 /* ForgotPasswordViewController.m in Sources */,
 				8464A8A6195A066800583DE0 /* ProfileViewController.m in Sources */,
 				84A110B6197166CF0035E181 /* LoginModel.m in Sources */,

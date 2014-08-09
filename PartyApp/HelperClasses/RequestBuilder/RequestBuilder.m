@@ -32,12 +32,12 @@
     else
         [request setHTTPMethod:@"GET"];
     
-    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-    NSString *sessionToken = [userDefs objectForKey:_pudSessionToken];
+//    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
+//    NSString *sessionToken = [userDefs objectForKey:_pudSessionToken];
     
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:@"0.1.0"            forHTTPHeaderField:@"QuickBlox-REST-API-Version"];
-    [request setValue:sessionToken        forHTTPHeaderField:@"QB-Token"];
+//    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//    [request setValue:@"0.1.0"            forHTTPHeaderField:@"QuickBlox-REST-API-Version"];
+//    [request setValue:sessionToken        forHTTPHeaderField:@"QB-Token"];
     
     return request;
 }

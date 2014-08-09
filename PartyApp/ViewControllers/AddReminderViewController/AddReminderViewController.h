@@ -29,6 +29,9 @@
 
     __weak IBOutlet UITableView *tableViewReminderInfo;
     
+    __weak IBOutlet PATextField *textFieldLocation;
+    __weak IBOutlet UITableView *tableViewLocation;
+    __weak IBOutlet UIView *viewAddLocation;
 }
 
 @end

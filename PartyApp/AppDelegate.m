@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ProfileViewController.h"
 #import "SplashScreenViewController.h"
+#import "LoginViewController.h"
 #import "FXBlurView.h"
 
 @implementation AppDelegate
@@ -53,24 +54,14 @@
         [_navController presentViewController:navContSplash animated:NO completion:nil];
 //    }
     
-//    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
-//        NSLog(@"Found a cached session");
-//        // If there's one, just open the session silently, without showing the user the login UI
-//        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"profile_picture"]
-//                                           allowLoginUI:NO
-//                                      completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
-//                                          // Handler for session state changes
-//                                          // This method will be called EACH time the session state changes,
-//                                          // also for intermediate states and NOT just when the session open
-//                                          
-//                                      }];
-//        
-//        // If there's no cached session, we will show a login button
-//    }
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
+    [self.locationManager startUpdatingLocation];
     
     return YES;
 }
-
 
 - (void)setApplicationDefaults {
     
@@ -103,11 +94,6 @@
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     
     return [FBSession.activeSession handleOpenURL:url];
-
-//    // attempt to extract a token from the url
-//    return [FBAppCall handleOpenURL:url
-//                  sourceApplication:sourceApplication
-//                        withSession:self.session];
 }
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -124,16 +110,11 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-//    [self requestForFBSession];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-//    [FBAppEvents activateApp];
-//  
-//    [FBAppCall handleDidBecomeActiveWithSession:self.session];
-
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -143,121 +124,23 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#pragma mark - Location Manager Delegate Methods
 
-//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-//{
-//    return [FBSession.activeSession handleOpenURL:url];
-//}
+#pragma mark
+#pragma mark locationManager delegate methods
 
-//-(void)getUserInformation
-//{
-//    [FBRequestConnection startWithGraphPath:@"/me"
-//                                 parameters:nil
-//                                 HTTPMethod:@"GET"
-//                          completionHandler:^(
-//                                              FBRequestConnection *connection,
-//                                              id result,
-//                                              NSError *error
-//                                              ) {
-//                              
-//                              [self makeRequestForUserData];
-//                              /* handle the result */
-//                          }];
-//
-//}
 
-//-(void)requestForFBSession
-//{
-//    NSArray *permissionsNeeded = @[@"public_profile"];
-//
-//    [FBRequestConnection startWithGraphPath:@"/me/permissions"
-//                          completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-//                              if (!error){
-//                                  // These are the current permissions the user has
-//                                  NSDictionary *currentPermissions= [(NSArray *)[result data] objectAtIndex:0];
-//                                  
-//                                  // We will store here the missing permissions that we will have to request
-//                                  NSMutableArray *requestPermissions = [[NSMutableArray alloc] initWithArray:@[]];
-//                                  
-//                                  // Check if all the permissions we need are present in the user's current permissions
-//                                  // If they are not present add them to the permissions to be requested
-//                                  for (NSString *permission in permissionsNeeded){
-//                                      if (![currentPermissions objectForKey:permission]){
-//                                          [requestPermissions addObject:permission];
-//                                      }
-//                                  }
-//                                  
-//                                  // If we have permissions to request
-//                                  if ([requestPermissions count] > 0){
-//                                      // Ask for the missing permissions
-//                                      [FBSession.activeSession
-//                                       requestNewReadPermissions:requestPermissions
-//                                       completionHandler:^(FBSession *session, NSError *error) {
-//                                           if (!error) {
-//                                               // Permission granted, we can request the user information
-//                                               [self makeRequestForUserData];
-//                                           } else {
-//                                               // An error occurred, we need to handle the error
-//                                               // Check out our error handling guide: https://developers.facebook.com/docs/ios/errors/
-//                                               NSLog(@"error %@", error.description);
-//                                           }
-//                                       }];
-//                                  } else {
-//                                      // Permissions are present
-//                                      // We can request the user information
-//                                      [self makeRequestForUserData];
-//                                  }
-//                                  
-//                              } else {
-//                                  // An error occurred, we need to handle the error
-//                                  // Check out our error handling guide: https://developers.facebook.com/docs/ios/errors/
-//                                  NSLog(@"error %@", error.description);
-//                              }
-//                          }];
-//}
-//
-//- (void) makeRequestForUserData
-//{
-//    [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-//        if (!error) {
-//             [self showMessage:@"You're now logged in" withTitle:@"Welcome!"];
-//            // Success! Include your code to handle the results here
-//            NSLog(@"user info: %@", result);
-//            _userInfo=(NSDictionary *)result;
-//            ProfileViewController *objProfileView;
-//            for (id controller in self.navController.viewControllers) {
-//                
-//                if([(ProfileViewController *)controller isKindOfClass:[ProfileViewController class]])
-//                {
-//                   objProfileView=(ProfileViewController *)controller;
-//                    break;
-//                }
-//            }
-//            
-//            NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-//            [userDefs setBool:true forKey:_pudLoggedIn];
-//            [userDefs synchronize];
-//            [self.navController dismissViewControllerAnimated:YES completion:^{
-//                //[objProfileView updateUserProfileData:_userInfo];
-//            }];
-//            
-//        } else {
-//            // An error occurred, we need to handle the error
-//            // Check out our error handling guide: https://developers.facebook.com/docs/ios/errors/
-//            NSLog(@"error %@", error.description);
-//        }
-//    }];
-//}
-//
-//
-//// Show an alert message
-//- (void)showMessage:(NSString *)text withTitle:(NSString *)title
-//{
-//    [[[UIAlertView alloc] initWithTitle:title
-//                                message:text
-//                               delegate:self
-//                      cancelButtonTitle:@"OK!"
-//                      otherButtonTitles:nil] show];
-//}
+- (void)locationManager: (CLLocationManager *)manager
+    didUpdateToLocation: (CLLocation *)newLocation
+           fromLocation: (CLLocation *)oldLocation
+{
+    
+//    float latitude = newLocation.coordinate.latitude;
+//    strLatitude = [NSString stringWithFormat:@"%f",latitude];
+//    float longitude = newLocation.coordinate.longitude;
+//    strLongitude = [NSString stringWithFormat:@"%f", longitude];
+    //[self returnLatLongString:strLatitude:strLongitude];
+    self.locationCurrent = newLocation;
+}
 
 @end

@@ -10,9 +10,12 @@
                 <outlet property="buttonWhere" destination="r7g-gC-fb0" id="vlU-lO-53h"/>
                 <outlet property="imageViewBack" destination="wJv-du-1hI" id="HKt-Wb-F6f"/>
                 <outlet property="scrollView" destination="B3x-ot-TXS" id="RxI-oi-0Ns"/>
+                <outlet property="tableViewLocation" destination="1AO-X6-xag" id="MYS-el-rdO"/>
                 <outlet property="tableViewReminderInfo" destination="sHk-hW-TMm" id="CDB-z8-K24"/>
+                <outlet property="textFieldLocation" destination="EpJ-q0-Cnb" id="p0H-iw-geB"/>
                 <outlet property="textViewLinks" destination="x1S-8M-3e6" id="eXU-jz-iaJ"/>
                 <outlet property="view" destination="1" id="3"/>
+                <outlet property="viewAddLocation" destination="seF-Tf-87y" id="TXd-Iy-aXT"/>
                 <outlet property="viewAddReminder" destination="Pqc-Ze-Eyl" id="fjM-3n-zvy"/>
                 <outlet property="viewBottom" destination="6d0-SM-M4s" id="Nvu-2O-Ger"/>
                 <outlet property="viewOptions" destination="nwv-Fp-pnW" id="rpT-PE-cfD"/>
@@ -25,7 +28,7 @@
             <rect key="frame" x="0.0" y="64" width="320" height="504"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="B3x-ot-TXS">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" id="B3x-ot-TXS">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
@@ -163,7 +166,7 @@
                                     <rect key="frame" x="10" y="31" width="300" height="216"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="wJv-du-1hI">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whenNWhere.png" id="wJv-du-1hI">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="216"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -175,7 +178,7 @@
                                                 <!--2014-08-05 02:59:48 +0000-->
                                             </date>
                                             <timeZone key="timeZone" name="America/Los_Angeles">
-                                                <mutableData key="data">
+                                                <data key="data">
 VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
 y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
 5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
@@ -193,7 +196,7 @@ f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
-</mutableData>
+</data>
                                             </timeZone>
                                         </datePicker>
                                     </subviews>
@@ -206,6 +209,53 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <connections>
                                         <outlet property="dataSource" destination="-1" id="wdo-sb-VgH"/>
                                         <outlet property="delegate" destination="-1" id="DrN-W7-gjk"/>
+                                    </connections>
+                                </tableView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                        </view>
+                        <view hidden="YES" contentMode="scaleToFill" id="seF-Tf-87y">
+                            <rect key="frame" x="0.0" y="108" width="320" height="135"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IvW-uO-kTG">
+                                    <rect key="frame" x="14" y="5" width="292" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whenNWhere.png" id="Wav-ce-gfy">
+                                    <rect key="frame" x="14" y="27" width="292" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="reminderLocationTF.png" id="EpJ-q0-Cnb" customClass="PATextField">
+                                    <rect key="frame" x="18" y="32" width="207" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="Aju-5s-x5z"/>
+                                    </connections>
+                                </textField>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="juC-cW-zV0">
+                                    <rect key="frame" x="227" y="29" width="75" height="46"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" image="reminderDone.png">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="doneButtonTouched:" destination="-1" eventType="touchUpInside" id="ec7-lr-Aax"/>
+                                    </connections>
+                                </button>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" id="1AO-X6-xag">
+                                    <rect key="frame" x="14" y="80" width="292" height="42"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-1" id="sxa-JP-vPO"/>
+                                        <outlet property="delegate" destination="-1" id="e41-pE-B9U"/>
                                     </connections>
                                 </tableView>
                             </subviews>
@@ -255,6 +305,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="nightIcon.png" width="92" height="107"/>
         <image name="personalIcon.png" width="92" height="107"/>
         <image name="purpleButton.png" width="183" height="36"/>
+        <image name="reminderDone.png" width="75" height="40"/>
+        <image name="reminderLocationTF.png" width="204" height="41"/>
         <image name="selCustomIcon.png" width="92" height="107"/>
         <image name="selFoodDrinkIcon.png" width="92" height="107"/>
         <image name="selFriendsIcon.png" width="92" height="107"/>
@@ -262,5 +314,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="selPersonalIcon.png" width="92" height="107"/>
         <image name="selTransportIcon.png" width="92" height="107"/>
         <image name="transportIcon.png" width="92" height="107"/>
+        <image name="whenNWhere.png" width="291" height="31"/>
     </resources>
 </document>

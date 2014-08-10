@@ -90,6 +90,13 @@
     valueSelectedToRepeat = -1;
     indexOfLocationSelected = -1;
     
+    if(![[CommonFunctions sharedObject]isDeviceiPhone5])
+    {
+          [scrollView setFrame:CGRectMake(scrollView.frame.origin.x,64,scrollView.frame.size.width,scrollView.frame.size.height)];
+        
+        [viewBottom setFrame:CGRectMake(viewBottom.frame.origin.x,self.view.frame.size.height-viewBottom.frame.size.height-64,viewBottom.frame.size.width,viewBottom.frame.size.height)];
+    }
+  
     arrReminderOptions = [[NSArray alloc] initWithObjects:
                           @"Tomorrow", @"Next Week", @"Everyday", @"Every Week", nil];
     
@@ -124,6 +131,8 @@
     [viewAddLocation.layer setBorderWidth:1.0f];
     [tableViewLocation.layer setBorderColor:[UIColor redColor].CGColor];
     [tableViewLocation.layer setBorderWidth:1.f];
+    
+    
 }
 
 - (void)setupTextView {

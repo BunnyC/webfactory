@@ -32,6 +32,8 @@
     __weak IBOutlet PATextField *textFieldLocation;
     __weak IBOutlet UITableView *tableViewLocation;
     __weak IBOutlet UIView *viewAddLocation;
+    __weak IBOutlet UIView *viewMapView;
+    __weak IBOutlet MKMapView *mapView;
 }
 
 @end

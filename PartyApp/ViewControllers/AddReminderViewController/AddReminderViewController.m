@@ -10,7 +10,8 @@
 #import "UILabel+WhiteUIDatePickerLabels.h"
 
 #import "FetchPlaces.h"
-#import "LocationCell.h"
+//#import "LocationCell.h"
+#import "MapViewAnnotation.h"
 #import "LocationInfoCell.h"
 
 @interface AddReminderViewController () <UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, UITextFieldDelegate> {
@@ -25,6 +26,7 @@
     CommonFunctions *commFunc;
     
     int valueSelectedToRepeat;
+    NSInteger indexOfLocationSelected;
     NSMutableArray *arrFetchedLocations;
 }
 
@@ -86,6 +88,7 @@
     repeatSelected = false;
     notesSelected = false;
     valueSelectedToRepeat = -1;
+    indexOfLocationSelected = -1;
     
     arrReminderOptions = [[NSArray alloc] initWithObjects:
                           @"Tomorrow", @"Next Week", @"Everyday", @"Every Week", nil];
@@ -205,7 +208,18 @@
     [scrollView setContentSize:CGSizeMake(scrollView.frame.size.width, CGRectGetMaxY(frameVB))];
 }
 
+- (void)resetLocationFrame {
+
+    [viewMapView setHidden:YES];
+    [tableViewLocation setFrame:CGRectMake(14, 80, 292, 42)];
+    CGRect frameVL =viewAddLocation.frame;
+    frameVL.size.height = 135;
+    [viewAddLocation setFrame:frameVL];
+}
+
 - (void)setLocationFramesAsPerUpdatesWithSelection:(BOOL)selection {
+    
+    [self resetLocationFrame];
     CGRect frameWW = viewWhenNWhere.frame;
     CGRect frameAL = viewAddLocation.frame;
     CGRect frameVB = viewBottom.frame;
@@ -297,7 +311,7 @@
                           otherButtonTitles:nil, nil] show];
     }
     else {
-        arrFetchedLocations = [dictResponse objectForKey:@"results"];
+        arrFetchedLocations = [[NSMutableArray alloc] initWithArray:[dictResponse objectForKey:@"results"]];
         [tableViewLocation reloadData];
     }
     [self setLocationFramesAsPerUpdatesWithSelection:YES];
@@ -315,7 +329,7 @@
                                    withselector:@selector(placesResult:)
                                         withURL:stringToHit
                              toShowWindowLoader:YES];
-        
+        indexOfLocationSelected = -1;
     }
     else {
         [[[UIAlertView alloc] initWithTitle:nil
@@ -325,6 +339,10 @@
                           otherButtonTitles:nil, nil] show];
     }
 }
+
+- (IBAction)cancelDoneButtonMapViewTouched:(id)sender {
+}
+
 
 #pragma mark - TextView Delegate
 
@@ -353,6 +371,48 @@
     [textField resignFirstResponder];
     return YES;
 }
+
+#pragma mark - Show MapView
+
+- (void)addAnnotationInMapViewWithInfo:(NSDictionary *)info {
+    
+    if ([viewMapView isHidden]) {
+        CGRect frameTB = tableViewLocation.frame;
+        CGRect frameVM = viewMapView.frame;
+        CGRect frameVB = viewBottom.frame;
+        CGRect frameVL = viewAddLocation.frame;
+        
+        frameVM.origin.y = CGRectGetMaxY(frameTB);
+        frameTB.size.height = CGRectGetMinY(frameVM) - 80;
+        frameVL.size.height = CGRectGetMaxY(frameVM);
+        frameVB.origin.y = CGRectGetMaxY(frameVL) + 10;
+        
+        [viewMapView setHidden:NO];
+        
+        [viewMapView setFrame:frameVM];
+        [viewAddLocation setFrame:frameVL];
+        [viewBottom setFrame:frameVB];
+        [tableViewLocation setFrame:frameTB];
+        [scrollView setContentSize:CGSizeMake(scrollView.contentSize.width, CGRectGetMaxY(frameVB))];
+    }
+    NSDictionary *location = [[info objectForKey:@"geometry"] objectForKey:@"location"];
+    
+    CLLocationCoordinate2D coordinate;
+    NSNumber *latitude = [location objectForKey:@"lat"];
+    NSNumber *longitude = [location objectForKey:@"lng"];
+    
+    NSString *title = [info objectForKey:@"name"];
+    coordinate.latitude = latitude.doubleValue;
+    coordinate.longitude = longitude.doubleValue;
+    
+    MapViewAnnotation *annotation = [[MapViewAnnotation alloc] initWithTitle:title
+                                                               andCoordinate:coordinate];
+    [mapView showAnnotations:[NSArray arrayWithObject:annotation]
+                    animated:YES];
+    //    [self.mapViewCell addAnnotation:annotation];
+    //    [self zoomToLocationWithLocation:coordinate];
+}
+
 
 #pragma mark - UITableView Delegate & DataSource
 
@@ -498,7 +558,6 @@
     else {
         
         UITableViewCell *simpleCell = [tableView dequeueReusableCellWithIdentifier:cellID];
-        LocationCell *cellLocation = nil;
         LocationInfoCell *cellLocationInfo = nil;
         
         if (indexPath.row == 0) {
@@ -527,13 +586,6 @@
                                                 andAddress:[indexDict objectForKey:@"vicinity"]];
             cell = cellLocationInfo;
         }
-        else {
-            if (cellLocation == nil)
-                cellLocation = [[[NSBundle mainBundle] loadNibNamed:@"LocationCell"
-                                                              owner:self
-                                                            options:nil] objectAtIndex:0];
-            cell = cellLocation;
-        }
     }
     return cell;
 }
@@ -541,23 +593,31 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 0 && repeatSelected) {
-        valueSelectedToRepeat = (int)indexPath.row;
-        NSArray *arrKeys = [dictReminderOptions allKeys];
-        for (int i = 0; i < [arrKeys count]; i ++) {
-            NSMutableDictionary *dictIndex = [dictReminderOptions objectForKey:[NSNumber numberWithInt:(int)indexPath.row]];
-            
-            int number = (i == indexPath.row) ? 1 : 0;
-            [dictIndex setObject:[NSNumber numberWithInt:number] forKey:@"Selected"];
-            
-            //            NSMutableDictionary *mutDictAtIndex = [NSMutableDictionary dictionaryWithObjectsAndKeys:[dictIndex objectForKey:@"Title"], @"Title", [NSNumber numberWithInt:1], @"Selected", nil];
-            //            [dictReminderOptions removeObjectForKey:[NSNumber numberWithInt:valueSelectedToRepeat]];
-            //            [dictReminderOptions setObject:mutDictAtIndex forKey:[NSNumber numberWithInt:valueSelectedToRepeat]];
-            
+    if (tableView == tableViewReminderInfo) {
+        if (indexPath.section == 0 && repeatSelected) {
+            valueSelectedToRepeat = (int)indexPath.row;
+            NSArray *arrKeys = [dictReminderOptions allKeys];
+            for (int i = 0; i < [arrKeys count]; i ++) {
+                NSMutableDictionary *dictIndex = [dictReminderOptions objectForKey:[NSNumber numberWithInt:(int)indexPath.row]];
+                
+                int number = (i == indexPath.row) ? 1 : 0;
+                [dictIndex setObject:[NSNumber numberWithInt:number] forKey:@"Selected"];
+                
+                //            NSMutableDictionary *mutDictAtIndex = [NSMutableDictionary dictionaryWithObjectsAndKeys:[dictIndex objectForKey:@"Title"], @"Title", [NSNumber numberWithInt:1], @"Selected", nil];
+                //            [dictReminderOptions removeObjectForKey:[NSNumber numberWithInt:valueSelectedToRepeat]];
+                //            [dictReminderOptions setObject:mutDictAtIndex forKey:[NSNumber numberWithInt:valueSelectedToRepeat]];
+                
+            }
+            NSLog(@"Dict : %@", dictReminderOptions.description);
         }
-        [tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.2];
-        NSLog(@"Dict : %@", dictReminderOptions.description);
     }
+    else if (tableView == tableViewLocation) {
+        if (indexPath.row > 0) {
+            indexOfLocationSelected = indexPath.row - 1;
+            [self addAnnotationInMapViewWithInfo:[arrFetchedLocations objectAtIndex:indexOfLocationSelected]];
+        }
+    }
+    [tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.2];
 }
 
 @end

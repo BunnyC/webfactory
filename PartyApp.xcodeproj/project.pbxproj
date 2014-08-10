@@ -28,6 +28,7 @@
 		842B8C9819719D2B00BECFD7 /* iconSelNotes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 842B8C9619719D2B00BECFD7 /* iconSelNotes@2x.png */; };
 		842B8C9B19719D6400BECFD7 /* iconNotes.png in Resources */ = {isa = PBXBuildFile; fileRef = 842B8C9919719D6400BECFD7 /* iconNotes.png */; };
 		842B8C9C19719D6400BECFD7 /* iconSelNotes.png in Resources */ = {isa = PBXBuildFile; fileRef = 842B8C9A19719D6400BECFD7 /* iconSelNotes.png */; };
+		844A565819976FB200B553E4 /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 844A565719976FB200B553E4 /* MapViewAnnotation.m */; };
 		8464A877195A066800583DE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A81F195A066800583DE0 /* AppDelegate.m */; };
 		8464A87C195A066800583DE0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8464A82C195A066800583DE0 /* InfoPlist.strings */; };
 		8464A87D195A066800583DE0 /* CommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A831195A066800583DE0 /* CommonFunctions.m */; };
@@ -232,6 +233,8 @@
 		842B8C9619719D2B00BECFD7 /* iconSelNotes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconSelNotes@2x.png"; sourceTree = "<group>"; };
 		842B8C9919719D6400BECFD7 /* iconNotes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconNotes.png; sourceTree = "<group>"; };
 		842B8C9A19719D6400BECFD7 /* iconSelNotes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconSelNotes.png; sourceTree = "<group>"; };
+		844A565619976FB200B553E4 /* MapViewAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapViewAnnotation.h; path = AddReminderViewController/MapViewAnnotation/MapViewAnnotation.h; sourceTree = "<group>"; };
+		844A565719976FB200B553E4 /* MapViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapViewAnnotation.m; path = AddReminderViewController/MapViewAnnotation/MapViewAnnotation.m; sourceTree = "<group>"; };
 		8464A81E195A066800583DE0 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8464A81F195A066800583DE0 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8464A82D195A066800583DE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -574,6 +577,15 @@
 				842715EC1960414800DBEA6E /* SessionModel.m */,
 			);
 			name = SessionModel;
+			sourceTree = "<group>";
+		};
+		844A565519976F7600B553E4 /* MapViewAnnotation */ = {
+			isa = PBXGroup;
+			children = (
+				844A565619976FB200B553E4 /* MapViewAnnotation.h */,
+				844A565719976FB200B553E4 /* MapViewAnnotation.m */,
+			);
+			name = MapViewAnnotation;
 			sourceTree = "<group>";
 		};
 		8464A81D195A066800583DE0 /* PartyApp */ = {
@@ -929,6 +941,7 @@
 		84A48806196AAA78006BC223 /* AddReminderViewController */ = {
 			isa = PBXGroup;
 			children = (
+				844A565519976F7600B553E4 /* MapViewAnnotation */,
 				849DC1251996CB62008988AD /* LocationInfoCell */,
 				849DC11B1996A40C008988AD /* LocationCell */,
 				84A48807196AAAC1006BC223 /* AddReminderViewController.h */,
@@ -1262,6 +1275,7 @@
 				849DC1291996CB9D008988AD /* LocationInfoCell.m in Sources */,
 				CE9D376C195E771B001F05D9 /* ForgotPasswordViewController.m in Sources */,
 				8464A8A6195A066800583DE0 /* ProfileViewController.m in Sources */,
+				844A565819976FB200B553E4 /* MapViewAnnotation.m in Sources */,
 				84A110B6197166CF0035E181 /* LoginModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,5 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapViewCell;
 
+- (void)addAnnotationInCellWithInfo:(NSDictionary *)info;
 
 @end

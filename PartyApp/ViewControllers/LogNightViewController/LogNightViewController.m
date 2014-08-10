@@ -8,6 +8,7 @@
 
 #import "LogNightViewController.h"
 #import "LogNightCell.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 NSString *className = @"PALogNight";
 
@@ -96,6 +97,8 @@ NSString *className = @"PALogNight";
                         dictLocation, @"1. Allow Location",
                         dictNotify, @"2. Notify Friends",
                         dictFacebook, @"3. Post on Facebook", nil];
+    txtViewNotes.inputAccessoryView=inputAccessoryView;
+    
 }
 
 - (void)setupNavigationBarInLogNightView {
@@ -218,27 +221,12 @@ NSString *className = @"PALogNight";
     
     if (!errorMsg) {
         
-        BOOL location = [[[self.dictOptions objectForKey:@"1. Allow Location"] objectForKey:@"Selected"] intValue];
-        BOOL notifyFriends = [[[self.dictOptions objectForKey:@"2. Notify Friends"] objectForKey:@"Selected"] intValue];
         BOOL facebookPost = [[[self.dictOptions objectForKey:@"3. Post on Facebook"] objectForKey:@"Selected"] intValue];
-        
-        id forLocation = location ? thisLocation : @"";
-        
-        QBCOCustomObject *objectLogNight = [QBCOCustomObject customObject];
-        [objectLogNight setClassName:className];
-        [objectLogNight.fields setObject:[NSNumber numberWithInt:finalRatingValue]
-                                  forKey:@"LN_Rating"];
-        [objectLogNight.fields setObject:txtViewNotes.text
-                                  forKey:@"LN_Notes"];
-        [objectLogNight.fields setObject:[NSNumber numberWithBool:notifyFriends]
-                                  forKey:@"LN_NotifyFriends"];
-        [objectLogNight.fields setObject:[NSNumber numberWithBool:facebookPost]
-                                  forKey:@"LN_PostFacebook"];
-        [objectLogNight.fields setObject:forLocation
-                                  forKey:@"LN_Location"];
-        [QBCustomObjects createObject:objectLogNight delegate:self];
-        
-        loadingView = [[CommonFunctions sharedObject] showLoadingView];
+        if(facebookPost)
+        {
+            [self sharePostOnFacebook];
+            [self performSelectorInBackground:@selector(saveValuesOnServer) withObject:nil];
+        }
     }
     else {
         NSString *fullMsg = [NSString stringWithFormat:@"You forgot to %@ for the night.", errorMsg];
@@ -249,6 +237,61 @@ NSString *className = @"PALogNight";
                                                    otherButtonTitles:nil, nil];
         [errorAlert show];
     }
+}
+
+
+-(void)saveValuesOnServer
+{
+    BOOL location = [[[self.dictOptions objectForKey:@"1. Allow Location"] objectForKey:@"Selected"] intValue];
+    BOOL notifyFriends = [[[self.dictOptions objectForKey:@"2. Notify Friends"] objectForKey:@"Selected"] intValue];
+    BOOL facebookPost = [[[self.dictOptions objectForKey:@"3. Post on Facebook"] objectForKey:@"Selected"] intValue];
+    
+    id forLocation = location ? thisLocation : @"";
+    
+    QBCOCustomObject *objectLogNight = [QBCOCustomObject customObject];
+    [objectLogNight setClassName:className];
+    [objectLogNight.fields setObject:[NSNumber numberWithInt:finalRatingValue]
+                              forKey:@"LN_Rating"];
+    [objectLogNight.fields setObject:txtViewNotes.text
+                              forKey:@"LN_Notes"];
+    [objectLogNight.fields setObject:[NSNumber numberWithBool:notifyFriends]
+                              forKey:@"LN_NotifyFriends"];
+    [objectLogNight.fields setObject:[NSNumber numberWithBool:facebookPost]
+                              forKey:@"LN_PostFacebook"];
+    [objectLogNight.fields setObject:forLocation
+                              forKey:@"LN_Location"];
+    [QBCustomObjects createObject:objectLogNight delegate:self];
+    
+    loadingView = [[CommonFunctions sharedObject] showLoadingView];
+}
+#pragma -mark accessory View Button Methods
+- (IBAction)accessoryViewButtonClicked:(id)sender {
+    
+    switch ([sender tag]) {
+        case 0:
+        {
+            [txtViewNotes resignFirstResponder];
+        }
+        break;
+        
+        case 1:
+        {
+          [txtViewNotes setText:@""];
+ 
+        }
+        break;
+        
+        case 2:
+        {
+         [self logThisNightAction:nil];
+        }
+        break;
+            
+        default:
+            break;
+    }
+    
+    
 }
 
 #pragma mark -
@@ -415,6 +458,67 @@ NSString *className = @"PALogNight";
     
 }
 
+
+-(void)sharePostOnFacebook
+{
+    
+    // Check if the Facebook app is installed and we can present the share dialog
+    
+    FBShareDialogParams *params = [[FBShareDialogParams alloc] init];
+    params.link = [NSURL URLWithString:@"https://developers.facebook.com/docs/ios/share/"];
+
+    
+    // If the Facebook app is installed and we can present the share dialog
+    if ([FBDialogs canPresentShareDialogWithParams:params]) {
+        
+        // Present share dialog
+        [FBDialogs presentShareDialogWithLink:nil
+                                      handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+                                          if(error) {
+                                              // An error occurred, we need to handle the error
+                                              // See: https://developers.facebook.com/docs/ios/errors
+                                              NSLog(@"Error publishing story: %@", error.description);
+                                          } else {
+                                              // Success
+                                              NSLog(@"result %@", results);
+                                          }
+                                      }];
+        
+        // If the Facebook app is NOT installed and we can't present the share dialog
+    } else {
+        // FALLBACK: publish just a link using the Feed dialog
+        // Show the feed dialog
+        [FBWebDialogs presentFeedDialogModallyWithSession:nil
+                                               parameters:nil
+                                                  handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+                                                      if (error) {
+                                                          // An error occurred, we need to handle the error
+                                                          // See: https://developers.facebook.com/docs/ios/errors
+                                                          NSLog(@"Error publishing story: %@", error.description);
+                                                      } else {
+                                                          if (result == FBWebDialogResultDialogNotCompleted) {
+                                                              // User cancelled.
+                                                              NSLog(@"User cancelled.");
+                                                          } else {
+                                                              // Handle the publish feed callback
+//                                                              NSDictionary *urlParams = [self parseURLParams:[resultURL query]];
+                                                              /*
+                                                              if (![urlParams valueForKey:@"post_id"]) {
+                                                                  // User cancelled.
+                                                                  NSLog(@"User cancelled.");
+                                                                  
+                                                              } else {
+                                                                  // User clicked the Share button
+                                                                  NSString *result = [NSString stringWithFormat: @"Posted story, id: %@", [urlParams valueForKey:@"post_id"]];
+                                                                  NSLog(@"result %@", result);
+                                                              }
+                                                               */
+                                                          }
+                                                      }
+                                                  }];
+    }
+}
+
 #pragma mark - Touch Methods
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -423,5 +527,6 @@ NSString *className = @"PALogNight";
         [txtViewNotes resignFirstResponder];
     }
 }
+
 
 @end

@@ -13,6 +13,10 @@
     __weak IBOutlet UIView *viewRatings;
     __weak IBOutlet UITextView *txtViewNotes;
     __weak IBOutlet UITableView *tableViewOptions;
+    IBOutlet UIView *inputAccessoryView;
+    
+    
 }
+- (IBAction)accessoryViewButtonClicked:(id)sender;
 
 @end

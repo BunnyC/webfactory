@@ -279,7 +279,9 @@
 }
 
 - (IBAction)setReminderAction:(id)sender {
-    AddReminderViewController *objAddReminderView = [[AddReminderViewController alloc] initWithNibName:@"AddReminderViewController" bundle:nil];
+    
+    NSString *xibName = [commFunc isDeviceiPhone5] ? @"AddReminderViewController" : @"AddReminderViewController";
+    AddReminderViewController *objAddReminderView = [[AddReminderViewController alloc] initWithNibName:xibName bundle:nil];
     [self.navigationController pushViewController:objAddReminderView animated:YES];
 }
 

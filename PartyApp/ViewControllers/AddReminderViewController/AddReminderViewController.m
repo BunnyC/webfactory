@@ -13,6 +13,7 @@
 //#import "LocationCell.h"
 #import "MapViewAnnotation.h"
 #import "LocationInfoCell.h"
+#import "AppDelegate.h"
 
 @interface AddReminderViewController () <UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, UITextFieldDelegate> {
     
@@ -92,9 +93,12 @@
     
     if(![[CommonFunctions sharedObject]isDeviceiPhone5])
     {
-          [scrollView setFrame:CGRectMake(scrollView.frame.origin.x,64,scrollView.frame.size.width,scrollView.frame.size.height)];
+        CGSize screenSize = [UIScreen mainScreen].bounds.size;
+        [scrollView setFrame:CGRectMake(scrollView.frame.origin.x,0,scrollView.frame.size.width,screenSize.height)];
+
+        [viewBottom setFrame:CGRectMake(viewBottom.frame.origin.x,CGRectGetMaxY(viewWhenNWhere.frame) + 10,viewBottom.frame.size.width,viewBottom.frame.size.height)];
         
-        [viewBottom setFrame:CGRectMake(viewBottom.frame.origin.x,self.view.frame.size.height-viewBottom.frame.size.height-64,viewBottom.frame.size.width,viewBottom.frame.size.height)];
+        [scrollView setContentSize:CGSizeMake(scrollView.contentSize.width, CGRectGetMaxY(viewBottom.frame))];
     }
   
     arrReminderOptions = [[NSArray alloc] initWithObjects:
@@ -228,16 +232,21 @@
 
 - (void)setLocationFramesAsPerUpdatesWithSelection:(BOOL)selection {
     
-    [self resetLocationFrame];
+//    [self resetLocationFrame];
     CGRect frameWW = viewWhenNWhere.frame;
     CGRect frameAL = viewAddLocation.frame;
+    CGRect frameTB = tableViewLocation.frame;
     CGRect frameVB = viewBottom.frame;
+    CGRect frameMV = viewMapView.frame;
     
-    int heightIncrement = (int)arrFetchedLocations.count * 44;
-    if (arrFetchedLocations.count > 5)
-        heightIncrement = 220;
+    if (arrFetchedLocations.count) {
+        int heightIncrement = (int)arrFetchedLocations.count * 44;
+        if (arrFetchedLocations.count > 5)
+            heightIncrement = 220;
     
-    frameAL.size.height += arrFetchedLocations.count > 1 ? heightIncrement - 44 : 0;
+        frameAL.size.height += arrFetchedLocations.count > 1 ? heightIncrement - 44 : 0;
+        frameTB.size.height = heightIncrement;
+    }
     
     if (selection) {
         frameWW.origin.y += (frameWW.size.height + 10);
@@ -249,8 +258,16 @@
     }
     
     [viewAddReminder setHidden:YES];
-    [viewAddLocation setFrame:CGRectMake(0, frameWW.origin.y, frameAL.size.width, frameAL.size.height)];
+    [tableViewLocation setFrame:frameTB];
+    
+    CGRect finalFrame = [viewMapView isHidden] ? frameTB : frameMV;
+    
+    [viewAddLocation setFrame:CGRectMake(0, frameWW.origin.y, frameAL.size.width, CGRectGetMaxY(finalFrame))];
     [viewAddLocation setHidden:!selection];
+    
+    if (![viewAddLocation isHidden])
+        frameVB.origin.y = CGRectGetMaxY(viewAddLocation.frame) + 50;
+    
     [viewBottom setFrame:frameVB];
     [scrollView setContentSize:CGSizeMake(scrollView.frame.size.width, CGRectGetMaxY(frameVB))];
 }
@@ -260,12 +277,13 @@
     UIButton *button = (UIButton *)sender;
     [button setSelected:![button isSelected]];
     
+//    [viewAddLocation setHidden:NO];
     [self setLocationFramesAsPerUpdatesWithSelection:[button isSelected]];
 }
 
 - (void)sectionButtonTouched:(UIButton *)sender {
     
-    int heightIncrement = (!repeatSelected && !notesSelected) ? 120: 0;
+    int heightIncrement = 120;
     if ([sender tag] == 0) {
         repeatSelected = true;
         notesSelected = false;
@@ -285,24 +303,24 @@
         }
     }
     
-    heightIncrement += selected ? 30 : 0;
+    heightIncrement += selected && !repeatSelected ? 30 : 0;
     
     CGRect frameTable = tableViewReminderInfo.frame;
-    frameTable.size.height += heightIncrement;
+    frameTable.size.height = 80 + heightIncrement;
     [tableViewReminderInfo setFrame:frameTable];
     
     CGRect frameViewReminder = viewAddReminder.frame;
-    frameViewReminder.size.height += heightIncrement;
+    frameViewReminder.size.height = CGRectGetMaxY(frameTable) + 7;
     [viewAddReminder setFrame:frameViewReminder];
     
     CGRect frameViewBottom = viewBottom.frame;
-    frameViewBottom.origin.y += heightIncrement;
+    frameViewBottom.origin.y = CGRectGetMaxY(frameViewReminder) + 50;
     [viewBottom setFrame:frameViewBottom];
     
-    CGSize contentSize = scrollView.contentSize;
-    contentSize.height += heightIncrement;
+//    CGSize contentSize = scrollView.contentSize;
+//    contentSize.height += heightIncrement;
     
-    [scrollView setContentSize:contentSize];
+    [scrollView setContentSize:CGSizeMake(scrollView.contentSize.width, CGRectGetMaxY(frameViewBottom))];
     [tableViewReminderInfo reloadData];
 }
 
@@ -330,8 +348,10 @@
     
     [textFieldLocation resignFirstResponder];
     if ([[textFieldLocation text] length]) {
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        CLLocationCoordinate2D coordinate = appDelegate.locationCurrent.coordinate;
         NSString *keyword = [textFieldLocation.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-        NSString *stringToHit = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/search/json?keyword=%@&location=37.787930,-122.4074990&radius=5000&key=AIzaSyCHTaIkOrh6LFZt5dpDqxE2V6YkRuIr1nI", keyword];
+        NSString *stringToHit = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/search/json?keyword=%@&location=%f,%f&radius=5000&key=AIzaSyCHTaIkOrh6LFZt5dpDqxE2V6YkRuIr1nI", keyword, coordinate.latitude, coordinate.longitude];
         
         FetchPlaces *objFetchPlaces = [[FetchPlaces alloc] init];
         [objFetchPlaces fetchPlacesInController:self
@@ -394,7 +414,7 @@
         frameVM.origin.y = CGRectGetMaxY(frameTB);
         frameTB.size.height = CGRectGetMinY(frameVM) - 80;
         frameVL.size.height = CGRectGetMaxY(frameVM);
-        frameVB.origin.y = CGRectGetMaxY(frameVL) + 10;
+        frameVB.origin.y = CGRectGetMaxY(frameVL) + 50;
         
         [viewMapView setHidden:NO];
         
@@ -404,6 +424,8 @@
         [tableViewLocation setFrame:frameTB];
         [scrollView setContentSize:CGSizeMake(scrollView.contentSize.width, CGRectGetMaxY(frameVB))];
     }
+    
+//    [self setLocationFramesAsPerUpdatesWithSelection:YES];
     NSDictionary *location = [[info objectForKey:@"geometry"] objectForKey:@"location"];
     
     CLLocationCoordinate2D coordinate;
@@ -421,7 +443,6 @@
     //    [self.mapViewCell addAnnotation:annotation];
     //    [self zoomToLocationWithLocation:coordinate];
 }
-
 
 #pragma mark - UITableView Delegate & DataSource
 
@@ -608,13 +629,13 @@
             NSArray *arrKeys = [dictReminderOptions allKeys];
             for (int i = 0; i < [arrKeys count]; i ++) {
                 NSMutableDictionary *dictIndex = [dictReminderOptions objectForKey:[NSNumber numberWithInt:(int)indexPath.row]];
+//
+//                int number = (i == indexPath.row) ? 1 : 0;
+//                [dictIndex setObject:[NSNumber numberWithInt:number] forKey:@"Selected"];
                 
-                int number = (i == indexPath.row) ? 1 : 0;
-                [dictIndex setObject:[NSNumber numberWithInt:number] forKey:@"Selected"];
-                
-                //            NSMutableDictionary *mutDictAtIndex = [NSMutableDictionary dictionaryWithObjectsAndKeys:[dictIndex objectForKey:@"Title"], @"Title", [NSNumber numberWithInt:1], @"Selected", nil];
-                //            [dictReminderOptions removeObjectForKey:[NSNumber numberWithInt:valueSelectedToRepeat]];
-                //            [dictReminderOptions setObject:mutDictAtIndex forKey:[NSNumber numberWithInt:valueSelectedToRepeat]];
+                NSMutableDictionary *mutDictAtIndex = [NSMutableDictionary dictionaryWithObjectsAndKeys:[dictIndex objectForKey:@"Title"], @"Title", [NSNumber numberWithInt:1], @"Selected", nil];
+                [dictReminderOptions removeObjectForKey:[NSNumber numberWithInt:valueSelectedToRepeat]];
+                [dictReminderOptions setObject:mutDictAtIndex forKey:[NSNumber numberWithInt:valueSelectedToRepeat]];
                 
             }
             NSLog(@"Dict : %@", dictReminderOptions.description);

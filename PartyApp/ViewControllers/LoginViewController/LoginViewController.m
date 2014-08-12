@@ -198,7 +198,7 @@
 - (IBAction)btnConnectFacebookAction:(id)sender {
     
     simpleLogin = false;
-    loadingView = [[CommonFunctions sharedObject] showLoadingView];
+    
     if (FBSession.activeSession.state == FBSessionStateOpen
         || FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
         [self loginWithFacebook];
@@ -219,85 +219,12 @@
              }
          }];
     }
-    
-//    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-//    [appDelegate.session closeAndClearTokenInformation];
-//    
-//    
-//    if (appDelegate.session.state != FBSessionStateCreated)
-//        appDelegate.session = [[FBSession alloc] init];
-//    
-//    // if the session isn't open, let's open it now and present the login UX to the user
-//    [appDelegate.session openWithCompletionHandler:^(FBSession *session,
-//                                                     FBSessionState status,
-//                                                     NSError *error) {
-//        // and here we make sure to update our UX according to the new session state
-//        // [appDelegate getUserInformation];
-//        loadingView = [[CommonFunctions sharedObject] showLoadingView];
-//        FBRequest *me = [[FBRequest alloc] initWithSession:session
-//                                                 graphPath:@"me"];
-//        
-//        [me startWithCompletionHandler:^(FBRequestConnection *connection,
-//                                         // we expect a user as a result, and so are using FBGraphUser protocol
-//                                         // as our result type; in order to allow us to access first_name and
-//                                         // birthday with property syntax
-//                                         NSDictionary<FBGraphUser> *user,
-//                                         NSError *error) {
-//            
-//            NSLog(@"User Detail %@",user);
-//            dictUserFB = [[NSDictionary alloc] initWithDictionary:user];
-////            [self createAccount:(NSDictionary *)user];
-////            [self checkIfUserExists];
-//            
-//            if (error) {
-//                [[CommonFunctions sharedObject] hideLoadingView:loadingView];
-//                
-//                NSString *errorMsgFB = @"Can't access your info right now.";
-//                UIAlertView *alertFBError = [[UIAlertView alloc] initWithTitle:@"Facebook Error"
-//                                                                       message:errorMsgFB
-//                                                                      delegate:nil
-//                                                             cancelButtonTitle:@"OK"
-//                                                             otherButtonTitles:nil, nil];
-//                [alertFBError show];
-//                NSLog(@"Couldn't get info : %@", error.localizedDescription);
-//                return;
-//            }
-//            else {
-//                NSString *fbAccessToken = [[[FBSession activeSession] accessTokenData] accessToken];
-//                [QBUsers logInWithSocialProvider:@"facebook"
-//                                     accessToken:fbAccessToken
-//                               accessTokenSecret:nil
-//                                        delegate:self];
-//                
-//            }
-//        }];
-//    }];
 }
-
-//- (void)createAccount:(NSDictionary *)dictFBUser {
-//    
-//    NSMutableArray *arrTags = [NSMutableArray arrayWithObjects:
-//                               @"PartyFriends", @"Party", @"Friends", @"Awesome", nil];
-//    
-//    NSString *userFBID = [dictFBUser objectForKey:@"id"];
-//    [[NSUserDefaults standardUserDefaults] setObject:userFBID forKey:@"Password"];
-//    
-//    QBUUser *userFB = [QBUUser user];
-//    userFB.login = userFBID;
-//    userFB.email = [dictFBUser objectForKey:@"email"];
-//    userFB.facebookID = userFBID;
-//    userFB.fullName = [dictFBUser objectForKey:@"name"];
-//    userFB.password = userFBID;
-//    userFB.website = @"http://This is Awesome";
-//    userFB.tags = arrTags;
-//    
-//    [QBUsers signUp:userFB delegate:self];
-//}
 
 #pragma mark - Facebook Methods
 
 - (void)loginWithFacebook {
-    
+    loadingView = [[CommonFunctions sharedObject] showLoadingView];
     NSString *fbAccessToken = [[[FBSession activeSession] accessTokenData] accessToken];
     [QBUsers logInWithSocialProvider:@"facebook"
                          accessToken:fbAccessToken
@@ -432,64 +359,6 @@
                               otherButtonTitles:nil, nil] show];
         }
     }
-//    else if ([result isKindOfClass:[QBUUserResult class]]) {
-//        if (result.success) {
-//            //        [spinner stopAnimating];
-//            QBUUserResult *userResult = (QBUUserResult *)result;
-//            NSLog(@"userResult : %@", userResult.user);
-//            [[CommonFunctions sharedObject] saveInformationInDefaultsForUser:userResult.user];
-//            [[CommonFunctions sharedObject] hideLoadingView:loadingView];
-////            [self.navigationController popToRootViewControllerAnimated:NO];
-////            [self createUserSession];
-//            [self dismissViewControllerAnimated:YES completion:nil];
-//        }
-//    }
-//    else if ([result isKindOfClass:[QBUUserPagedResult class]]){
-//        if(result.success) {
-//            QBUUserPagedResult *usersResult = (QBUUserPagedResult *)result;
-//            NSArray *arrUsers = usersResult.users;
-//            if (arrUsers.count) {
-//                QBUUser *fetchedUser = (QBUUser *)[arrUsers objectAtIndex:0];
-//                if ([[dictUserFB objectForKey:@"id"] intValue] == fetchedUser.facebookID.intValue) {
-//                    NSString *fbAccessToken = [[[FBSession activeSession] accessTokenData] accessToken];
-//                    [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"LoginWithFacebook"];
-//                    [[NSUserDefaults standardUserDefaults] synchronize];
-//                    [QBUsers logInWithSocialProvider:@"facebook"
-//                                         accessToken:fbAccessToken
-//                                   accessTokenSecret:nil
-//                                            delegate:self];
-//                }
-//                else {
-//                    [[[UIAlertView alloc] initWithTitle:@"Error"
-//                                                message:@"The email id associated with this account is already taken."
-//                                               delegate:nil
-//                                      cancelButtonTitle:@"OK"
-//                                      otherButtonTitles:nil, nil] show];
-//                }
-//            }
-////            else
-////                [self createAccount:dictUserFB];
-//        }
-//        else{
-//            NSLog(@"errors=%@", result.errors);
-//        }
-//    }
-//    else if ([result isKindOfClass:[QBAAuthSessionCreationResult class]]) {
-//        if (result.success) {
-//            NSLog(@"Created");
-//        }
-//        else {
-//            NSString *errorMessage = @"Unable to create session for user, please try after sometime";
-//            UIAlertView *alertSessionAlert = [[UIAlertView alloc] initWithTitle:@"Session"
-//                                                                        message:errorMessage
-//                                                                       delegate:nil
-//                                                              cancelButtonTitle:@"OK"
-//                                                              otherButtonTitles:nil, nil];
-//            [alertSessionAlert show];
-//            [[NSUserDefaults standardUserDefaults] setBool:false forKey:_pudLoggedIn];
-//            [[NSUserDefaults standardUserDefaults] synchronize];
-//        }
-//    }
 }
 
 #pragma mark - Tap Gesture on ScrollView

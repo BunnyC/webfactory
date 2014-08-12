@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyApp/ViewControllers/ProfileViewController/ProfileViewController.m"
-            timestampString = "429129369.187443"
+            timestampString = "429564583.815187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "309"
-            endingLineNumber = "309"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
             landmarkName = "-logoutAction:"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyApp/ViewControllers/ProfileViewController/ProfileViewController.m"
-            timestampString = "429129369.187443"
+            timestampString = "429564583.815187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "348"
-            endingLineNumber = "348"
+            startingLineNumber = "350"
+            endingLineNumber = "350"
             landmarkName = "-completedWithResult:"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyApp/ViewControllers/LoginViewController/LoginViewController.m"
-            timestampString = "429134035.371672"
+            timestampString = "429562958.043605"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "409"
-            endingLineNumber = "409"
+            startingLineNumber = "336"
+            endingLineNumber = "336"
             landmarkName = "-completedWithResult:"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyApp/ViewControllers/LoginViewController/LoginViewController.m"
-            timestampString = "429134035.371672"
+            timestampString = "429562958.043605"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
             landmarkName = "-loginWithFacebook"
             landmarkType = "5">
          </BreakpointContent>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyApp/ViewControllers/AddReminderViewController/AddReminderViewController.m"
-            timestampString = "429372401.38499"
+            timestampString = "429565156.549586"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "-setLocationFramesAsPerUpdatesWithSelection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -330,12 +330,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyApp/ViewControllers/AddReminderViewController/AddReminderViewController.m"
-            timestampString = "429372401.38499"
+            timestampString = "429565156.549586"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
-            landmarkName = "-setLocationFramesAsPerUpdatesWithSelection:"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
+            landmarkName = "-sectionButtonTouched:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PartyApp/ViewControllers/AddReminderViewController/AddReminderViewController.m"
+            timestampString = "429565156.549586"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
+            landmarkName = "-sectionButtonTouched:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

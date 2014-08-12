@@ -93,12 +93,12 @@
     
     if(![[CommonFunctions sharedObject]isDeviceiPhone5])
     {
-        CGSize screenSize = [UIScreen mainScreen].bounds.size;
-        [scrollView setFrame:CGRectMake(scrollView.frame.origin.x,0,scrollView.frame.size.width,screenSize.height)];
-
         [viewBottom setFrame:CGRectMake(viewBottom.frame.origin.x,CGRectGetMaxY(viewWhenNWhere.frame) + 10,viewBottom.frame.size.width,viewBottom.frame.size.height)];
         
         [scrollView setContentSize:CGSizeMake(scrollView.contentSize.width, CGRectGetMaxY(viewBottom.frame))];
+        
+        [scrollView.layer setBorderColor:[UIColor greenColor].CGColor];
+        [scrollView.layer setBorderWidth:1.0f];
     }
   
     arrReminderOptions = [[NSArray alloc] initWithObjects:
@@ -210,8 +210,8 @@
         frameVB.origin.y = CGRectGetMaxY(frameWW) + frameAR.size.height + 10;
     }
     else {
+        frameVB.origin.y = CGRectGetMaxY(frameWW) + 10;
         frameWW.origin.y -= (frameWW.size.height + 10);
-        frameVB.origin.y = self.view.frame.size.height - frameVB.size.height;
     }
     
     [viewAddLocation setHidden:YES];
@@ -253,8 +253,8 @@
         frameVB.origin.y = CGRectGetMaxY(frameWW) + frameAL.size.height + 10;
     }
     else {
+        frameVB.origin.y = CGRectGetMaxY(frameWW) + 10;
         frameWW.origin.y -= (frameWW.size.height + 10);
-        frameVB.origin.y = self.view.frame.size.height - frameVB.size.height;
     }
     
     [viewAddReminder setHidden:YES];

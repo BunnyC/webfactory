@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="buttonWhen" destination="wY2-IJ-o2v" id="g5V-Pv-Vt3"/>
                 <outlet property="buttonWhere" destination="r7g-gC-fb0" id="vlU-lO-53h"/>
+                <outlet property="datePicker" destination="ef9-wI-AWU" id="aVw-N6-1vY"/>
                 <outlet property="imageViewBack" destination="wJv-du-1hI" id="HKt-Wb-F6f"/>
                 <outlet property="mapView" destination="fYf-0I-lki" id="I6l-tF-Mvg"/>
                 <outlet property="scrollView" destination="B3x-ot-TXS" id="RxI-oi-0Ns"/>
@@ -307,6 +308,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <state key="normal" title="Create" backgroundImage="purpleButton.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="createReminderAction:" destination="-1" eventType="touchUpInside" id="ayu-bq-P1k"/>
+                                    </connections>
                                 </button>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" id="x1S-8M-3e6">
                                     <rect key="frame" x="40" y="60" width="240" height="40"/>

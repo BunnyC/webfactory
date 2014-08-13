@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="buttonWhen" destination="3pq-Jd-aAP" id="ypa-a6-w9K"/>
                 <outlet property="buttonWhere" destination="15O-8x-Bdq" id="tf4-c0-sJ7"/>
+                <outlet property="datePicker" destination="9f1-pu-TPb" id="cYc-fO-tzB"/>
                 <outlet property="imageViewBack" destination="wXd-T8-GSd" id="4MI-fC-ec7"/>
                 <outlet property="mapView" destination="tXW-na-Mdt" id="IQD-4E-p7w"/>
                 <outlet property="scrollView" destination="WMo-bJ-WpA" id="JqT-ng-ihY"/>
@@ -180,7 +181,7 @@
                                                 <!--2014-08-05 02:59:48 +0000-->
                                             </date>
                                             <timeZone key="timeZone" name="America/Los_Angeles">
-                                                <mutableData key="data">
+                                                <data key="data">
 VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
 y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
 5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
@@ -198,7 +199,7 @@ f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
-</mutableData>
+</data>
                                             </timeZone>
                                         </datePicker>
                                     </subviews>
@@ -307,6 +308,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <state key="normal" title="Create" backgroundImage="purpleButton.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="createReminderAction:" destination="-1" eventType="touchUpInside" id="2sI-Z5-flQ"/>
+                                    </connections>
                                 </button>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="i4n-EM-DQf">
                                     <rect key="frame" x="40" y="60" width="240" height="40"/>

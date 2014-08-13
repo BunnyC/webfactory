@@ -15,7 +15,9 @@
 #import "LocationInfoCell.h"
 #import "AppDelegate.h"
 
-@interface AddReminderViewController () <UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, UITextFieldDelegate> {
+NSString *className = @"PAReminder";
+
+@interface AddReminderViewController () <UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, UITextFieldDelegate, QBActionStatusDelegate> {
     
     NSInteger selectedOption;
     
@@ -29,6 +31,11 @@
     int valueSelectedToRepeat;
     NSInteger indexOfLocationSelected;
     NSMutableArray *arrFetchedLocations;
+    
+    UIView *loadingView;
+    UITextView *cellTextView;
+    
+    CLLocationCoordinate2D locationSelected;
 }
 
 @end
@@ -131,10 +138,10 @@
     //    [tableViewReminderInfo.layer setBorderColor:[UIColor redColor].CGColor];
     //    [tableViewReminderInfo.layer setBorderWidth:1.f];
     
-    [viewAddLocation.layer setBorderColor:[UIColor blueColor].CGColor];
-    [viewAddLocation.layer setBorderWidth:1.0f];
-    [tableViewLocation.layer setBorderColor:[UIColor redColor].CGColor];
-    [tableViewLocation.layer setBorderWidth:1.f];
+//    [viewAddLocation.layer setBorderColor:[UIColor blueColor].CGColor];
+//    [viewAddLocation.layer setBorderWidth:1.0f];
+//    [tableViewLocation.layer setBorderColor:[UIColor redColor].CGColor];
+//    [tableViewLocation.layer setBorderWidth:1.f];
     
     
 }
@@ -177,6 +184,57 @@
 }
 
 #pragma mark - IBAction for Options
+
+- (IBAction)createReminderAction:(id)sender {
+    
+//    RType : String (Transport, Night, Personal etc)
+//    RAlarmTime : String (DateTime for Alarm)
+//    RRepeat : Integer(10 - Tomorrow, 70 - Next Week, 1 - Everyday, 7 - Everyweek)
+//    RNotes : String (Notes)
+//    RLocation : Location (Saving location of Reminder)
+
+    NSString *reminderType = nil;
+    
+    switch (selectedOption) {
+        case 1: reminderType = @"Transport";    break;
+        case 2: reminderType = @"Night";        break;
+        case 3: reminderType = @"Personal";     break;
+        case 4: reminderType = @"Food & Drink"; break;
+        case 5: reminderType = @"Friends";      break;
+        case 6: reminderType = @"Custom";        break;
+        default:    break;
+    }
+    
+    int repeatValue = 10;
+    switch (valueSelectedToRepeat) {
+        case 0: repeatValue = 10;   break;
+        case 1: repeatValue = 70;   break;
+        case 2: repeatValue = 1;    break;
+        case 3: repeatValue = 7;    break;
+        default:repeatValue = 10;   break;
+    }
+    
+    CLLocation *locationToSave = [[CLLocation alloc] initWithLatitude:locationSelected.latitude
+                                                            longitude:locationSelected.longitude];
+    
+    NSDate *selectedDate = datePicker.date;
+    
+    QBCOCustomObject *objectLogNight = [QBCOCustomObject customObject];
+    [objectLogNight setClassName:className];
+    [objectLogNight.fields setObject:reminderType
+                              forKey:@"RType"];
+    [objectLogNight.fields setObject:selectedDate
+                              forKey:@"RAlarmTime"];
+    [objectLogNight.fields setObject:[NSNumber numberWithBool:repeatValue]
+                              forKey:@"RRepeat"];
+    [objectLogNight.fields setObject:cellTextView.text
+                              forKey:@"RNotes"];
+    [objectLogNight.fields setObject:locationToSave
+                              forKey:@"RLocation"];
+    [QBCustomObjects createObject:objectLogNight delegate:self];
+    
+    loadingView = [[CommonFunctions sharedObject] showLoadingView];
+}
 
 - (IBAction)optionsButtonTouched:(id)sender {
     
@@ -348,10 +406,10 @@
     
     [textFieldLocation resignFirstResponder];
     if ([[textFieldLocation text] length]) {
-        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        CLLocationCoordinate2D coordinate = appDelegate.locationCurrent.coordinate;
+
         NSString *keyword = [textFieldLocation.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-        NSString *stringToHit = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/search/json?keyword=%@&location=%f,%f&radius=5000&key=AIzaSyCHTaIkOrh6LFZt5dpDqxE2V6YkRuIr1nI", keyword, coordinate.latitude, coordinate.longitude];
+        
+        NSString *stringToHit = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/textsearch/json?query=%@&key=AIzaSyCHTaIkOrh6LFZt5dpDqxE2V6YkRuIr1nI", keyword];
         
         FetchPlaces *objFetchPlaces = [[FetchPlaces alloc] init];
         [objFetchPlaces fetchPlacesInController:self
@@ -435,6 +493,8 @@
     NSString *title = [info objectForKey:@"name"];
     coordinate.latitude = latitude.doubleValue;
     coordinate.longitude = longitude.doubleValue;
+    
+    locationSelected = coordinate;
     
     MapViewAnnotation *annotation = [[MapViewAnnotation alloc] initWithTitle:title
                                                                andCoordinate:coordinate];
@@ -572,16 +632,20 @@
             UIImageView *imageViewTextBack = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 292, 120)];
             [imageViewTextBack setImage:imageBack];
             
+            cellTextView = nil;
+            
             UITextView *textViewCell = [[UITextView alloc] initWithFrame:CGRectMake(2, 2, 288, 116)];
             [textViewCell setBackgroundColor:[UIColor clearColor]];
+            [textViewCell setTag:100];
             [textViewCell setTextColor:[UIColor whiteColor]];
             [textViewCell setDelegate:self];
             
             [simpleCell.contentView addSubview:imageViewTextBack];
             [simpleCell.contentView addSubview:textViewCell];
+            cellTextView = textViewCell;
         }
-        [simpleCell.layer setBorderColor:[UIColor redColor].CGColor];
-        [simpleCell.layer setBorderWidth:1.0f];
+//        [simpleCell.layer setBorderColor:[UIColor redColor].CGColor];
+//        [simpleCell.layer setBorderWidth:1.0f];
         [simpleCell.textLabel setText:textCell];
         cell = simpleCell;
     }
@@ -646,8 +710,20 @@
             indexOfLocationSelected = indexPath.row - 1;
             [self addAnnotationInMapViewWithInfo:[arrFetchedLocations objectAtIndex:indexOfLocationSelected]];
         }
+        else {
+            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            locationSelected = appDelegate.locationCurrent.coordinate;
+        }
     }
     [tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.2];
+}
+
+#pragma mark -
+#pragma mark QBActionStatusDelegate
+
+// QuickBlox API queries delegate
+-(void)completedWithResult:(Result*)result {
+    
 }
 
 @end

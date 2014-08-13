@@ -34,6 +34,7 @@
     __weak IBOutlet UIView *viewAddLocation;
     __weak IBOutlet UIView *viewMapView;
     __weak IBOutlet MKMapView *mapView;
+    __weak IBOutlet UIDatePicker *datePicker;
 }
 
 @end

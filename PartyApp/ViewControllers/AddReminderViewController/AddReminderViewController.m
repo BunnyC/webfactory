@@ -36,6 +36,7 @@ NSString *classReminder = @"PAReminder";
     UITextView *cellTextView;
     
     CLLocationCoordinate2D locationSelected;
+    NSString *strAddedNote;
 }
 
 @end
@@ -97,6 +98,7 @@ NSString *classReminder = @"PAReminder";
     notesSelected = false;
     valueSelectedToRepeat = -1;
     indexOfLocationSelected = -1;
+    strAddedNote = @"";
     
     if(![[CommonFunctions sharedObject]isDeviceiPhone5])
     {
@@ -445,6 +447,9 @@ NSString *classReminder = @"PAReminder";
     CGRect frameScrollView = scrollView.frame;
     frameScrollView.size.height = self.view.frame.size.height;
     [scrollView setFrame:frameScrollView];
+    
+    if ([textView tag] == 100)
+        strAddedNote = textView.text;
 }
 
 #pragma mark - Text Field Delegate
@@ -639,6 +644,11 @@ NSString *classReminder = @"PAReminder";
             [textViewCell setTag:100];
             [textViewCell setTextColor:[UIColor whiteColor]];
             [textViewCell setDelegate:self];
+            
+            if ([strAddedNote length])
+                [textViewCell setText:strAddedNote];
+            else
+                [textViewCell setText:@"Notes"];
             
             [simpleCell.contentView addSubview:imageViewTextBack];
             [simpleCell.contentView addSubview:textViewCell];

@@ -15,7 +15,7 @@
 #import "LocationInfoCell.h"
 #import "AppDelegate.h"
 
-NSString *className = @"PAReminder";
+NSString *classReminder = @"PAReminder";
 
 @interface AddReminderViewController () <UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, UITextFieldDelegate, QBActionStatusDelegate> {
     
@@ -220,7 +220,7 @@ NSString *className = @"PAReminder";
     NSDate *selectedDate = datePicker.date;
     
     QBCOCustomObject *objectLogNight = [QBCOCustomObject customObject];
-    [objectLogNight setClassName:className];
+    [objectLogNight setClassName:classReminder];
     [objectLogNight.fields setObject:reminderType
                               forKey:@"RType"];
     [objectLogNight.fields setObject:selectedDate

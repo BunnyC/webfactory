@@ -34,6 +34,7 @@ NSString *classReminder = @"PAReminder";
     
     UIView *loadingView;
     UITextView *cellTextView;
+    UIImageView *imageViewCellBack;
     
     CLLocationCoordinate2D locationSelected;
     NSString *strAddedNote;
@@ -109,7 +110,7 @@ NSString *classReminder = @"PAReminder";
         [scrollView.layer setBorderColor:[UIColor greenColor].CGColor];
         [scrollView.layer setBorderWidth:1.0f];
     }
-  
+    
     arrReminderOptions = [[NSArray alloc] initWithObjects:
                           @"Tomorrow", @"Next Week", @"Everyday", @"Every Week", nil];
     
@@ -140,10 +141,10 @@ NSString *classReminder = @"PAReminder";
     //    [tableViewReminderInfo.layer setBorderColor:[UIColor redColor].CGColor];
     //    [tableViewReminderInfo.layer setBorderWidth:1.f];
     
-//    [viewAddLocation.layer setBorderColor:[UIColor blueColor].CGColor];
-//    [viewAddLocation.layer setBorderWidth:1.0f];
-//    [tableViewLocation.layer setBorderColor:[UIColor redColor].CGColor];
-//    [tableViewLocation.layer setBorderWidth:1.f];
+    //    [viewAddLocation.layer setBorderColor:[UIColor blueColor].CGColor];
+    //    [viewAddLocation.layer setBorderWidth:1.0f];
+    //    [tableViewLocation.layer setBorderColor:[UIColor redColor].CGColor];
+    //    [tableViewLocation.layer setBorderWidth:1.f];
     
     
 }
@@ -189,12 +190,12 @@ NSString *classReminder = @"PAReminder";
 
 - (IBAction)createReminderAction:(id)sender {
     
-//    RType : String (Transport, Night, Personal etc)
-//    RAlarmTime : String (DateTime for Alarm)
-//    RRepeat : Integer(10 - Tomorrow, 70 - Next Week, 1 - Everyday, 7 - Everyweek)
-//    RNotes : String (Notes)
-//    RLocation : Location (Saving location of Reminder)
-
+    //    RType : String (Transport, Night, Personal etc)
+    //    RAlarmTime : String (DateTime for Alarm)
+    //    RRepeat : Integer(10 - Tomorrow, 70 - Next Week, 1 - Everyday, 7 - Everyweek)
+    //    RNotes : String (Notes)
+    //    RLocation : Location (Saving location of Reminder)
+    
     NSString *reminderType = nil;
     
     switch (selectedOption) {
@@ -282,7 +283,7 @@ NSString *classReminder = @"PAReminder";
 }
 
 - (void)resetLocationFrame {
-
+    
     [viewMapView setHidden:YES];
     [tableViewLocation setFrame:CGRectMake(14, 80, 292, 42)];
     CGRect frameVL =viewAddLocation.frame;
@@ -292,7 +293,7 @@ NSString *classReminder = @"PAReminder";
 
 - (void)setLocationFramesAsPerUpdatesWithSelection:(BOOL)selection {
     
-//    [self resetLocationFrame];
+    //    [self resetLocationFrame];
     CGRect frameWW = viewWhenNWhere.frame;
     CGRect frameAL = viewAddLocation.frame;
     CGRect frameTB = tableViewLocation.frame;
@@ -303,7 +304,7 @@ NSString *classReminder = @"PAReminder";
         int heightIncrement = (int)arrFetchedLocations.count * 44;
         if (arrFetchedLocations.count > 5)
             heightIncrement = 220;
-    
+        
         frameAL.size.height += arrFetchedLocations.count > 1 ? heightIncrement - 44 : 0;
         frameTB.size.height = heightIncrement;
     }
@@ -337,7 +338,7 @@ NSString *classReminder = @"PAReminder";
     UIButton *button = (UIButton *)sender;
     [button setSelected:![button isSelected]];
     
-//    [viewAddLocation setHidden:NO];
+    //    [viewAddLocation setHidden:NO];
     [self setLocationFramesAsPerUpdatesWithSelection:[button isSelected]];
 }
 
@@ -347,10 +348,14 @@ NSString *classReminder = @"PAReminder";
     if ([sender tag] == 0) {
         repeatSelected = true;
         notesSelected = false;
+        [cellTextView setHidden:YES];
+        [imageViewCellBack setHidden:YES];
     }
     else {
         repeatSelected = false;
         notesSelected = true;
+        [cellTextView setHidden:NO];
+        [imageViewCellBack setHidden:NO];
     }
     
     BOOL selected = NO;
@@ -377,8 +382,8 @@ NSString *classReminder = @"PAReminder";
     frameViewBottom.origin.y = CGRectGetMaxY(frameViewReminder) + 50;
     [viewBottom setFrame:frameViewBottom];
     
-//    CGSize contentSize = scrollView.contentSize;
-//    contentSize.height += heightIncrement;
+    //    CGSize contentSize = scrollView.contentSize;
+    //    contentSize.height += heightIncrement;
     
     [scrollView setContentSize:CGSizeMake(scrollView.contentSize.width, CGRectGetMaxY(frameViewBottom))];
     [tableViewReminderInfo reloadData];
@@ -408,7 +413,7 @@ NSString *classReminder = @"PAReminder";
     
     [textFieldLocation resignFirstResponder];
     if ([[textFieldLocation text] length]) {
-
+        
         NSString *keyword = [textFieldLocation.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
         
         NSString *stringToHit = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/textsearch/json?query=%@&key=AIzaSyCHTaIkOrh6LFZt5dpDqxE2V6YkRuIr1nI", keyword];
@@ -488,7 +493,7 @@ NSString *classReminder = @"PAReminder";
         [scrollView setContentSize:CGSizeMake(scrollView.contentSize.width, CGRectGetMaxY(frameVB))];
     }
     
-//    [self setLocationFramesAsPerUpdatesWithSelection:YES];
+    //    [self setLocationFramesAsPerUpdatesWithSelection:YES];
     NSDictionary *location = [[info objectForKey:@"geometry"] objectForKey:@"location"];
     
     CLLocationCoordinate2D coordinate;
@@ -615,6 +620,11 @@ NSString *classReminder = @"PAReminder";
         [simpleCell.textLabel setFont:[UIFont fontWithName:_pFontArialRoundedMT size:12]];
         NSString *textCell = nil;
         
+        for (UITextView *textView in simpleCell.subviews) {
+            if ([textView isKindOfClass:[UITextView class]])
+                [textView removeFromSuperview];
+        }
+        
         if (indexPath.section == 0) {
             
             int indexValue = (int)indexPath.row;
@@ -631,31 +641,34 @@ NSString *classReminder = @"PAReminder";
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             textCell = @"";
             
-            UIImage *imageBack = [[CommonFunctions sharedObject] imageWithName:@"textViewBack"
-                                                                       andType:_pPNGType];
+            if (!cellTextView) {
             
-            UIImageView *imageViewTextBack = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 292, 120)];
-            [imageViewTextBack setImage:imageBack];
+                UIImage *imageBack = [[CommonFunctions sharedObject] imageWithName:@"textViewBack"
+                                                                           andType:_pPNGType];
+                
+                UIImageView *imageViewTextBack = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 292, 120)];
+                [imageViewTextBack setImage:imageBack];
+                
+                UITextView *textViewCell = [[UITextView alloc] initWithFrame:CGRectMake(2, 2, 288, 116)];
+                [textViewCell setBackgroundColor:[UIColor clearColor]];
+                [textViewCell setTag:100];
+                [textViewCell setTextColor:[UIColor whiteColor]];
+                [textViewCell setDelegate:self];
             
-            cellTextView = nil;
+                if ([strAddedNote length])
+                    [textViewCell setText:strAddedNote];
+                else
+                    [textViewCell setText:@"Notes"];
             
-            UITextView *textViewCell = [[UITextView alloc] initWithFrame:CGRectMake(2, 2, 288, 116)];
-            [textViewCell setBackgroundColor:[UIColor clearColor]];
-            [textViewCell setTag:100];
-            [textViewCell setTextColor:[UIColor whiteColor]];
-            [textViewCell setDelegate:self];
-            
-            if ([strAddedNote length])
-                [textViewCell setText:strAddedNote];
-            else
-                [textViewCell setText:@"Notes"];
-            
-            [simpleCell.contentView addSubview:imageViewTextBack];
-            [simpleCell.contentView addSubview:textViewCell];
-            cellTextView = textViewCell;
+                cellTextView = textViewCell;
+                imageViewCellBack = imageViewTextBack;
+                
+                [simpleCell.contentView addSubview:imageViewCellBack];
+                [simpleCell.contentView addSubview:cellTextView];
+            }
         }
-//        [simpleCell.layer setBorderColor:[UIColor redColor].CGColor];
-//        [simpleCell.layer setBorderWidth:1.0f];
+        //        [simpleCell.layer setBorderColor:[UIColor redColor].CGColor];
+        //        [simpleCell.layer setBorderWidth:1.0f];
         [simpleCell.textLabel setText:textCell];
         cell = simpleCell;
     }
@@ -703,9 +716,9 @@ NSString *classReminder = @"PAReminder";
             NSArray *arrKeys = [dictReminderOptions allKeys];
             for (int i = 0; i < [arrKeys count]; i ++) {
                 NSMutableDictionary *dictIndex = [dictReminderOptions objectForKey:[NSNumber numberWithInt:(int)indexPath.row]];
-//
-//                int number = (i == indexPath.row) ? 1 : 0;
-//                [dictIndex setObject:[NSNumber numberWithInt:number] forKey:@"Selected"];
+                //
+                //                int number = (i == indexPath.row) ? 1 : 0;
+                //                [dictIndex setObject:[NSNumber numberWithInt:number] forKey:@"Selected"];
                 
                 NSMutableDictionary *mutDictAtIndex = [NSMutableDictionary dictionaryWithObjectsAndKeys:[dictIndex objectForKey:@"Title"], @"Title", [NSNumber numberWithInt:1], @"Selected", nil];
                 [dictReminderOptions removeObjectForKey:[NSNumber numberWithInt:valueSelectedToRepeat]];
@@ -733,7 +746,12 @@ NSString *classReminder = @"PAReminder";
 
 // QuickBlox API queries delegate
 -(void)completedWithResult:(Result*)result {
-    
+    [[CommonFunctions sharedObject] hideLoadingView:loadingView];
+    [[[UIAlertView alloc] initWithTitle:@"Reminder"
+                                message:@"Saved Successfully"
+                               delegate:nil
+                      cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show ];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

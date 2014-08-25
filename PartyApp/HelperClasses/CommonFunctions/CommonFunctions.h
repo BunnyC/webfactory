@@ -16,9 +16,10 @@
 
 + (id)sharedObject;
 
+
 #pragma mark - Functions
 
-
+- (void)showUnderDevelopmentAlert;
 - (BOOL)isDeviceiPhone5;
 
 - (UIImage *)imageWithName:(NSString *)name andType:(NSString *)type;

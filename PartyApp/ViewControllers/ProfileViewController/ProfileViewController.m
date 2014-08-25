@@ -14,7 +14,7 @@
 #import "RegisterViewController.h"
 #import "AddReminderViewController.h"
 #import "SplashScreenViewController.h"
-
+#import "SWRevealViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
 
 @interface ProfileViewController () <QBActionStatusDelegate, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate> {
@@ -62,18 +62,22 @@
     UIImage *imgMenuButton = [commFunc imageWithName:@"buttonMenu" andType:_pPNGType];
     UIImage *imgNotificationButton = [commFunc imageWithName:@"buttonBell" andType:_pPNGType];
     
+    SWRevealViewController *revealController = [self revealViewController];
+    [revealController panGestureRecognizer];
+    [revealController tapGestureRecognizer];
     UIButton *leftBarButton = [commFunc buttonNavigationItemWithImage:imgMenuButton
-                                                            forTarget:self
-                                                          andSelector:nil];
+                                                            forTarget:revealController
+                                                          andSelector:@selector(revealToggle:)];
     
     UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButton];
     [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
     
     UIButton *rightBarButton = [commFunc buttonNavigationItemWithImage:imgNotificationButton
                                                              forTarget:self
-                                                           andSelector:nil];
+                                                           andSelector:@selector(btnBellClikced)];
     
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButton];
+    
     [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
 }
 
@@ -244,6 +248,10 @@
     }
 }
 
+-(void)btnBellClikced
+{
+    [commFunc showUnderDevelopmentAlert];
+}
 #pragma mark - Update UserInformation
 
 -(void)updateUserProfileData:(NSDictionary *)userInfo {

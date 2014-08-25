@@ -11,6 +11,8 @@
 #import "SplashScreenViewController.h"
 #import "LoginViewController.h"
 #import "FXBlurView.h"
+#import "RearViewController.h"
+#import "SWRevealViewController.h"
 
 @implementation AppDelegate
 
@@ -23,7 +25,7 @@
     [QBSettings setAuthorizationKey:_pAuthorizationKey];
     [QBSettings setAuthorizationSecret:_pAuthorizationSecret];
     [QBSettings setAccountKey:_pAccountKey];
-   
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
@@ -33,26 +35,41 @@
     BOOL isiPhone5 = [[CommonFunctions sharedObject] isDeviceiPhone5];
     if (!isiPhone5)
         xibName = [NSString stringWithFormat:@"%@4", xibName];
-   
+    
     ProfileViewController *objProfileView = [[ProfileViewController alloc] initWithNibName:xibName bundle:nil];
+    
+    RearViewController *objRearView=[[RearViewController alloc]initWithNibName:@"RearViewController" bundle:nil];
+    
+    
+    UINavigationController *frontNavigationController = [[UINavigationController alloc] initWithRootViewController:objProfileView];
+    UINavigationController *rearNavigationController = [[UINavigationController alloc] initWithRootViewController:objRearView];
+    
+    SWRevealViewController *revealController = [[SWRevealViewController alloc] initWithRearViewController:rearNavigationController frontViewController:frontNavigationController];
+    revealController.delegate = self;
+    
     objProfileView.isComeFromSignUp = FALSE;
-    self.navController = [[UINavigationController alloc] initWithRootViewController:objProfileView];
-    [self.navController.navigationBar setTranslucent:false];
-    [self.window setRootViewController:self.navController];
+    
+    // self.navController = [[UINavigationController alloc] initWithRootViewController:revealController.frontViewController];
+    
+    [frontNavigationController.navigationBar setTranslucent:false];
+    [rearNavigationController.navigationBar setTranslucent:false];
+    
+    [self.window setRootViewController:revealController];
     self.window.backgroundColor = [UIColor blackColor];
     [self.window makeKeyAndVisible];
     
     
-//    NSDate *sessionExpiratioDate = [QBBaseModule sharedModule].tokenExpirationDate;
-//    NSDate *currentDate = [NSDate date];
-//    NSTimeInterval interval = [currentDate timeIntervalSinceDate:sessionExpiratioDate];
-//    if(interval > 0){
-//        // recreate session here
-        SplashScreenViewController *objSplashView = [[SplashScreenViewController alloc] initWithNibName:@"SplashScreenViewController" bundle:nil];
-        UINavigationController *navContSplash = [[UINavigationController alloc] initWithRootViewController:objSplashView];
-        [navContSplash.navigationBar setTranslucent:FALSE];
-        [_navController presentViewController:navContSplash animated:NO completion:nil];
-//    }
+    //    NSDate *sessionExpiratioDate = [QBBaseModule sharedModule].tokenExpirationDate;
+    //    NSDate *currentDate = [NSDate date];
+    //    NSTimeInterval interval = [currentDate timeIntervalSinceDate:sessionExpiratioDate];
+    //    if(interval > 0){
+    //        // recreate session here
+    SplashScreenViewController *objSplashView = [[SplashScreenViewController alloc] initWithNibName:@"SplashScreenViewController" bundle:nil];
+    UINavigationController *navContSplash = [[UINavigationController alloc] initWithRootViewController:objSplashView];
+    
+    [navContSplash.navigationBar setTranslucent:FALSE];
+    [revealController.frontViewController presentViewController:navContSplash animated:NO completion:nil];
+    //    }
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -120,7 +137,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     
-     [self.session close];
+    [self.session close];
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
@@ -135,10 +152,10 @@
            fromLocation: (CLLocation *)oldLocation
 {
     
-//    float latitude = newLocation.coordinate.latitude;
-//    strLatitude = [NSString stringWithFormat:@"%f",latitude];
-//    float longitude = newLocation.coordinate.longitude;
-//    strLongitude = [NSString stringWithFormat:@"%f", longitude];
+    //    float latitude = newLocation.coordinate.latitude;
+    //    strLatitude = [NSString stringWithFormat:@"%f",latitude];
+    //    float longitude = newLocation.coordinate.longitude;
+    //    strLongitude = [NSString stringWithFormat:@"%f", longitude];
     //[self returnLatLongString:strLatitude:strLongitude];
     self.locationCurrent = newLocation;
     self.locationServicesEnabled = YES;
@@ -147,5 +164,8 @@
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     self.locationServicesEnabled = NO;
 }
+
+#pragma mark- NavigationMethod
+
 
 @end

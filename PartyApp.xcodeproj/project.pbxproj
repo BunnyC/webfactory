@@ -201,6 +201,24 @@
 		CE9D376F195E771B001F05D9 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9D376B195E771B001F05D9 /* ForgotPasswordViewController.xib */; };
 		CE9D3771195F02C1001F05D9 /* UploadPhotoViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9D3770195F02C1001F05D9 /* UploadPhotoViewController4.xib */; };
 		CE9D3773195F0C0F001F05D9 /* ProfileViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9D3772195F0C0F001F05D9 /* ProfileViewController4.xib */; };
+		CEC5281419ABE84600959EFB /* FriendsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC5281219ABE84600959EFB /* FriendsListViewController.m */; };
+		CEC5281519ABE84600959EFB /* FriendsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC5281319ABE84600959EFB /* FriendsListViewController.xib */; };
+		CEC5281E19ABE85100959EFB /* AddToGroupCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC5281919ABE85100959EFB /* AddToGroupCellTableViewCell.m */; };
+		CEC5281F19ABE85100959EFB /* AddToGroupCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC5281A19ABE85100959EFB /* AddToGroupCellTableViewCell.xib */; };
+		CEC5282019ABE85100959EFB /* AddToGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC5281C19ABE85100959EFB /* AddToGroupViewController.m */; };
+		CEC5282119ABE85100959EFB /* AddToGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC5281D19ABE85100959EFB /* AddToGroupViewController.xib */; };
+		CEC5282719ABE85E00959EFB /* FriendsProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC5282419ABE85E00959EFB /* FriendsProfileViewController.m */; };
+		CEC5282819ABE85E00959EFB /* FriendsProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC5282519ABE85E00959EFB /* FriendsProfileViewController.xib */; };
+		CEC5282919ABE85E00959EFB /* FriendsProfileViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC5282619ABE85E00959EFB /* FriendsProfileViewController4.xib */; };
+		CEC5283219ABE86500959EFB /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC5282C19ABE86500959EFB /* FriendsViewController.m */; };
+		CEC5283319ABE86500959EFB /* FriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC5282D19ABE86500959EFB /* FriendsViewController.xib */; };
+		CEC5283419ABE86500959EFB /* SearchFriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC5283019ABE86500959EFB /* SearchFriendsTableViewCell.m */; };
+		CEC5283519ABE86500959EFB /* SearchFriendsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC5283119ABE86500959EFB /* SearchFriendsTableViewCell.xib */; };
+		CEC5283E19ABE87100959EFB /* RearTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC5283919ABE87100959EFB /* RearTableViewCell.m */; };
+		CEC5283F19ABE87100959EFB /* RearTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC5283A19ABE87100959EFB /* RearTableViewCell.xib */; };
+		CEC5284019ABE87100959EFB /* RearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC5283C19ABE87100959EFB /* RearViewController.m */; };
+		CEC5284119ABE87100959EFB /* RearViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC5283D19ABE87100959EFB /* RearViewController.xib */; };
+		CEC5284519ABE92B00959EFB /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC5284419ABE92B00959EFB /* SWRevealViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -439,6 +457,33 @@
 		CE9D376B195E771B001F05D9 /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
 		CE9D3770195F02C1001F05D9 /* UploadPhotoViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadPhotoViewController4.xib; sourceTree = "<group>"; };
 		CE9D3772195F0C0F001F05D9 /* ProfileViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController4.xib; sourceTree = "<group>"; };
+		CEC5281119ABE84600959EFB /* FriendsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListViewController.h; sourceTree = "<group>"; };
+		CEC5281219ABE84600959EFB /* FriendsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListViewController.m; sourceTree = "<group>"; };
+		CEC5281319ABE84600959EFB /* FriendsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsListViewController.xib; sourceTree = "<group>"; };
+		CEC5281819ABE85100959EFB /* AddToGroupCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddToGroupCellTableViewCell.h; sourceTree = "<group>"; };
+		CEC5281919ABE85100959EFB /* AddToGroupCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddToGroupCellTableViewCell.m; sourceTree = "<group>"; };
+		CEC5281A19ABE85100959EFB /* AddToGroupCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddToGroupCellTableViewCell.xib; sourceTree = "<group>"; };
+		CEC5281B19ABE85100959EFB /* AddToGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddToGroupViewController.h; sourceTree = "<group>"; };
+		CEC5281C19ABE85100959EFB /* AddToGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddToGroupViewController.m; sourceTree = "<group>"; };
+		CEC5281D19ABE85100959EFB /* AddToGroupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddToGroupViewController.xib; sourceTree = "<group>"; };
+		CEC5282319ABE85E00959EFB /* FriendsProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsProfileViewController.h; sourceTree = "<group>"; };
+		CEC5282419ABE85E00959EFB /* FriendsProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsProfileViewController.m; sourceTree = "<group>"; };
+		CEC5282519ABE85E00959EFB /* FriendsProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsProfileViewController.xib; sourceTree = "<group>"; };
+		CEC5282619ABE85E00959EFB /* FriendsProfileViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsProfileViewController4.xib; sourceTree = "<group>"; };
+		CEC5282B19ABE86500959EFB /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
+		CEC5282C19ABE86500959EFB /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
+		CEC5282D19ABE86500959EFB /* FriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsViewController.xib; sourceTree = "<group>"; };
+		CEC5282F19ABE86500959EFB /* SearchFriendsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFriendsTableViewCell.h; sourceTree = "<group>"; };
+		CEC5283019ABE86500959EFB /* SearchFriendsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFriendsTableViewCell.m; sourceTree = "<group>"; };
+		CEC5283119ABE86500959EFB /* SearchFriendsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchFriendsTableViewCell.xib; sourceTree = "<group>"; };
+		CEC5283819ABE87100959EFB /* RearTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RearTableViewCell.h; sourceTree = "<group>"; };
+		CEC5283919ABE87100959EFB /* RearTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RearTableViewCell.m; sourceTree = "<group>"; };
+		CEC5283A19ABE87100959EFB /* RearTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RearTableViewCell.xib; sourceTree = "<group>"; };
+		CEC5283B19ABE87100959EFB /* RearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RearViewController.h; sourceTree = "<group>"; };
+		CEC5283C19ABE87100959EFB /* RearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RearViewController.m; sourceTree = "<group>"; };
+		CEC5283D19ABE87100959EFB /* RearViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RearViewController.xib; sourceTree = "<group>"; };
+		CEC5284319ABE92B00959EFB /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		CEC5284419ABE92B00959EFB /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -790,6 +835,12 @@
 		8464A85B195A066800583DE0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CEC5284219ABE92B00959EFB /* SWRevealViewController */,
+				CEC5283619ABE87100959EFB /* RearViewController */,
+				CEC5282A19ABE86500959EFB /* SearchFriendsViewController */,
+				CEC5282219ABE85E00959EFB /* FriendsProfileViewController */,
+				CEC5281619ABE85100959EFB /* AddToGroupViewController */,
+				CEC5281019ABE84600959EFB /* FriendsListViewController */,
 				8464A85C195A066800583DE0 /* BaseViewController */,
 				8464A86F195A066800583DE0 /* SplashScreen */,
 				8464A85F195A066800583DE0 /* LoginViewController */,
@@ -1057,6 +1108,99 @@
 			path = ForgotPassword;
 			sourceTree = "<group>";
 		};
+		CEC5281019ABE84600959EFB /* FriendsListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CEC5281119ABE84600959EFB /* FriendsListViewController.h */,
+				CEC5281219ABE84600959EFB /* FriendsListViewController.m */,
+				CEC5281319ABE84600959EFB /* FriendsListViewController.xib */,
+			);
+			path = FriendsListViewController;
+			sourceTree = "<group>";
+		};
+		CEC5281619ABE85100959EFB /* AddToGroupViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CEC5281719ABE85100959EFB /* AddToGroupCell */,
+				CEC5281B19ABE85100959EFB /* AddToGroupViewController.h */,
+				CEC5281C19ABE85100959EFB /* AddToGroupViewController.m */,
+				CEC5281D19ABE85100959EFB /* AddToGroupViewController.xib */,
+			);
+			path = AddToGroupViewController;
+			sourceTree = "<group>";
+		};
+		CEC5281719ABE85100959EFB /* AddToGroupCell */ = {
+			isa = PBXGroup;
+			children = (
+				CEC5281819ABE85100959EFB /* AddToGroupCellTableViewCell.h */,
+				CEC5281919ABE85100959EFB /* AddToGroupCellTableViewCell.m */,
+				CEC5281A19ABE85100959EFB /* AddToGroupCellTableViewCell.xib */,
+			);
+			path = AddToGroupCell;
+			sourceTree = "<group>";
+		};
+		CEC5282219ABE85E00959EFB /* FriendsProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CEC5282319ABE85E00959EFB /* FriendsProfileViewController.h */,
+				CEC5282419ABE85E00959EFB /* FriendsProfileViewController.m */,
+				CEC5282519ABE85E00959EFB /* FriendsProfileViewController.xib */,
+				CEC5282619ABE85E00959EFB /* FriendsProfileViewController4.xib */,
+			);
+			path = FriendsProfileViewController;
+			sourceTree = "<group>";
+		};
+		CEC5282A19ABE86500959EFB /* SearchFriendsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CEC5282B19ABE86500959EFB /* FriendsViewController.h */,
+				CEC5282C19ABE86500959EFB /* FriendsViewController.m */,
+				CEC5282D19ABE86500959EFB /* FriendsViewController.xib */,
+				CEC5282E19ABE86500959EFB /* SearchFriendTableViewCell */,
+			);
+			path = SearchFriendsViewController;
+			sourceTree = "<group>";
+		};
+		CEC5282E19ABE86500959EFB /* SearchFriendTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				CEC5282F19ABE86500959EFB /* SearchFriendsTableViewCell.h */,
+				CEC5283019ABE86500959EFB /* SearchFriendsTableViewCell.m */,
+				CEC5283119ABE86500959EFB /* SearchFriendsTableViewCell.xib */,
+			);
+			path = SearchFriendTableViewCell;
+			sourceTree = "<group>";
+		};
+		CEC5283619ABE87100959EFB /* RearViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CEC5283719ABE87100959EFB /* RearTableViewCell */,
+				CEC5283B19ABE87100959EFB /* RearViewController.h */,
+				CEC5283C19ABE87100959EFB /* RearViewController.m */,
+				CEC5283D19ABE87100959EFB /* RearViewController.xib */,
+			);
+			path = RearViewController;
+			sourceTree = "<group>";
+		};
+		CEC5283719ABE87100959EFB /* RearTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				CEC5283819ABE87100959EFB /* RearTableViewCell.h */,
+				CEC5283919ABE87100959EFB /* RearTableViewCell.m */,
+				CEC5283A19ABE87100959EFB /* RearTableViewCell.xib */,
+			);
+			path = RearTableViewCell;
+			sourceTree = "<group>";
+		};
+		CEC5284219ABE92B00959EFB /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CEC5284319ABE92B00959EFB /* SWRevealViewController.h */,
+				CEC5284419ABE92B00959EFB /* SWRevealViewController.m */,
+			);
+			path = SWRevealViewController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1143,6 +1287,7 @@
 				84A110AD197158D60035E181 /* cbUnSel.png in Resources */,
 				84A48821196AB703006BC223 /* selTransportIcon.png in Resources */,
 				84A48834196AB730006BC223 /* selCustomIcon@2x.png in Resources */,
+				CEC5281519ABE84600959EFB /* FriendsListViewController.xib in Resources */,
 				CE9D376E195E771B001F05D9 /* ForgotPasswordViewController.xib in Resources */,
 				84DF7738196923EE00A11C2F /* selCommentIcon.png in Resources */,
 				84DF776E1969240000A11C2F /* location@2x.png in Resources */,
@@ -1189,15 +1334,19 @@
 				84DF7739196923EE00A11C2F /* selFacebookIcon.png in Resources */,
 				84DF77681969240000A11C2F /* buttonBell@2x.png in Resources */,
 				84DF7724196923EE00A11C2F /* appBackground4.png in Resources */,
+				CEC5283519ABE86500959EFB /* SearchFriendsTableViewCell.xib in Resources */,
 				84DF773A196923EE00A11C2F /* selImg.png in Resources */,
+				CEC5283F19ABE87100959EFB /* RearTableViewCell.xib in Resources */,
 				84DF77821969240000A11C2F /* yellowButton@2x.png in Resources */,
 				84A48831196AB730006BC223 /* friendsIcon@2x.png in Resources */,
+				CEC5283319ABE86500959EFB /* FriendsViewController.xib in Resources */,
 				84A48839196AB730006BC223 /* transportIcon@2x.png in Resources */,
 				84A48838196AB730006BC223 /* selTransportIcon@2x.png in Resources */,
 				84DF777F1969240000A11C2F /* unselLocation@2x.png in Resources */,
 				84DF776C1969240000A11C2F /* facebookIcon@2x.png in Resources */,
 				84A48822196AB703006BC223 /* transportIcon.png in Resources */,
 				84DF77731969240000A11C2F /* onlineImage@2x.png in Resources */,
+				CEC5282819ABE85E00959EFB /* FriendsProfileViewController.xib in Resources */,
 				84A48818196AB703006BC223 /* customIcon.png in Resources */,
 				84DF776B1969240000A11C2F /* commentIcon@2x.png in Resources */,
 				84A4881D196AB703006BC223 /* selCustomIcon.png in Resources */,
@@ -1219,6 +1368,7 @@
 				84DF77761969240000A11C2F /* purpleButton@2x.png in Resources */,
 				84DF7792196947A300A11C2F /* textViewBack.png in Resources */,
 				84DF77741969240000A11C2F /* pinkButton@2x.png in Resources */,
+				CEC5282119ABE85100959EFB /* AddToGroupViewController.xib in Resources */,
 				849DC10F1996A032008988AD /* reminderLocationTF.png in Resources */,
 				84DF77691969240000A11C2F /* buttonMenu@2x.png in Resources */,
 				842B8C9719719D2B00BECFD7 /* iconNotes@2x.png in Resources */,
@@ -1226,6 +1376,7 @@
 				84ABFCF319ABBB5F006FBE1E /* selNightIcon@2x.png in Resources */,
 				84DF7734196923EE00A11C2F /* pinkButton.png in Resources */,
 				84DF7728196923EE00A11C2F /* buttonBell.png in Resources */,
+				CEC5281F19ABE85100959EFB /* AddToGroupCellTableViewCell.xib in Resources */,
 				84DF772A196923EE00A11C2F /* cameraImage.png in Resources */,
 				84A4882F196AB730006BC223 /* customIcon@2x.png in Resources */,
 				84DF772F196923EE00A11C2F /* magentaButton.png in Resources */,
@@ -1240,6 +1391,7 @@
 				84DF777C1969240000A11C2F /* txtFldW@2x.png in Resources */,
 				84DF77711969240000A11C2F /* nextButton@2x.png in Resources */,
 				84A110AC197158D60035E181 /* cbSel.png in Resources */,
+				CEC5282919ABE85E00959EFB /* FriendsProfileViewController4.xib in Resources */,
 				849DC12A1996CB9D008988AD /* LocationInfoCell.xib in Resources */,
 				84DF77701969240000A11C2F /* mottoBack@2x.png in Resources */,
 				842B8C94197199C200BECFD7 /* selRepeat@2x.png in Resources */,
@@ -1247,6 +1399,7 @@
 				84DF778A19693A0300A11C2F /* sharingOptions.png in Resources */,
 				84DF77781969240000A11C2F /* selCommentIcon@2x.png in Resources */,
 				84A110A6197158A40035E181 /* cbSel@2x.png in Resources */,
+				CEC5284119ABE87100959EFB /* RearViewController.xib in Resources */,
 				84DF77751969240000A11C2F /* placeholder@2x.png in Resources */,
 				842B8C8F197199B400BECFD7 /* repeat.png in Resources */,
 				84DF7742196923EE00A11C2F /* yellowButton.png in Resources */,
@@ -1296,6 +1449,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8464A877195A066800583DE0 /* AppDelegate.m in Sources */,
+				CEC5281419ABE84600959EFB /* FriendsListViewController.m in Sources */,
 				84DF77861969323100A11C2F /* LogNightCell.m in Sources */,
 				8464A8AA195A066800583DE0 /* SplashScreenViewController.m in Sources */,
 				8464A8A1195A066800583DE0 /* BaseViewController.m in Sources */,
@@ -1308,19 +1462,27 @@
 				8464A8A2195A066800583DE0 /* LoginViewController.m in Sources */,
 				84A4880A196AAAC1006BC223 /* AddReminderViewController.m in Sources */,
 				849DC1241996C039008988AD /* FetchPlaces.m in Sources */,
+				CEC5283E19ABE87100959EFB /* RearTableViewCell.m in Sources */,
+				CEC5282019ABE85100959EFB /* AddToGroupViewController.m in Sources */,
 				849DC11F1996A445008988AD /* LocationCell.m in Sources */,
+				CEC5282719ABE85E00959EFB /* FriendsProfileViewController.m in Sources */,
 				84A110BA197167840035E181 /* DataManager.m in Sources */,
 				842715D41960125100DBEA6E /* NotificationCell.m in Sources */,
 				8464A87E195A066800583DE0 /* Constants.m in Sources */,
 				8464A8A8195A066800583DE0 /* RegisterViewController.m in Sources */,
 				841E02F319A091A500C16E32 /* WhenView.m in Sources */,
+				CEC5281E19ABE85100959EFB /* AddToGroupCellTableViewCell.m in Sources */,
 				8464A89F195A066800583DE0 /* main.m in Sources */,
 				84A110B3197166B50035E181 /* SignUpModel.m in Sources */,
+				CEC5284519ABE92B00959EFB /* SWRevealViewController.m in Sources */,
+				CEC5284019ABE87100959EFB /* RearViewController.m in Sources */,
 				841E02F019A0916800C16E32 /* WhereView.m in Sources */,
 				8464A8AC195A066800583DE0 /* UploadPhotoViewController.m in Sources */,
 				842715E51960390E00DBEA6E /* ServerConnection.m in Sources */,
 				842715ED1960414800DBEA6E /* SessionModel.m in Sources */,
 				849DC1291996CB9D008988AD /* LocationInfoCell.m in Sources */,
+				CEC5283219ABE86500959EFB /* FriendsViewController.m in Sources */,
+				CEC5283419ABE86500959EFB /* SearchFriendsTableViewCell.m in Sources */,
 				CE9D376C195E771B001F05D9 /* ForgotPasswordViewController.m in Sources */,
 				8464A8A6195A066800583DE0 /* ProfileViewController.m in Sources */,
 				844A565819976FB200B553E4 /* MapViewAnnotation.m in Sources */,

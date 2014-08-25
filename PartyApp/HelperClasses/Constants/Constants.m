@@ -48,6 +48,8 @@ NSString *const _pUpdateProfileSuccess=@"User profile has successfully updated";
 
 NSString *const _pResetPasswordMgs=@"Reset password link has sent to your email";
 
+ NSString *const _pErrInvalidUserEmailId=@"Invalid emailid";
+
 NSString *const _pURLBase   = @"http://api.quickblox.com/";
 NSString *const _pURLSignUp = @"users.json";
 NSString *const _pURLLogin  = @"login.json";

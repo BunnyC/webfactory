@@ -112,6 +112,8 @@
     return loadingView;
 }
 
+
+
 - (void)hideLoadingView:(UIView *)loadingView {
     
     [[loadingView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -159,6 +161,15 @@
     
     return [UIColor colorWithRed:rRetVal green:gRetVal blue:bRetVal alpha:1.0f];
     
+}
+
+- (void)showUnderDevelopmentAlert
+{
+    [[[UIAlertView alloc] initWithTitle:nil
+                                message:@"Under Development"                                   delegate:self
+                      cancelButtonTitle:@"OK"
+                      otherButtonTitles:nil, nil] show];
+
 }
 
 #pragma mark - Button with Image & Selector

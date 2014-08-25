@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import <CoreLocation/CoreLocation.h>
+#import "SWRevealViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 
@@ -21,10 +22,10 @@
 @property (assign, nonatomic) BOOL locationServicesEnabled;
 
 @property (strong, nonatomic) FBSession *session;
-
+-(void)navigationToViewController:(int)index;
 //- (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;
 //- (void)userLoggedIn;
 //- (void)userLoggedOut;
 //- (void)getUserInformation;
-
+-(void)pushViewcontroller:(UIViewController *)viewController;
 @end

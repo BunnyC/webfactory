@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view autoresizesSubviews="NO" contentMode="scaleToFill" id="iN0-l3-epB" customClass="WhereView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zeg-Mi-iEg">
+                    <rect key="frame" x="14" y="5" width="292" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whenNWhere.png" id="5hh-gd-l9w">
+                    <rect key="frame" x="14" y="27" width="292" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="reminderLocationTF.png" id="s4g-LN-A9G" customClass="PATextField">
+                    <rect key="frame" x="18" y="32" width="207" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="a8w-gY-8ss"/>
+                    </connections>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FiL-RJ-Lpj">
+                    <rect key="frame" x="227" y="29" width="75" height="46"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="reminderDone.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="doneButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="HOf-RT-mTI"/>
+                    </connections>
+                </button>
+                <view hidden="YES" autoresizesSubviews="NO" tag="1000" contentMode="scaleToFill" id="Kir-Bs-v9X">
+                    <rect key="frame" x="14" y="135" width="292" height="200"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PjH-4V-d0z">
+                            <rect key="frame" x="1" y="12" width="138" height="35"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="reminderCancel.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="reminderCancelAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="C3e-bI-Nhg"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gGg-zw-8bG">
+                            <rect key="frame" x="153" y="12" width="138" height="35"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="reminderSet.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="reminderSetAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="O84-nc-2bH"/>
+                            </connections>
+                        </button>
+                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="Qdb-bM-OqR">
+                            <rect key="frame" x="1" y="58" width="290" height="140"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        </mapView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </view>
+                <tableView autoresizesSubviews="NO" clipsSubviews="YES" tag="2000" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" id="8te-3u-SG0">
+                    <rect key="frame" x="14" y="80" width="292" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="iN0-l3-epB" id="272-ta-AHz"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="M0B-Vr-gUe"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="mapView" destination="Qdb-bM-OqR" id="SaB-jK-uwl"/>
+                <outlet property="tableViewLocation" destination="8te-3u-SG0" id="DMs-rt-e6n"/>
+                <outlet property="textFieldLocation" destination="s4g-LN-A9G" id="Kvp-RT-GJp"/>
+                <outlet property="viewMapView" destination="Kir-Bs-v9X" id="ey1-Gr-2fh"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="reminderCancel.png" width="138" height="35"/>
+        <image name="reminderDone.png" width="75" height="40"/>
+        <image name="reminderLocationTF.png" width="204" height="41"/>
+        <image name="reminderSet.png" width="137" height="35"/>
+        <image name="whenNWhere.png" width="291" height="31"/>
+    </resources>
+</document>

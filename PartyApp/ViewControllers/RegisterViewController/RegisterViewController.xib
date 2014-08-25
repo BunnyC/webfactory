@@ -77,7 +77,7 @@
                                 <outlet property="delegate" destination="-1" id="rb9-7F-j0P"/>
                             </connections>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="my motto is here" placeholder="Your Motto" minimumFontSize="17" id="qT2-NA-5RU" customClass="PATextField">
+                        <textField opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Motto" minimumFontSize="17" id="qT2-NA-5RU" customClass="PATextField">
                             <rect key="frame" x="69" y="304" width="183" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

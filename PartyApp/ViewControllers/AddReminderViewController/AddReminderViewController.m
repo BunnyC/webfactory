@@ -15,29 +15,40 @@
 #import "LocationInfoCell.h"
 #import "AppDelegate.h"
 
+#import "WhenView.h"
+#import "WhereView.h"
+
+#include <CoreLocation/CLLocationManagerDelegate.h>
+#include <CoreLocation/CLError.h>
+#include <CoreLocation/CLLocation.h>
+#include <CoreLocation/CLLocationManager.h>
+
 NSString *classReminder = @"PAReminder";
 
-@interface AddReminderViewController () <UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, UITextFieldDelegate, QBActionStatusDelegate> {
+@interface AddReminderViewController () <QBActionStatusDelegate, WhenViewDelegate, WhereViewDelegate> {
     
     NSInteger selectedOption;
     
     BOOL repeatSelected;
     BOOL notesSelected;
     
-    NSArray *arrReminderOptions;
-    NSMutableDictionary *dictReminderOptions;
     CommonFunctions *commFunc;
     
+    NSDate *dateSelected;
     int valueSelectedToRepeat;
-    NSInteger indexOfLocationSelected;
-    NSMutableArray *arrFetchedLocations;
+    NSString *strAddedNote;
+    
+    CLLocation *locationSelected;
     
     UIView *loadingView;
     UITextView *cellTextView;
     UIImageView *imageViewCellBack;
     
-    CLLocationCoordinate2D locationSelected;
-    NSString *strAddedNote;
+    WhenView *whenView;
+    WhereView *whereView;
+    
+    CGRect frameDefault;
+    BOOL locationServicesEnabled;
 }
 
 @end
@@ -95,58 +106,53 @@ NSString *classReminder = @"PAReminder";
     
     selectedOption = 0;
     
+    frameDefault = scrollView.frame;
+    
     repeatSelected = false;
     notesSelected = false;
     valueSelectedToRepeat = -1;
-    indexOfLocationSelected = -1;
     strAddedNote = @"";
     
-    if(![[CommonFunctions sharedObject]isDeviceiPhone5])
-    {
-        [viewBottom setFrame:CGRectMake(viewBottom.frame.origin.x,CGRectGetMaxY(viewWhenNWhere.frame) + 10,viewBottom.frame.size.width,viewBottom.frame.size.height)];
+    if ([CLLocationManager locationServicesEnabled] ) {
         
-        [scrollView setContentSize:CGSizeMake(scrollView.contentSize.width, CGRectGetMaxY(viewBottom.frame))];
-        
-        [scrollView.layer setBorderColor:[UIColor greenColor].CGColor];
-        [scrollView.layer setBorderWidth:1.0f];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        locationServicesEnabled = appDelegate.locationServicesEnabled;
+        if (!locationServicesEnabled)
+            [self showLocationError];
+    }
+    else {
+        [self showLocationError];
     }
     
-    arrReminderOptions = [[NSArray alloc] initWithObjects:
-                          @"Tomorrow", @"Next Week", @"Everyday", @"Every Week", nil];
-    
-    dictReminderOptions = [[NSMutableDictionary alloc] init];
-    
-    for (int i = 0; i < [arrReminderOptions count]; i ++) {
-        
-        NSMutableDictionary *indexDict = [[NSMutableDictionary alloc] init];
-        [indexDict setObject:[arrReminderOptions objectAtIndex:i] forKey:@"Title"];
-        [indexDict setObject:[NSNumber numberWithInt:0] forKey:@"Selected"];
-        
-        [dictReminderOptions setObject:indexDict forKey:[NSNumber numberWithInt:i]];
-        indexDict = nil;
-    }
+//    if(![[CommonFunctions sharedObject]isDeviceiPhone5])
+//    {
+//        [viewBottom setFrame:CGRectMake(viewBottom.frame.origin.x,CGRectGetMaxY(viewWhenNWhere.frame) + 10,viewBottom.frame.size.width,viewBottom.frame.size.height)];
+//        
+//        [scrollView setContentSize:CGSizeMake(scrollView.contentSize.width, CGRectGetMaxY(viewBottom.frame))];
+//        
+//        [scrollView.layer setBorderColor:[UIColor greenColor].CGColor];
+//        [scrollView.layer setBorderWidth:1.0f];
+//    }
     
     UIImage *imageWhenWhereBack = [commFunc imageWithName:@"whenNWhere" andType:_pPNGType];
     UIImage *imageBackViewBottom = [commFunc imageWithName:@"viewBack" andType:_pPNGType];
     
-    UIImage *resizableImage = [imageWhenWhereBack resizableImageWithCapInsets:UIEdgeInsetsMake(2, 2, 2, 2) resizingMode:UIImageResizingModeStretch];
-    
     [viewWhenNWhere setBackgroundColor:[UIColor colorWithPatternImage:imageWhenWhereBack]];
     [viewBottom setBackgroundColor:[UIColor colorWithPatternImage:imageBackViewBottom]];
-    [imageViewBack setImage:resizableImage];
+}
+
+- (void)showLocationError {
     
-    //    [viewAddReminder.layer setBorderColor:[UIColor blueColor].CGColor];
-    //    [viewAddReminder.layer setBorderWidth:1.0f];
-    //
-    //    [tableViewReminderInfo.layer setBorderColor:[UIColor redColor].CGColor];
-    //    [tableViewReminderInfo.layer setBorderWidth:1.f];
+    locationServicesEnabled = NO;
+    NSString *msgError = [NSString stringWithFormat:@"The app is not permitted to use Location Services.\nEnable location services for app from settings and come back again on this view to add location."];
     
-    //    [viewAddLocation.layer setBorderColor:[UIColor blueColor].CGColor];
-    //    [viewAddLocation.layer setBorderWidth:1.0f];
-    //    [tableViewLocation.layer setBorderColor:[UIColor redColor].CGColor];
-    //    [tableViewLocation.layer setBorderWidth:1.f];
+    [[[UIAlertView alloc] initWithTitle:@"Location Permission"
+                                message:msgError
+                               delegate:self
+                      cancelButtonTitle:@"OK"
+                      otherButtonTitles:nil ] show];
     
-    
+    locationSelected = [[CLLocation alloc] initWithLatitude:0.0f longitude:0.0f];
 }
 
 - (void)setupTextView {
@@ -196,47 +202,69 @@ NSString *classReminder = @"PAReminder";
     //    RNotes : String (Notes)
     //    RLocation : Location (Saving location of Reminder)
     
-    NSString *reminderType = nil;
-    
-    switch (selectedOption) {
-        case 1: reminderType = @"Transport";    break;
-        case 2: reminderType = @"Night";        break;
-        case 3: reminderType = @"Personal";     break;
-        case 4: reminderType = @"Food & Drink"; break;
-        case 5: reminderType = @"Friends";      break;
-        case 6: reminderType = @"Custom";        break;
-        default:    break;
+    BOOL validated = YES;
+    NSString *msgError = @"";
+    if (!selectedOption && validated) {
+        msgError = @"Please select an option from Transport, Night Personal etc.";
+        validated = NO;
+    }
+    else if (validated && (!strAddedNote || [strAddedNote length] == 0)) {
+        msgError = @"Please add a note for the reminder";
+        validated = NO;
+    }
+    else if (validated && !dateSelected) {
+        msgError = @"Please select a date";
+        validated = NO;
+    }
+    else if (validated && !locationSelected) {
+        msgError = @"Location selected is not valid";
+        validated = NO;
     }
     
-    int repeatValue = 10;
-    switch (valueSelectedToRepeat) {
-        case 0: repeatValue = 10;   break;
-        case 1: repeatValue = 70;   break;
-        case 2: repeatValue = 1;    break;
-        case 3: repeatValue = 7;    break;
-        default:repeatValue = 10;   break;
+    if (validated) {
+        
+        NSString *reminderType = nil;
+        switch (selectedOption) {
+            case 1: reminderType = @"Transport";    break;
+            case 2: reminderType = @"Night";        break;
+            case 3: reminderType = @"Personal";     break;
+            case 4: reminderType = @"Food & Drink"; break;
+            case 5: reminderType = @"Friends";      break;
+            case 6: reminderType = @"Custom";        break;
+            default:    break;
+        }
+        
+        int repeatValue = 10;
+        switch (valueSelectedToRepeat - 1) {
+            case 0: repeatValue = 10;   break;
+            case 1: repeatValue = 70;   break;
+            case 2: repeatValue = 1;    break;
+            case 3: repeatValue = 7;    break;
+            default:repeatValue = 10;   break;
+        }
+        
+        QBCOCustomObject *objectLogNight = [QBCOCustomObject customObject];
+        [objectLogNight setClassName:classReminder];
+        [objectLogNight.fields setObject:reminderType
+                                  forKey:@"RType"];
+        [objectLogNight.fields setObject:dateSelected
+                                  forKey:@"RAlarmTime"];
+        [objectLogNight.fields setObject:[NSNumber numberWithBool:repeatValue]
+                                  forKey:@"RRepeat"];
+        [objectLogNight.fields setObject:strAddedNote
+                                  forKey:@"RNotes"];
+        [objectLogNight.fields setObject:locationSelected
+                                  forKey:@"RLocation"];
+        [QBCustomObjects createObject:objectLogNight delegate:self];
+        
+        loadingView = [[CommonFunctions sharedObject] showLoadingView];
     }
-    
-    CLLocation *locationToSave = [[CLLocation alloc] initWithLatitude:locationSelected.latitude
-                                                            longitude:locationSelected.longitude];
-    
-    NSDate *selectedDate = datePicker.date;
-    
-    QBCOCustomObject *objectLogNight = [QBCOCustomObject customObject];
-    [objectLogNight setClassName:classReminder];
-    [objectLogNight.fields setObject:reminderType
-                              forKey:@"RType"];
-    [objectLogNight.fields setObject:selectedDate
-                              forKey:@"RAlarmTime"];
-    [objectLogNight.fields setObject:[NSNumber numberWithBool:repeatValue]
-                              forKey:@"RRepeat"];
-    [objectLogNight.fields setObject:cellTextView.text
-                              forKey:@"RNotes"];
-    [objectLogNight.fields setObject:locationToSave
-                              forKey:@"RLocation"];
-    [QBCustomObjects createObject:objectLogNight delegate:self];
-    
-    loadingView = [[CommonFunctions sharedObject] showLoadingView];
+    else {
+        [[[UIAlertView alloc] initWithTitle:@"Error"
+                                    message:msgError
+                                   delegate:nil cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil, nil] show];
+    }
 }
 
 - (IBAction)optionsButtonTouched:(id)sender {
@@ -258,488 +286,184 @@ NSString *classReminder = @"PAReminder";
     }
 }
 
+#pragma mark - When/Where Delegates
+
+- (void)resizeTheViewWithViewType:(int)type {
+    
+    UIView *subViewType = (type == 1) ? whenView : whereView;
+    
+    int originForBottomView = 0;
+    CGRect frameSubView = subViewType.frame;
+    frameSubView.origin.y = CGRectGetMaxY(viewWhenNWhere.frame) + 10;
+    [subViewType setFrame:frameSubView];
+    [scrollView addSubview:subViewType];
+    
+    originForBottomView = CGRectGetMaxY(frameSubView) + 20;
+    
+    CGRect frameBottomView = viewBottom.frame;
+    frameBottomView.origin.y = originForBottomView;
+    [viewBottom setFrame:frameBottomView];
+    
+    [scrollView setContentSize:CGSizeMake(scrollView.contentSize.width, CGRectGetMaxY(frameBottomView))];
+}
+
+- (void)resizeScrollViewForEditing:(BOOL)forEditing {
+    CGRect frameForScrollView = frameDefault;
+    if (forEditing) {
+        frameForScrollView = frameDefault;
+        int difference = frameDefault.size.height - frameForScrollView.size.height;
+        frameForScrollView.size.height = difference > 10 ? frameForScrollView.size.height : frameDefault.size.height - 100;
+        
+        int offsetForScrollOffset = 100;
+        if (![whereView isHidden]) {
+            UITableView *tableView = (UITableView *)[whereView viewWithTag:2000];
+            if (tableView.frame.size.height > 50)
+                offsetForScrollOffset = -tableView.frame.size.height;
+//            if (![mapView isHidden])
+//                offsetForScrollOffset = -200;
+        }
+            
+        
+        CGPoint offset = CGPointMake(0, scrollView.contentSize.height - scrollView.bounds.size.height + offsetForScrollOffset);
+        [scrollView setContentOffset:offset animated:YES];
+    }
+    [scrollView setFrame:frameForScrollView];
+}
+
+- (void)selectedValuesInWhenView:(NSDictionary *)dictionary {
+    //    datePicker.date, @"SelectedDate",
+    //    strAddedNote, @"SelectedNote",
+    //    selectedRepeat, @"SelectedRepeat", nil];
+    
+    valueSelectedToRepeat = [[dictionary objectForKey:@"SelectedRepeat"] intValue];
+    strAddedNote = [dictionary objectForKey:@"SelectedNote"];
+    dateSelected = [dictionary objectForKey:@"SelectedDate"];
+    
+    NSLog(@"Dictionary : %@", dictionary);
+}
+
+- (void)selectedLocationInWhereView:(CLLocation *)selectedLocation {
+    locationSelected = selectedLocation;
+}
+
+#pragma mark - IBActions
+
 - (IBAction)whenButtonTouched:(id)sender {
+    
+    //    - (void)resizeScrollViewForEditing:(BOOL)forEditing
+    [self resizeScrollViewForEditing:NO];
+    
+    if (![whereView isHidden]) {
+        [whereView removeFromSuperview];
+    }
+    
     UIButton *button = (UIButton *)sender;
     [button setSelected:![button isSelected]];
     
-    CGRect frameWW = viewWhenNWhere.frame;
-    CGRect frameAR = viewAddReminder.frame;
+    if (!whenView) {
+        UINib *nib = [UINib nibWithNibName:@"WhenView" bundle:nil];
+        WhenView *objWhenView = [[nib instantiateWithOwner:self options:nil] objectAtIndex:0];
+        whenView = objWhenView;
+    }
     
-    CGRect frameVB = viewBottom.frame;
+    int originForBottomView = 0;
+    
     if ([button isSelected]) {
-        frameWW.origin.y += (frameWW.size.height + 10);
-        frameVB.origin.y = CGRectGetMaxY(frameWW) + frameAR.size.height + 10;
-    }
-    else {
-        frameVB.origin.y = CGRectGetMaxY(frameWW) + 10;
-        frameWW.origin.y -= (frameWW.size.height + 10);
-    }
-    
-    [viewAddLocation setHidden:YES];
-    [viewAddReminder setFrame:CGRectMake(0, frameWW.origin.y, frameAR.size.width, frameAR.size.height)];
-    [viewAddReminder setHidden:![button isSelected]];
-    [viewBottom setFrame:frameVB];
-    [scrollView setContentSize:CGSizeMake(scrollView.frame.size.width, CGRectGetMaxY(frameVB))];
-}
-
-- (void)resetLocationFrame {
-    
-    [viewMapView setHidden:YES];
-    [tableViewLocation setFrame:CGRectMake(14, 80, 292, 42)];
-    CGRect frameVL =viewAddLocation.frame;
-    frameVL.size.height = 135;
-    [viewAddLocation setFrame:frameVL];
-}
-
-- (void)setLocationFramesAsPerUpdatesWithSelection:(BOOL)selection {
-    
-    //    [self resetLocationFrame];
-    CGRect frameWW = viewWhenNWhere.frame;
-    CGRect frameAL = viewAddLocation.frame;
-    CGRect frameTB = tableViewLocation.frame;
-    CGRect frameVB = viewBottom.frame;
-    CGRect frameMV = viewMapView.frame;
-    
-    if (arrFetchedLocations.count) {
-        int heightIncrement = (int)arrFetchedLocations.count * 44;
-        if (arrFetchedLocations.count > 5)
-            heightIncrement = 220;
+        CGRect frameWhenView = whenView.frame;
+        frameWhenView.origin.y = CGRectGetMaxY(viewWhenNWhere.frame) + 10;
+        [whenView setFrame:frameWhenView];
+        [scrollView addSubview:whenView];
         
-        frameAL.size.height += arrFetchedLocations.count > 1 ? heightIncrement - 44 : 0;
-        frameTB.size.height = heightIncrement;
-    }
-    
-    if (selection) {
-        frameWW.origin.y += (frameWW.size.height + 10);
-        frameVB.origin.y = CGRectGetMaxY(frameWW) + frameAL.size.height + 10;
+        originForBottomView = CGRectGetMaxY(frameWhenView) + 20;
     }
     else {
-        frameVB.origin.y = CGRectGetMaxY(frameWW) + 10;
-        frameWW.origin.y -= (frameWW.size.height + 10);
+        [whenView removeFromSuperview];
+        originForBottomView = CGRectGetMinY(viewWhenNWhere.frame) + 106;
     }
     
-    [viewAddReminder setHidden:YES];
-    [tableViewLocation setFrame:frameTB];
+    [whenView setDelegate:self];
     
-    CGRect finalFrame = [viewMapView isHidden] ? frameTB : frameMV;
+    CGRect frameBottomView = viewBottom.frame;
+    frameBottomView.origin.y = originForBottomView;
+    [viewBottom setFrame:frameBottomView];
     
-    [viewAddLocation setFrame:CGRectMake(0, frameWW.origin.y, frameAL.size.width, CGRectGetMaxY(finalFrame))];
-    [viewAddLocation setHidden:!selection];
-    
-    if (![viewAddLocation isHidden])
-        frameVB.origin.y = CGRectGetMaxY(viewAddLocation.frame) + 50;
-    
-    [viewBottom setFrame:frameVB];
-    [scrollView setContentSize:CGSizeMake(scrollView.frame.size.width, CGRectGetMaxY(frameVB))];
+    [scrollView setContentSize:CGSizeMake(scrollView.contentSize.width, CGRectGetMaxY(frameBottomView))];
 }
 
 - (IBAction)whereButtonTouched:(id)sender {
+    if (locationServicesEnabled) {
+    [self resizeScrollViewForEditing:NO];
+    
+    if (![whenView isHidden]) {
+        [whenView removeFromSuperview];
+    }
     
     UIButton *button = (UIButton *)sender;
     [button setSelected:![button isSelected]];
     
-    //    [viewAddLocation setHidden:NO];
-    [self setLocationFramesAsPerUpdatesWithSelection:[button isSelected]];
-}
-
-- (void)sectionButtonTouched:(UIButton *)sender {
+    if (!whereView) {
+        UINib *nib = [UINib nibWithNibName:@"WhereView" bundle:nil];
+        WhereView *objWhereView = [[nib instantiateWithOwner:self options:nil] objectAtIndex:0];
+        whereView = objWhereView;
+    }
     
-    int heightIncrement = 120;
-    if ([sender tag] == 0) {
-        repeatSelected = true;
-        notesSelected = false;
-        [cellTextView setHidden:YES];
-        [imageViewCellBack setHidden:YES];
+    int originForBottomView = 0;
+    
+    if ([button isSelected]) {
+        CGRect frameWhereView = whereView.frame;
+        frameWhereView.origin.y = CGRectGetMaxY(viewWhenNWhere.frame) + 10;
+        [whereView setFrame:frameWhereView];
+        [scrollView addSubview:whereView];
+        
+        originForBottomView = CGRectGetMaxY(frameWhereView) + 20;
     }
     else {
-        repeatSelected = false;
-        notesSelected = true;
-        [cellTextView setHidden:NO];
-        [imageViewCellBack setHidden:NO];
+        [whereView removeFromSuperview];
+        originForBottomView = CGRectGetMinY(viewWhenNWhere.frame) + 106;
     }
     
-    BOOL selected = NO;
-    NSArray *arrKeys = [dictReminderOptions allKeys];
-    for (int i = 0; i < [arrKeys count]; i ++) {
-        NSDictionary *indexDict = [dictReminderOptions objectForKey:[NSNumber numberWithInt:i]];
-        if ([[indexDict objectForKey:@"Selected"] integerValue]) {
-            selected = YES;
-            break;
-        }
+    [whereView setDelegate:self];
+    
+    CGRect frameBottomView = viewBottom.frame;
+    frameBottomView.origin.y = originForBottomView;
+    [viewBottom setFrame:frameBottomView];
+    
+    [scrollView setContentSize:CGSizeMake(scrollView.contentSize.width, CGRectGetMaxY(frameBottomView))];
     }
-    
-    heightIncrement += selected && !repeatSelected ? 30 : 0;
-    
-    CGRect frameTable = tableViewReminderInfo.frame;
-    frameTable.size.height = 80 + heightIncrement;
-    [tableViewReminderInfo setFrame:frameTable];
-    
-    CGRect frameViewReminder = viewAddReminder.frame;
-    frameViewReminder.size.height = CGRectGetMaxY(frameTable) + 7;
-    [viewAddReminder setFrame:frameViewReminder];
-    
-    CGRect frameViewBottom = viewBottom.frame;
-    frameViewBottom.origin.y = CGRectGetMaxY(frameViewReminder) + 50;
-    [viewBottom setFrame:frameViewBottom];
-    
-    //    CGSize contentSize = scrollView.contentSize;
-    //    contentSize.height += heightIncrement;
-    
-    [scrollView setContentSize:CGSizeMake(scrollView.contentSize.width, CGRectGetMaxY(frameViewBottom))];
-    [tableViewReminderInfo reloadData];
+    else
+        [self showLocationError];
 }
 
-- (void)placesResult:(NSMutableDictionary *)dictResponse {
-    
-    if (arrFetchedLocations) {
-        [arrFetchedLocations removeAllObjects];
-        arrFetchedLocations = nil;
-    }
-    if ([[dictResponse objectForKey:@"status"] isEqualToString:@"ZERO_RESULTS"]) {
-        [[[UIAlertView alloc] initWithTitle:nil
-                                    message:@"No results found with this keyword."
-                                   delegate:self
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil, nil] show];
-    }
-    else {
-        arrFetchedLocations = [[NSMutableArray alloc] initWithArray:[dictResponse objectForKey:@"results"]];
-        [tableViewLocation reloadData];
-    }
-    [self setLocationFramesAsPerUpdatesWithSelection:YES];
-}
-
-- (IBAction)doneButtonTouched:(id)sender {
-    
-    [textFieldLocation resignFirstResponder];
-    if ([[textFieldLocation text] length]) {
-        
-        NSString *keyword = [textFieldLocation.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-        
-        NSString *stringToHit = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/textsearch/json?query=%@&key=AIzaSyCHTaIkOrh6LFZt5dpDqxE2V6YkRuIr1nI", keyword];
-        
-        FetchPlaces *objFetchPlaces = [[FetchPlaces alloc] init];
-        [objFetchPlaces fetchPlacesInController:self
-                                   withselector:@selector(placesResult:)
-                                        withURL:stringToHit
-                             toShowWindowLoader:YES];
-        indexOfLocationSelected = -1;
-    }
-    else {
-        [[[UIAlertView alloc] initWithTitle:nil
-                                    message:@"Please enter some keyword to search."
-                                   delegate:self
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil, nil] show];
-    }
-}
-
-- (IBAction)cancelDoneButtonMapViewTouched:(id)sender {
-}
-
-
-#pragma mark - TextView Delegate
-
-- (void)textViewDidBeginEditing:(UITextView *)textView {
-    CGRect frameScrollView = scrollView.frame;
-    frameScrollView.size.height -= 216;
-    [scrollView setFrame:frameScrollView];
-    [scrollView setContentOffset:CGPointMake(0, CGRectGetMaxY(tableViewReminderInfo.frame) + 50)
-                        animated:true];
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView {
-    CGRect frameScrollView = scrollView.frame;
-    frameScrollView.size.height = self.view.frame.size.height;
-    [scrollView setFrame:frameScrollView];
-    
-    if ([textView tag] == 100)
-        strAddedNote = textView.text;
-}
-
-#pragma mark - Text Field Delegate
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    CGPoint offset = CGPointMake(0, scrollView.contentSize.height - ([UIScreen mainScreen].bounds.size.height - 64));
-    [scrollView setContentOffset:offset];
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    return YES;
-}
-
-#pragma mark - Show MapView
-
-- (void)addAnnotationInMapViewWithInfo:(NSDictionary *)info {
-    
-    if ([viewMapView isHidden]) {
-        CGRect frameTB = tableViewLocation.frame;
-        CGRect frameVM = viewMapView.frame;
-        CGRect frameVB = viewBottom.frame;
-        CGRect frameVL = viewAddLocation.frame;
-        
-        frameVM.origin.y = CGRectGetMaxY(frameTB);
-        frameTB.size.height = CGRectGetMinY(frameVM) - 80;
-        frameVL.size.height = CGRectGetMaxY(frameVM);
-        frameVB.origin.y = CGRectGetMaxY(frameVL) + 50;
-        
-        [viewMapView setHidden:NO];
-        
-        [viewMapView setFrame:frameVM];
-        [viewAddLocation setFrame:frameVL];
-        [viewBottom setFrame:frameVB];
-        [tableViewLocation setFrame:frameTB];
-        [scrollView setContentSize:CGSizeMake(scrollView.contentSize.width, CGRectGetMaxY(frameVB))];
-    }
-    
-    //    [self setLocationFramesAsPerUpdatesWithSelection:YES];
-    NSDictionary *location = [[info objectForKey:@"geometry"] objectForKey:@"location"];
-    
-    CLLocationCoordinate2D coordinate;
-    NSNumber *latitude = [location objectForKey:@"lat"];
-    NSNumber *longitude = [location objectForKey:@"lng"];
-    
-    NSString *title = [info objectForKey:@"name"];
-    coordinate.latitude = latitude.doubleValue;
-    coordinate.longitude = longitude.doubleValue;
-    
-    locationSelected = coordinate;
-    
-    MapViewAnnotation *annotation = [[MapViewAnnotation alloc] initWithTitle:title
-                                                               andCoordinate:coordinate];
-    [mapView showAnnotations:[NSArray arrayWithObject:annotation]
-                    animated:YES];
-    //    [self.mapViewCell addAnnotation:annotation];
-    //    [self zoomToLocationWithLocation:coordinate];
-}
-
-#pragma mark - UITableView Delegate & DataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return (tableView == tableViewReminderInfo) ? 2 : 1;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return (tableView == tableViewReminderInfo) ? 40 : 0;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
-    UIView *viewSection = nil;
-    if (tableView == tableViewReminderInfo) {
-        viewSection = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 292, 40)];
-        [viewSection setBackgroundColor:[UIColor clearColor]];
-        
-        NSString *strImage = nil;
-        NSString *strSelImage = nil;
-        NSString *titleButton = nil;
-        
-        switch (section) {
-            case 0:
-                strImage = @"repeat";
-                strSelImage = @"selRepeat";
-                titleButton = @"  Repeat";
-                break;
-            case 1:
-                strImage = @"iconNotes";
-                strSelImage = @"iconSelNotes";
-                titleButton = @"  Notes";
-                break;
-            default:
-                break;
-        }
-        
-        UIImage *imageButtonNormal = [[CommonFunctions sharedObject] imageWithName:strImage
-                                                                           andType:_pPNGType];
-        UIImage *imageButtonSelected = [[CommonFunctions sharedObject] imageWithName:strSelImage
-                                                                             andType:_pPNGType];
-        
-        UIColor *colorSelected = [UIColor colorWithRed:234/255.0f green:178/255.0f blue:23/255.0f alpha:1.0f];
-        
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-        [button.titleLabel setFont:[UIFont fontWithName:_pFontArialMT size:15]];
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [button setTitleColor:colorSelected forState:UIControlStateSelected];
-        [button setTitle:titleButton forState:UIControlStateNormal];
-        [button setImage:imageButtonNormal forState:UIControlStateNormal];
-        [button setImage:imageButtonSelected forState:UIControlStateSelected];
-        [button setFrame:viewSection.frame];
-        [button setTag:section];
-        [button addTarget:self
-                   action:@selector(sectionButtonTouched:)
-         forControlEvents:UIControlEventTouchUpInside];
-        
-        if ((section == 0 && repeatSelected) || (section == 1 && notesSelected))
-            [button setSelected:true];
-        
-        [viewSection addSubview:button];
-    }
-    return viewSection;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    NSInteger noOfRows = 0;
-    if (tableView == tableViewReminderInfo) {
-        NSUInteger countKeys = [[dictReminderOptions allKeys] count];
-        noOfRows = section ? (notesSelected ? 1 : 0) : (repeatSelected ? countKeys : (valueSelectedToRepeat > -1 ? 1 : 0));
-    }
-    else {
-        noOfRows = [arrFetchedLocations count] + 1;
-    }
-    return noOfRows;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat rowHeight = indexPath.section == 0 ? 30 : 120;
-    if (tableView == tableViewReminderInfo) {
-        rowHeight = indexPath.section == 0 ? 30 : 120;
-    }
-    else {
-        rowHeight = 44;
-    }
-    return rowHeight;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *cellID = @"Cell";
-    id cell = nil;
-    if (tableView == tableViewReminderInfo) {
-        
-        UITableViewCell *simpleCell = [tableView dequeueReusableCellWithIdentifier:cellID];
-        if (simpleCell == nil) {
-            
-            simpleCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-            [simpleCell.textLabel setTextColor:[UIColor whiteColor]];
-            [simpleCell setBackgroundColor:[UIColor clearColor]];
-            [simpleCell.contentView setBackgroundColor:[UIColor clearColor]];
-        }
-        [simpleCell.textLabel setFont:[UIFont fontWithName:_pFontArialRoundedMT size:12]];
-        NSString *textCell = nil;
-        
-        for (UITextView *textView in simpleCell.subviews) {
-            if ([textView isKindOfClass:[UITextView class]])
-                [textView removeFromSuperview];
-        }
-        
-        if (indexPath.section == 0) {
-            
-            int indexValue = (int)indexPath.row;
-            if (!repeatSelected && valueSelectedToRepeat > -1) {
-                indexValue = valueSelectedToRepeat;
-            }
-            else if (repeatSelected && valueSelectedToRepeat == (int)indexPath.row)
-                [simpleCell.textLabel setTextColor:[UIColor colorWithRed:234/255.0f green:178/255.0f blue:23/255.0f alpha:1.0f]];
-            
-            NSDictionary *dictIndex = [dictReminderOptions objectForKey:[NSNumber numberWithInt:indexValue]];
-            textCell = [dictIndex objectForKey:@"Title"];
-        }
-        else {
-            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-            textCell = @"";
-            
-            if (!cellTextView) {
-            
-                UIImage *imageBack = [[CommonFunctions sharedObject] imageWithName:@"textViewBack"
-                                                                           andType:_pPNGType];
-                
-                UIImageView *imageViewTextBack = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 292, 120)];
-                [imageViewTextBack setImage:imageBack];
-                
-                UITextView *textViewCell = [[UITextView alloc] initWithFrame:CGRectMake(2, 2, 288, 116)];
-                [textViewCell setBackgroundColor:[UIColor clearColor]];
-                [textViewCell setTag:100];
-                [textViewCell setTextColor:[UIColor whiteColor]];
-                [textViewCell setDelegate:self];
-            
-                if ([strAddedNote length])
-                    [textViewCell setText:strAddedNote];
-                else
-                    [textViewCell setText:@"Notes"];
-            
-                cellTextView = textViewCell;
-                imageViewCellBack = imageViewTextBack;
-                
-                [simpleCell.contentView addSubview:imageViewCellBack];
-                [simpleCell.contentView addSubview:cellTextView];
-            }
-        }
-        //        [simpleCell.layer setBorderColor:[UIColor redColor].CGColor];
-        //        [simpleCell.layer setBorderWidth:1.0f];
-        [simpleCell.textLabel setText:textCell];
-        cell = simpleCell;
-    }
-    else {
-        
-        UITableViewCell *simpleCell = [tableView dequeueReusableCellWithIdentifier:cellID];
-        LocationInfoCell *cellLocationInfo = nil;
-        
-        if (indexPath.row == 0) {
-            if (simpleCell == nil) {
-                simpleCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-                [simpleCell.textLabel setTextColor:[UIColor whiteColor]];
-                [simpleCell setBackgroundColor:[UIColor clearColor]];
-                [simpleCell.contentView setBackgroundColor:[UIColor clearColor]];
-            }
-            
-            [simpleCell.textLabel setFont:[UIFont fontWithName:_pFontArialRoundedMT size:15]];
-            [simpleCell.imageView setImage:[UIImage imageNamed:@"unselLocation"]];
-            [simpleCell.imageView setContentMode:UIViewContentModeCenter];
-            
-            [simpleCell.textLabel setText:@"Current Location"];
-            
-            cell = simpleCell;
-        }
-        else if (indexPath.row <= arrFetchedLocations.count) {
-            if (cellLocationInfo == nil)
-                cellLocationInfo = [[[NSBundle mainBundle] loadNibNamed:@"LocationInfoCell"
-                                                                  owner:self
-                                                                options:nil] objectAtIndex:0];
-            NSDictionary *indexDict = [arrFetchedLocations objectAtIndex:indexPath.row - 1];
-            [cellLocationInfo fillLocationInfoCellWithName:[indexDict objectForKey:@"name"]
-                                                andAddress:[indexDict objectForKey:@"vicinity"]];
-            cell = cellLocationInfo;
-        }
-    }
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (tableView == tableViewReminderInfo) {
-        if (indexPath.section == 0 && repeatSelected) {
-            valueSelectedToRepeat = (int)indexPath.row;
-            NSArray *arrKeys = [dictReminderOptions allKeys];
-            for (int i = 0; i < [arrKeys count]; i ++) {
-                NSMutableDictionary *dictIndex = [dictReminderOptions objectForKey:[NSNumber numberWithInt:(int)indexPath.row]];
-                //
-                //                int number = (i == indexPath.row) ? 1 : 0;
-                //                [dictIndex setObject:[NSNumber numberWithInt:number] forKey:@"Selected"];
-                
-                NSMutableDictionary *mutDictAtIndex = [NSMutableDictionary dictionaryWithObjectsAndKeys:[dictIndex objectForKey:@"Title"], @"Title", [NSNumber numberWithInt:1], @"Selected", nil];
-                [dictReminderOptions removeObjectForKey:[NSNumber numberWithInt:valueSelectedToRepeat]];
-                [dictReminderOptions setObject:mutDictAtIndex forKey:[NSNumber numberWithInt:valueSelectedToRepeat]];
-                
-            }
-            NSLog(@"Dict : %@", dictReminderOptions.description);
-        }
-    }
-    else if (tableView == tableViewLocation) {
-        if (indexPath.row > 0) {
-            indexOfLocationSelected = indexPath.row - 1;
-            [self addAnnotationInMapViewWithInfo:[arrFetchedLocations objectAtIndex:indexOfLocationSelected]];
-        }
-        else {
-            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-            locationSelected = appDelegate.locationCurrent.coordinate;
-        }
-    }
-    [tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.2];
-}
+//#pragma mark - TextView Delegate
+//
+//- (void)textViewDidBeginEditing:(UITextView *)textView {
+//    CGRect frameScrollView = scrollView.frame;
+//    frameScrollView.size.height -= 216;
+//    [scrollView setFrame:frameScrollView];
+////    [scrollView setContentOffset:CGPointMake(0, CGRectGetMaxY(tableViewReminderInfo.frame) + 50)
+////                        animated:true];
+//}
+//
+//- (void)textViewDidEndEditing:(UITextView *)textView {
+//    CGRect frameScrollView = scrollView.frame;
+//    frameScrollView.size.height = self.view.frame.size.height;
+//    [scrollView setFrame:frameScrollView];
+//
+//    if ([textView tag] == 100)
+//        strAddedNote = textView.text;
+//}
+//
+//#pragma mark - Text Field Delegate
+//
+//- (void)textFieldDidBeginEditing:(UITextField *)textField {
+//    CGPoint offset = CGPointMake(0, scrollView.contentSize.height - ([UIScreen mainScreen].bounds.size.height - 64));
+//    [scrollView setContentOffset:offset];
+//}
+//
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+//    [textField resignFirstResponder];
+//    return YES;
+//}
 
 #pragma mark -
 #pragma mark QBActionStatusDelegate

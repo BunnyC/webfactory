@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -8,21 +8,11 @@
             <connections>
                 <outlet property="buttonWhen" destination="3pq-Jd-aAP" id="ypa-a6-w9K"/>
                 <outlet property="buttonWhere" destination="15O-8x-Bdq" id="tf4-c0-sJ7"/>
-                <outlet property="datePicker" destination="9f1-pu-TPb" id="cYc-fO-tzB"/>
-                <outlet property="imageViewBack" destination="wXd-T8-GSd" id="4MI-fC-ec7"/>
-                <outlet property="mapView" destination="tXW-na-Mdt" id="IQD-4E-p7w"/>
                 <outlet property="scrollView" destination="WMo-bJ-WpA" id="JqT-ng-ihY"/>
-                <outlet property="tableViewLocation" destination="x5F-J2-hwU" id="Bo5-FZ-b7f"/>
-                <outlet property="tableViewReminderInfo" destination="grV-Xa-jir" id="NCw-E5-4Uf"/>
-                <outlet property="textFieldLocation" destination="Tgi-GK-9HW" id="Owv-Mv-px7"/>
                 <outlet property="textViewLinks" destination="i4n-EM-DQf" id="U2Q-Hy-i2O"/>
                 <outlet property="view" destination="iN0-l3-epB" id="FWr-7D-Ixi"/>
-                <outlet property="viewAddLocation" destination="vuQ-QT-eTh" id="YDs-gd-Elr"/>
-                <outlet property="viewAddReminder" destination="ymi-2m-5jJ" id="NDW-kr-1J1"/>
                 <outlet property="viewBottom" destination="kIl-e1-ZPI" id="E17-WK-EE3"/>
-                <outlet property="viewMapView" destination="tXW-na-Mdt" id="i3O-nf-fi0"/>
                 <outlet property="viewOptions" destination="tDU-vs-i1k" id="mt0-wG-U2u"/>
-                <outlet property="viewPickers" destination="Uuz-mU-9gO" id="Eoz-SO-Lep"/>
                 <outlet property="viewWhenNWhere" destination="Odf-Oc-bxg" id="HUv-hg-sMG"/>
             </connections>
         </placeholder>
@@ -31,15 +21,15 @@
             <rect key="frame" x="0.0" y="64" width="320" height="416"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WMo-bJ-WpA">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" id="WMo-bJ-WpA">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tDU-vs-i1k">
+                        <view contentMode="scaleToFill" id="tDU-vs-i1k">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vf8-Uq-7yc">
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vf8-Uq-7yc">
                                     <rect key="frame" x="14" y="10" width="92" height="107"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -52,7 +42,7 @@
                                         <action selector="optionsButtonTouched:" destination="-1" eventType="touchUpInside" id="Ori-7X-n7b"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMu-U9-fk0">
+                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RMu-U9-fk0">
                                     <rect key="frame" x="114" y="10" width="92" height="107"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -64,7 +54,7 @@
                                         <action selector="optionsButtonTouched:" destination="-1" eventType="touchUpInside" id="feW-7R-YxL"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oeP-GR-vTQ">
+                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oeP-GR-vTQ">
                                     <rect key="frame" x="214" y="10" width="92" height="107"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -77,7 +67,7 @@
                                         <action selector="optionsButtonTouched:" destination="-1" eventType="touchUpInside" id="MCD-9S-R22"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zd9-ht-SYv">
+                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zd9-ht-SYv">
                                     <rect key="frame" x="14" y="125" width="92" height="107"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -90,7 +80,7 @@
                                         <action selector="optionsButtonTouched:" destination="-1" eventType="touchUpInside" id="Az2-gs-4Et"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Luw-am-VPo">
+                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Luw-am-VPo">
                                     <rect key="frame" x="114" y="125" width="92" height="107"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -103,7 +93,7 @@
                                         <action selector="optionsButtonTouched:" destination="-1" eventType="touchUpInside" id="aRL-ri-cV0"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rT-T9-hWx">
+                                <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5rT-T9-hWx">
                                     <rect key="frame" x="214" y="125" width="92" height="107"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -119,11 +109,11 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Odf-Oc-bxg">
+                        <view contentMode="scaleToFill" id="Odf-Oc-bxg">
                             <rect key="frame" x="14" y="250" width="292" height="31"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pq-Jd-aAP">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3pq-Jd-aAP">
                                     <rect key="frame" x="10" y="1" width="80" height="29"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
@@ -137,7 +127,7 @@
                                         <action selector="whenButtonTouched:" destination="-1" eventType="touchUpInside" id="xm6-zM-Mey"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="15O-8x-Bdq">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="15O-8x-Bdq">
                                     <rect key="frame" x="100" y="1" width="100" height="29"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
@@ -154,154 +144,11 @@
                             </subviews>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
-                        <view hidden="YES" autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ymi-2m-5jJ">
-                            <rect key="frame" x="0.0" y="108" width="320" height="342"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Alarm:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DjB-yR-QYV">
-                                    <rect key="frame" x="14" y="5" width="292" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uuz-mU-9gO">
-                                    <rect key="frame" x="10" y="31" width="300" height="216"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="whenNWhere.png" translatesAutoresizingMaskIntoConstraints="NO" id="wXd-T8-GSd">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="216"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                        <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="9f1-pu-TPb">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="216"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <date key="date" timeIntervalSinceReferenceDate="428900388.43971002">
-                                                <!--2014-08-05 02:59:48 +0000-->
-                                            </date>
-                                            <timeZone key="timeZone" name="America/Los_Angeles">
-                                                <data key="data">
-VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
-y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
-5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
-8n/BkPNvwKD0X6OQ9U+ioPY/hZD3L4Sg+CiiEPkPZqD6CIQQ+viDIPvoZhD82GUg/chIEP64RyD/qCoQ
-AJgpIAGIDBACeAsgA3EokARhJ6AFUQqQBkEJoAcw7JAHjUOgCRDOkAmtvyAK8LCQC+CvoAzZzRANwJGg
-DrmvEA+priAQmZEQEYmQIBJ5cxATaXIgFFlVEBVJVCAWOTcQFyk2IBgiU5AZCRggGgI1kBryNKAb4heQ
-HNIWoB3B+ZAesfigH6HbkCB2KyAhgb2QIlYNICNq2hAkNe8gJUq8ECYV0SAnKp4QJ/7toCkKgBAp3s+g
-KupiECu+saAs036QLZ6ToC6zYJAvfnWgMJNCkDFnkiAycySQM0d0IDRTBpA1J1YgNjLokDcHOCA4HAUQ
-OOcaIDn75xA6xvwgO9vJEDywGKA9u6sQPo/6oD+bjRBAb9ygQYSpkEJPvqBDZIuQRC+goEVEbZBF89Mg
-Ry2KEEfTtSBJDWwQSbOXIErtThBLnLOgTNZqkE18laBOtkyQT1x3oFCWLpBRPFmgUnYQkFMcO6BUVfKQ
-VPwdoFY11JBW5TogWB7xEFjFHCBZ/tMQWqT+IFvetRBchOAgXb6XEF5kwiBfnnkQYE3eoGGHlZBiLcCg
-Y2d3kGQNoqBlR1mQZe2EoGcnO5BnzWagaQcdkGmtSKBq5v+Qa5ZlIGzQHBBtdkcgbq/+EG9WKSBwj+AQ
-cTYLIHJvwhBzFe0gdE+kEHT/CaB2OMCQdt7roHgYopB4vs2gefiEkHqer6B72GaQfH6RoH24SJB+XnOg
-f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
-AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
-AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
-AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
-</data>
-                                            </timeZone>
-                                        </datePicker>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="40" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="grV-Xa-jir">
-                                    <rect key="frame" x="14" y="255" width="292" height="80"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <connections>
-                                        <outlet property="dataSource" destination="-1" id="xHX-n6-qPY"/>
-                                        <outlet property="delegate" destination="-1" id="jUA-jA-yHp"/>
-                                    </connections>
-                                </tableView>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                        </view>
-                        <view hidden="YES" autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vuQ-QT-eTh">
-                            <rect key="frame" x="0.0" y="185" width="320" height="135"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pjv-b6-kMl">
-                                    <rect key="frame" x="14" y="5" width="292" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="whenNWhere.png" translatesAutoresizingMaskIntoConstraints="NO" id="ElT-8o-ejn">
-                                    <rect key="frame" x="14" y="27" width="292" height="50"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                </imageView>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="reminderLocationTF.png" translatesAutoresizingMaskIntoConstraints="NO" id="Tgi-GK-9HW" customClass="PATextField">
-                                    <rect key="frame" x="18" y="32" width="207" height="40"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="-1" id="jxp-ik-CJC"/>
-                                    </connections>
-                                </textField>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FKT-yZ-KAz">
-                                    <rect key="frame" x="227" y="29" width="75" height="46"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" image="reminderDone.png">
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="doneButtonTouched:" destination="-1" eventType="touchUpInside" id="tU0-Rt-G3t"/>
-                                    </connections>
-                                </button>
-                                <view hidden="YES" autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d4Y-j9-I0a">
-                                    <rect key="frame" x="14" y="135" width="292" height="200"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVW-iD-KBx">
-                                            <rect key="frame" x="1" y="12" width="138" height="35"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" image="reminderCancel.png">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="cancelDoneButtonMapViewTouched:" destination="-1" eventType="touchUpInside" id="Q2J-Tv-Yk8"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5wb-Od-Oxy">
-                                            <rect key="frame" x="153" y="12" width="138" height="35"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" image="reminderSet.png">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="cancelDoneButtonMapViewTouched:" destination="-1" eventType="touchUpInside" id="Gah-ve-DW0"/>
-                                            </connections>
-                                        </button>
-                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tXW-na-Mdt">
-                                            <rect key="frame" x="1" y="58" width="290" height="140"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        </mapView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                                </view>
-                                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="x5F-J2-hwU">
-                                    <rect key="frame" x="14" y="80" width="292" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <connections>
-                                        <outlet property="dataSource" destination="-1" id="WfW-zM-yGk"/>
-                                        <outlet property="delegate" destination="-1" id="wW3-YG-kfz"/>
-                                    </connections>
-                                </tableView>
-                            </subviews>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                        </view>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kIl-e1-ZPI">
+                        <view contentMode="scaleToFill" id="kIl-e1-ZPI">
                             <rect key="frame" x="0.0" y="301" width="320" height="115"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CsP-xV-gaF">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CsP-xV-gaF">
                                     <rect key="frame" x="69" y="18" width="183" height="36"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
@@ -312,7 +159,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         <action selector="createReminderAction:" destination="-1" eventType="touchUpInside" id="2sI-Z5-flQ"/>
                                     </connections>
                                 </button>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="i4n-EM-DQf">
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" id="i4n-EM-DQf">
                                     <rect key="frame" x="40" y="60" width="240" height="40"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -343,10 +190,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="nightIcon.png" width="92" height="107"/>
         <image name="personalIcon.png" width="92" height="107"/>
         <image name="purpleButton.png" width="183" height="36"/>
-        <image name="reminderCancel.png" width="138" height="35"/>
-        <image name="reminderDone.png" width="75" height="40"/>
-        <image name="reminderLocationTF.png" width="204" height="41"/>
-        <image name="reminderSet.png" width="138" height="35"/>
         <image name="selCustomIcon.png" width="92" height="107"/>
         <image name="selFoodDrinkIcon.png" width="92" height="107"/>
         <image name="selFriendsIcon.png" width="92" height="107"/>
@@ -354,6 +197,5 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="selPersonalIcon.png" width="92" height="107"/>
         <image name="selTransportIcon.png" width="92" height="107"/>
         <image name="transportIcon.png" width="92" height="107"/>
-        <image name="whenNWhere.png" width="291" height="31"/>
     </resources>
 </document>

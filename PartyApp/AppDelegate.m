@@ -141,6 +141,11 @@
 //    strLongitude = [NSString stringWithFormat:@"%f", longitude];
     //[self returnLatLongString:strLatitude:strLongitude];
     self.locationCurrent = newLocation;
+    self.locationServicesEnabled = YES;
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    self.locationServicesEnabled = NO;
 }
 
 @end

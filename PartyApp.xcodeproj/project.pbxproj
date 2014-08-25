@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		841E02F019A0916800C16E32 /* WhereView.m in Sources */ = {isa = PBXBuildFile; fileRef = 841E02EF19A0916800C16E32 /* WhereView.m */; };
+		841E02F319A091A500C16E32 /* WhenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 841E02F219A091A500C16E32 /* WhenView.m */; };
+		841E02F519A091C100C16E32 /* WhereView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841E02F419A091C100C16E32 /* WhereView.xib */; };
+		841E02F719A091DF00C16E32 /* WhenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841E02F619A091DF00C16E32 /* WhenView.xib */; };
 		8425AF5F194C3E7800E8CCF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8425AF5E194C3E7800E8CCF3 /* Foundation.framework */; };
 		8425AF61194C3E7800E8CCF3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8425AF60194C3E7800E8CCF3 /* CoreGraphics.framework */; };
 		8425AF63194C3E7800E8CCF3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8425AF62194C3E7800E8CCF3 /* UIKit.framework */; };
@@ -97,6 +101,8 @@
 		84A48837196AB730006BC223 /* selPersonalIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A4882C196AB730006BC223 /* selPersonalIcon@2x.png */; };
 		84A48838196AB730006BC223 /* selTransportIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A4882D196AB730006BC223 /* selTransportIcon@2x.png */; };
 		84A48839196AB730006BC223 /* transportIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A4882E196AB730006BC223 /* transportIcon@2x.png */; };
+		84ABFCF119ABBB4F006FBE1E /* selNightIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 84ABFCF019ABBB4F006FBE1E /* selNightIcon.png */; };
+		84ABFCF319ABBB5F006FBE1E /* selNightIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84ABFCF219ABBB5F006FBE1E /* selNightIcon@2x.png */; };
 		84AD392A1957D3AA0004915B /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84AD39281957D3AA0004915B /* FacebookSDK.framework */; };
 		84AD392C1957FC3C0004915B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0941956A72D009DA53D /* MobileCoreServices.framework */; };
 		84AD392D1957FC3C0004915B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0961956A734009DA53D /* SystemConfiguration.framework */; };
@@ -208,6 +214,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		841E02EE19A0916800C16E32 /* WhereView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WhereView.h; path = AddReminderViewController/WhereView/WhereView.h; sourceTree = "<group>"; };
+		841E02EF19A0916800C16E32 /* WhereView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WhereView.m; path = AddReminderViewController/WhereView/WhereView.m; sourceTree = "<group>"; };
+		841E02F119A091A500C16E32 /* WhenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WhenView.h; path = AddReminderViewController/WhenView/WhenView.h; sourceTree = "<group>"; };
+		841E02F219A091A500C16E32 /* WhenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WhenView.m; path = AddReminderViewController/WhenView/WhenView.m; sourceTree = "<group>"; };
+		841E02F419A091C100C16E32 /* WhereView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WhereView.xib; path = AddReminderViewController/WhereView/WhereView.xib; sourceTree = "<group>"; };
+		841E02F619A091DF00C16E32 /* WhenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WhenView.xib; path = AddReminderViewController/WhenView/WhenView.xib; sourceTree = "<group>"; };
 		8425AF5B194C3E7800E8CCF3 /* PartyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PartyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8425AF5E194C3E7800E8CCF3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8425AF60194C3E7800E8CCF3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -325,6 +337,8 @@
 		84A4882C196AB730006BC223 /* selPersonalIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selPersonalIcon@2x.png"; sourceTree = "<group>"; };
 		84A4882D196AB730006BC223 /* selTransportIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selTransportIcon@2x.png"; sourceTree = "<group>"; };
 		84A4882E196AB730006BC223 /* transportIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transportIcon@2x.png"; sourceTree = "<group>"; };
+		84ABFCF019ABBB4F006FBE1E /* selNightIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selNightIcon.png; sourceTree = "<group>"; };
+		84ABFCF219ABBB5F006FBE1E /* selNightIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selNightIcon@2x.png"; sourceTree = "<group>"; };
 		84AD39281957D3AA0004915B /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		84B2D3B81972A15E00D113A5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		84C30355199A9FDF0026556D /* AddReminderViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddReminderViewController4.xib; path = AddReminderViewController/AddReminderViewController4.xib; sourceTree = "<group>"; };
@@ -468,6 +482,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		841E02EC19A0911800C16E32 /* WhenView */ = {
+			isa = PBXGroup;
+			children = (
+				841E02F119A091A500C16E32 /* WhenView.h */,
+				841E02F219A091A500C16E32 /* WhenView.m */,
+				841E02F619A091DF00C16E32 /* WhenView.xib */,
+			);
+			name = WhenView;
+			sourceTree = "<group>";
+		};
+		841E02ED19A0912600C16E32 /* WhereView */ = {
+			isa = PBXGroup;
+			children = (
+				841E02EE19A0916800C16E32 /* WhereView.h */,
+				841E02EF19A0916800C16E32 /* WhereView.m */,
+				841E02F419A091C100C16E32 /* WhereView.xib */,
+			);
+			name = WhereView;
+			sourceTree = "<group>";
+		};
 		8425AF52194C3E7800E8CCF3 = {
 			isa = PBXGroup;
 			children = (
@@ -943,6 +977,8 @@
 		84A48806196AAA78006BC223 /* AddReminderViewController */ = {
 			isa = PBXGroup;
 			children = (
+				841E02ED19A0912600C16E32 /* WhereView */,
+				841E02EC19A0911800C16E32 /* WhenView */,
 				844A565519976F7600B553E4 /* MapViewAnnotation */,
 				849DC1251996CB62008988AD /* LocationInfoCell */,
 				849DC11B1996A40C008988AD /* LocationCell */,
@@ -962,6 +998,7 @@
 				84A4880F196AB703006BC223 /* friendsIcon.png */,
 				84A48810196AB703006BC223 /* nightIcon.png */,
 				84A48811196AB703006BC223 /* personalIcon.png */,
+				84ABFCF019ABBB4F006FBE1E /* selNightIcon.png */,
 				84A48812196AB703006BC223 /* selCustomIcon.png */,
 				84A48813196AB703006BC223 /* selFoodDrinkIcon.png */,
 				84A48814196AB703006BC223 /* selFriendsIcon.png */,
@@ -980,6 +1017,7 @@
 				84A48826196AB730006BC223 /* friendsIcon@2x.png */,
 				84A48827196AB730006BC223 /* nightIcon@2x.png */,
 				84A48828196AB730006BC223 /* personalIcon@2x.png */,
+				84ABFCF219ABBB5F006FBE1E /* selNightIcon@2x.png */,
 				84A48829196AB730006BC223 /* selCustomIcon@2x.png */,
 				84A4882A196AB730006BC223 /* selFoodDrinkIcon@2x.png */,
 				84A4882B196AB730006BC223 /* selFriendsIcon@2x.png */,
@@ -1163,6 +1201,7 @@
 				84A48818196AB703006BC223 /* customIcon.png in Resources */,
 				84DF776B1969240000A11C2F /* commentIcon@2x.png in Resources */,
 				84A4881D196AB703006BC223 /* selCustomIcon.png in Resources */,
+				841E02F519A091C100C16E32 /* WhereView.xib in Resources */,
 				84A48837196AB730006BC223 /* selPersonalIcon@2x.png in Resources */,
 				84DF77671969240000A11C2F /* blueButton@2x.png in Resources */,
 				84A110A8197158A40035E181 /* whenNWhere@2x.png in Resources */,
@@ -1184,6 +1223,7 @@
 				84DF77691969240000A11C2F /* buttonMenu@2x.png in Resources */,
 				842B8C9719719D2B00BECFD7 /* iconNotes@2x.png in Resources */,
 				8464A87C195A066800583DE0 /* InfoPlist.strings in Resources */,
+				84ABFCF319ABBB5F006FBE1E /* selNightIcon@2x.png in Resources */,
 				84DF7734196923EE00A11C2F /* pinkButton.png in Resources */,
 				84DF7728196923EE00A11C2F /* buttonBell.png in Resources */,
 				84DF772A196923EE00A11C2F /* cameraImage.png in Resources */,
@@ -1195,6 +1235,7 @@
 				84DF777E1969240000A11C2F /* unselImg@2x.png in Resources */,
 				84DF777D1969240000A11C2F /* txtFldY@2x.png in Resources */,
 				84A4881B196AB703006BC223 /* nightIcon.png in Resources */,
+				841E02F719A091DF00C16E32 /* WhenView.xib in Resources */,
 				842B8C90197199B400BECFD7 /* selRepeat.png in Resources */,
 				84DF777C1969240000A11C2F /* txtFldW@2x.png in Resources */,
 				84DF77711969240000A11C2F /* nextButton@2x.png in Resources */,
@@ -1221,6 +1262,7 @@
 				84A48819196AB703006BC223 /* foodDrinkIcon.png in Resources */,
 				849DC1161996A044008988AD /* reminderSet@2x.png in Resources */,
 				84DF7725196923EE00A11C2F /* backButton.png in Resources */,
+				84ABFCF119ABBB4F006FBE1E /* selNightIcon.png in Resources */,
 				8464A8A9195A066800583DE0 /* RegisterViewController.xib in Resources */,
 				84DF77651969240000A11C2F /* backButton@2x.png in Resources */,
 				842B8C9B19719D6400BECFD7 /* iconNotes.png in Resources */,
@@ -1271,8 +1313,10 @@
 				842715D41960125100DBEA6E /* NotificationCell.m in Sources */,
 				8464A87E195A066800583DE0 /* Constants.m in Sources */,
 				8464A8A8195A066800583DE0 /* RegisterViewController.m in Sources */,
+				841E02F319A091A500C16E32 /* WhenView.m in Sources */,
 				8464A89F195A066800583DE0 /* main.m in Sources */,
 				84A110B3197166B50035E181 /* SignUpModel.m in Sources */,
+				841E02F019A0916800C16E32 /* WhereView.m in Sources */,
 				8464A8AC195A066800583DE0 /* UploadPhotoViewController.m in Sources */,
 				842715E51960390E00DBEA6E /* ServerConnection.m in Sources */,
 				842715ED1960414800DBEA6E /* SessionModel.m in Sources */,

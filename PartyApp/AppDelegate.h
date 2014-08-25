@@ -18,7 +18,7 @@
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *locationCurrent;
-
+@property (assign, nonatomic) BOOL locationServicesEnabled;
 
 @property (strong, nonatomic) FBSession *session;
 

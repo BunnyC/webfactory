@@ -21,20 +21,6 @@
     
     //  View Bottom
     __weak IBOutlet UITextView *textViewLinks;
-    
-    //  Alarm View
-    __weak IBOutlet UIView *viewAddReminder;
-    __weak IBOutlet UIView *viewPickers;
-    __weak IBOutlet UIImageView *imageViewBack;
-
-    __weak IBOutlet UITableView *tableViewReminderInfo;
-    
-    __weak IBOutlet PATextField *textFieldLocation;
-    __weak IBOutlet UITableView *tableViewLocation;
-    __weak IBOutlet UIView *viewAddLocation;
-    __weak IBOutlet UIView *viewMapView;
-    __weak IBOutlet MKMapView *mapView;
-    __weak IBOutlet UIDatePicker *datePicker;
 }
 
 @end

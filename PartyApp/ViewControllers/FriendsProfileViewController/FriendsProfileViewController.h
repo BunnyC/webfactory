@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "FriendsViewController.h"
 @interface FriendsProfileViewController : BaseViewController<QBActionStatusDelegate>
 {
     
@@ -16,8 +16,9 @@
     __weak IBOutlet UILabel *lbl_FrName;
     __weak IBOutlet UIImageView *imgVwFriendProfilePic;
     __weak IBOutlet UILabel *lbl_FrMoto;
-    
     __weak IBOutlet UIButton *btnAddFriendsANDSetReminder;
+    __weak IBOutlet UIActivityIndicatorView *activityIndicator;
+    
 }
 
 @property (nonatomic,strong) QBUUser *qbuser;

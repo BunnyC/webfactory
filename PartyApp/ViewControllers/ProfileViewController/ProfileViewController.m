@@ -250,7 +250,8 @@
 
 -(void)btnBellClikced
 {
-    [commFunc showUnderDevelopmentAlert];
+    [self setReminderView];
+   // [commFunc showUnderDevelopmentAlert];
 }
 #pragma mark - Update UserInformation
 
@@ -287,12 +288,16 @@
 }
 
 - (IBAction)setReminderAction:(id)sender {
-    
+    [self setReminderView];
+   }
+
+-(void)setReminderView
+{
     NSString *xibName = [commFunc isDeviceiPhone5] ? @"AddReminderViewController" : @"AddReminderViewController4";
     AddReminderViewController *objAddReminderView = [[AddReminderViewController alloc] initWithNibName:xibName bundle:nil];
     [self.navigationController pushViewController:objAddReminderView animated:YES];
-}
 
+}
 - (IBAction)editAccountAction:(id)sender {
     
     RegisterViewController *objRegisterView = [[RegisterViewController alloc]initWithNibName:@"RegisterViewController" bundle:nil];

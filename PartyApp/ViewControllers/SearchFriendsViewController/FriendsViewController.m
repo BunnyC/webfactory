@@ -39,10 +39,21 @@
     arrSearchFriedslist =[[NSMutableArray alloc]init];
     arrFriendsList=[[NSMutableArray alloc]init];
     isFriendsSearchViewVisible=FALSE;
-    [self fetchFriendList];
+    [[NSUserDefaults standardUserDefaults]setBool:TRUE forKey:@"friendsAdded"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
     numberofrow=1;
     
     // Do any additional setup after loading the view from its nib.
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    if([[NSUserDefaults standardUserDefaults]boolForKey:@"friendsAdded"])
+    {
+       [self fetchFriendList];
+        [[NSUserDefaults standardUserDefaults]setBool:false forKey:@"friendsAdded"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+    }
+    
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -193,6 +204,12 @@
     
     return isFriend;
 }
+
+-(void)loadFriends
+{
+    [self fetchFriendList];
+}
+
 #pragma mark - IBAction
 
 - (IBAction)btnSearchClicked:(id)sender{
@@ -386,8 +403,6 @@
             objFriendsPro.qbuser=user;
 
         }
-       
-   
         objFriendsPro.isAlreadyFriend=[self checkIsSelectedUserHasAlreadyFriendsOfloggedUser:objFriendsPro.qbuser.email];
     [self.navigationController pushViewController:objFriendsPro animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
@@ -398,15 +413,14 @@
 #pragma mark - Web Services Calls
 
 -(void)fetchFriendList
-{
+{    vwloading=[commFunc showLoadingView];
     QBUUser *objUser=[commFunc getQBUserObjectFromUserDefaults];
     NSMutableDictionary *getRequest = [NSMutableDictionary dictionary];
     [getRequest setObject:[NSString stringWithFormat:@"%lu",(unsigned long)objUser.ID] forKey:@"username[ctn]"];
-    [getRequest setObject:@"5" forKey:@"limit"];
-    [getRequest setObject:[NSNumber numberWithBool:NO] forKey:@"documentary"];
-    [getRequest setObject:@"rating" forKey:@"sort_asc"];
+   
+       [getRequest setObject:@"rating" forKey:@"sort_asc"];
     
-    vwloading=[commFunc showLoadingView];
+    
     [QBCustomObjects objectsWithClassName:@"PAFriendListClass" extendedRequest:getRequest delegate:self];
   
 
@@ -431,10 +445,23 @@
          QBUUserPagedResult *userObjectsResult = (QBUUserPagedResult *)result;
         for (int i=0; i<userObjectsResult.users.count;i++)
         {
-         [arrSearchFriedslist addObject:[userObjectsResult.users objectAtIndex:i]];
+            
+             QBUUser *userObj=[userObjectsResult.users objectAtIndex:i];
+            BOOL isUserExist=[self checkIsSelectedUserHasAlreadyFriendsOfloggedUser:userObj.email];
+            
+            if(!isUserExist)
+                [arrSearchFriedslist addObject:[userObjectsResult.users objectAtIndex:i]];
+            else
+            {
+                [[[UIAlertView alloc] initWithTitle:nil message:@"User all exist in the list"
+                                           delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil ] show];
+            }
+            
         }
-        [vwloading removeFromSuperview];
-        [tblViewFriendsList reloadData];
+            [vwloading removeFromSuperview];
+            [tblViewFriendsList reloadData];
             
         }
         else
@@ -452,7 +479,8 @@
         QBCOCustomObjectPagedResult *getObjectsResult = (QBCOCustomObjectPagedResult *)result;
         NSLog(@"Objects: %@, count: %lu", getObjectsResult.objects, getObjectsResult.count);
         [arrFriendsList addObjectsFromArray:getObjectsResult.objects];
-        arrSearchFriedslist =[arrFriendsList copy];
+        
+        arrSearchFriedslist =[arrFriendsList mutableCopy];
              [vwloading removeFromSuperview];
         [tblViewFriendsList reloadData];
         

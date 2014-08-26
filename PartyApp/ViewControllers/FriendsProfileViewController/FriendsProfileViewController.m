@@ -10,7 +10,6 @@
 #import "SWRevealViewController.h"
 #import "AddReminderViewController.h"
 
-
 @interface FriendsProfileViewController ()
 {
     CommonFunctions *commFunc;
@@ -62,7 +61,8 @@
         mottoText = [_qbuser.website substringFromIndex:range.location+range.length];
     }
     lbl_FrMoto.text=mottoText;
-
+    activityIndicator.hidden=NO;
+    [activityIndicator startAnimating];
      [QBContent TDownloadFileWithBlobID:_qbuser.blobID delegate:self];
 
 }
@@ -135,6 +135,17 @@
     [commFunc showUnderDevelopmentAlert];
 }
 
+#pragma mark - FriendsViewController Delegate
+-(void)loadFriends
+{
+    for (UIViewController *obj in self.navigationController.viewControllers) {
+        if([(FriendsViewController *)obj isKindOfClass:[FriendsViewController class]])
+        {
+            [(FriendsViewController *)obj loadFriends];
+        }
+    }
+    
+}
 
 -(void)completedWithResult:(Result *)result{
     // Download file result
@@ -147,6 +158,9 @@
             
             UIImage *imageProfile = [UIImage imageWithData:fileData];
             [imgVwFriendProfilePic setImage:imageProfile];
+            
+            activityIndicator.hidden=YES;
+            [activityIndicator stopAnimating];
             
             
         }
@@ -162,7 +176,9 @@
                   setBackgroundImage:[UIImage imageNamed:@"whiteButton.png"] forState:UIControlStateNormal];
                  [btnAddFriendsANDSetReminder setTitle:@"Set Reminder" forState:UIControlStateNormal];
                  [btnAddFriendsANDSetReminder setTitleColor:[UIColor purpleColor] forState:UIControlStateNormal];
-            
+            // [self loadFriends];
+             [[NSUserDefaults standardUserDefaults]setBool:true forKey:@"friendsAdded"];
+             [[NSUserDefaults standardUserDefaults]synchronize];
          }
     }
 }

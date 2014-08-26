@@ -8,6 +8,8 @@
 
 #import "BaseViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
+
+
 @interface FriendsViewController : BaseViewController<QBActionStatusDelegate>
 {
     __weak IBOutlet UIView *vwAddFriend;
@@ -24,6 +26,7 @@
     UIView *vwloading;
 }
 
+-(void)loadFriends;
 - (IBAction)btnSearchClicked:(id)sender;
 - (IBAction)btnAddFriendsClicked:(id)sender;
 

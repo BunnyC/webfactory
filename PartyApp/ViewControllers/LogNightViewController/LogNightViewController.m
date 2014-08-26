@@ -225,8 +225,10 @@ NSString *className = @"PALogNight";
         if(facebookPost)
         {
             [self sharePostOnFacebook];
-            [self performSelectorInBackground:@selector(saveValuesOnServer) withObject:nil];
+           
         }
+        
+         [self performSelectorInBackground:@selector(saveValuesOnServer) withObject:nil];
     }
     else {
         NSString *fullMsg = [NSString stringWithFormat:@"You forgot to %@ for the night.", errorMsg];
@@ -283,7 +285,8 @@ NSString *className = @"PALogNight";
         
         case 2:
         {
-         [self logThisNightAction:nil];
+         [self logThisNightAction:self];
+        [txtViewNotes resignFirstResponder];
         }
         break;
             

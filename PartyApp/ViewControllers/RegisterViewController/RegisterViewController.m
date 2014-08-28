@@ -327,7 +327,9 @@
             [_objUser setPassword:txtFieldPassword.text];
             [_objUser setOldPassword:[userDefs objectForKey:@"Password"]];
         }
-        [_objUser setWebsite:[NSString stringWithFormat:@"%@",txtFieldMotto.text]];
+//        [_objUser setWebsite:[NSString stringWithFormat:@"%@",txtFieldMotto.text]];
+        [_objUser setValue:txtFieldMotto.text forKey:@""];
+        
         [_objUser setTags:arrTags];
         
         NSString *xibName = NSStringFromClass([UploadPhotoViewController class]);

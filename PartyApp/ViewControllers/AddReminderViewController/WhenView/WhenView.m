@@ -123,7 +123,7 @@
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
     strAddedNote = textView.text;
-    
+    [self sendValuesBackToMainView];
     if ([_delegate respondsToSelector:@selector(resizeScrollViewForEditing:)])
         [_delegate resizeScrollViewForEditing:NO];
 }
@@ -220,7 +220,6 @@
     if (cell == nil) {
         
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        
         [cell.textLabel setTextColor:[UIColor whiteColor]];
         [cell setBackgroundColor:[UIColor clearColor]];
         [cell.contentView setBackgroundColor:[UIColor clearColor]];
@@ -243,6 +242,8 @@
             if (repeatValueSelectedForTimer >= 0) {
                 if (indexValue == repeatValueSelectedForTimer)
                     [cell.textLabel setTextColor:[UIColor colorWithRed:234/255.0f green:178/255.0f blue:23/255.0f alpha:1.0f]];
+                else
+                    [cell.textLabel setTextColor:[UIColor whiteColor]];
             }
         }
         else {

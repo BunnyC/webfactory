@@ -9,19 +9,10 @@
 #import "AddReminderViewController.h"
 #import "UILabel+WhiteUIDatePickerLabels.h"
 
-#import "FetchPlaces.h"
-//#import "LocationCell.h"
-#import "MapViewAnnotation.h"
-#import "LocationInfoCell.h"
 #import "AppDelegate.h"
 
 #import "WhenView.h"
 #import "WhereView.h"
-
-#include <CoreLocation/CLLocationManagerDelegate.h>
-#include <CoreLocation/CLError.h>
-#include <CoreLocation/CLLocation.h>
-#include <CoreLocation/CLLocationManager.h>
 
 NSString *classReminder = @"PAReminder";
 
@@ -37,7 +28,6 @@ NSString *classReminder = @"PAReminder";
     NSDate *dateSelected;
     int valueSelectedToRepeat;
     NSString *strAddedNote;
-    
     CLLocation *locationSelected;
     
     UIView *loadingView;
@@ -123,16 +113,6 @@ NSString *classReminder = @"PAReminder";
     else {
         [self showLocationError];
     }
-    
-//    if(![[CommonFunctions sharedObject]isDeviceiPhone5])
-//    {
-//        [viewBottom setFrame:CGRectMake(viewBottom.frame.origin.x,CGRectGetMaxY(viewWhenNWhere.frame) + 10,viewBottom.frame.size.width,viewBottom.frame.size.height)];
-//        
-//        [scrollView setContentSize:CGSizeMake(scrollView.contentSize.width, CGRectGetMaxY(viewBottom.frame))];
-//        
-//        [scrollView.layer setBorderColor:[UIColor greenColor].CGColor];
-//        [scrollView.layer setBorderWidth:1.0f];
-//    }
     
     UIImage *imageWhenWhereBack = [commFunc imageWithName:@"whenNWhere" andType:_pPNGType];
     UIImage *imageBackViewBottom = [commFunc imageWithName:@"viewBack" andType:_pPNGType];
@@ -319,10 +299,10 @@ NSString *classReminder = @"PAReminder";
             UITableView *tableView = (UITableView *)[whereView viewWithTag:2000];
             if (tableView.frame.size.height > 50)
                 offsetForScrollOffset = -tableView.frame.size.height;
-//            if (![mapView isHidden])
-//                offsetForScrollOffset = -200;
+            //            if (![mapView isHidden])
+            //                offsetForScrollOffset = -200;
         }
-            
+        
         
         CGPoint offset = CGPointMake(0, scrollView.contentSize.height - scrollView.bounds.size.height + offsetForScrollOffset);
         [scrollView setContentOffset:offset animated:YES];
@@ -350,12 +330,10 @@ NSString *classReminder = @"PAReminder";
 
 - (IBAction)whenButtonTouched:(id)sender {
     
-    //    - (void)resizeScrollViewForEditing:(BOOL)forEditing
     [self resizeScrollViewForEditing:NO];
     
-    if (![whereView isHidden]) {
+    if (![whereView isHidden])
         [whereView removeFromSuperview];
-    }
     
     UIButton *button = (UIButton *)sender;
     [button setSelected:![button isSelected]];
@@ -392,78 +370,46 @@ NSString *classReminder = @"PAReminder";
 
 - (IBAction)whereButtonTouched:(id)sender {
     if (locationServicesEnabled) {
-    [self resizeScrollViewForEditing:NO];
-    
-    if (![whenView isHidden]) {
-        [whenView removeFromSuperview];
-    }
-    
-    UIButton *button = (UIButton *)sender;
-    [button setSelected:![button isSelected]];
-    
-    if (!whereView) {
-        UINib *nib = [UINib nibWithNibName:@"WhereView" bundle:nil];
-        WhereView *objWhereView = [[nib instantiateWithOwner:self options:nil] objectAtIndex:0];
-        whereView = objWhereView;
-    }
-    
-    int originForBottomView = 0;
-    
-    if ([button isSelected]) {
-        CGRect frameWhereView = whereView.frame;
-        frameWhereView.origin.y = CGRectGetMaxY(viewWhenNWhere.frame) + 10;
-        [whereView setFrame:frameWhereView];
-        [scrollView addSubview:whereView];
+        [self resizeScrollViewForEditing:NO];
         
-        originForBottomView = CGRectGetMaxY(frameWhereView) + 20;
-    }
-    else {
-        [whereView removeFromSuperview];
-        originForBottomView = CGRectGetMinY(viewWhenNWhere.frame) + 106;
-    }
-    
-    [whereView setDelegate:self];
-    
-    CGRect frameBottomView = viewBottom.frame;
-    frameBottomView.origin.y = originForBottomView;
-    [viewBottom setFrame:frameBottomView];
-    
-    [scrollView setContentSize:CGSizeMake(scrollView.contentSize.width, CGRectGetMaxY(frameBottomView))];
+        if (![whenView isHidden])
+            [whenView removeFromSuperview];
+        
+        UIButton *button = (UIButton *)sender;
+        [button setSelected:![button isSelected]];
+        
+        if (!whereView) {
+            UINib *nib = [UINib nibWithNibName:@"WhereView" bundle:nil];
+            WhereView *objWhereView = [[nib instantiateWithOwner:self options:nil] objectAtIndex:0];
+            whereView = objWhereView;
+        }
+        
+        int originForBottomView = 0;
+        
+        if ([button isSelected]) {
+            CGRect frameWhereView = whereView.frame;
+            frameWhereView.origin.y = CGRectGetMaxY(viewWhenNWhere.frame) + 10;
+            [whereView setFrame:frameWhereView];
+            [scrollView addSubview:whereView];
+            
+            originForBottomView = CGRectGetMaxY(frameWhereView) + 20;
+        }
+        else {
+            [whereView removeFromSuperview];
+            originForBottomView = CGRectGetMinY(viewWhenNWhere.frame) + 106;
+        }
+        
+        [whereView setDelegate:self];
+        
+        CGRect frameBottomView = viewBottom.frame;
+        frameBottomView.origin.y = originForBottomView;
+        [viewBottom setFrame:frameBottomView];
+        
+        [scrollView setContentSize:CGSizeMake(scrollView.contentSize.width, CGRectGetMaxY(frameBottomView))];
     }
     else
         [self showLocationError];
 }
-
-//#pragma mark - TextView Delegate
-//
-//- (void)textViewDidBeginEditing:(UITextView *)textView {
-//    CGRect frameScrollView = scrollView.frame;
-//    frameScrollView.size.height -= 216;
-//    [scrollView setFrame:frameScrollView];
-////    [scrollView setContentOffset:CGPointMake(0, CGRectGetMaxY(tableViewReminderInfo.frame) + 50)
-////                        animated:true];
-//}
-//
-//- (void)textViewDidEndEditing:(UITextView *)textView {
-//    CGRect frameScrollView = scrollView.frame;
-//    frameScrollView.size.height = self.view.frame.size.height;
-//    [scrollView setFrame:frameScrollView];
-//
-//    if ([textView tag] == 100)
-//        strAddedNote = textView.text;
-//}
-//
-//#pragma mark - Text Field Delegate
-//
-//- (void)textFieldDidBeginEditing:(UITextField *)textField {
-//    CGPoint offset = CGPointMake(0, scrollView.contentSize.height - ([UIScreen mainScreen].bounds.size.height - 64));
-//    [scrollView setContentOffset:offset];
-//}
-//
-//- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-//    [textField resignFirstResponder];
-//    return YES;
-//}
 
 #pragma mark -
 #pragma mark QBActionStatusDelegate

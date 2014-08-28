@@ -9,5 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface AddToGroupCellTableViewCell : UITableViewCell
+{
+    
+    __weak IBOutlet UILabel *lbl_NumberOfGroup;
+    __weak IBOutlet UILabel *lbl_GroupName;
+}
+
+-(void)setCellValues:(id)obj;
 
 @end

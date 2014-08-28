@@ -8,6 +8,16 @@
 
 #import "BaseViewController.h"
 
-@interface AddToGroupViewController : BaseViewController
+@interface AddToGroupViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate>
+{
+    
+    __weak IBOutlet UITableView *tblGroupList;
+    __weak IBOutlet UIView *vwAddGroup;
+    
+    NSMutableArray *arrOfGroups;
+    
+    
+}
+- (IBAction)btnAddGroupAction:(id)sender;
 
 @end

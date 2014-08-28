@@ -9,6 +9,8 @@
 #import "FriendsProfileViewController.h"
 #import "SWRevealViewController.h"
 #import "AddReminderViewController.h"
+#import "AddToGroupViewController.h"
+
 
 @interface FriendsProfileViewController ()
 {
@@ -127,7 +129,9 @@
 
 - (IBAction)btnMessageAction:(id)sender {
     
-    [commFunc showUnderDevelopmentAlert];
+    //[commFunc showUnderDevelopmentAlert];
+    AddToGroupViewController *obj=[[AddToGroupViewController alloc]initWithNibName:@"AddToGroupViewController" bundle:nil];
+    [self.navigationController pushViewController:obj animated:YES];
 }
 
 - (IBAction)btnAddToGroupAction:(id)sender {

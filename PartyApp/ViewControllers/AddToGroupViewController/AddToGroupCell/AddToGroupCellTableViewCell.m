@@ -22,4 +22,15 @@
     // Configure the view for the selected state
 }
 
+
+-(void)setCellValues:(id)obj
+{
+    if([(QBCOCustomObject *)obj isKindOfClass:[QBCOCustomObject class]])
+    {
+        QBCOCustomObject *objCustom=(QBCOCustomObject *)obj;
+        lbl_GroupName.text=[objCustom.fields objectForKey:@"FR_Name"];
+        
+    }
+    
+}
 @end

@@ -21,7 +21,7 @@
 
     BOOL isFetchGroupUsersRequest;
     BOOL isUpdateGroupUserCountRequest;
-    BOOL isRequest;
+    BOOL isFinishRequest;
     
     QBCOCustomObject *objGroup;
     

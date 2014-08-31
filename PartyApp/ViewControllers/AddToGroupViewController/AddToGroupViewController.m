@@ -35,6 +35,7 @@
     [self setup];
     isCreateGroupRequest=false;
     isUpdateGroupUserCountRequest=false;
+    isFinishRequest=false;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -110,16 +111,14 @@
     [objectAddUserToGroup.fields setObject:[NSString stringWithFormat:@"%@",objGroup.ID]
      
                                     forKey:@"GroupID"];
+    
     [objectAddUserToGroup.fields setObject:_objUser.login
                                     forKey:@"GroupUserName"];
     
     
     [objectAddUserToGroup.fields setObject:[NSString stringWithFormat:@"%lu",_objUser.blobID]
                                     forKey:@"GroupUserBlobId"];
-    
-    [objectAddUserToGroup.fields setObject:[NSString stringWithFormat:@"%@",objGroup.ID]
-     
-                                    forKey:@"GroupID"];
+
     
     isUpdateGroupUserCountRequest=TRUE;
     [QBCustomObjects createObject:objectAddUserToGroup delegate:self];
@@ -183,24 +182,34 @@
     if(result.success && [result isKindOfClass:QBCOCustomObjectPagedResult.class]){
         [arrOfGroups removeAllObjects];
         
+       
         if(isFetchGroupUsersRequest)
         {
             if(isUpdateGroupUserCountRequest)
             {
-                GroupProfileViewController *obj=[[GroupProfileViewController alloc]initWithNibName:@"GroupProfileViewController" bundle:nil];
-                isFetchGroupUsersRequest=FALSE;
-                isUpdateGroupUserCountRequest=FALSE;
-                   [self.navigationController pushViewController:obj animated:YES];
                 
-                QBCOCustomObject *objectAddUserToGroup = [QBCOCustomObject customObject];
-                [objectAddUserToGroup setClassName:@"GroupUserTable"];
-                
-                [objectAddUserToGroup.fields setObject:[NSString stringWithFormat:@"%lu",_objUser.ID]
-                                                forKey:@"GroupUserId"];
-                
-                [objectAddUserToGroup.fields setObject:[NSString stringWithFormat:@"%@",objGroup.ID]
-                 
-                                                forKey:@"GroupID"];
+                if (isFinishRequest)
+                {
+                    GroupProfileViewController *obj=[[GroupProfileViewController alloc]initWithNibName:@"GroupProfileViewController" bundle:nil];
+                    isFetchGroupUsersRequest=FALSE;
+                    isUpdateGroupUserCountRequest=FALSE;
+                    isFinishRequest=FALSE;
+                    [self.navigationController pushViewController:obj animated:YES];
+                }
+                else
+                {
+                    
+                    QBCOCustomObject *objectAddUserToGroup =objGroup;
+                    
+                    NSInteger numberOfUser=[[objGroup.fields objectForKey:@"PA_NumberOfUsers"] integerValue]+1;
+                    
+                    
+                    [objectAddUserToGroup.fields setObject:[NSString stringWithFormat:@"%lu",numberOfUser]
+                                                    forKey:@"PA_NumberOfUsers"];
+                    isFinishRequest=TRUE;
+                    [QBCustomObjects updateObject:objectAddUserToGroup delegate:self];
+                    
+                }
             }
             else
             {
@@ -236,12 +245,10 @@
                     [self addUserToGroup];
                 }
             }
-
+            
         }
-
         else
         {
-            
             QBCOCustomObjectPagedResult *getObjectsResult = (QBCOCustomObjectPagedResult *)result;
             NSLog(@"Objects: %@, count: %lu", getObjectsResult.objects, getObjectsResult.count);
             [arrOfGroups addObjectsFromArray:getObjectsResult.objects];
@@ -250,18 +257,85 @@
         }
         
         
+        
     }
     else if(result.success && [result isKindOfClass:QBCOCustomObjectResult.class])
     {
-        QBCOCustomObjectResult *getObjectsResult = (QBCOCustomObjectResult *)result;
-       
-        [arrOfGroups addObject:getObjectsResult.object];
+     
+        if(isFetchGroupUsersRequest)
+        {
+            if(isUpdateGroupUserCountRequest)
+            {
+                
+                if (isFinishRequest)
+                {
+                    GroupProfileViewController *obj=[[GroupProfileViewController alloc]initWithNibName:@"GroupProfileViewController" bundle:nil];
+                    isFetchGroupUsersRequest=FALSE;
+                    isUpdateGroupUserCountRequest=FALSE;
+                    isFinishRequest=FALSE;
+                    [self.navigationController pushViewController:obj animated:YES];
+                }
+                else
+                {
+                    
+                    QBCOCustomObject *objectAddUserToGroup =objGroup;
+                    
+                    NSInteger numberOfUser=[[objGroup.fields objectForKey:@"PA_NumberOfUsers"] integerValue]+1;
+                    
+                    
+                    [objectAddUserToGroup.fields setObject:[NSString stringWithFormat:@"%lu",numberOfUser]
+                                                    forKey:@"PA_NumberOfUsers"];
+                    isFinishRequest=TRUE;
+                    [QBCustomObjects updateObject:objectAddUserToGroup delegate:self];
+                    
+                }
+            }
+            else
+            {
+                QBCOCustomObjectPagedResult *getObjectsResult = (QBCOCustomObjectPagedResult *)result;
+                NSLog(@"Objects: %@, count: %lu", getObjectsResult.objects, getObjectsResult.count);
+                
+                if( getObjectsResult.objects.count!=0)
+                {
+                    for (QBCOCustomObject *obj in getObjectsResult.objects)
+                    {
+                        BOOL isExist=FALSE;
+                        if([[NSString stringWithFormat:@"%@",obj.ID] isEqualToString:objGroup.ID])
+                        {
+                            isExist=TRUE;
+                        }
+                        
+                        if(!isExist){
+                            
+                            [self addUserToGroup];
+                        }
+                        else
+                        {
+                            [[[UIAlertView alloc] initWithTitle:@""
+                                                        message:@"User already exist "
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil ] show];
+                        }
+                    }
+                }
+                else
+                {
+                    [self addUserToGroup];
+                }
+            }
+            
+        }
+        else
+        {
+            QBCOCustomObjectResult *getObjectsResult = (QBCOCustomObjectResult *)result;
+            
+            [arrOfGroups addObject:getObjectsResult.object];
+            
+            [tblGroupList reloadData];
+        }
         
-        [tblGroupList reloadData];
-        
-        GroupProfileViewController *obj=[[GroupProfileViewController alloc]initWithNibName:@"GroupProfileViewController" bundle:nil];
-        [self.navigationController pushViewController:obj animated:YES];
-
+  
     }
     else{
         NSLog(@"errors=%@", result.errors);

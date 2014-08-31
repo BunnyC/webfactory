@@ -126,11 +126,9 @@
 {
     QBUUser *objUser=[commFunc getQBUserObjectFromUserDefaults];
     NSMutableDictionary *getRequest = [NSMutableDictionary dictionary];
-    [getRequest setObject:[NSString stringWithFormat:@"%lu",(unsigned long)objUser.ID] forKey:@"username[ctn]"];
-    [getRequest setObject:@"5" forKey:@"limit"];
-    [getRequest setObject:[NSNumber numberWithBool:NO] forKey:@"documentary"];
-    [getRequest setObject:@"rating" forKey:@"sort_asc"];
-    vwloading=[commFunc showLoadingView];
+    [getRequest setObject:[NSString stringWithFormat:@"%lu",(unsigned long)objUser.ID] forKey:@"FR_WithUser_ID[ctn]"];
+    
+      vwloading=[commFunc showLoadingView];
     [QBCustomObjects objectsWithClassName:@"PAFriendListClass" extendedRequest:getRequest delegate:self];
     
     

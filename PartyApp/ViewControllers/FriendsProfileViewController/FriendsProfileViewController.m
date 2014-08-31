@@ -129,14 +129,16 @@
 
 - (IBAction)btnMessageAction:(id)sender {
     
-    //[commFunc showUnderDevelopmentAlert];
-    AddToGroupViewController *obj=[[AddToGroupViewController alloc]initWithNibName:@"AddToGroupViewController" bundle:nil];
-    [self.navigationController pushViewController:obj animated:YES];
-}
+    [commFunc showUnderDevelopmentAlert];
+   }
 
 - (IBAction)btnAddToGroupAction:(id)sender {
     
-    [commFunc showUnderDevelopmentAlert];
+    //[commFunc showUnderDevelopmentAlert];
+    AddToGroupViewController *obj=[[AddToGroupViewController alloc]initWithNibName:@"AddToGroupViewController" bundle:nil];
+    obj.objUser=_qbuser;
+    [self.navigationController pushViewController:obj animated:YES];
+
 }
 
 #pragma mark - FriendsViewController Delegate

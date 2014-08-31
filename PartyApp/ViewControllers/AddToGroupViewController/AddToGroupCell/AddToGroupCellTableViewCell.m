@@ -28,7 +28,11 @@
     if([(QBCOCustomObject *)obj isKindOfClass:[QBCOCustomObject class]])
     {
         QBCOCustomObject *objCustom=(QBCOCustomObject *)obj;
-        lbl_GroupName.text=[objCustom.fields objectForKey:@"FR_Name"];
+        lbl_GroupName.text=[objCustom.fields objectForKey:@"PAGroupName"];
+       
+       
+        lbl_NumberOfGroup.text= [NSString stringWithFormat:@"%@ members",[objCustom.fields objectForKey:@"PA_NumberOfUsers"]];
+        
         
     }
     

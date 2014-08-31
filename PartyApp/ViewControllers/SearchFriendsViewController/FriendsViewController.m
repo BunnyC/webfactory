@@ -35,7 +35,7 @@
 {
     [super viewDidLoad];
 //    arrFriedslist =[[NSMutableArray alloc]initWithObjects:@"Friends",@"Friends",@"Friends",@"Friends",@"Friends", @"Friends",@"Friends",@"Friends",@"Friends",nil];
-    
+    commFunc=[CommonFunctions sharedObject];
     arrSearchFriedslist =[[NSMutableArray alloc]init];
     arrFriendsList=[[NSMutableArray alloc]init];
     isFriendsSearchViewVisible=FALSE;
@@ -226,16 +226,18 @@
         }
         else
         {
-            [[[UIAlertView alloc] initWithTitle:nil
-                                        message:_pErrInvalidUserEmailId                                  delegate:self
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil, nil] show];
+//            [[[UIAlertView alloc] initWithTitle:nil
+//                                        message:_pErrInvalidUserEmailId                                  delegate:self
+//                              cancelButtonTitle:@"OK"
+//                              otherButtonTitles:nil, nil] show];
+            [QBUsers usersWithLogins:[NSArray arrayWithObjects:txtSearchFriends.text, nil] delegate:self];
+            
         }
     }
     else
     {
         [[[UIAlertView alloc] initWithTitle:nil
-                                    message:@"Please specify emailId"                                delegate:self
+                                    message:@"Please specify emailId or "                                delegate:self
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil, nil] show];
         
@@ -416,13 +418,22 @@
 {    vwloading=[commFunc showLoadingView];
     QBUUser *objUser=[commFunc getQBUserObjectFromUserDefaults];
     NSMutableDictionary *getRequest = [NSMutableDictionary dictionary];
-    [getRequest setObject:[NSString stringWithFormat:@"%lu",(unsigned long)objUser.ID] forKey:@"username[ctn]"];
+    [getRequest setObject:[NSString stringWithFormat:@"%lu",(unsigned long)objUser.ID] forKey:@"FR_WithUser_ID[ctn]"];
    
        [getRequest setObject:@"rating" forKey:@"sort_asc"];
     
     
-    [QBCustomObjects objectsWithClassName:@"PAFriendListClass" extendedRequest:getRequest delegate:self];
+    [QBCustomObjects objectsWithClassName:@"PAFriendListClass"
+extendedRequest:getRequest delegate:self];
+    
+//    [QBRequest usersWithLogins:@[@"login1", @"login2"] page:[QBGeneralResponsePage responsePageWithCurrentPage:1 perPage:10]
+//successBlock:^(QBResponse *response, QBGeneralResponsePage *page, NSArray *users) {
+//    // Successful response with page information and users array
+//} errorBlock:^(QBResponse *response) {
+//    // Handle error
+//}];
   
+    
 
    // [QBAuth createSessionWithDelegate:self];
 }

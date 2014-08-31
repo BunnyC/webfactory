@@ -195,6 +195,12 @@
 		CE35F0911956A71A009DA53D /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0901956A71A009DA53D /* libresolv.dylib */; };
 		CE35F0931956A722009DA53D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0921956A722009DA53D /* CoreLocation.framework */; };
 		CE35F0991956A73C009DA53D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0981956A73C009DA53D /* CFNetwork.framework */; };
+		CE8F7A2619B1DBE0007C40D8 /* GroupProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8F7A2419B1DBE0007C40D8 /* GroupProfileViewController.m */; };
+		CE8F7A2719B1DBE0007C40D8 /* GroupProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE8F7A2519B1DBE0007C40D8 /* GroupProfileViewController.xib */; };
+		CE8F7A2C19B1F381007C40D8 /* GroupUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8F7A2A19B1F381007C40D8 /* GroupUsersViewController.m */; };
+		CE8F7A2D19B1F381007C40D8 /* GroupUsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE8F7A2B19B1F381007C40D8 /* GroupUsersViewController.xib */; };
+		CE8F7A3819B1F878007C40D8 /* GroupUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8F7A3619B1F878007C40D8 /* GroupUserCell.m */; };
+		CE8F7A3919B1F878007C40D8 /* GroupUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE8F7A3719B1F878007C40D8 /* GroupUserCell.xib */; };
 		CE9D376C195E771B001F05D9 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9D376A195E771B001F05D9 /* ForgotPasswordViewController.m */; };
 		CE9D376D195E771B001F05D9 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9D376A195E771B001F05D9 /* ForgotPasswordViewController.m */; };
 		CE9D376E195E771B001F05D9 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9D376B195E771B001F05D9 /* ForgotPasswordViewController.xib */; };
@@ -505,6 +511,15 @@
 		CE35F0941956A72D009DA53D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CE35F0961956A734009DA53D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		CE35F0981956A73C009DA53D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		CE8F7A2319B1DBE0007C40D8 /* GroupProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupProfileViewController.h; sourceTree = "<group>"; };
+		CE8F7A2419B1DBE0007C40D8 /* GroupProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupProfileViewController.m; sourceTree = "<group>"; };
+		CE8F7A2519B1DBE0007C40D8 /* GroupProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupProfileViewController.xib; sourceTree = "<group>"; };
+		CE8F7A2919B1F380007C40D8 /* GroupUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupUsersViewController.h; sourceTree = "<group>"; };
+		CE8F7A2A19B1F381007C40D8 /* GroupUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupUsersViewController.m; sourceTree = "<group>"; };
+		CE8F7A2B19B1F381007C40D8 /* GroupUsersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupUsersViewController.xib; sourceTree = "<group>"; };
+		CE8F7A3519B1F878007C40D8 /* GroupUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupUserCell.h; sourceTree = "<group>"; };
+		CE8F7A3619B1F878007C40D8 /* GroupUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupUserCell.m; sourceTree = "<group>"; };
+		CE8F7A3719B1F878007C40D8 /* GroupUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupUserCell.xib; sourceTree = "<group>"; };
 		CE9D3769195E771B001F05D9 /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewController.h; sourceTree = "<group>"; };
 		CE9D376A195E771B001F05D9 /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		CE9D376B195E771B001F05D9 /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
@@ -975,6 +990,8 @@
 				CEC5283619ABE87100959EFB /* RearViewController */,
 				CEC5282A19ABE86500959EFB /* SearchFriendsViewController */,
 				CEC5282219ABE85E00959EFB /* FriendsProfileViewController */,
+				CE8F7A2819B1F34B007C40D8 /* GroupUsersViewController */,
+				CE8F7A2219B1DBC5007C40D8 /* GroupProfileViewController */,
 				CEC5281619ABE85100959EFB /* AddToGroupViewController */,
 				CEC5281019ABE84600959EFB /* FriendsListViewController */,
 				8464A85C195A066800583DE0 /* BaseViewController */,
@@ -1232,6 +1249,37 @@
 				84DF77991969AC1F00A11C2F /* FXBlurView.m */,
 			);
 			path = FXBlurView;
+			sourceTree = "<group>";
+		};
+		CE8F7A2219B1DBC5007C40D8 /* GroupProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CE8F7A2319B1DBE0007C40D8 /* GroupProfileViewController.h */,
+				CE8F7A2419B1DBE0007C40D8 /* GroupProfileViewController.m */,
+				CE8F7A2519B1DBE0007C40D8 /* GroupProfileViewController.xib */,
+			);
+			path = GroupProfileViewController;
+			sourceTree = "<group>";
+		};
+		CE8F7A2819B1F34B007C40D8 /* GroupUsersViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CE8F7A3419B1F861007C40D8 /* GroupUserCell */,
+				CE8F7A2919B1F380007C40D8 /* GroupUsersViewController.h */,
+				CE8F7A2A19B1F381007C40D8 /* GroupUsersViewController.m */,
+				CE8F7A2B19B1F381007C40D8 /* GroupUsersViewController.xib */,
+			);
+			path = GroupUsersViewController;
+			sourceTree = "<group>";
+		};
+		CE8F7A3419B1F861007C40D8 /* GroupUserCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE8F7A3519B1F878007C40D8 /* GroupUserCell.h */,
+				CE8F7A3619B1F878007C40D8 /* GroupUserCell.m */,
+				CE8F7A3719B1F878007C40D8 /* GroupUserCell.xib */,
+			);
+			path = GroupUserCell;
 			sourceTree = "<group>";
 		};
 		CE9D3768195E76F7001F05D9 /* ForgotPassword */ = {
@@ -1550,6 +1598,7 @@
 				84DF77731969240000A11C2F /* onlineImage@2x.png in Resources */,
 				CEC5282819ABE85E00959EFB /* FriendsProfileViewController.xib in Resources */,
 				84A48818196AB703006BC223 /* customIcon.png in Resources */,
+				CE8F7A3919B1F878007C40D8 /* GroupUserCell.xib in Resources */,
 				84DF776B1969240000A11C2F /* commentIcon@2x.png in Resources */,
 				84A4881D196AB703006BC223 /* selCustomIcon.png in Resources */,
 				841E02F519A091C100C16E32 /* WhereView.xib in Resources */,
@@ -1598,6 +1647,7 @@
 				84DF7736196923EE00A11C2F /* purpleButton.png in Resources */,
 				CEC528A619ABF31E00959EFB /* selNightIcon.png in Resources */,
 				CEC5287119ABF30300959EFB /* selTransportIcon@2x.png in Resources */,
+				CE8F7A2719B1DBE0007C40D8 /* GroupProfileViewController.xib in Resources */,
 				84DF777E1969240000A11C2F /* unselImg@2x.png in Resources */,
 				84DF777D1969240000A11C2F /* txtFldY@2x.png in Resources */,
 				CEC528A319ABF31E00959EFB /* selCustomIcon.png in Resources */,
@@ -1640,6 +1690,7 @@
 				849DC1161996A044008988AD /* reminderSet@2x.png in Resources */,
 				84DF7725196923EE00A11C2F /* backButton.png in Resources */,
 				84ABFCF119ABBB4F006FBE1E /* selNightIcon.png in Resources */,
+				CE8F7A2D19B1F381007C40D8 /* GroupUsersViewController.xib in Resources */,
 				8464A8A9195A066800583DE0 /* RegisterViewController.xib in Resources */,
 				CEC5287A19ABF30300959EFB /* side3@2x.png in Resources */,
 				84DF77651969240000A11C2F /* backButton@2x.png in Resources */,
@@ -1684,6 +1735,7 @@
 				84DF779A1969AC1F00A11C2F /* FXBlurView.m in Sources */,
 				8464A87D195A066800583DE0 /* CommonFunctions.m in Sources */,
 				8464A8A4195A066800583DE0 /* LogNightViewController.m in Sources */,
+				CE8F7A2C19B1F381007C40D8 /* GroupUsersViewController.m in Sources */,
 				84A14330195F5AD200DC3970 /* PATextField.m in Sources */,
 				842715E81960399700DBEA6E /* RequestBuilder.m in Sources */,
 				849DC10A19963BDA008988AD /* UILabel+WhiteUIDatePickerLabels.m in Sources */,
@@ -1701,6 +1753,7 @@
 				841E02F319A091A500C16E32 /* WhenView.m in Sources */,
 				CEC5281E19ABE85100959EFB /* AddToGroupCellTableViewCell.m in Sources */,
 				8464A89F195A066800583DE0 /* main.m in Sources */,
+				CE8F7A3819B1F878007C40D8 /* GroupUserCell.m in Sources */,
 				84A110B3197166B50035E181 /* SignUpModel.m in Sources */,
 				CEC5284519ABE92B00959EFB /* SWRevealViewController.m in Sources */,
 				CEC5284019ABE87100959EFB /* RearViewController.m in Sources */,
@@ -1712,6 +1765,7 @@
 				CEC5283219ABE86500959EFB /* FriendsViewController.m in Sources */,
 				CEC5283419ABE86500959EFB /* SearchFriendsTableViewCell.m in Sources */,
 				CE9D376C195E771B001F05D9 /* ForgotPasswordViewController.m in Sources */,
+				CE8F7A2619B1DBE0007C40D8 /* GroupProfileViewController.m in Sources */,
 				8464A8A6195A066800583DE0 /* ProfileViewController.m in Sources */,
 				844A565819976FB200B553E4 /* MapViewAnnotation.m in Sources */,
 				84A110B6197166CF0035E181 /* LoginModel.m in Sources */,

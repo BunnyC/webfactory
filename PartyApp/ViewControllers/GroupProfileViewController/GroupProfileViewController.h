@@ -7,8 +7,8 @@
 //
 
 #import "BaseViewController.h"
-
-@interface GroupProfileViewController : BaseViewController
+#import "GroupUsersViewController.h"
+@interface GroupProfileViewController : BaseViewController<QBActionStatusDelegate>
 {
   
     
@@ -18,9 +18,12 @@
 
     __weak IBOutlet UIActivityIndicatorView *activityIndicator;
     
+    BOOL isFinishRequest;
+    
 }
 
-
+ @property (nonatomic,retain)QBCOCustomObject *objGroup;
+ @property (nonatomic,retain)QBUUser *objUser;
 - (IBAction)btnViewGroupMember:(id)sender;
 - (IBAction)btnSetReminderAction:(id)sender;
 - (IBAction)btnGroupChatAction:(id)sender;

@@ -75,21 +75,44 @@ NSString *classReminder = @"PAReminder";
 - (void)setupNavigationItems {
     
     // Setting up Bar Button Items
-    UIImage *imgBackButton = [commFunc imageWithName:@"backButton" andType:_pPNGType];
-    UIImage *imgNotificationButton = [commFunc imageWithName:@"barButtonTick" andType:_pPNGType];
+    if(_isShowNavigationBarButton)
+    {
+        UIImage *imgMenuButton = [commFunc imageWithName:@"buttonMenu" andType:_pPNGType];
+  
+        
+        SWRevealViewController *revealController = [self revealViewController];
+        [revealController panGestureRecognizer];
+        [revealController tapGestureRecognizer];
+        UIButton *leftBarButton = [commFunc buttonNavigationItemWithImage:imgMenuButton
+                                                                forTarget:revealController
+                                                              andSelector:@selector(revealToggle:)];
+        UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButton];
+        
+        [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
+    }
+    else
+    {
+        UIImage *imgBackButton = [commFunc imageWithName:@"backButton" andType:_pPNGType];
+        
+       
+       
+        UIButton *leftBarButton = [commFunc buttonNavigationItemWithImage:imgBackButton
+                                                                forTarget:self
+                                                              andSelector:@selector(backButtonAction:)];
+         UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButton];
+         [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
+    }
     
-    UIButton *leftBarButton = [commFunc buttonNavigationItemWithImage:imgBackButton
-                                                            forTarget:self
-                                                          andSelector:@selector(backButtonAction:)];
+    UIImage *imgNotificationButton = [commFunc imageWithName:@"barButtonTick" andType:_pPNGType];
     UIButton *rightBarButton = [commFunc buttonNavigationItemWithImage:imgNotificationButton
                                                              forTarget:self
                                                            andSelector:nil];
     
-    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBarButton];
-    [self.navigationItem setLeftBarButtonItem:leftBarButtonItem];
+   
     
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarButton];
     [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
+
 }
 
 - (void)initDefaults {

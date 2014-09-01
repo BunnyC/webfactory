@@ -21,6 +21,7 @@
     
     //  View Bottom
     __weak IBOutlet UITextView *textViewLinks;
+    
 }
-
+@property (nonatomic) BOOL isShowNavigationBarButton;
 @end

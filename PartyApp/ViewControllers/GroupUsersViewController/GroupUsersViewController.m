@@ -7,9 +7,14 @@
 //
 
 #import "GroupUsersViewController.h"
-#import "SearchFriendsTableViewCell.h"
-@interface GroupUsersViewController ()
+#import "GroupUserCell.h"
 
+@interface GroupUsersViewController ()
+{
+
+    CommonFunctions *commFunc;
+    
+}
 @end
 
 @implementation GroupUsersViewController
@@ -26,6 +31,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    commFunc=[CommonFunctions sharedObject];
+       [self.navigationItem setTitle:@"Groups Users"];
+    arrGrpUserList=[[NSMutableArray alloc]init];
+    [self fetchGroupUserList];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -38,17 +47,13 @@
 #pragma mark - Fetch Group Users
 -(void)fetchGroupUserList
 {
-//    NSMutableDictionary *getRequest = [NSMutableDictionary dictionary];
-//    [getRequest setObject:[NSString stringWithFormat:@"%lu",(unsigned long)] forKey:@"FR_WithUser_ID[ctn]"];
-//    
-//    
-//    
-//    [getRequest setObject:@"rating" forKey:@"sort_asc"];
-//    vwloading=[commFunc showLoadingView];
-//    [QBCustomObjects objectsWithClassName:@"PAFriendListClass" extendedRequest:getRequest delegate:self];
     
+        NSMutableDictionary *getRequest = [NSMutableDictionary dictionary];
+        [getRequest setObject:_objGroup.ID forKey:@"GroupID[ctn]"];
+       vwloading=[commFunc showLoadingView];
+        [QBCustomObjects objectsWithClassName:@"GroupUserTable"
+                              extendedRequest:getRequest delegate:self];
     
-    // [QBAuth createSessionWithDelegate:self];
 }
 
 #pragma mark - TableView Delegate Methods
@@ -61,17 +66,35 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identifer=@"cell";
-    SearchFriendsTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:identifer];
+     GroupUserCell *cell=[tableView dequeueReusableCellWithIdentifier:identifer];
     
     if(!cell)
     {
-        NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"SearchFriendsTableViewCell" owner:self options:nil];
+        NSArray *nib=[[NSBundle mainBundle]loadNibNamed:@"GroupUserCell" owner:self options:nil];
         cell=[nib lastObject];
     }
     
     [cell setCellValues:[arrGrpUserList objectAtIndex:
                          indexPath.row]];
     return cell;
+    
+}
+
+
+
+-(void)completedWithResult:(Result *)result{
+    
+   
+     if(result.success && [result isKindOfClass:QBCOCustomObjectPagedResult.class])
+     {
+        [arrGrpUserList removeAllObjects];
+        QBCOCustomObjectPagedResult *getObjectsResult = (QBCOCustomObjectPagedResult *)result;
+        NSLog(@"Objects: %@, count: %lu", getObjectsResult.objects, getObjectsResult.count);
+        [arrGrpUserList addObjectsFromArray:getObjectsResult.objects];
+        [vwloading removeFromSuperview];
+        [tblGroupList reloadData];
+     
+    }
     
 }
 

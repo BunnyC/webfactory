@@ -11,7 +11,8 @@
 #import "AppDelegate.h"
 #import "ProfileViewController.h"
 #import "FriendsViewController.h"
-
+#import "AddToGroupViewController.h"
+#import "AddReminderViewController.h"
 @interface RearViewController ()
 {
     NSInteger _presentedRow;
@@ -119,13 +120,37 @@
     
     if (row == 0)
     {
+        if([commFunc isDeviceiPhone5])
+        {
         newFrontController = [[ProfileViewController alloc] init];
+        }
+        else
+        {
+            newFrontController = [[ProfileViewController alloc] initWithNibName:@"ProfileViewController4" bundle:nil];
+        }
     }
     
     else if (row == 1)
     {
         newFrontController = [[FriendsViewController alloc] init];
-    }else
+    }
+    else if(row==2)
+    {
+        AddToGroupViewController *obj=[[AddToGroupViewController alloc]initWithNibName:@"AddToGroupViewController" bundle:nil];
+        obj.objUser=[commFunc getQBUserObjectFromUserDefaults];
+        obj.isShowNavigationBarButton=YES;
+        newFrontController=obj;
+        
+    }
+    else if(row==3)
+    {
+        NSString *xibName = [commFunc isDeviceiPhone5] ? @"AddReminderViewController" : @"AddReminderViewController4";
+        AddReminderViewController *objAddReminderView = [[AddReminderViewController alloc] initWithNibName:xibName bundle:nil];
+       // [self.navigationController pushViewController:objAddReminderView animated:YES];
+        objAddReminderView.isShowNavigationBarButton=TRUE;
+        newFrontController=objAddReminderView;
+    }
+    else
     {
         [commFunc showUnderDevelopmentAlert];
         return;

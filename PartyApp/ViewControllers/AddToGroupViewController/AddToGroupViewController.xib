@@ -9,7 +9,6 @@
                 <outlet property="tblGroupList" destination="RyQ-iI-MM1" id="B25-SB-NAb"/>
                 <outlet property="txtGroupTitle" destination="Cu4-B8-ASd" id="U8O-Hb-AsV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="vwAddGroup" destination="eNz-2I-HuT" id="82t-Ct-ogE"/>
                 <outlet property="vwCustomAlertForAddGroup" destination="aCI-cg-btl" id="fcz-pk-Qq3"/>
                 <outlet property="vwHeader" destination="GWC-Sh-I94" id="Nm2-Oq-0Lk"/>
             </connections>
@@ -20,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="67" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="RyQ-iI-MM1">
-                    <rect key="frame" x="18" y="0.0" width="285" height="270"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
@@ -28,58 +27,28 @@
                         <outlet property="delegate" destination="-1" id="yHq-f4-7dp"/>
                     </connections>
                 </tableView>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eNz-2I-HuT">
-                    <rect key="frame" x="60" y="278" width="200" height="213"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <subviews>
-                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8q-yM-6vH">
-                            <rect key="frame" x="15" y="183" width="170" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="14"/>
-                            <state key="normal" title="ADD Group">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="btnAddGroupAction:" destination="-1" eventType="touchUpInside" id="SAl-X0-zve"/>
-                            </connections>
-                        </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fr-img.png" translatesAutoresizingMaskIntoConstraints="NO" id="f97-5w-fzr">
-                            <rect key="frame" x="10" y="0.0" width="180" height="180"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDS-gz-iTF">
-                            <rect key="frame" x="69" y="59" width="63" height="62"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" image="fr-img3.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
         <view autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="GWC-Sh-I94">
-            <rect key="frame" x="0.0" y="0.0" width="292" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="whenNWhere.png" translatesAutoresizingMaskIntoConstraints="NO" id="HtE-aV-plK">
-                    <rect key="frame" x="0.0" y="0.0" width="290" height="50"/>
+                    <rect key="frame" x="15" y="8" width="290" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Search Friends by email ld" minimumFontSize="17" background="reminderLocationTF.png" translatesAutoresizingMaskIntoConstraints="NO" id="Cu4-B8-ASd" customClass="PATextField">
-                    <rect key="frame" x="3" y="4" width="206" height="40"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Please enter group name" minimumFontSize="17" background="reminderLocationTF.png" translatesAutoresizingMaskIntoConstraints="NO" id="Cu4-B8-ASd" customClass="PATextField">
+                    <rect key="frame" x="19" y="13" width="206" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjE-lF-Wvt">
-                    <rect key="frame" x="211" y="2" width="75" height="46"/>
+                    <rect key="frame" x="227" y="13" width="75" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                     <state key="normal" title=" Create " backgroundImage="fr-img7.png">
@@ -156,8 +125,6 @@
         </view>
     </objects>
     <resources>
-        <image name="fr-img.png" width="183" height="156"/>
-        <image name="fr-img3.png" width="63" height="62"/>
         <image name="fr-img7.png" width="75" height="41"/>
         <image name="purpleButton.png" width="183" height="36"/>
         <image name="reminderLocationTF.png" width="204" height="41"/>

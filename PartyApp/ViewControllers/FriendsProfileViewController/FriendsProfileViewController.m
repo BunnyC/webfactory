@@ -45,7 +45,7 @@
 - (void)setup {
     
     commFunc = [CommonFunctions sharedObject];
-    self.navigationItem.title=@"Friends";
+    self.navigationItem.title=@"Friends Profile";
     lbl_FrName.text=_qbuser.login;
     lbl_Status.text=@"Active";
     if(_isAlreadyFriend)
@@ -137,6 +137,7 @@
     //[commFunc showUnderDevelopmentAlert];
     AddToGroupViewController *obj=[[AddToGroupViewController alloc]initWithNibName:@"AddToGroupViewController" bundle:nil];
     obj.objUser=_qbuser;
+    obj.isShowNavigationBarButton=NO;
     [self.navigationController pushViewController:obj animated:YES];
 
 }

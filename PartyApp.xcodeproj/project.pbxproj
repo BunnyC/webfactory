@@ -195,6 +195,7 @@
 		CE35F0911956A71A009DA53D /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0901956A71A009DA53D /* libresolv.dylib */; };
 		CE35F0931956A722009DA53D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0921956A722009DA53D /* CoreLocation.framework */; };
 		CE35F0991956A73C009DA53D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE35F0981956A73C009DA53D /* CFNetwork.framework */; };
+		CE87CE8819B393B700E5D586 /* GroupProfileViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE87CE8719B393B700E5D586 /* GroupProfileViewController4.xib */; };
 		CE8F7A2619B1DBE0007C40D8 /* GroupProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8F7A2419B1DBE0007C40D8 /* GroupProfileViewController.m */; };
 		CE8F7A2719B1DBE0007C40D8 /* GroupProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE8F7A2519B1DBE0007C40D8 /* GroupProfileViewController.xib */; };
 		CE8F7A2C19B1F381007C40D8 /* GroupUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8F7A2A19B1F381007C40D8 /* GroupUsersViewController.m */; };
@@ -511,6 +512,7 @@
 		CE35F0941956A72D009DA53D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CE35F0961956A734009DA53D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		CE35F0981956A73C009DA53D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		CE87CE8719B393B700E5D586 /* GroupProfileViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupProfileViewController4.xib; sourceTree = "<group>"; };
 		CE8F7A2319B1DBE0007C40D8 /* GroupProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupProfileViewController.h; sourceTree = "<group>"; };
 		CE8F7A2419B1DBE0007C40D8 /* GroupProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupProfileViewController.m; sourceTree = "<group>"; };
 		CE8F7A2519B1DBE0007C40D8 /* GroupProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupProfileViewController.xib; sourceTree = "<group>"; };
@@ -1257,6 +1259,7 @@
 				CE8F7A2319B1DBE0007C40D8 /* GroupProfileViewController.h */,
 				CE8F7A2419B1DBE0007C40D8 /* GroupProfileViewController.m */,
 				CE8F7A2519B1DBE0007C40D8 /* GroupProfileViewController.xib */,
+				CE87CE8719B393B700E5D586 /* GroupProfileViewController4.xib */,
 			);
 			path = GroupProfileViewController;
 			sourceTree = "<group>";
@@ -1516,6 +1519,7 @@
 				CEC5281519ABE84600959EFB /* FriendsListViewController.xib in Resources */,
 				CE9D376E195E771B001F05D9 /* ForgotPasswordViewController.xib in Resources */,
 				CEC528A219ABF31E00959EFB /* personalIcon.png in Resources */,
+				CE87CE8819B393B700E5D586 /* GroupProfileViewController4.xib in Resources */,
 				CEC528A019ABF31E00959EFB /* friendsIcon.png in Resources */,
 				CEC5287219ABF30300959EFB /* side1@2x.png in Resources */,
 				CEC5286119ABF30300959EFB /* side4@2x.png in Resources */,

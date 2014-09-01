@@ -274,7 +274,12 @@
 {
     if(arrSearchFriedslist.count==indexPath.row)
     {
-        return 200.0;
+       if( [commFunc isDeviceiPhone5])
+        return 310.0;
+        else
+        {
+           return 400.0;
+        }
     }
     else
     {
@@ -307,7 +312,7 @@
             
             //allocate the view if it doesn't exist yet
             
-            innerView.frame =CGRectMake(tableView.frame.size.width/2-90, 0, 180,180);
+            innerView.frame =CGRectMake(tableView.frame.size.width/2-90, 20, 180,180);
             innerView.layer.borderColor=[UIColor whiteColor].CGColor;
             innerView.layer.borderWidth=0.5f;
             innerView.layer.cornerRadius=5.0;
@@ -383,10 +388,18 @@
     }
     else
     {
-    FriendsProfileViewController *objFriendsPro=[[FriendsProfileViewController
-                                                  alloc]initWithNibName:@"FriendsProfileViewController" bundle:nil];
+        FriendsProfileViewController *objFriendsPro;
     
-        
+        if([commFunc isDeviceiPhone5])
+        {
+          objFriendsPro=[[FriendsProfileViewController
+                        alloc]initWithNibName:@"FriendsProfileViewController" bundle:nil];
+        }
+        else
+        {
+            objFriendsPro=[[FriendsProfileViewController
+                            alloc]initWithNibName:@"FriendsProfileViewController4" bundle:nil];
+        }
         
         if([[arrSearchFriedslist objectAtIndex:indexPath.row] isKindOfClass:[QBUUser  class]])
         {

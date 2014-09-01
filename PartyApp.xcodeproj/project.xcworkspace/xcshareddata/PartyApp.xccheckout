@@ -5,46 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>8109EABA-E4ED-4AEF-96B3-CFAAED9B24DC</string>
+	<string>CE2D6B09-5E9C-4012-8CBE-FF2F5EEE3CA1</string>
 	<key>IDESourceControlProjectName</key>
 	<string>PartyApp</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>44315754-266E-4ADE-ACF9-79A8D7C8E52D</key>
-		<string>https://github.com/channi/webfactory.git</string>
-		<key>C4DF8D32-16FD-418A-B515-5BB849AEEA77</key>
-		<string>https://github.com/channi/PartyApp.git</string>
+		<key>9F2413E2-EA92-479C-A12A-C92149648F59</key>
+		<string>https://github.com/BunnyC/webfactory.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>PartyApp.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>44315754-266E-4ADE-ACF9-79A8D7C8E52D</key>
+		<key>9F2413E2-EA92-479C-A12A-C92149648F59</key>
 		<string>../..</string>
-		<key>C4DF8D32-16FD-418A-B515-5BB849AEEA77</key>
-		<string>../../PartyApp</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/channi/webfactory.git</string>
+	<string>https://github.com/BunnyC/webfactory.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>44315754-266E-4ADE-ACF9-79A8D7C8E52D</string>
+	<string>9F2413E2-EA92-479C-A12A-C92149648F59</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>C4DF8D32-16FD-418A-B515-5BB849AEEA77</string>
-			<key>IDESourceControlWCCName</key>
-			<string>PartyApp</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>44315754-266E-4ADE-ACF9-79A8D7C8E52D</string>
+			<string>9F2413E2-EA92-479C-A12A-C92149648F59</string>
 			<key>IDESourceControlWCCName</key>
 			<string>webfactory</string>
 		</dict>

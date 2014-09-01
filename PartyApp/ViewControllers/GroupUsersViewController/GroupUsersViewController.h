@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-@interface GroupUsersViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate>
+@interface GroupUsersViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate,QBActionStatusDelegate>
 {
     
     __weak IBOutlet UITableView *tblGroupList;

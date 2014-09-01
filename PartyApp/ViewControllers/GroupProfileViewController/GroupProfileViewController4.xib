@@ -6,46 +6,46 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GroupProfileViewController">
             <connections>
-                <outlet property="grpName" destination="y0o-y2-Np2" id="U0e-ht-c0r"/>
-                <outlet property="imgVwGrpProfilePic" destination="qlG-7G-Dpr" id="lwb-TK-YtN"/>
-                <outlet property="lbl_NumberOfMembers" destination="kha-Ov-XeS" id="mza-WH-C3u"/>
-                <outlet property="view" destination="Qim-6H-x0z" id="094-ic-FoC"/>
+                <outlet property="grpName" destination="LCe-Fv-B3Y" id="CF1-6C-v7c"/>
+                <outlet property="imgVwGrpProfilePic" destination="1rq-lY-ZI0" id="FnZ-h1-zjt"/>
+                <outlet property="lbl_NumberOfMembers" destination="MBa-fy-l8L" id="UaM-B9-MJ1"/>
+                <outlet property="view" destination="f8g-bT-IdS" id="x8s-Y1-MfN"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Qim-6H-x0z">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="f8g-bT-IdS">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8cF-Jp-44t">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="526"/>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UTl-Q8-EmV">
+                    <rect key="frame" x="0.0" y="-20" width="320" height="438"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="roundImageEffect.png" translatesAutoresizingMaskIntoConstraints="NO" id="6Nk-66-vE7">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="roundImageEffect.png" translatesAutoresizingMaskIntoConstraints="NO" id="zfS-4J-ziZ">
                             <rect key="frame" x="94" y="17" width="133" height="133"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="qlG-7G-Dpr">
-                            <rect key="frame" x="109" y="32" width="103" height="103"/>
+                        <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="1rq-lY-ZI0">
+                            <rect key="frame" x="109" y="30" width="103" height="106"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </imageView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y0o-y2-Np2">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCe-Fv-B3Y">
                             <rect key="frame" x="20" y="152" width="280" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="kha-Ov-XeS">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="MBa-fy-l8L">
                             <rect key="frame" x="20" y="180" width="280" height="42"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Arial-ItalicMT" family="Arial" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dCE-ap-7Up">
-                            <rect key="frame" x="69" y="265" width="183" height="36"/>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ag2-oj-VmA">
+                            <rect key="frame" x="69" y="240" width="183" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
                             <state key="normal" title="View Members" backgroundImage="purpleButton.png">
@@ -53,22 +53,22 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="btnViewGroupMember:" destination="-1" eventType="touchUpInside" id="cbT-ij-FcR"/>
+                                <action selector="btnViewGroupMember:" destination="-1" eventType="touchUpInside" id="4OU-D4-EMa"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zfF-LN-eEV">
-                            <rect key="frame" x="69" y="358" width="183" height="36"/>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8FY-ma-OPw">
+                            <rect key="frame" x="69" y="333" width="183" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
                             <state key="normal" title="Group Chat" backgroundImage="yellowButton.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="btnGroupChatAction:" destination="-1" eventType="touchUpInside" id="hcD-AB-LaA"/>
+                                <action selector="btnGroupChatAction:" destination="-1" eventType="touchUpInside" id="Oc3-kQ-1Qv"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="84c-eC-DP8">
-                            <rect key="frame" x="69" y="318" width="183" height="36"/>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7O-PI-dgG">
+                            <rect key="frame" x="69" y="293" width="183" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
                             <state key="normal" title="Set Reminder" backgroundImage="whiteButton.png">
@@ -76,18 +76,18 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="btnSetReminderAction:" destination="-1" eventType="touchUpInside" id="oL4-nk-EXd"/>
+                                <action selector="btnSetReminderAction:" destination="-1" eventType="touchUpInside" id="2ZI-Dm-9JA"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OFK-yV-hgx">
-                            <rect key="frame" x="69" y="398" width="183" height="36"/>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVZ-8E-jtm">
+                            <rect key="frame" x="69" y="373" width="183" height="36"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
                             <state key="normal" title="Leave Group" backgroundImage="pinkButton.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="btnLeaveGroupAction:" destination="-1" eventType="touchUpInside" id="FBc-Zd-aSm"/>
+                                <action selector="btnLeaveGroupAction:" destination="-1" eventType="touchUpInside" id="b4d-Lt-gvf"/>
                             </connections>
                         </button>
                     </subviews>
@@ -97,9 +97,9 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>

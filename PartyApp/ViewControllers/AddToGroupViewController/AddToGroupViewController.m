@@ -90,9 +90,40 @@
 #pragma mark - IBAction
 
 - (IBAction)btnOKClicked:(id)sender {
+  
+    
+    
+    
+    /////
+    
+    
+    
+    QBCOCustomObject *objectAddUserToGroup = [QBCOCustomObject customObject];
+    [objectAddUserToGroup setClassName:@"GroupUserTable"];
+    
+    [objectAddUserToGroup.fields setObject:[NSString stringWithFormat:@"%lu",_objUser.ID]
+                                    forKey:@"GroupUserId"];
+    
+    [objectAddUserToGroup.fields setObject:[NSString stringWithFormat:@"%@",objGroup.ID]
+     
+                                    forKey:@"GroupID"];
+    
+    [objectAddUserToGroup.fields setObject:_objUser.login
+                                    forKey:@"GroupUserName"];
+    
+    
+    [objectAddUserToGroup.fields setObject:[NSString stringWithFormat:@"%lu",_objUser.blobID]
+                                    forKey:@"GroupUserBlobId"];
+    
+    
+    isUpdateGroupUserCountRequest=TRUE;
+    [QBCustomObjects createObject:objectAddUserToGroup delegate:self];
+
 }
 
 - (IBAction)btnCancelClicked:(id)sender {
+    
+    [vwCustomAlertForAddGroup removeFromSuperview];
 }
 
 - (IBAction)saveNewGroup:(id)sender {
@@ -114,6 +145,7 @@
 -(void)fetchGroups
 {
     vwLoading=[commFunc showLoadingView];
+  
     [QBCustomObjects objectsWithClassName:@"PAGroupClass"  delegate:self];
 }
 
@@ -144,26 +176,28 @@
 
 -(void)addUserToGroup
 {
-    QBCOCustomObject *objectAddUserToGroup = [QBCOCustomObject customObject];
-    [objectAddUserToGroup setClassName:@"GroupUserTable"];
     
-    [objectAddUserToGroup.fields setObject:[NSString stringWithFormat:@"%lu",_objUser.ID]
-                                    forKey:@"GroupUserId"];
-    
-    [objectAddUserToGroup.fields setObject:[NSString stringWithFormat:@"%@",objGroup.ID]
-     
-                                    forKey:@"GroupID"];
-    
-    [objectAddUserToGroup.fields setObject:_objUser.login
-                                    forKey:@"GroupUserName"];
-    
-    
-    [objectAddUserToGroup.fields setObject:[NSString stringWithFormat:@"%lu",_objUser.blobID]
-                                    forKey:@"GroupUserBlobId"];
-
-    
-    isUpdateGroupUserCountRequest=TRUE;
-    [QBCustomObjects createObject:objectAddUserToGroup delegate:self];
+    [self.view addSubview:vwCustomAlertForAddGroup];
+//    QBCOCustomObject *objectAddUserToGroup = [QBCOCustomObject customObject];
+//    [objectAddUserToGroup setClassName:@"GroupUserTable"];
+//    
+//    [objectAddUserToGroup.fields setObject:[NSString stringWithFormat:@"%lu",_objUser.ID]
+//                                    forKey:@"GroupUserId"];
+//    
+//    [objectAddUserToGroup.fields setObject:[NSString stringWithFormat:@"%@",objGroup.ID]
+//     
+//                                    forKey:@"GroupID"];
+//    
+//    [objectAddUserToGroup.fields setObject:_objUser.login
+//                                    forKey:@"GroupUserName"];
+//    
+//    
+//    [objectAddUserToGroup.fields setObject:[NSString stringWithFormat:@"%lu",_objUser.blobID]
+//                                    forKey:@"GroupUserBlobId"];
+//
+//    
+//    isUpdateGroupUserCountRequest=TRUE;
+//    [QBCustomObjects createObject:objectAddUserToGroup delegate:self];
 }
 
 
@@ -304,13 +338,13 @@
     else
     {
         objGroup=(QBCOCustomObject *)[arrOfGroups objectAtIndex:indexPath.row];
-        
         NSMutableDictionary *getRequest = [NSMutableDictionary dictionary];
         [getRequest setObject:[NSString stringWithFormat:@"%lu",(unsigned long)_objUser.ID] forKey:@"GroupUserId[ctn]"];
         
         isFetchGroupUsersRequest=TRUE;
         vwLoading=[commFunc showLoadingView];
         [QBCustomObjects objectsWithClassName:@"GroupUserTable" extendedRequest:getRequest delegate:self];
+        
     }
 }
 
@@ -320,7 +354,7 @@
 -(void)completedWithResult:(Result *)result
 {
     if(result.success && [result isKindOfClass:QBCOCustomObjectPagedResult.class]){
-        [arrOfGroups removeAllObjects];
+      
         
        
         if(isFetchGroupUsersRequest)
@@ -347,6 +381,7 @@
                     isFinishRequest=FALSE;
                     obj.objGroup=objGroup;
                     obj.objUser=_objUser;
+                    [vwCustomAlertForAddGroup removeFromSuperview];
                     [self.navigationController pushViewController:obj animated:YES];
                 }
                 else
@@ -413,6 +448,7 @@
                         isFinishRequest=FALSE;
                         obj.objGroup=objGroup;
                         obj.objUser=_objUser;
+                        [vwCustomAlertForAddGroup removeFromSuperview];
                         [self.navigationController pushViewController:obj animated:YES];
                     }
 
@@ -427,6 +463,7 @@
         else
         {
             QBCOCustomObjectPagedResult *getObjectsResult = (QBCOCustomObjectPagedResult *)result;
+              [arrOfGroups removeAllObjects];
            [arrOfGroups addObjectsFromArray:getObjectsResult.objects];
               [tblGroupList reloadData];
         }
@@ -461,6 +498,7 @@
                     isFinishRequest=FALSE;
                     obj.objGroup=objGroup;
                     obj.objUser=_objUser;
+                    [vwCustomAlertForAddGroup removeFromSuperview];
                     [self.navigationController pushViewController:obj animated:YES];
                 }
                 else

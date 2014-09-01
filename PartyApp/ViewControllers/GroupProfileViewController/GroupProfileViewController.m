@@ -77,6 +77,22 @@
     grpName.text=[_objGroup.fields objectForKey:@"PAGroupName"];
      [imgVwGrpProfilePic.layer setCornerRadius:imgVwGrpProfilePic.frame.size.width / 2];
 }
+- (IBAction)btnOKClickedAction:(id)sender {
+    
+    NSMutableDictionary *getRequest = [NSMutableDictionary dictionary];
+    [getRequest setObject:_objGroup.ID forKey:@"GroupID[ctn]"];
+    vwLoading=[commFunc showLoadingView];
+    
+    [QBCustomObjects objectsWithClassName:@"GroupUserTable"
+                          extendedRequest:getRequest delegate:self];
+
+}
+
+- (IBAction)btnCancelClickedAction:(id)sender {
+    
+    [vwCustomeAlert removeFromSuperview];
+}
+
 - (IBAction)btnViewGroupMember:(id)sender {
     
     GroupUsersViewController *obj=[[GroupUsersViewController alloc]initWithNibName:
@@ -97,13 +113,7 @@
 
 - (IBAction)btnLeaveGroupAction:(id)sender {
     
-    NSMutableDictionary *getRequest = [NSMutableDictionary dictionary];
-    [getRequest setObject:_objGroup.ID forKey:@"GroupID[ctn]"];
-    vwLoading=[commFunc showLoadingView];
-    
-    [QBCustomObjects objectsWithClassName:@"GroupUserTable"
-                          extendedRequest:getRequest delegate:self];
-
+    [self.view addSubview:vwCustomeAlert];
     
     
 }
@@ -163,9 +173,14 @@
             else
             {
                 
-                int numb =([[_objGroup.fields objectForKey:@"PA_NumberOfUsers"] integerValue]-1<0?0:[[_objGroup.fields objectForKey:@"PA_NumberOfUsers"] integerValue]-1);
+                [vwCustomeAlert removeFromSuperview];
+                
+                int numb =[[_objGroup.fields objectForKey:@"PA_NumberOfUsers"] intValue];
+               
                 
                 lbl_NumberOfMembers.text=[NSString stringWithFormat:@"%d members",numb];
+                
+                [self.navigationController popViewControllerAnimated:YES];
             }
         }
         

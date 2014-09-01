@@ -8,6 +8,7 @@
 
 #import "GroupUsersViewController.h"
 #import "GroupUserCell.h"
+#import "FriendsProfileViewController.h"
 
 @interface GroupUsersViewController ()
 {
@@ -74,12 +75,18 @@
         cell=[nib lastObject];
     }
     
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     [cell setCellValues:[arrGrpUserList objectAtIndex:
                          indexPath.row]];
     return cell;
     
 }
 
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    QBCOCustomObject *obj=[arrGrpUserList objectAtIndex:indexPath.row];
+//    [QBUsers userWithID:[[obj.fields objectForKey:@"GroupUserId"] integerValue] delegate:self];
+//}
 
 
 -(void)completedWithResult:(Result *)result{
@@ -95,6 +102,25 @@
         [tblGroupList reloadData];
      
     }
+     else  if(result.success && [result isKindOfClass:[QBUUserResult class]])
+     {
+       
+         QBUUser *userObj=(QBUUser *)result;
+         
+         for (UIViewController *objVC in self.navigationController.viewControllers)
+         {
+             if([objVC isKindOfClass:[FriendsProfileViewController class]])
+             {
+                 FriendsProfileViewController *obj=(FriendsProfileViewController *)objVC;
+                 obj.qbuser=userObj;
+                 [self .navigationController popToViewController:obj animated:YES];          }
+             
+         }
+       
+         
+         
+     }
+
     
 }
 

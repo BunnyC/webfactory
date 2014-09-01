@@ -18,12 +18,16 @@
 
     __weak IBOutlet UIActivityIndicatorView *activityIndicator;
     
+    IBOutlet UIView *vwCustomeAlert;
     BOOL isFinishRequest;
     
 }
 
  @property (nonatomic,retain)QBCOCustomObject *objGroup;
  @property (nonatomic,retain)QBUUser *objUser;
+- (IBAction)btnOKClickedAction:(id)sender;
+- (IBAction)btnCancelClickedAction:(id)sender;
+
 - (IBAction)btnViewGroupMember:(id)sender;
 - (IBAction)btnSetReminderAction:(id)sender;
 - (IBAction)btnGroupChatAction:(id)sender;
